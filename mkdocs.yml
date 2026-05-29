@@ -41,6 +41,7 @@ extra_css:
   - stylesheets/extra.css
 nav:
   - Home: index.md
+  - Ejemplo 6 : Ejemplo_6_DDR/Ejemplo_6.md
   - Ejemplo 7 : Ejemplo_7_VGA/Ejemplo_7.md
 plugins:
   - search

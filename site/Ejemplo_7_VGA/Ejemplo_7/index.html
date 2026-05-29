@@ -1,0 +1,1033 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ejemplo 7 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uso-de-vga-con-dma" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ejemplo 7
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ejemplo 7
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 7
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-del-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño del hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño del hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#axi-video-direct-memory-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AXI Video Direct Memory Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axi4-to-stream-to-video-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AXI4-to-Stream to Video Out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-timing-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video Timing Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rgb-to-vga" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RGB to VGA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-clock-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Clock Generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interconexiones-del-sub-sistema-de-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interconexiones del Sub Sistema de Video
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-puertos-externos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crear puertos externos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incorporacion-al-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incorporación al Sistema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-del-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño del hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño del hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#axi-video-direct-memory-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AXI Video Direct Memory Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axi4-to-stream-to-video-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AXI4-to-Stream to Video Out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-timing-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video Timing Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rgb-to-vga" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RGB to VGA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-clock-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Clock Generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interconexiones-del-sub-sistema-de-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interconexiones del Sub Sistema de Video
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-puertos-externos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crear puertos externos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incorporacion-al-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incorporación al Sistema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="uso-de-vga-con-dma">Uso de VGA con DMA</h1>
+<h2 id="contexto">Contexto</h2>
+<p>VGA (Video Graphics Array) es un estándar de video analógico introducido por IBM en 1987 que transmite la imagen mediante tres señales de color (R, G, B) acompañadas de dos señales digitales de sincronización: HSYNC y VSYNC. A diferencia de interfaces seriales modernas como HDMI o DisplayPort, VGA no encapsula los píxeles en paquetes ni incorpora un reloj embebido: la temporización es responsabilidad íntegra del transmisor. Para una resolución de 800×600 @ 60 Hz, por ejemplo, el estándar VESA define un reloj de píxel de 40 MHz y exige respetar con precisión los intervalos de front porch, pulso de sincronización y back porch tanto horizontales como verticales; cualquier desviación provoca una desincronización en el monitor. Esto implica que, en cada flanco activo del reloj de píxel —aproximadamente cada 25 ns— el controlador debe tener disponible un nuevo valor RGB en sus salidas. En una implementación sobre FPGA, este controlador se construye típicamente como una máquina de estados que genera los contadores horizontal y vertical, deriva HSYNC/VSYNC y consume píxeles desde un FIFO que actúa como interfaz hacia el resto del sistema.</p>
+<figure>
+  <img alt="Image title" id="fig-vga-interface" src="../img/Vga_interface.png" width="500">
+<br>
+<figcaption>Interfaz vga en la placa Nexys A7</figcaption>
+</figure>
+<p>El problema es alimentar ese FIFO al ritmo exigido. Un framebuffer de 800×600 con color de 24 bits ocupa 2 MB, demasiado para almacenarlo en BRAM, por lo que se coloca en memoria externa. Si el MicroBlaze V tuviera que leer cada píxel desde DDR y escribirlo en el controlador VGA mediante instrucciones de lectura y escritura sobre el bus AXI memory-mapped, consumiría prácticamente el 100 % de su tiempo de CPU y, debido a la latencia variable del controlador DDR, los arbitrajes del interconnect AXI y las interrupciones, no podría sostener el ancho de banda constante de ~37 MB/s que la señal requiere. Por esto se implementa un AXI DMA (Direct Memory Access) que transfiere bloques de memoria de forma autónoma usando el rol de master sobre el bus AXI. Específicamente se emplea la variante MM2S (Memory-Mapped to Stream): el DMA lee el framebuffer desde DDR mediante transacciones burst AXI4 memory-mapped y entrega los datos por su puerto de salida como un flujo AXI4-Stream, un protocolo unidireccional punto a punto optimizado para transporte continuo de datos sin sobrecarga de direccionamiento. Este stream se conecta directamente al FIFO del controlador VGA, descargando al MicroBlaze V de toda la tarea de transferencia; el procesador solo configura los registros del DMA al inicio —dirección base, longitud y modo— y queda libre para ejecutar la lógica de aplicación, actualizando el contenido del framebuffer únicamente cuando es necesario.</p>
+<h2 id="diseno-del-hardware">Diseño del hardware</h2>
+<p>Debido a que VGA es una interfaz grafica relativamente desactualizada, no admite una implementación directa equivalente a la de protocolos digitales modernos como UART o líneas GPIO discretas abordadas en secciones anteriores. Para subsanar esta limitación, se recurre a dos núcleos de propiedad intelectual (IP cores) desarrollados por Digilent, los cuales permiten adaptar el subsistema HDMI —interfaz digital basada en señalización diferencial TMDS— hacia la salida VGA física integrada en la placa Nexys A7. Los IP cores empleados son los siguientes:</p>
+<ul>
+<li>
+<p>Dynamic Clock Generator (dynclk): Accede al bloque MMCM/PLL del FPGA Artix-7 a través del bus AXI4-Lite, habilitando la reconfiguración en tiempo de ejecución del reloj de píxel desde el software embebido. Esta funcionalidad resulta crítica dado que cada resolución estándar exige una frecuencia de pixel clock específica conforme a la especificación VESA DMT. En contraste, el IP Clocking Wizard fija dichas frecuencias al momento de realizar la síntesis, lo que obligaría a re-sintetizar e re-implementar el bitstream ante cada modificación de la resolución objetivo.</p>
+</li>
+<li>
+<p>RGB2VGA: Ejecuta el truncamiento de los 4 bits más significativos (MSBs) de cada canal cromático proveniente del bus HDMI, el cual opera con una profundidad de 24 bpp (8 bits por canal R/G/B, equivalente a aproximadamente 1.67×10⁷ colores), reduciéndolos a 4 bits por canal. Esto se ajusta a la profundidad de 12 bpp (4096 colores) soportada por la interfaz VGA en la Nexys A7.</p>
+</li>
+</ul>
+<p>Abra Vivado y agregue estas IP's agregando la carpeta Ejemplo_7/Ip a su repositorio como se vio en secciones anteriores.</p>
+<p>Por temas de visualización se sugiere generar un sub systema conteniendo todo lo asociado a video (no afecta el funcionamiento del sistema ni su relacion con el procesador), para esto haga click derecho sobre el diagrama de bloques y seleccione "Create hierarchy" como se ve en la <a href="#crear-jerarquia">figura 1</a>.</p>
+<p><figure id="_figure-1"><img alt="Crear Subsistema " id="crear-jerarquia" src="../img/crear_jerarquia.png" width="250"><figcaption>Figura 1: Crear Subsistema </figcaption></figure></p>
+<p>Luego en la ventana emergente vista en la  <a href="#vga-jerarquia">figura 2</a> nombre a la jerarquia "vga"</p>
+<p><figure id="_figure-2"><img alt="Asigna nombre a Subsistema VGA" id="vga-jerarquia" src="../img/vga_jerarquia.png" width="250"><figcaption>Figura 2: Asigna nombre a Subsistema VGA</figcaption></figure></p>
+<p>Lo cual generará el sub-sistema "vga" visto en la  <a href="#vga-bloque">figura 3</a>.</p>
+<p><figure id="_figure-3"><img alt="Sub sistema VGA" id="vga-bloque" src="../img/vga_bloque.png" width="250"><figcaption>Figura 3: Sub sistema VGA</figcaption></figure></p>
+<p>Haga doble click sobre este subsistema para empezar el diseño del subsistema en una pestaña aparte del diagrama de bloques global.</p>
+<h3 id="axi-video-direct-memory-access">AXI Video Direct Memory Access</h3>
+<p>Agregue al subsistema  la IP "AXI Video Direct  Memory Access", esta posee acceso directo a memoria, entregando un paso constante de informacion al siguiente bloque  como se puede apreciar en <a href="#fig-axi-vdma">figura 4</a>.</p>
+<p><figure id="_figure-4"><img alt="Configuración Bloque AXI VDMA" id="fig-axi-vdma" src="../img/AXI_VDMA.png" width="500"><figcaption>Figura 4: Configuración Bloque AXI VDMA</figcaption></figure></p>
+<p>Continuando a la configuracion, haga doble click sobre el bloque y ponga la configuracion vista en <a href="#fig-config-vdma">figura 5</a>.</p>
+<p><figure id="_figure-5"><img alt="Configuración Bloque AXI VDMA" id="fig-config-vdma" src="../img/Configuration_AXIVDMA.png" width="1000"><figcaption>Figura 5: Configuración Bloque AXI VDMA</figcaption></figure></p>
+<p>Para esto:</p>
+<ul>
+<li>Cambie la cantidad de Frame Buffers a 2, esta es la cantidad de cuadros que se almacenaran en la memoria externa por iteracion.</li>
+<li>Inhabilite el canal de escritura "Enable Write Channel": Esto inhabilita el canal de AXI Stream a memoria, debido a que los frames seran descritos en el procesador, si se realizara una escritura de video con un periferico asociado a este, se mantendria activado.</li>
+<li>Cambie la el tamaño de lectura "Read Burst Size" a 32 bits, debido a la estructura del procesador, este tamaño de escritura esta asociado a la arquitectura del procesador y el tamaño de los buses de AXI.</li>
+<li>Cambie el tamaño del buffer del frame "Line Buffer Depth" a 4046, este es el tamaño del buffer que se almacenara en memoria BRAM de la fpga. El bloque realiza una lectura de rafaga sobre la direccion de memoria donde se almacena el cuadro, y lo guarda en este buffer para poder enviar la informacion un pixel a la vez diminuyendo la posibilidad de jitter.</li>
+<li>En configuracion avanzada fijar la opcion Genlock en Master, Genlock es la configuracion asociada a la sincronizacion de cada cuadro. Al estar en Maestro se tiene que el bloque anuncia el cuadro en el que se encuentra sin esperar una señal de otro modulo. Se usa esta configuracion debido a que solo se tiene una fuente de video.</li>
+</ul>
+<p>El bloque debería quedar como se ve en la figura <a href="#fig-vdma-final">figura 6</a>.</p>
+<p><figure id="_figure-6"><img alt="Configuración Bloque AXI VDMA" id="fig-vdma-final" src="../img/AXI_VDMA_Configurado.png" width="500"><figcaption>Figura 6: Configuración Bloque AXI VDMA</figcaption></figure></p>
+<h3 id="axi4-to-stream-to-video-out">AXI4-to-Stream to Video Out</h3>
+<p>Agregue el bloque "AXI4-to-Stream to Video Out"  como se ve en <a href="#fig-axistream-to-video">figura 7</a>. Este bloque se encarga de recibir los pixeles cuando del bloque de acceso directo a memoria, guardarlos en un buffer y alinearlos de manera que se entregue el primer pixel de manera sincronica al bloque encargado de la temporalizacion de video.</p>
+<p><figure id="_figure-7"><img alt="IP AXI4-Stream to Video Out" id="fig-axistream-to-video" src="../img/Axi_stream_to_video.png" width="300"><figcaption>Figura 7: IP AXI4-Stream to Video Out</figcaption></figure></p>
+<p>Luego haga doble click sobre el bloque y configure de acuerdo a la <a href="#fig-axistream-to-video-config">figura 8</a>.</p>
+<p><figure id="_figure-8"><img alt="Configuración IP AXI4-Stream to Video Out" id="fig-axistream-to-video-config" src="../img/Axi_stream_to_video_config.png" width="500"><figcaption>Figura 8: Configuración IP AXI4-Stream to Video Out</figcaption></figure></p>
+<p>Estas configuraciones son:</p>
+<ul>
+<li>Video Format (RGB): La salida de video asociada a VGA.</li>
+<li>AXI4S Video Input Component Width (8): Valor predeterminado de envio desde DMA a AXI4S. </li>
+<li>Timing Mode (Master) : Indica que la coordinacion de la salida de datos estara dada por el bloque encargado de la salida de video.</li>
+<li>Profundidad de FIFO (32) : Este es el tamaño del buffer interno del bloque, se usa un tamaño reducido debido a que en el bloque VDMA ya se posee un buffer grande que se manejara por software. Este FIFO solo se encargara de evitar varianza entre el dominio de reloj de AXI4 y el dominio de reloj asociado a la salida de video.</li>
+</ul>
+<p>Una vez configurado el bloque deberia lucir como el de la <a href="#fig-axistream-to-video-final">figura 9</a>.</p>
+<p><figure id="_figure-9"><img alt="AXI4-Stream to Video Out Configurado" id="fig-axistream-to-video-final" src="../img/Axi_stream_to_video_final.png" width="300"><figcaption>Figura 9: AXI4-Stream to Video Out Configurado</figcaption></figure></p>
+<h3 id="video-timing-controller">Video Timing Controller</h3>
+<p>Luego agregue el bloque "Video Timing Controller" (VTC) como se ve en <a href="#fig-vtc">figura 10</a></p>
+<p><figure id="_figure-10"><img alt="IP Video Timing Controller" id="fig-vtc" src="../img/Video_timing_controller.png" width="300"><figcaption>Figura 10: IP Video Timing Controller</figcaption></figure></p>
+<p>Este bloque se encarga de manejar la sincronizacion vertical y horizontal del display, diciendole al bloque que se encarga de la salida de video cuando emitir pixeles.</p>
+<p>Haga doble click sobre este bloque para configurarlo y deshabilite la detección de sincronizacion de video como se aprecia en <a href="#fig-vtc-config">figura 11</a>, puesto que este bloque se encargara de esto. (Note que se mantiene activa la generacion de timing)</p>
+<p><figure id="_figure-11"><img alt="Configuración Bloque VTC" id="fig-vtc-config" src="../img/VTC_config.png" width="300"><figcaption>Figura 11: Configuración Bloque VTC</figcaption></figure></p>
+<p>Una vez configurado deberia quedar como en la <a href="#fig-vtc-final">figura 12</a>.</p>
+<p><figure id="_figure-12"><img alt="Configuración Bloque VTC" id="fig-vtc-final" src="../img/VTC_final.png" width="300"><figcaption>Figura 12: Configuración Bloque VTC</figcaption></figure></p>
+<h3 id="slice">Slice</h3>
+<p>Agregue el bloque Slice, el cual se usara para truncar la salida del bloque AXIVDMA para extraer solo la informacion relevante para VGA (la asociada a los valores de RGB), se deberia ver como en la <a href="#fig-slice">figura 13</a>.</p>
+<p><figure id="_figure-13"><img alt="IP Slice" id="fig-slice" src="../img/slice.png" width="300"><figcaption>Figura 13: IP Slice</figcaption></figure></p>
+<p>Se tiene que los ultimos 24 pixeles estan asociados a los colores (8 bits para cada color) por lo que estos son los que usaremos. Para esto haga doble click sobre el bloque y configurelo de la manera que se ve en la figura <a href="#fig-slice-config">figura 14</a>.</p>
+<p><figure id="_figure-14"><img alt="Configuración  Slice" id="fig-slice-config" src="../img/slice_config.png" width="300"><figcaption>Figura 14: Configuración  Slice</figcaption></figure></p>
+<p>Una vez configurado se deberia ver como en la <a href="#fig-slice-final">figura 15</a>.</p>
+<p><figure id="_figure-15"><img alt="Slice Configurado" id="fig-slice-final" src="../img/slice_final.png" width="300"><figcaption>Figura 15: Slice Configurado</figcaption></figure></p>
+<h3 id="rgb-to-vga">RGB to VGA</h3>
+<p>Agregue el bloque "RGB to VGA" (una de las IP's importadas) al diagrama de bloques como se ve en la <a href="#fig-rgb2vga">figura 16</a>, este bloque trunca las señales de 8 bits asociadas a cada color a la resolucion de preferencia. </p>
+<p><figure id="_figure-16"><img alt="IP RGB2VGA" id="fig-rgb2vga" src="../img/rgb2vga.png" width="300"><figcaption>Figura 16: IP RGB2VGA</figcaption></figure></p>
+<p>Haga doble click y configure el bloque de acuerdo a lo visto en la <a href="#fig-rgb2vga-config">figura 17</a>. Se usa esta configuracion debido a que la placa Nexys A7 tiene una interfaz VGA con una resolucion de 4 bits por color</p>
+<p><figure id="_figure-17"><img alt="Configuración RGB to VGA" id="fig-rgb2vga-config" src="../img/rgb2vga_config.png" width="300"><figcaption>Figura 17: Configuración RGB to VGA</figcaption></figure></p>
+<h3 id="dynamic-clock-generator">Dynamic Clock Generator</h3>
+<p>Agregue el bloque Dynamic Clock Generator al diagrama de bloques como se aprecia en <a href="#fig-dyn-clk">figura 18</a></p>
+<p><figure id="_figure-18"><img alt="IP Dynamic Clock Generator" id="fig-dyn-clk" src="../img/dyn_clk.png" width="300"><figcaption>Figura 18: IP Dynamic Clock Generator</figcaption></figure></p>
+<h3 id="interconexiones-del-sub-sistema-de-video">Interconexiones del Sub Sistema de Video</h3>
+<p>Conecte el puerto REF_CLK_I al puerto s00_axi_clk, ambos puertos del bloque Dynamic Clock generator como se aprecia en la <a href="#fig-conexion-1">figura 19</a>. Se realiza esta conexion debido debido a que se hara uso de un reloj de 100 Mhz para el sistema AXI y esta frecuencia de reloj es suficiente para hacer uso del PLL interno de la IP.</p>
+<p><figure id="_figure-19"><img alt="Conexion entre REF_CLK_I y s00_axi_clk " id="fig-conexion-1" src="../img/Conexion_1.png" width="300"><figcaption>Figura 19: Conexion entre REF_CLK_I y s00_axi_clk </figcaption></figure></p>
+<p>Luego se conectara el reloj generado de esta IP al resto del sistema (Recordar que distinta frecuencia de reloj esta asociada a una distinta resolucion de video) como se aprecia en la <a href="#fig-conexion-5">figura 20</a>.</p>
+<p><figure id="_figure-20"><img alt="Conexion del reloj de salida " id="fig-conexion-5" src="../img/Conexion_5.png" width="400"><figcaption>Figura 20: Conexion del reloj de salida </figcaption></figure></p>
+<p>Especificamente conecte PXL_CLK_O de Dynamic Clock Generator a:</p>
+<ul>
+<li>Puerto m_axis_mm2s_aclk de AXI Video Direct Memory Access (Note que es el puerto axiS, asociado a la modalidad Stream del protocolo AXI).</li>
+<li>PixelClk de RGB to VGA Output.</li>
+<li>aclk de AXI4-Stream to Video Out.</li>
+<li>clk de Video Timing Controller.</li>
+</ul>
+<p>Luego conecte la interfaz vtiming_out de Video Timing Controller a vtiming_in de AXI4-Stream to Video Out como se ve en la <a href="#fig-conexion-6">figura 21</a>. Es a través de esta interfaz que el bloque VTC le indica que tan rapido o lento lanzar las tramas de video al bloque AXI4-Stream to Video Out.</p>
+<p><figure id="_figure-21"><img alt="Conexion interfaz de temporalización de Video" id="fig-conexion-6" src="../img/Conexion_6.png" width="600"><figcaption>Figura 21: Conexion interfaz de temporalización de Video</figcaption></figure></p>
+<p>Conecte la interfaz vid_io_out de AXI4-Stream to Video Out a vid_in de RGA to VGA output como se ve en <a href="#fig-conexion-7">figura 22</a>.</p>
+<p><figure id="_figure-22"><img alt="Conexion interfaz de video" id="fig-conexion-7" src="../img/Conexion_7.png" width="600"><figcaption>Figura 22: Conexion interfaz de video</figcaption></figure></p>
+<p>Conecte el puerto m_axis_mm2s_tdata de AXI CDMA a Din de Slice (para truncar la informacion) como se ve en <a href="#fig-conexion-8">figura 23</a>.</p>
+<p><figure id="_figure-23"><img alt="Truncado del bus de Video" id="fig-conexion-8" src="../img/Conexion_8.png" width="600"><figcaption>Figura 23: Truncado del bus de Video</figcaption></figure></p>
+<p>Conecte la salida de Slice al puerto  x_axi_video_tdata del bloque AXI4-Stream to Video Out como se ve en la <a href="#fig-conexion-9">figura 24</a>, si no aparece se sugiere expandir la interfaz video_in.</p>
+<p><figure id="_figure-24"><img alt="Conexion de VDMA a AXI4-Stream to Video Out" id="fig-conexion-9" src="../img/Conexion_9.png" width="600"><figcaption>Figura 24: Conexion de VDMA a AXI4-Stream to Video Out</figcaption></figure></p>
+<p>Continue conectando el puerto m_axis_mm2s_tlast de AXI VDMA al puerto s_axis_video_tlast de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-10">figura 25</a>.</p>
+<p><figure id="_figure-25"><img alt="Conexion interfaz de video" id="fig-conexion-10" src="../img/Conexion_10.png" width="600"><figcaption>Figura 25: Conexion interfaz de video</figcaption></figure></p>
+<p>Conecte el puerto m_axis_mm2s_tready de AXI VDMA al puerto s_axis_video_tready de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-11">figura 26</a>.</p>
+<p><figure id="_figure-26"><img alt="Conexion interfaz de video" id="fig-conexion-11" src="../img/Conexion_11.png" width="600"><figcaption>Figura 26: Conexion interfaz de video</figcaption></figure></p>
+<p>Conecte el puerto m_axis_mm2s_tuser de AXI VDMA al puerto s_axis_video_tuser de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-12">figura 27</a>.</p>
+<p><figure id="_figure-27"><img alt="Conexion interfaz de video" id="fig-conexion-12" src="../img/Conexion_12.png" width="600"><figcaption>Figura 27: Conexion interfaz de video</figcaption></figure></p>
+<p>Conecte el puerto m_axis_mm2s_tvalid de AXI VDMA al puerto s_axis_video_tvalid de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-13">figura 28</a>.</p>
+<p><figure id="_figure-28"><img alt="Conexion interfaz de video" id="fig-conexion-13" src="../img/Conexion_13.png" width="600"><figcaption>Figura 28: Conexion interfaz de video</figcaption></figure></p>
+<h3 id="crear-puertos-externos">Crear puertos externos</h3>
+<p>Debido a que VGA no se encuentra entre las interfaces disponibles en la board file, se tienen que declarar como puertos genericos. Para esto seleccione los puertos de salida del bloque RGB to VGA output (Puede configurarlos individualmente o seleccionar varios manteniendo apretada la tecla control), haga click derecho y seleccione "Make External" como se aprecia en la <a href="#fig-external-ports">figura 29</a>.</p>
+<p><figure id="_figure-29"><img alt="Creación de Puertos externos" id="fig-external-ports" src="../img/External_ports.png" width="400"><figcaption>Figura 29: Creación de Puertos externos</figcaption></figure></p>
+<p>Con esto los puertos existen pero no han sido mapeados a los pines fisicos en la tarjeta, para esto se hace uso de un archivo de constraints, especificamente un Xilinx Design File (XDC). Este archivo cumple con varias funciones asociadas a llevar el diseño de logica configurable del software a la implementacion fisica:
+Definiciones de relojes, restricciones de timing y mapeo de pines fisicos a los puertos del diseño.</p>
+<p>Para agregar archivos de constraints basta con hacer el mismo procedimiento que se uso en secciones anteriores para añadir archivos verilog, pero cuando se abra la ventana emergente seleccione "Add or create constraints" como se ve en la <a href="#fig-constraints">figura 30</a>.</p>
+<p>Agregue el archivo Ejemplo_7/constraints.xdc, note que dentro de este solo se han habilitado los pines asociados a VGA y se les ha asignado los nombres de los puertos recien creados.</p>
+<p><figure id="_figure-30"><img alt="Añadir archivo de Constraints" id="fig-constraints" src="../img/add_constraints.png" width="500"><figcaption>Figura 30: Añadir archivo de Constraints</figcaption></figure></p>
+<h3 id="incorporacion-al-sistema">Incorporación al Sistema</h3>
+<p>En esta seccion integraremos el sub sistema recien diseñado al procesador.</p>
+<p>Haga click en la pestaña Diagram para salir del sub sistema y volver al nivel mas alto de jerarquia del diagrama de bloques.</p>
+<p>Luego importe las IP's Memory Interface Generator y Clocking Wizard, configure como se vio en la sección anterior, debería quedar como la <a href="#fig-Mig">figura 31</a>.</p>
+<p><figure id="_figure-31"><img alt="Memory Interface Generator" id="fig-Mig" src="../img/Mig.png" width="600"><figcaption>Figura 31: Memory Interface Generator</figcaption></figure></p>
+<p>Luego importe Microblaze-V y siga los pasos vistos en la sección anterior (aquí pondre un enlace a la sección), al momento de correr conexión automatica excluya vga de manera que la conexion automatica no mapee el subsistema al axi interconnect de la ram. Debería quedar como la <a href="#fig-preconnect">figura 32</a>.</p>
+<p><figure id="_figure-32"><img alt="Sistema antes de conectar el Sub Sistema de Video" id="fig-preconnect" src="../img/pre_connect_vga.png" width="800"><figcaption>Figura 32: Sistema antes de conectar el Sub Sistema de Video</figcaption></figure></p>
+<p>Finalmente corra nuevamente Connection automation, fijese que al correrlo el subsistema quede mapeado a AXI SmartConnect como en la <a href="#fig-vga-system">figura 33</a> (Debería tener 5 puertos Master).</p>
+<p><figure id="_figure-33"><img alt="Sistema despues de conectar el Sub Sistema de Video" id="fig-vga-system" src="../img/vga_post_connect.png" width="800"><figcaption>Figura 33: Sistema despues de conectar el Sub Sistema de Video</figcaption></figure></p>
+<p>Finalmente siga los pasos asociados a extracción de hardware vistos en secciones previas. </p>
+<p>En la maquina del autor con estrategias de implementacion predeterminadas se obtuvo la utilizacion de recursos vista en la <a href="#tbl-resources">tabla 1</a>.</p>
+<div style="text-align: center;">
+<table id="tbl-resources">
+<caption style="caption-side:bottom">Tabla 1: Utilización de recursos </caption><thead>
+<tr>
+<th>Proceso</th>
+<th>LUT</th>
+<th>FF</th>
+<th>BRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sintesis</code></td>
+<td>12891</td>
+<td>15071</td>
+<td>27</td>
+</tr>
+<tr>
+<td><code>Implementacion</code></td>
+<td>11224</td>
+<td>13905</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="firmware">Firmware</h2>
+<p>Abra Vitis, cree el archivo de plataforma y aplicación.</p>
+<p>La aplicacion que se le dara al sistema es un cuadrado que rebota en los bordes de la pantalla (similar a los salva pantallas de los dvd).</p>
+<p>Una vez creado el archivo de aplicación importe los archivos que se encuentran en la carpeta Ejemplo_7/src, siendo estos:</p>
+<ul>
+<li>app.c : Archivo donde se encuentra el main, aqui se inicializan los perifericos y se dibujan los cuadros a mostrar.</li>
+<li>display_ctrl.c y display_ctrl.h: Archivo fuente y encabezado donde se encuentran los controladores de vga, es en estos archivos donde se realiza la logica interna y coordinacion entre los modulos de DMA y salida de Video</li>
+<li>vga_modes.h: Encabezado que posee structs (tipos de datos que agrupan varias variables relacionadas) asociadas distintas resoluciones de monitor para facilitar el paso de esta informacion a las funciones de display_ctrl.c</li>
+<li>dynclk.c y dynclk.h: Controladores de la IP Dynamic Clock Generator de Diligent.</li>
+</ul>
+<p>Si miramos en detalle el archivo app.c</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_types.h"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_cache.h"</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xparameters.h"</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"display_ctrl.h"</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// Tamaño del cuadro </span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="cp">#define MAX_FRAME (1280*1024)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="cp">#define FRAME_STRIDE (1280*4)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">DisplayCtrl</span><span class="w"> </span><span class="n">dispCtrl</span><span class="p">;</span><span class="w"> </span><span class="c1">// Display driver struct</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">u32</span><span class="w"> </span><span class="n">frameBuf</span><span class="p">[</span><span class="n">DISPLAY_NUM_FRAMES</span><span class="p">][</span><span class="n">MAX_FRAME</span><span class="p">];</span><span class="w"> </span><span class="c1">// Buffers para los cuadros</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pFrames</span><span class="p">[</span><span class="n">DISPLAY_NUM_FRAMES</span><span class="p">];</span><span class="w"> </span><span class="c1">// Arreglo de punteros a los cuadros</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="c1">// Inicializar arreglos de punteros a los cuadros</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">DISPLAY_NUM_FRAMES</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="n">pFrames</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frameBuf</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="c1">// Inicializar controlador del display (inicializa AXI_VDMA, Video Timing controller y Dinamic clock gen)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">DisplayInitialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispCtrl</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_XAXIVDMA_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_XVTC_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_AXI_DYNCLK_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">pFrames</span><span class="p">,</span><span class="w"> </span><span class="n">FRAME_STRIDE</span><span class="p">);</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="c1">// Elije el primer frame</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">DisplayChangeFrame</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispCtrl</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="c1">// Fija la resolucion</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">DisplaySetMode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispCtrl</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">VMODE_1280x1024</span><span class="p">);</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="c1">// Habilita la imagen</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="n">DisplayStart</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispCtrl</span><span class="p">);</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="c1">// Parametros obtenidos del controlador del display para la animacion</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">stride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dispCtrl</span><span class="p">.</span><span class="n">stride</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dispCtrl</span><span class="p">.</span><span class="n">vMode</span><span class="p">.</span><span class="n">width</span><span class="p">;</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dispCtrl</span><span class="p">.</span><span class="n">vMode</span><span class="p">.</span><span class="n">height</span><span class="p">;</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="o">*</span><span class="n">frame</span><span class="p">;</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">down</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">xpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ypos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">buff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dispCtrl</span><span class="p">.</span><span class="n">curFrame</span><span class="p">;</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="c1">// Animacion de un cuadrito moviendose</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">            </span><span class="c1">// Alterna entre los dos cuadros guardados en memoria</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">            </span><span class="n">buff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">buff</span><span class="p">;</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">            </span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dispCtrl</span><span class="p">.</span><span class="n">framePtr</span><span class="p">[</span><span class="n">buff</span><span class="p">];</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">            </span><span class="c1">// Rellena la pantalla con blanco</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">            </span><span class="n">memset</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_FRAME</span><span class="o">*</span><span class="mi">4</span><span class="p">);</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">            </span><span class="c1">// Ajusta la posicion del cuadrado (si llega al borde de la pantalla choca)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">                </span><span class="n">xpos</span><span class="o">=</span><span class="n">xpos</span><span class="o">+</span><span class="n">step</span><span class="p">;</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xpos</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">width</span><span class="mi">-64</span><span class="p">)</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">                    </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">                </span><span class="n">xpos</span><span class="o">=</span><span class="n">xpos</span><span class="o">-</span><span class="n">step</span><span class="p">;</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">xpos</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">                    </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">down</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">                </span><span class="n">ypos</span><span class="o">=</span><span class="n">ypos</span><span class="o">+</span><span class="n">step</span><span class="p">;</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ypos</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">height</span><span class="mi">-64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">                    </span><span class="n">down</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">                </span><span class="n">ypos</span><span class="o">=</span><span class="n">ypos</span><span class="o">-</span><span class="n">step</span><span class="p">;</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ypos</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">                    </span><span class="n">down</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">            </span><span class="c1">// Dibuja el cuadrado en la posicion</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xpos</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">xpos</span><span class="o">+</span><span class="mi">64</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ypos</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ypos</span><span class="o">+</span><span class="mi">64</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">                    </span><span class="n">frame</span><span class="p">[</span><span class="n">y</span><span class="o">*</span><span class="n">stride</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="w">            </span><span class="c1">// Empujar los datos del Cache a la DDR</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">            </span><span class="n">Xil_DCacheFlush</span><span class="p">();</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="w">            </span><span class="c1">// Cambia el frame activo al buffer</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="w">            </span><span class="n">DisplayChangeFrame</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispCtrl</span><span class="p">,</span><span class="w"> </span><span class="n">buff</span><span class="p">);</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="w">            </span><span class="c1">// Espera a que el controlador del display este listo para cambiar los cuadros</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="w">            </span><span class="n">DisplayWaitForSync</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispCtrl</span><span class="p">);</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Se tiene que el la función  DisplayInitialize() configura e inicializa tres IP's distintos:</p>
+<ul>
+<li>AXI VDMA: lee el framebuffer desde DDR y lo entrega como stream de píxeles.</li>
+<li>Video Timing Controller: genera las señales HSYNC/VSYNC/DE según la resolución elegida.</li>
+<li>Dynamic Clock Generator: ajusta el reloj de píxeles (para 1280x1024@60Hz son 108 MHz, no es un valor cualquiera).</li>
+</ul>
+<p>Se tiene que la logica del display se basa en tener 2 cuadros en memoria externa (Dos cuadros de 1280×1024×4 bytes son 10 MB), mientras que el modulo VDMA esta leyendo 1 de los cuadros en el buffer para mandarlo en el monitor, el programa se encuentra dibujando el otro. Es por esto que esta la funcion DisplayWaitForSync(), la cual espera a que el siguiente cuadro este listo antes de realizar el cambio.</p>
+<p>AQUI PONDRE UNA FIGURA</p>
+<p>Se tiene que una vez que se ha realizado el dibujo, este dato se pasa de la cache de Microblaze-V a la Memoria externa con la función Xil_DCacheFlush(), puesto que el modulo VDMA solo posee acceso a la memoria externa y no al cache del procesador.</p>
+<p><figure id="_figure-34"><img alt="Programa en ejecución sobre un monitor 1280x1024" id="fig-gif" src="../img/app.gif" width="600"><figcaption>Figura 34: Programa en ejecución sobre un monitor 1280x1024</figcaption></figure></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
