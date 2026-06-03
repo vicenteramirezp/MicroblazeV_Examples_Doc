@@ -42,6 +42,7 @@ extra_css:
 nav:
   - Home: index.md
   - Ejemplo 3 : Ejemplo_3_Interrupts/Ejemplo_3.md
+  - Ejemplo 4 : Ejemplo_4_Verilog/Ejemplo_4.md
   - Ejemplo 6 : Ejemplo_6_DDR/Ejemplo_6.md
   - Ejemplo 7 : Ejemplo_7_VGA/Ejemplo_7.md
 plugins:

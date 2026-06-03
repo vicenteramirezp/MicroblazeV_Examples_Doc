@@ -502,5 +502,3 @@ Si todo sale en orden deberia obtener un resultado similar al de [](#fig-Verific
 
 
 
-
-![](img/.png){ #fig width="1000" }
