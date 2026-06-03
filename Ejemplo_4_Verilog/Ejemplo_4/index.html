@@ -1,0 +1,1223 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Ejemplo_3_Interrupts/Ejemplo_3/">
+      
+      
+        <link rel="next" href="../../Ejemplo_6_DDR/Ejemplo_6/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ejemplo 4 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-4-encapsulado-e-integracion-de-perifericos-disenados-con-hdl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ejemplo 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ejemplo 3
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ejemplo 4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ejemplo 6
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ejemplo 7
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contexto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perifericos-disenados-en-hdl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Periféricos diseñados en HDL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AXI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#empaquetado-de-la-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empaquetado de la IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diseno-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño del Sistema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-los-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creación de los drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contexto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perifericos-disenados-en-hdl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Periféricos diseñados en HDL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AXI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#empaquetado-de-la-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empaquetado de la IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diseno-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño del Sistema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-los-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creación de los drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-4-encapsulado-e-integracion-de-perifericos-disenados-con-hdl">Guía 4 : Encapsulado e integración de Periféricos diseñados con HDL</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>Durante esta guía se espera que el lector aprenda a encapsular módulos previamente diseñados de tal manera que encajen en el sistema AXI del Microblaze V.</p>
+<h2 id="contexto">Contexto</h2>
+<h3 id="perifericos-disenados-en-hdl">Periféricos diseñados en HDL</h3>
+<p>Aunque el catálogo de IPs que ofrece Vivado es amplio, no siempre cubre las necesidades específicas de un proyecto. Por ello es común desarrollar módulos propios a nivel de transferencia de registros (RTL) usando lenguajes de descripción de hardware como Verilog o VHDL, y luego empaquetarlos como IPs. Esta posibilidad de extender el hardware con módulos a medida es donde mejor se aprovecha un procesador embebido en la FPGA: mientras el procesador se encarga de las tareas de control, puede delegar las operaciones más exigentes a módulos especializados.</p>
+<p>En el caso de esta guía se va a sintetiza un modulo con un solo propósito, específicamente un <strong>Adder Tree</strong> un modulo cuya función consiste en realizar la suma de varios operandos de manera paralela como se puede visualizar en la <a href="#fig-adder_tree_diagram">figura 1</a>. Esta topología es usualmente usada en algoritmos de aprendizaje de maquinas, siendo la etapa donde se realiza la suma de todos los pesos.</p>
+<p><figure id="_figure-1"><img alt="Adder Tree de 8 entradas de N bits" id="fig-adder_tree_diagram" src="../img/adde_tree.png" width="500"><figcaption>Figura 1: Adder Tree de 8 entradas de N bits</figcaption></figure></p>
+<p>En este caso se hará uso de un adder tree de 8 entradas con 16 bits de ancho.</p>
+<h3 id="axi">AXI</h3>
+<p>Advanced eXtensible Interface (AXI) es un protocolo de interfaz definido por ARM como parte de la especificación AMBA (Advanced Microcontroller Bus Architecture). En el ecosistema de AMD se utiliza la versión AXI4, que se presenta en tres modalidades:</p>
+<ul>
+<li>AXI4 (Full AXI4): orientado a comunicaciones mapeadas en memoria de alto desempeño, con soporte para transacciones en ráfaga (burst).</li>
+<li>AXI4-Lite: variante simplificada para módulos de bajo throughput, típicamente escrituras y lecturas de registros de estado y control.</li>
+<li>AXI4-Stream: pensado para flujos de datos a alta velocidad, sin direccionamiento ni respuesta de confirmación.</li>
+</ul>
+<p>Un módulo AXI realiza sus transacciones a través de canales. Un canal es una colección independiente de señales AXI acompañada de un par de señales de handshake (VALID/READY) que confirman la validez de cada transferencia.
+El protocolo define cinco canales básicos, ilustrados en la <a href="#fig-cliente_maestro">figura 2</a>:</p>
+<p><figure id="_figure-2"><img alt="Diagrama Interfaz Cliente Maestro" id="fig-cliente_maestro" src="../img/Cliente_maestro.png" width="500"><figcaption>Figura 2: Diagrama Interfaz Cliente Maestro</figcaption></figure></p>
+<p>Dos canales para transacciones de lectura:</p>
+<ul>
+<li>Read Address (AR): el maestro indica la dirección a leer.</li>
+<li>Read Data (R): el cliente devuelve el dato solicitado.</li>
+</ul>
+<p>Tres canales para transacciones de escritura:</p>
+<ul>
+<li>Write Address (AW): el maestro indica la dirección de destino.</li>
+<li>Write Data (W): el maestro envía el dato a escribir.</li>
+<li>Write Response (B): el cliente confirma el resultado de la escritura.</li>
+</ul>
+<p>La comunicación a través de estos canales sigue una jerarquía Maestro–Cliente. El maestro es el módulo que inicia las transacciones: emite las direcciones de lectura o escritura y decide qué datos enviar y cuándo. El cliente es el módulo que responde a esas solicitudes: entrega el dato pedido, recibe el dato escrito, o reporta el estado de la operación. Un caso típico es un procesador (maestro) accediendo a un módulo de memoria o a un periférico (cliente) mapeado en su espacio de direcciones.</p>
+<p>Esta jerarquía es por interfaz, no por dispositivo: un mismo módulo puede exponer una interfaz maestra hacia ciertos componentes y una interfaz cliente hacia otros. Cuando coexisten varios maestros y clientes en el sistema, un AXI Interconnect se encarga de arbitrar y enrutar las transacciones entre ellos.</p>
+<p>Si desea ver mas en detalle el protocolo, amd ofrece tutoriales acerca del uso básico de AXI en el siguiente <a href="https://adaptivesupport.amd.com/s/topic/0TO2E000000YNxCWAW/axi-basics-series?language=en_US&amp;tabset-50c42=2">enlace</a>.</p>
+<h2 id="diseno-de-hardware">Diseño de Hardware</h2>
+<h3 id="empaquetado-de-la-ip">Empaquetado de la IP</h3>
+<p><strong>NOTA</strong>: En esta guía el nombre de los módulos y rutas importa, por lo que se recomienda que haga uso de los nombres propuestos por la guía o sea consistente con los nombres con estos, esto incluye:</p>
+<ul>
+<li>El nombre del Proyecto.</li>
+<li>Nombre de la IP.</li>
+<li>Nombre del xsa generado.</li>
+</ul>
+<p>Comience creando un nuevo proyecto en Vivado, nombre el proyecto <strong>adder_tree_rtl</strong>. El autor de esta guía guardo su proyecto en el directorio:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/home/vicen3/hardware/adder_tree_rtl
+</span></code></pre></div>
+<p>Una vez creado haga click en <strong>Tools</strong> en la barra de menús y luego en <strong>Create and Package New IP...</strong> En la ventana emergente haga click en <strong>Next</strong> y luego seleccione la opción **Create a new AXI4 peripheral como se muestra en <a href="#fig-selecci%C3%B3n-ip"></a>.</p>
+<p><figure id="_figure-3"><img alt="Crear Nuevo Periférico AXI4 " id="fig-selección-ip" src="../img/Ventana_sel_ip.png" width="500"><figcaption>Figura 3: Crear Nuevo Periférico AXI4 </figcaption></figure></p>
+<p>Luego continue haciendo click en <strong>Next</strong>, en esta ventana se le asigna un nombre a la IP a generar, como se ve en la <a href="#fig-nombre-ip">figura 4</a>. En esta guía se le da el nombre de <strong>adder_tree_rtl</strong>. Note que por defecto el creador de IP's genera una carpeta llamada ip_repo para guardar futuros diseños en una sola carpeta, mantenga esta carpeta.</p>
+<p><figure id="_figure-4"><img alt="Nombre de IP" id="fig-nombre-ip" src="../img/Nombre_IP.png" width="500"><figcaption>Figura 4: Nombre de IP</figcaption></figure></p>
+<p>Nuevamente seleccióne <strong>Next</strong> la cual lo lleva a la ventana de interfaces como se ve en <a href="#fig-interfaz-ip">figura 5</a>. En esta se tienen las siguientes configuraciones:</p>
+<ul>
+<li><strong>Nombre de la interfaz</strong>: Nombre del puerto AXI a generar.</li>
+<li><strong>Tipo de interfaz</strong>: Se elije el tipo de interfaz dependiendo del uso que se le vaya a dar al modulo, se puede elegir entre AXI4 Full, Streaming o Lite. En este caso se hara uso de una interfaz <strong>Lite</strong> debido a que la IP a encapsular tiene fines didácticos y no busca maximizar el throughput.</li>
+<li>Modo de interfaz: Permite definir si la interfaz posee modalidad de cliente, maestro o mixta. En este caso se hará uso de <strong>Slave</strong> (termino obsoleto usado para referirse a cliente) puesto que el procesador va a controlar la IP y esta no ejercerá control sobre otras.</li>
+<li><strong>Ancho de Datos</strong>: Tamaño de los registros asociados a AXI, el tamaño mínimo es de 32 bits, se puede aumentar para aplicaciones especificas, pero en este caso se mantendra en 32.</li>
+<li><strong>Tamaño de memoria</strong>: El espacio de memoria accesible, el wizard fija el espacio a 64 bytes como mínimo.</li>
+<li><strong>Numero de registros</strong>: Cantidad de registros internos asociados a la IP. En este caso se tienen ocho entradas de 16 bits (Los operandos) y una salida de 22 bits (El resultado). Como el tamaño mínimo de cada registro es de 32 bits, en cada registro se guardaran 2 operandos y en un registro adicional la salida, dándonos un total de <strong>5 Registros</strong>.</li>
+</ul>
+<p><figure id="_figure-5"><img alt="Interfaces de IP" id="fig-interfaz-ip" src="../img/Detalles_IP.png" width="500"><figcaption>Figura 5: Interfaces de IP</figcaption></figure></p>
+<p>Luego en la siguiente ventana emergente ilustrada en la <a href="#fig-edit-ip">figura 6</a> se selecciona Edit IP para poder añadir el contenido funcional al bloque. Presionar este botón abrirá un nuevo proyecto en Vivado, asociado exclusivamente al bloque.</p>
+<p><figure id="_figure-6"><img alt="Editar IP" id="fig-edit-ip" src="../img/edit_ip.png" width="500"><figcaption>Figura 6: Editar IP</figcaption></figure></p>
+<p>En este nuevo proyecto se encuentra el empaquetador de IP's visto en <a href="#fig-ip-package">figura 7</a>. Esta ventana sirve para:</p>
+<ul>
+<li>Identificación: Aquí se realiza la documentación preliminar de la IP, quien es el autor, a que organización pertenece, la función de la ip etc.</li>
+<li>Compatibilidad: Realiza empaquetado para el flujo de aceleración de aplicaciones de Vitis. El detalle lo puede encontrar en el siguiente <a href="https://docs.amd.com/v/u/en-US/ug1393-vitis-application-acceleration">manual</a>.</li>
+<li>File Groups: En esta pestaña se realiza la configuración acerca de que archivos de descripción conforman a la IP.</li>
+<li>Parámetros de personalización: En esta pestaña se configura que parámetros podrá cambiar el usuario al momento de importar la IP a su sistema.</li>
+<li>Adressing and Memory: Configura el mapa de memoria interno de la IP.</li>
+<li>Personalización de interfaz de usuario: Configura como se ve la IP dentro del diagrama de bloques.</li>
+<li>Revisar y empaquetar: Revisa que la IP se encuentre en orden y  realiza el empaquetado de nuevo.</li>
+</ul>
+<p><figure id="_figure-7"><img alt="Empaquetador de IP's" id="fig-ip-package" src="../img/Package_IP_menu.png" width="500"><figcaption>Figura 7: Empaquetador de IP's</figcaption></figure></p>
+<p>Añada los archivos fuente <strong>comb_adder_tree.sv</strong> y <strong>adder_tree_wrapper.sv</strong> de la carpeta Ejemplo_4. Estos poseen la descripción del modulo del adder tree y una envoltura para aplanar las entradas, esto es debido a que los módulos AXI generados por Vivado están descritos en Verilog, un lenguaje de descripción de hardware que no permite el uso de arreglos bidimensionales como puertos en los módulos.</p>
+<p>Tras impotar los módulos, abra el archivo <strong>adder_tree_slave_v1_0_S00_AXI</strong>, este archivo posee una plantilla de AXI, con todas las señales necesarias para su integración en el esquema de interconexiones al procesador.</p>
+<p>Sin ir a mayor detalle en el código se tiene que este posee 4 bloques principales:
+- Una maquina de estados para la implementación transacciones de escritura en el bloque.
+- lógica de mapeo de memoria para las escrituras.
+- Una maquina de estados para la implementación de transacciones de lectura en el bloque.
+- Un espacio para lógica de usuario donde se instancian los módulos diseñados.</p>
+<p>Ahora integraremos el modulo en esta plantilla AXI, para esto diríjase a la linea 102 y agregue la declaración de los cables que conectan las entradas y salidas del adder tree al AXI, siendo este el cable de los operandos i_data_flat y el cable de la salida o_data.  Note que ten este snipet de código la herramienta generó tambien los 5 registros que se definieron en la <a href="#fig-interfaz-ip">figura 5</a> denominados <strong>slv_regN</strong> donde N corresponde al numero del registro.</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-102">102</a></span>
+<span class="normal"><a href="#__codelineno-1-103">103</a></span>
+<span class="normal"><a href="#__codelineno-1-104">104</a></span>
+<span class="normal"><a href="#__codelineno-1-105">105</a></span>
+<span class="normal"><a href="#__codelineno-1-106">106</a></span>
+<span class="normal"><a href="#__codelineno-1-107">107</a></span>
+<span class="normal"><a href="#__codelineno-1-108">108</a></span>
+<span class="normal"><a href="#__codelineno-1-109">109</a></span>
+<span class="normal"><a href="#__codelineno-1-110">110</a></span>
+<span class="normal"><a href="#__codelineno-1-111">111</a></span>
+<span class="normal"><a href="#__codelineno-1-112">112</a></span>
+<span class="normal"><a href="#__codelineno-1-113">113</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102"></a><span class="w">    </span><span class="c1">//----------------------------------------------</span>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103"></a><span class="w">    </span><span class="c1">//-- Signals for user logic register space example</span>
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104"></a><span class="w">    </span><span class="c1">//------------------------------------------------</span>
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105"></a><span class="w">    </span><span class="c1">//-- Number of Slave Registers 5</span>
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106"></a><span class="w">    </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="n">C_S_AXI_DATA_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">    </span><span class="n">slv_reg0</span><span class="p">;</span>
+</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107"></a><span class="w">    </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="n">C_S_AXI_DATA_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">    </span><span class="n">slv_reg1</span><span class="p">;</span>
+</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108"></a><span class="w">    </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="n">C_S_AXI_DATA_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">    </span><span class="n">slv_reg2</span><span class="p">;</span>
+</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109"></a><span class="w">    </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="n">C_S_AXI_DATA_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">    </span><span class="n">slv_reg3</span><span class="p">;</span>
+</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110"></a><span class="w">    </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="n">C_S_AXI_DATA_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">    </span><span class="n">slv_reg4</span><span class="p">;</span>
+</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111"></a><span class="w">    </span><span class="k">integer</span><span class="w">  </span><span class="n">byte_index</span><span class="p">;</span>
+</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112"></a><span class="w">    </span><span class="kt">wire</span><span class="w"> </span><span class="p">[</span><span class="mh">127</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">i_data_flat</span><span class="p">;</span><span class="w"> </span><span class="c1">// Señales de usuario </span>
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113"></a><span class="w">    </span><span class="kt">wire</span><span class="w"> </span><span class="p">[</span><span class="mh">20</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">o_data</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>En esta guía se hará uso de el registro 4 para la salida, para acomodar el sistema AXI se tiene que el valor de un registro no puede cambiar mientras haya una transacción activa. Debido a esto, se hará que el registro 4 se actualice al valor actual de la salida del adder tree siempre y cuando no haya una transacción. Diríjase al bloque que implementa la lógica de escritura en los registros en la linea 255. Agregue las dos lineas señaladas en el snippet de código. Note que estas lineas se encuentran en la opción por defecto cuando la señal de escritura S_AXI_WVALID se encuentra en bajo.</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-255">255</a></span>
+<span class="normal"><a href="#__codelineno-2-256">256</a></span>
+<span class="normal"><a href="#__codelineno-2-257">257</a></span>
+<span class="normal"><a href="#__codelineno-2-258">258</a></span>
+<span class="normal"><a href="#__codelineno-2-259">259</a></span>
+<span class="normal"><a href="#__codelineno-2-260">260</a></span>
+<span class="normal"><a href="#__codelineno-2-261">261</a></span>
+<span class="normal"><a href="#__codelineno-2-262">262</a></span>
+<span class="normal"><a href="#__codelineno-2-263">263</a></span>
+<span class="normal"><a href="#__codelineno-2-264">264</a></span>
+<span class="normal"><a href="#__codelineno-2-265">265</a></span>
+<span class="normal"><a href="#__codelineno-2-266">266</a></span>
+<span class="normal"><a href="#__codelineno-2-267">267</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-255"><a id="__codelineno-2-255" name="__codelineno-2-255"></a><span class="k">default</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-2-256"><a id="__codelineno-2-256" name="__codelineno-2-256"></a><span class="w">                          </span><span class="n">slv_reg0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">slv_reg0</span><span class="p">;</span>
+</span><span id="__span-2-257"><a id="__codelineno-2-257" name="__codelineno-2-257"></a><span class="w">                          </span><span class="n">slv_reg1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">slv_reg1</span><span class="p">;</span>
+</span><span id="__span-2-258"><a id="__codelineno-2-258" name="__codelineno-2-258"></a><span class="w">                          </span><span class="n">slv_reg2</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">slv_reg2</span><span class="p">;</span>
+</span><span id="__span-2-259"><a id="__codelineno-2-259" name="__codelineno-2-259"></a><span class="w">                          </span><span class="n">slv_reg3</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">slv_reg3</span><span class="p">;</span>
+</span><span id="__span-2-260"><a id="__codelineno-2-260" name="__codelineno-2-260"></a><span class="w">                          </span><span class="n">slv_reg4</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">slv_reg4</span><span class="p">;</span>
+</span><span id="__span-2-261"><a id="__codelineno-2-261" name="__codelineno-2-261"></a><span class="w">                        </span><span class="k">end</span>
+</span><span id="__span-2-262"><a id="__codelineno-2-262" name="__codelineno-2-262"></a><span class="w">            </span><span class="k">endcase</span>
+</span><span id="__span-2-263"><a id="__codelineno-2-263" name="__codelineno-2-263"></a><span class="w">            </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span><span class="w"> </span><span class="c1">// Añadir else</span>
+</span><span id="__span-2-264"><a id="__codelineno-2-264" name="__codelineno-2-264"></a><span class="w">            </span><span class="n">slv_reg4</span><span class="o">&lt;=</span><span class="n">o_data</span><span class="p">;</span><span class="w"> </span><span class="c1">// Mapeo a la salida</span>
+</span><span id="__span-2-265"><a id="__codelineno-2-265" name="__codelineno-2-265"></a><span class="w">          </span><span class="k">end</span>
+</span><span id="__span-2-266"><a id="__codelineno-2-266" name="__codelineno-2-266"></a><span class="w">      </span><span class="k">end</span>
+</span><span id="__span-2-267"><a id="__codelineno-2-267" name="__codelineno-2-267"></a><span class="w">    </span><span class="k">end</span><span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
+<p>Finalmente en el espacio de lógica de usuario se van a concatenar los 4 registros, de manera que el modulo los vea como una entrada única de 128 bits y se realiza la instanciación del adder tree.</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-318">318</a></span>
+<span class="normal"><a href="#__codelineno-3-319">319</a></span>
+<span class="normal"><a href="#__codelineno-3-320">320</a></span>
+<span class="normal"><a href="#__codelineno-3-321">321</a></span>
+<span class="normal"><a href="#__codelineno-3-322">322</a></span>
+<span class="normal"><a href="#__codelineno-3-323">323</a></span>
+<span class="normal"><a href="#__codelineno-3-324">324</a></span>
+<span class="normal"><a href="#__codelineno-3-325">325</a></span>
+<span class="normal"><a href="#__codelineno-3-326">326</a></span>
+<span class="normal"><a href="#__codelineno-3-327">327</a></span>
+<span class="normal"><a href="#__codelineno-3-328">328</a></span>
+<span class="normal"><a href="#__codelineno-3-329">329</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-318"><a id="__codelineno-3-318" name="__codelineno-3-318"></a><span class="c1">// Add user logic here</span>
+</span><span id="__span-3-319"><a id="__codelineno-3-319" name="__codelineno-3-319"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">i_data_flat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">slv_reg0</span><span class="p">,</span><span class="n">slv_reg1</span><span class="p">,</span><span class="n">slv_reg2</span><span class="p">,</span><span class="n">slv_reg3</span><span class="p">};</span>
+</span><span id="__span-3-320"><a id="__codelineno-3-320" name="__codelineno-3-320"></a>
+</span><span id="__span-3-321"><a id="__codelineno-3-321" name="__codelineno-3-321"></a><span class="w">    </span><span class="n">adder_tree_wrapper</span><span class="w"> </span><span class="p">#</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-322"><a id="__codelineno-3-322" name="__codelineno-3-322"></a><span class="w">    </span><span class="p">.</span><span class="n">N</span><span class="p">(</span><span class="mh">8</span><span class="p">),</span>
+</span><span id="__span-3-323"><a id="__codelineno-3-323" name="__codelineno-3-323"></a><span class="w">    </span><span class="p">.</span><span class="n">DATA_WIDTH</span><span class="p">(</span><span class="mh">16</span><span class="p">)</span>
+</span><span id="__span-3-324"><a id="__codelineno-3-324" name="__codelineno-3-324"></a><span class="w">    </span><span class="p">)</span>
+</span><span id="__span-3-325"><a id="__codelineno-3-325" name="__codelineno-3-325"></a><span class="w">    </span><span class="n">adder_tree_wrapper_inst</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-326"><a id="__codelineno-3-326" name="__codelineno-3-326"></a><span class="w">    </span><span class="p">.</span><span class="n">i_data_flat</span><span class="p">(</span><span class="n">i_data_flat</span><span class="p">),</span>
+</span><span id="__span-3-327"><a id="__codelineno-3-327" name="__codelineno-3-327"></a><span class="w">    </span><span class="p">.</span><span class="n">o_data</span><span class="p">(</span><span class="n">o_data</span><span class="p">)</span>
+</span><span id="__span-3-328"><a id="__codelineno-3-328" name="__codelineno-3-328"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-3-329"><a id="__codelineno-3-329" name="__codelineno-3-329"></a><span class="c1">// User logic ends</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Si realizo el importado de forma correcta debería haberse reordenado la jerarquía de archivos como se ve en la <a href="#fig-archivos-adder-tree">figura 8</a>.</p>
+<p><figure id="_figure-8"><img alt="Jerarquia de archivos IP adder tree" id="fig-archivos-adder-tree" src="../img/archivos_adder_tree.png" width="400"><figcaption>Figura 8: Jerarquia de archivos IP adder tree</figcaption></figure></p>
+<p>Para una visualización mas clara de la integración se tiene el diagrama de la <a href="#fig-slacve-axi">figura 9</a> donde se han omitido todas las señales correspondientes a las interfaz de AXI.</p>
+<p><figure id="_figure-9"><img alt="Diagrama IP en envoltura AXI" id="fig-slacve-axi" src="../img/adder_tree_slave.png" width="1000"><figcaption>Figura 9: Diagrama IP en envoltura AXI</figcaption></figure></p>
+<p>Una vez realizados los cambios, vuelva a la pestaña Package IP - adder_tree_rtl y en el menú lateral Packaging Steps, seleccióne File Groups. Haga click en Merge changes from File Groups Wizard, ubicado en la barra superior para actualizar la cantidad de archivos hdl asociados a la IP como se ve en  <a href="#fig-grupos-de-archivo">figura 10</a>.</p>
+<p><figure id="_figure-10"><img alt="Grupos de archivos" id="fig-grupos-de-archivo" src="../img/File_groups.png" width="500"><figcaption>Figura 10: Grupos de archivos</figcaption></figure></p>
+<p>Note que ahora al expandir <strong>Verilog Synthesis</strong> están 4 archivos, entre los que se incluyen los dos archivos añadidos al proyecto como se ve en <a href="#fig-archivo-incluido">figura 11</a>.</p>
+<p><figure id="_figure-11"><img alt="Archivos de diseño incluidos en la IP" id="fig-archivo-incluido" src="../img/File_merge.png" width="500"><figcaption>Figura 11: Archivos de diseño incluidos en la IP</figcaption></figure></p>
+<p>En este momento deberia ver dos simbolos de advertencia, uno en <strong>File Groups</strong> y otro en <strong>Ports and Interfaces</strong>.  El de el grupo de archivos es que no se ha diseñado una guia de uso para la IP, mientras que el de puertos e interfaces hace referencia a que no se ha definido una frecuencia mínima y maxima para el reloj de la IP. Ambas advertencias no impiden la finalización del proyecto y se escapan del foco de este por lo que no se verán en detalle.</p>
+<p>Para re empaquetar la ip para que se pueda importar al diagrama de bloques haga click en <strong>Review and Package</strong>, luego haga click en <strong>IP has been modified</strong> para confirmar que se hicieron cambios en la IP como se ve en la <a href="#fig-empaquetado">figura 12</a>. Luego haga click en <strong>Re-Package IP</strong> para finalizar el proceso de empaquetado.</p>
+<p><figure id="_figure-12"><img alt="Empaquetado de IP" id="fig-empaquetado" src="../img/Repackage_1.png" width="1000"><figcaption>Figura 12: Empaquetado de IP</figcaption></figure></p>
+<p>Tras empaquetar la IP Vivado cerrará el proyecto de la IP y volvera al proyecto original.</p>
+<h3 id="diseno-del-sistema">Diseño del Sistema</h3>
+<p>Cree un nuevo diagrama de bloques y repita la secuencia vista en la primera guía para generar el sistema base del Microblaze con 128 KB de memoria y el periférico de Uart. Debería verse como en la <a href="#fig-base">figura 13</a>.</p>
+<p><figure id="_figure-13"><img alt="Sistema sin el addertree" id="fig-base" src="../img/bd_no_adder_tree.png" width="1000"><figcaption>Figura 13: Sistema sin el addertree</figcaption></figure></p>
+<p>Luego añada el adder tree a su diagrama usando <strong>Add IP</strong>:</p>
+<p><figure id="_figure-14"><img alt="Adder tree en buscador de IP's" id="fig" src="../img/adding_adder_tree.png" width="200"><figcaption>Figura 14: Adder tree en buscador de IP's</figcaption></figure></p>
+<p>Luego haga click en <strong>Run Connection Automation</strong> e integre el adder tree al sistema debería quedar como la <a href=""></a></p>
+<p><figure id="_figure-15"><img alt="Diagrama de bloques con adder tree integrado" id="fig-adder_tree_bd" src="../img/adder_tree_bd.png" width="1000"><figcaption>Figura 15: Diagrama de bloques con adder tree integrado</figcaption></figure></p>
+<p>Teniendo ya el periférico integrado, revise en address editor que se integro correctamente como se ve en la <a href=""></a></p>
+<p><figure id="_figure-16"><img alt="Editor de direcciónes con adder tree integrado" id="fig-address_editor" src="../img/address_editor.png" width="1000"><figcaption>Figura 16: Editor de direcciónes con adder tree integrado</figcaption></figure></p>
+<p>Valide nuevamente su diseño y ejecute la sintesís,la implementación y extracción de bitsream. El autor obtuvo la utilización de recursos vista en la <a href="#tbl-resources">tabla 1</a></p>
+<div style="text-align: center;">
+<table id="tbl-resources">
+<caption style="caption-side:bottom">Tabla 1: Utilización de recursos </caption><thead>
+<tr>
+<th>Proceso</th>
+<th>LUT</th>
+<th>FF</th>
+<th>BRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sintesis</code></td>
+<td>2654</td>
+<td>2292</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>implementación</code></td>
+<td>2393</td>
+<td>2224</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Luego continue al exportado de hardware, tome nota del nombre que elige, como se ve en la <a href=""></a> en esta guía se hara el uso de adder_tree_rtl.xsa.</p>
+<p><figure id="_figure-17"><img alt="Nombre de Archivo XSA" id="fig-xsa_name" src="../img/xsa_name.png" width="1000"><figcaption>Figura 17: Nombre de Archivo XSA</figcaption></figure></p>
+<p>Una vez exportado el hardware <strong>NO CIERRE VIVADO</strong>.</p>
+<h3 id="creacion-de-los-drivers">Creación de los drivers</h3>
+<p>Si va a la carpeta <code>/ip_repo/adder_tree_rtl_v1_0</code> en su explorador de archivos, (la ruta donde se creo la IP vista en la <a href="#fig-nombre-ip">figura 4</a>) encontrará los archivos que definen la IP. En este caso nos fijaremos en la carpeta <strong>drivers</strong>, la cual contiene los archivos necesarios para el manejo de la IP desde software.</p>
+<p>En esta carpeta encontrará nuevamente el nombre de la IP. Esto se debe a que una sola IP puede encapsular varias otras IP's, cada una con su respectivo driver. Dentro de la carpeta src encontrará los archivos :</p>
+<ul>
+<li><strong>adder_tree_rtl.c</strong>: Archivo fuente que define la implementación de las funciónes de la IP. Por defecto se encuentra vacio.</li>
+<li><strong>adder_tree_rtl.h</strong>: Archivo encabezado que declara los prototipos de las funciónes de la IP, tambien posee las macros que definen el espacio de memoria de los registros.</li>
+<li><strong>adder_tree_rtl_selftest.c</strong>: Archivo que define la función usada para verificar que la ip se encuentra correctamente conectada al sistema axi a través de varias escrituras sobre los registros y su posterior lectura de estos para corroborar que la escritura se realizo correctamente.</li>
+<li><strong>Makefile</strong>: Archivo Makefile que sirve para manejar y automatizar el proceso de convertir el código fuente en un programa ejecutable.</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>adder_tree_rtl_1_0
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── ...
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>└── drivers
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    └── adder_tree_rtl_v1_0
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        ├── data
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        └── src
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>            ├── Makefile
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            ├── adder_tree_rtl_selftest.h
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>            ├── adder_tree_rtl.h
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>            └── adder_tree_rtl.c
+</span></code></pre></div>
+<p>Sin embargo se tiene que estos drivers no son inmediatamente reconocidos por Vitis Unified IDE, puesto que maneja la metadata del driver de manera distinta a como lo hacia Vitis Classic. En Vitis Classic los drivers se extraian de manera automatica desde el xsa usando la API HSI. En Vitis Unified cada driver tiene que tener un archivo YAML/CMAKE con las definiciónes de hardware.</p>
+<p>Sin embargo AMD ofrece un script para resolver esta incompatibilidad, el archivo tcl <strong>create_driver.tcl</strong>. Para más información de esta utilidad y como esta solucióna las incompatibilidades visitar el siguiente <a href="https://adaptivesupport.amd.com/s/article/Creating-an-SDT-enabled-baremetal-driver-template-for-Vitis-Unified-IDE?language=en_US">enlace</a>.</p>
+<p>Para hacer uso de este script vuelva a Vivado y dirijase la consola tcl en la parte inferior de la pantalla vista en la <a href="#fig-consola-tcl">figura 18</a>. </p>
+<p><figure id="_figure-18"><img alt="Consola TCL" id="fig-consola-tcl" src="../img/tcl_console.png" width="1000"><figcaption>Figura 18: Consola TCL</figcaption></figure></p>
+<p>Luego en esta se correra el script, este no ejecuta ninguna función directamente, solo define las funciónes para su uso en el proyecto.</p>
+<p>Para correr el script tiene dos opciónes:</p>
+<ul>
+<li>Poner el script donde se ejecuta Vivado en sus sistema. Para encontrar donde se ejecuta Vivado en su sistema puede hacer uso de comandos linux usuales para navegación de archivos, en particular sirve <strong>pwd</strong> que identifica donde se encuentra actualmente la consola:</li>
+</ul>
+<p></p><div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&gt;pwd
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>/home/vicen3
+</span></code></pre></div>
+En este caso basta con poner el archivo tcl en la locación señalada y posteriormente correrlo haciendo uso del comando source.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>source create_driver.tcl
+</span></code></pre></div>
+<ul>
+<li>La otra opción es hacer uso de la ruta absoluta para correr el archivo, como ejemplo:</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>source /home/vicen3/Desktop/Ejemplo_4/create_driver.tcl
+</span></code></pre></div>
+<p>Si lo corrio correctamente la consola no mostrará un error.</p>
+<p>Ya estándo definidas las funciónes necesarias para generar el driver, se ejecutara el siguiente comando:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>create_driver -xsa /dirección/de/xsa/adder_tree_rtl.xsa -ip_name nombre_ip -driver_src /dirección/carpeta/src -repo /dirección/carpeta/de/driver
+</span></code></pre></div>
+<p>Este comando:</p>
+<ul>
+<li>Lee el archivo XSA donde se encuentran las definiciónes de todos los módulos que componen el sistema.</li>
+<li>Identifica la IP de la cual se quiere generar drivers.</li>
+<li>Revisa los archivs .h y .c asociados a la IP</li>
+<li>Genera los archivos YAML y CMAKE en una nueva carpeta en la dirección señalada en la carpeta -repo, note que en esta carpeta se copiarán tambien los archivos .h y .c para tener un driver unificado.</li>
+</ul>
+<p>En caso de no recordar el nombre de la IP generada puede correr el comando create_driver para identificar las IP's del xsa con la flag -get_ip_names</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&gt;create_driver -xsa /home/vicen3/hardware/adder_tree_rtl/adder_tree_rtl.xsa -get_ip_names
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Info: IP Names on microblaze_riscv_0 in XSA are:
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>lmb_bram_if_cntlr lmb_bram_if_cntlr axi_uartlite adder_tree_rtl
+</span></code></pre></div>
+<p>A manera de ejemplo el auto de esta guía uso el siguiente comando con direcciónes absolutas:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>create_driver -xsa /home/vicen3/hardware/adder_tree_rtl/adder_tree_rtl.xsa -ip_name adder_tree_rtl -driver_src /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/adder_tree_rtl_v1_0/src -repo /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers
+</span></code></pre></div>
+<p>Si ejecutó el comando sin inconvenientes deberia ver algo similar en la consola TCL:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Info: Finding VLNV for IP below:
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>* adder_tree_rtl
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Info: /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/XilinxProcessorIPLib/drivers/adder_tree_rtl_v1_0/data/adder_tree_rtl.yaml created
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Info: dummy /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/XilinxProcessorIPLib/drivers/adder_tree_rtl_v1_0/src/xadder_tree_rtl_g.c is generated
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Info: Importing source files from /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/adder_tree_rtl_v1_0/src to /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/XilinxProcessorIPLib/drivers/adder_tree_rtl_v1_0/src
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Info: Ignoring /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/adder_tree_rtl_v1_0/src/adder_tree_rtl_selftest.c as this is a selftest source file
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Info: /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/XilinxProcessorIPLib/drivers/adder_tree_rtl_v1_0/src/CMakeLists.txt generated
+</span></code></pre></div>
+<p>Con esto se ha creado la carpeta XilinxProcessorIPLib en la dirección señalada en la flag -repo. Similar a ip_repo, esta es una carpeta donde se espera se guarden drivers de varios perifericos, la carpeta tiene la siguiente estructura:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>XilinxProcessorIPLib
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>└── drivers
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    └── adder_tree_rtl_v1_0
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>        ├── data
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>        |   └── adder_tree_rtl.yaml
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        ├── examples
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        |   └── adder_tree_rtl_selftest.c
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>        └── src
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>            ├── CMakeLists.txt
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>            ├── xadder_tree_rtl_g.c
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>            ├── adder_tree_rtl.h
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>            └── adder_tree_rtl.c
+</span></code></pre></div>
+<p>Note que se crearon los siguientes archivos
+- adder_tree_rtl.yaml y CMakeLists.txt : Archivos necesarios para que Vitis Unified reconozca el driver.
+- xadder_tree_rtl_g.c : Archivo que define la tabla de configuración de la IP de manera que sepa en que hardware se encuentra instanciada. Si abre el archivo verá que esta vacio, esto es debido a que este archivo es manejado directamente por el Board Support Package, regenerando sus contenidos con cada instancia de hardware. </p>
+<p>Con esto ya puede cerrar Vivado.</p>
+<h2 id="firmware">Firmware</h2>
+<p>Abra Vitis y defina el workspace.</p>
+<p>Antes de crear la aplicación, se añadiran los drivers generados a los repositorios de software a los que puede acceder . Para esto dirijase a <strong>Vitis&gt;Embedded SW Repositories...</strong>.
+En la ventana emergente en la sección <strong>Local Repositories (available to the current workspace)</strong> haga click en "+" para agregar la carpeta XilinxProcessorIPLib como se ve en la <a href="#fig-sw-repo">figura 19</a>.</p>
+<p><figure id="_figure-19"><img alt="Repositorios de código " id="fig-sw-repo" src="../img/embedded_sw.png" width="1000"><figcaption>Figura 19: Repositorios de código </figcaption></figure></p>
+<p>Se agregan estos drivers antes de generar el componente de plataforma de manera que se incluya dentro del BSP. En caso contrario será necesario regenerar el BSP despues de crear el componente de plataforma.</p>
+<p>Genere el componente de plataforma. Tras generarlo dirijase al archivo de configuración vitis-comp.json y vaya al apartado <strong>drivers</strong>. como se ve en la <a href="#fig-drivers-bsp">figura 20</a> se encuentra el driver recién generado dentro del BSP.</p>
+<p><figure id="_figure-20"><img alt="Driver del Adder Tree en el BSP" id="fig-drivers-bsp" src="../img/drivers_on_bsp.png" width="1000"><figcaption>Figura 20: Driver del Adder Tree en el BSP</figcaption></figure></p>
+<p>Continue creando el componente de aplicación. </p>
+<p>Agregue el archivo Ejemplo_4.c de la carpeta Ejemplo_4, el cual posee el siguiente código:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">//Libreria del periferico generada con el con los comandos descritos en el script "create_driver.tcl"</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"adder_tree_rtl.h"</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xparameters.h"</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_io.h"</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"--- Prueba Adder Tree descrito en RTL ---</span><span class="se">\r\n</span><span class="s">"</span><span class="p">);</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">    </span><span class="c1">// Entradas de 16 bits</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">};</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">    </span><span class="c1">// Como los registros son de 32 bits, se guardan dos entradas en cada uno</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">reg0_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">input</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">reg1_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">input</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">reg2_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">input</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">reg3_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">input</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">    </span><span class="c1">// Escritura de entradas</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">    </span><span class="n">ADDER_TREE_RTL_mWriteReg</span><span class="p">(</span><span class="n">XPAR_ADDER_TREE_RTL_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">ADDER_TREE_RTL_S00_AXI_SLV_REG0_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="n">reg0_val</span><span class="p">);</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="w">    </span><span class="n">ADDER_TREE_RTL_mWriteReg</span><span class="p">(</span><span class="n">XPAR_ADDER_TREE_RTL_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">ADDER_TREE_RTL_S00_AXI_SLV_REG1_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="n">reg1_val</span><span class="p">);</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">    </span><span class="n">ADDER_TREE_RTL_mWriteReg</span><span class="p">(</span><span class="n">XPAR_ADDER_TREE_RTL_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">ADDER_TREE_RTL_S00_AXI_SLV_REG2_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="n">reg2_val</span><span class="p">);</span>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">    </span><span class="n">ADDER_TREE_RTL_mWriteReg</span><span class="p">(</span><span class="n">XPAR_ADDER_TREE_RTL_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">ADDER_TREE_RTL_S00_AXI_SLV_REG3_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="n">reg3_val</span><span class="p">);</span>
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="w">    </span><span class="c1">// Lectura de salida</span>
+</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">total_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ADDER_TREE_RTL_mReadReg</span><span class="p">(</span><span class="n">XPAR_ADDER_TREE_RTL_0_BASEADDR</span><span class="p">,</span><span class="w"> </span><span class="n">ADDER_TREE_RTL_S00_AXI_SLV_REG4_OFFSET</span><span class="p">);</span>
+</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Resultado obtenido de la IP: %d</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">total_sum</span><span class="p">);</span>
+</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>
+</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>El primer encabezado <strong>adder_tree_rtl.h</strong> es la librería asociada a la IP, importado sin hacer uso de una ruta absoluto debido a que Vitis lo reconoce ya como un driver del sistema.
+<strong>NOTA</strong>: El nombre de este encabezado va a diferir del suyo si hizo uso de un nombre distinto para la IP, lo mismo es cierto para las funciónes y los offsets de direcciónes de memoria.</p>
+<p>Al hacer ctrl+click sobre este encabezado lo llevará a su definición, donde se encuentran los prototipos de las 3 funciónes predeterminadas que incluye cada driver de un periférico encapsulado en AXI:</p>
+<ul>
+<li>ADDER_TREE_RTL_mWriteReg: Usada para escribir sobre los registros.</li>
+<li>ADDER_TREE_RTL_mReadReg: Usada para leer los registros.</li>
+<li>ADDER_TREE_RTL_Reg_SelfTest: Usada para probar si la lectura/escritura sobre los registros funcióna correctamente.</li>
+</ul>
+<p>Volviendo al archivo principal, se tiene que se sigue la siguiente secuencia:</p>
+<ul>
+<li>Se definen 8 entradas de 16 bits.  </li>
+<li>Se concatenan para que entren en los 4 registros de 32 bits a través de desplazamiento de bits.</li>
+<li>Se escribe en los registros de entrada.</li>
+<li>Se lee el registro de salida.</li>
+<li>Se realiza el envio del valor obtenido a través de Uart.</li>
+</ul>
+<p>Compile la aplicación haciendo click en <strong>Build</strong>, al autor le dieron el siguiente tamaño del ELF.</p>
+<div style="text-align: center;">
+<table id="tbl-elf-size">
+<caption style="caption-side:bottom">Tabla 2: Tamaño del ELF </caption><thead>
+<tr>
+<th>text</th>
+<th>data</th>
+<th>bss</th>
+<th>dec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7896</td>
+<td>240</td>
+<td>3544</td>
+<td>11680</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Luego para probar la aplicación, conecte la placa y configure su terminal serial de preferencia en 9600 Baud, Stop bit de 1 y sin paridad. Acto seguido corra la aplicación, debería dar un resultado similar al de la <a href="#fig-resultado-hterm">figura 21</a></p>
+<p><figure id="_figure-21"><img alt="Resultado Esperado" id="fig-resultado-hterm" src="../img/Resultado.png" width="500"><figcaption>Figura 21: Resultado Esperado</figcaption></figure></p>
+<p>Con esta guía ha cerrado el ciclo completo de co-diseño hardware–software sobre FPGA: tomó una descripción RTL propia, la encapsuló como periférico AXI4-Lite, la integró en un sistema basado en Microblaze V, generó los drivers compatibles con Vitis Unified IDE y, finalmente, controló el bloque desde un programa en C. Más allá del adder tree usado como ejemplo, lo verdaderamente valioso es la metodología que ahora maneja: cualquier módulo que pueda describir en Verilog o VHDL puede convertirse en un periférico accesible desde el procesador a través de un puñado de registros mapeados en memoria. Desde aquí se abre un abanico amplio de posibilidades, ya sea diseñar aceleradores para algoritmos de procesamiento de señales, etapas aritméticas para inferencia de redes neuronales, controladores para sensores fuera del catálogo de IPs, o cualquier bloque a medida que su aplicación requiera. Esta capacidad de combinar lógica programable con un procesador embebido en una misma plataforma es precisamente lo que distingue a las FPGAs modernas como dispositivos de cómputo heterogéneo, y ahora cuenta con las herramientas para sacarle provecho.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
