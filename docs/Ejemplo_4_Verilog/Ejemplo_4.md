@@ -83,7 +83,7 @@ Nuevamente seleccióne **Next** la cual lo lleva a la ventana de interfaces como
 
 - **Nombre de la interfaz**: Nombre del puerto AXI a generar.
 - **Tipo de interfaz**: Se elije el tipo de interfaz dependiendo del uso que se le vaya a dar al modulo, se puede elegir entre AXI4 Full, Streaming o Lite. En este caso se hara uso de una interfaz **Lite** debido a que la IP a encapsular tiene fines didácticos y no busca maximizar el throughput.
-- Modo de interfaz: Permite definir si la interfaz posee modalidad de cliente, maestro o mixta. En este caso se hará uso de **Slave** (termino obsoleto usado para referirse a cliente) puesto que el procesador va a controlar la IP y esta no ejercerá control sobre otras.
+- **Modo de interfaz**: Permite definir si la interfaz posee modalidad de cliente, maestro o mixta. En este caso se hará uso de **Slave** (termino obsoleto usado para referirse a cliente) puesto que el procesador va a controlar la IP y esta no ejercerá control sobre otras.
 - **Ancho de Datos**: Tamaño de los registros asociados a AXI, el tamaño mínimo es de 32 bits, se puede aumentar para aplicaciones especificas, pero en este caso se mantendra en 32.
 - **Tamaño de memoria**: El espacio de memoria accesible, el wizard fija el espacio a 64 bytes como mínimo.
 - **Numero de registros**: Cantidad de registros internos asociados a la IP. En este caso se tienen ocho entradas de 16 bits (Los operandos) y una salida de 22 bits (El resultado). Como el tamaño mínimo de cada registro es de 32 bits, en cada registro se guardaran 2 operandos y en un registro adicional la salida, dándonos un total de **5 Registros**.
@@ -97,29 +97,30 @@ Luego en la siguiente ventana emergente ilustrada en la [](#fig-edit-ip) se sele
 
 En este nuevo proyecto se encuentra el empaquetador de IP's visto en [](#fig-ip-package). Esta ventana sirve para:
 
-- Identificación: Aquí se realiza la documentación preliminar de la IP, quien es el autor, a que organización pertenece, la función de la ip etc.
-- Compatibilidad: Realiza empaquetado para el flujo de aceleración de aplicaciones de Vitis. El detalle lo puede encontrar en el siguiente [manual](https://docs.amd.com/v/u/en-US/ug1393-vitis-application-acceleration).
-- File Groups: En esta pestaña se realiza la configuración acerca de que archivos de descripción conforman a la IP.
-- Parámetros de personalización: En esta pestaña se configura que parámetros podrá cambiar el usuario al momento de importar la IP a su sistema.
-- Adressing and Memory: Configura el mapa de memoria interno de la IP.
-- Personalización de interfaz de usuario: Configura como se ve la IP dentro del diagrama de bloques.
-- Revisar y empaquetar: Revisa que la IP se encuentre en orden y  realiza el empaquetado de nuevo.
+- **Identificación**: Aquí se realiza la documentación preliminar de la IP, quien es el autor, a que organización pertenece, la función de la ip etc.
+- **Compatibilidad**: Realiza empaquetado para el flujo de aceleración de aplicaciones de Vitis. El detalle lo puede encontrar en el siguiente [manual](https://docs.amd.com/v/u/en-US/ug1393-vitis-application-acceleration).
+- **Grupos de archivo**: En esta pestaña se realiza la configuración acerca de que archivos de descripción conforman a la IP.
+- **Parámetros de personalización**: En esta pestaña se configura que parámetros podrá cambiar el usuario al momento de importar la IP a su sistema.
+- **Memoria y direccionamiento**: Configura el mapa de memoria interno de la IP.
+- **Personalización de interfaz de usuario**: Configura como se ve la IP dentro del diagrama de bloques.
+- **Revisar y empaquetar**: Revisa que la IP se encuentre en orden y  realiza el empaquetado de nuevo.
 
 
 ![Empaquetador de IP's](img/Package_IP_menu.png){ #fig-ip-package width="500" }
 
 Añada los archivos fuente **comb_adder_tree.sv** y **adder_tree_wrapper.sv** de la carpeta Ejemplo_4. Estos poseen la descripción del modulo del adder tree y una envoltura para aplanar las entradas, esto es debido a que los módulos AXI generados por Vivado están descritos en Verilog, un lenguaje de descripción de hardware que no permite el uso de arreglos bidimensionales como puertos en los módulos.
 
-Tras impotar los módulos, abra el archivo **adder_tree_slave_v1_0_S00_AXI**, este archivo posee una plantilla de AXI, con todas las señales necesarias para su integración en el esquema de interconexiones al procesador.
+Tras importar los módulos, abra el archivo **adder_tree_slave_v1_0_S00_AXI**, este archivo posee una plantilla de AXI, con todas las señales necesarias para su integración en el esquema de interconexiones al procesador.
 
 Sin ir a mayor detalle en el código se tiene que este posee 4 bloques principales:
+
 - Una maquina de estados para la implementación transacciones de escritura en el bloque.
-- lógica de mapeo de memoria para las escrituras.
+- Lógica de mapeo de memoria para las escrituras.
 - Una maquina de estados para la implementación de transacciones de lectura en el bloque.
 - Un espacio para lógica de usuario donde se instancian los módulos diseñados.
 
 
-Ahora integraremos el modulo en esta plantilla AXI, para esto diríjase a la linea 102 y agregue la declaración de los cables que conectan las entradas y salidas del adder tree al AXI, siendo este el cable de los operandos i_data_flat y el cable de la salida o_data.  Note que ten este snipet de código la herramienta generó tambien los 5 registros que se definieron en la [](#fig-interfaz-ip) denominados **slv_regN** donde N corresponde al numero del registro.
+Ahora integraremos el modulo en esta plantilla AXI, para esto diríjase a la linea 102 y agregue la declaración de los cables que conectan las entradas y salidas del adder tree al AXI, siendo este el cable de los operandos i_data_flat y el cable de la salida o_data.  Note que en este snipet de código la herramienta generó tambien los 5 registros que se definieron en la [](#fig-interfaz-ip) denominados **slv_regN** donde N corresponde al numero del registro.
 
 ``` verilog linenums="102"
 	//----------------------------------------------
@@ -177,7 +178,7 @@ Finalmente en el espacio de lógica de usuario se van a concatenar los 4 registr
 
 ```
 
-Si realizo el importado de forma correcta debería haberse reordenado la jerarquía de archivos como se ve en la [](#fig-archivos-adder-tree).
+Si realizó el importado de forma correcta debería haberse reordenado la jerarquía de archivos como se ve en la [](#fig-archivos-adder-tree).
 
 ![Jerarquia de archivos IP adder tree](img/archivos_adder_tree.png){ #fig-archivos-adder-tree width="400" }
 
@@ -187,7 +188,7 @@ Para una visualización mas clara de la integración se tiene el diagrama de la 
 ![Diagrama IP en envoltura AXI](img/adder_tree_slave.png){ #fig-slacve-axi width="1000" }
 
 
-Una vez realizados los cambios, vuelva a la pestaña Package IP - adder_tree_rtl y en el menú lateral Packaging Steps, seleccióne File Groups. Haga click en Merge changes from File Groups Wizard, ubicado en la barra superior para actualizar la cantidad de archivos hdl asociados a la IP como se ve en  [](#fig-grupos-de-archivo).
+Una vez realizados los cambios, vuelva a la pestaña **Package IP - adder_tree_rtl** y en el menú lateral Packaging Steps, seleccione **File Groups**. Haga click en Merge changes from File Groups Wizard, ubicado en la barra superior para actualizar la cantidad de archivos hdl asociados a la IP como se ve en  [](#fig-grupos-de-archivo).
 
 ![Grupos de archivos](img/File_groups.png){ #fig-grupos-de-archivo width="500" }
 
@@ -220,15 +221,15 @@ Luego añada el adder tree a su diagrama usando **Add IP**:
 
 ![Adder tree en buscador de IP's](img/adding_adder_tree.png){ #fig width="200" }
 
-Luego haga click en **Run Connection Automation** e integre el adder tree al sistema debería quedar como la []()
+Luego haga click en **Run Connection Automation** e integre el adder tree al sistema debería quedar como la [](#fig-adder_tree_bd)
 
 ![Diagrama de bloques con adder tree integrado](img/adder_tree_bd.png){ #fig-adder_tree_bd width="1000" }
 
-Teniendo ya el periférico integrado, revise en address editor que se integro correctamente como se ve en la []()
+Teniendo ya el periférico integrado, revise en address editor que se integro correctamente como se ve en la [](#fig-address_editor ).
 
 ![Editor de direcciónes con adder tree integrado](img/address_editor.png){ #fig-address_editor width="1000" }
 
-Valide nuevamente su diseño y ejecute la sintesís,la implementación y extracción de bitsream. El autor obtuvo la utilización de recursos vista en la [](#tbl-resources)
+Valide nuevamente su diseño y ejecute la sintesís,la implementación y extracción de bitsream. El autor obtuvo la utilización de recursos vista en la [](#tbl-resources).
 
 <div markdown="1" style="text-align: center;">
 
@@ -326,7 +327,7 @@ Info: IP Names on microblaze_riscv_0 in XSA are:
 lmb_bram_if_cntlr lmb_bram_if_cntlr axi_uartlite adder_tree_rtl
 ```
 
-A manera de ejemplo el auto de esta guía uso el siguiente comando con direcciónes absolutas:
+A manera de ejemplo el autor de esta guía usó el siguiente comando con direcciónes absolutas:
 
 ```
 create_driver -xsa /home/vicen3/hardware/adder_tree_rtl/adder_tree_rtl.xsa -ip_name adder_tree_rtl -driver_src /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers/adder_tree_rtl_v1_0/src -repo /home/vicen3/hardware/ip_repo/adder_tree_rtl_1_0/drivers
@@ -383,7 +384,7 @@ Con esto ya puede cerrar Vivado.
 Abra Vitis y defina el workspace.
 
 
-Antes de crear la aplicación, se añadiran los drivers generados a los repositorios de software a los que puede acceder . Para esto dirijase a **Vitis>Embedded SW Repositories...**.
+Antes de crear la aplicación, se añadiran los drivers generados a los repositorios de software a los que Vitis puede acceder . Para esto dirijase a **Vitis>Embedded SW Repositories...**.
 En la ventana emergente en la sección **Local Repositories (available to the current workspace)** haga click en "+" para agregar la carpeta XilinxProcessorIPLib como se ve en la [](#fig-sw-repo).
 
 ![Repositorios de código ](img/embedded_sw.png){ #fig-sw-repo width="1000" }
