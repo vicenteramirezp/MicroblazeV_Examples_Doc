@@ -41,10 +41,13 @@ extra_css:
   - stylesheets/extra.css
 nav:
   - Home: index.md
-  - Ejemplo 3 : Ejemplo_3_Interrupts/Ejemplo_3.md
-  - Ejemplo 4 : Ejemplo_4_Verilog/Ejemplo_4.md
-  - Ejemplo 6 : Ejemplo_6_DDR/Ejemplo_6.md
-  - Ejemplo 7 : Ejemplo_7_VGA/Ejemplo_7.md
+  - Guía 1: Ejemplo_1_Sistema_base/Ejemplo_1.md
+  - Guía 2: Ejemplo_2_Depurador/Ejemplo_2.md
+  - Guía 3 : Ejemplo_3_Interrupts/Ejemplo_3.md
+  - Guía 4 : Ejemplo_4_Verilog/Ejemplo_4.md
+  - Guía 5: Ejemplo_5_HLS/Ejemplo_5.md
+  - Guía 6 : Ejemplo_6_DDR/Ejemplo_6.md
+  - Guía 7 : Ejemplo_7_VGA/Ejemplo_7.md
 plugins:
   - search
   - caption:

@@ -12,7 +12,7 @@
         <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../Ejemplo_6_DDR/Ejemplo_6/">
+        <link rel="next" href="../../Ejemplo_4_Verilog/Ejemplo_4/">
       
       
         
@@ -239,6 +239,25 @@
     
   
   Ejemplo 3
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ejemplo 4
 
       </a>
     </li>
@@ -513,6 +532,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -954,7 +1000,7 @@ En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
 <p>Analizando el codigo del main se tiene que se sigue la siguiente secuencia:</p>
 <ul>
 <li>Se inicializan perifericos de Uart y GPIO.</li>
-<li>Se fijan las direcciones de los GPIO, de manera que detecte los botones como entradas y los leds como salidas (1= Entrada 0 = Salida). Note que los canales vistos en la <a href="#fig-gpio-config">figura 6</a> son usados para definir la direccion (BUTTON_CHANNEL=1 LED_CHANNEL=2).</li>
+<li>Se fijan las direcciones de los GPIO, de manera que detecte los botones como entradas y los leds como salidas (1= Entrada 0 = Salida). Note que los canales vistos en la <a href="#fig-gpio-config">figura 6</a> son usados para definir que canal corresponde a que periférico (BUTTON_CHANNEL=1 LED_CHANNEL=2).</li>
 <li>Se inicializa el controlador de interrupciones.</li>
 <li>Se entrega la informacion al controlador de interrupciones acerca de que función Handler corresponde a que periférico.</li>
 <li>Se habilita el controlador de interrupciones.</li>

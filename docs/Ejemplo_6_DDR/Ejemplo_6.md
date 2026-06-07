@@ -2,30 +2,30 @@
 
 ## Contexto 
 
-Si bien el Wizard de creación de Microblaze permite hasta 128 KB de memoria, esto  puede resultar insuficiente para aplicaciones mas complejas o que hagan uso de periféricos que necesiten un uso de memoria mayor. Para remediar esta problematica se hace uso de la **Memoria externa** de la placa, su nombre nace de que se encuentra fuera del circuito integrado de la FPGA, como se puede apreciar en la ()[#fig-DDR2-on-board].
+Si bien el Wizard de creación de Microblaze permite hasta 128 KB de memoria, esto  puede resultar insuficiente para aplicaciones mas complejas o que hagan uso de periféricos que necesiten un uso de memoria mayor. Para remediar esta problematica se hace uso de la **Memoria externa** de la placa, su nombre nace de que se encuentra fuera del circuito integrado de la FPGA, como se puede apreciar en la [](#fig-DDR2-on-board).
 
-El cicuito integrado es el Micron MT47H64M16HR-25, este chip corresponde a una memoria DDR2 con una capacidad de 128 MB (3 ordenes de magnitud mas grande que la memoria interna), para mas detalles tecnicos revisar la documentación en el siguiente [enlace](https://octopart.com/datasheet/micron/MT47H64M16HR-25:H). 
+El cicuito integrado es el Micron MT47H64M16HR-25, este chip corresponde a una memoria DDR2 con una capacidad de 128 MB (3 ordenes de magnitud mas grande que la memoria interna), para mas detalles técnicos revisar la documentación en el siguiente [enlace](https://octopart.com/datasheet/micron/MT47H64M16HR-25:H). 
 
 
 ![Chip DDR2 en la placa Nexys A7 (Amarillo)](img/DDR2_on_board.png){ #fig-DDR2-on-board width="500" }
 
 
-En esta sección se hara uso de datos en un formato de **punto fijo** para justificar la cantidad de espacio usado.
 
+Para representar valores fraccionarios se emplea la notación de punto fijo. En esta representación, la posición del punto determina cuántos bits corresponden a la parte entera (a su izquierda) y cuántos a la parte fraccionaria (a su derecha). Note que la cantidad de bits asociada a cada porción del dato se mantiene constante.
 
 ## Diseño de hardware
 
 ### Diseño de IP Producto Punto
 
-En esta seccion haremos uso de High Level Synthesis para generar una IP que calcula el producto punto de dos vectores que almacenan datos con parte fraccional. Esta operacion consiste en multiplicar dato a dato y realizar la suma de cada resultado, para esto usaremos nuevamente adder tree en conjunto a una nueva funcion que realiza la multiplicacion de estos datos teniendo en cuenta los valores fraccionales.
+En esta seccion se hará uso de High Level Synthesis para generar una IP que calcula el producto punto de dos vectores que almacenan datos con parte fraccional. Esta operación consiste en multiplicar dato a dato y realizar la suma de cada resultado, para esto usaremos nuevamente adder tree en conjunto a una nueva función que realiza la multiplicacion de estos datos teniendo en cuenta los valores fraccionales.
 
-Para poder uso de los valores fraccionales se usa **Punto fijo** el cual es una forma de representar datos de tal manera que donde se posicione, este tendra a la izquierda la parte entera y a la derecha la parte fraccional.
+Para poder uso de los valores fraccionales se hará uso de **Punto fijo** el cual es una forma de representar datos de tal manera que donde se posicione, este tendra a la izquierda la parte entera y a la derecha la parte fraccional.
 
 
 Abra Vitis, fije un workspace y genere un componente de HLS con el nombre fixed_point_ip siguiendo el procedimiento visto en la seccion anterior, tras lo cual importe los archivos hls_config.h y hls_main.cpp.
 
 
-Fijandonos en  hls_config.h:
+Fijándonos en  hls_config.h:
 
 ```c
 
@@ -51,17 +51,17 @@ void hls_pp(res_data_t *pp, data_t x[N], data_t y[N]);
 
 ```
 
-Se tiene que se incluye la librería "ap_fixed.h", esta es la libreria responsable del manejo de punto fijo en el hardware, mediante ella se pueden definir nuevos tipos de datos como se aprecia en la definicion de los datos "data_t" y "res_data_t".
+Se tiene que se incluye la librería "ap_fixed.h", esta es la librería responsable del manejo de punto fijo en el hardware, mediante ella se pueden definir nuevos tipos de datos como se aprecia en la definición de los datos "data_t" y "res_data_t".
 
-En la definicion de estos:
-- El primer parametro indica el ancho total de bits de tipo definido, en este ejemplo son 16 bits.
-- El segundo parametro indica la cantidad de bits destinados a la parte entera, en este ejemplo son 4 bits (3 bits si se consideran datos con signo).
-- AP_RND_CONV (Redondeo convergente): Cuando el resultado tiene mas bits de los que podrian caber en el dato, redondea al entero par mas cercano.
-- AP_SAT : Si el valor se sale del rango esperado, en vez de dar la vuelta  se fija en el valor minimo o maximo dependiendo de la operacion.
+En la definición de estos:
+- El primer parámetro indica el ancho total de bits de tipo definido, en este ejemplo son 16 bits.
+- El segundo parámetro indica la cantidad de bits destinados a la parte entera, en este ejemplo son 4 bits (3 bits si se consideran datos con signo).
+- AP_RND_CONV (Redondeo convergente): Cuando el resultado tiene mas bits de los que podrían caber en el dato, redondea al entero par mas cercano.
+- AP_SAT : Si el valor se sale del rango esperado, en vez de dar la vuelta  se fija en el valor mínimo o máximo dependiendo de la operación.
 
-Se tiene que se usa el doble de ancho en res_data_t porque al momento de multiplicar dos numeros de N bits, el producto puede necesitar hasta 2*N bits.
+Se tiene que se usa el doble de ancho en res_data_t porque al momento de multiplicar dos números de N bits, el producto puede necesitar hasta 2*N bits.
 
-Se puede apreciar los valores minimos y maximos de los tipos de dato definido para este ejemplo en la [](#tbl-datos).
+Se puede apreciar los valores mínimos y máximos de los tipos de dato definido para este ejemplo en la [](#tbl-datos).
 
 <div markdown="1" style="text-align: center;">
 
@@ -118,7 +118,7 @@ void hls_pp(res_data_t *pp, data_t x[N], data_t y[N])
 #pragma HLS INTERFACE mode=s_axilite port=x
 #pragma HLS INTERFACE mode=s_axilite port=y
 #pragma HLS INTERFACE mode=s_axilite port=pp
-#pragma HLS INTERFACE mode=s_axilite port=return //indica que tenga pines de control, ya que es un void (la funcion), si fuera de algun tipo distinto de void habria un puerto fisico
+#pragma HLS INTERFACE mode=s_axilite port=return //indica que tenga pines de control, ya que es un void (la función), si fuera de algun tipo distinto de void habria un puerto fisico
 
 	res_data_t res[N];
 
@@ -142,7 +142,7 @@ Se puede apreciar que se hacen uso de los tipos de dato previamente definidos pa
 Luego para comprobar que el diseño se encuentra funcionando de manera correcta, agregue a la carpeta Testbench los archivos testbench.cpp, golden_inputs.dat y golden_reference.dat para la simulación/cosimulación.
 
 
-Continue con el proceso de simulación, sintesis y cosimulacion como se mostró en la sección previa. Al momento de realizar la sintesís de C compruebe que su utilizacion de recursos coincida con los vistos en la [](#fig-hls-resources).
+Continue con el proceso de simulación, síntesis y cosimulacion como se mostró en la sección previa. Al momento de realizar la síntesis de C compruebe que su utilización de recursos coincida con los vistos en la [](#fig-hls-resources).
 
 
 ![Recursos usados en IP punto fijo](img/hls_resources.png){ #fig-hls-resources width="1000" }
@@ -157,7 +157,7 @@ Desde el panel lateral **Board** arrastre **DDR2 SDRAM** como se puede apreciar 
 
 ![DDR en panel lateral](img/DDR2_on_side_panel.png){ #fig-ddr-side-panel width="300" }
 
-Esto importará la IP **Memory Interface Generator (MIG 7 Series)** al diagrama de bloques como se ve en la [](#fig-mig-on-bd). Esta IP automatiza la generacion de interfaces de memoria para FPGA's de la Serie 7 (Kintex-7,Virtex-7 y el caso del chip de esta placa: Artyx-7). El uso de memoria externa de manera manual resulta sumamente complejo debido a que posee complejidades temporales de alta presicion durante las transiciones, haciendo uso de multiples relojes de distintas frecuencias para alcanzar la velocidad  necesaria para leer multiples direcciones de memoria en un solo ciclo de reloj del sistema. Debido a esto la IP posee acceso directo a los recursos de generacion de reloj de la placa (Mixed-Mode Clock Manager y Phase-Locked Loop). (Aqui quiero discutir como decir que la ip puede o no funcionar si se usan estas capacidades y directamente da errores de timing internos)
+Esto importará la IP **Memory Interface Generator (MIG 7 Series)** al diagrama de bloques como se ve en la [](#fig-mig-on-bd). Esta IP automatiza la generación de interfaces de memoria para FPGA's de la Serie 7 (Kintex-7,Virtex-7 y el caso del chip de esta placa: Artyx-7). El uso de memoria externa de manera manual resulta sumamente complejo debido a que posee complejidades temporales de alta precisión durante las transiciones, haciendo uso de multiples relojes de distintas frecuencias para alcanzar la velocidad  necesaria para leer múltiples direcciones de memoria en un solo ciclo de reloj del sistema. Debido a esto la IP posee acceso directo a los recursos de generación de reloj de la placa (Mixed-Mode Clock Manager y Phase-Locked Loop). (Aqui quiero discutir como decir que la ip puede o no funciónar si se usan estas capacidades y directamente da errores de timing internos)
 
 ![Mig en el diagrama de Bloques](img/Mig_on_bd.png){ #fig-mig-on-bd width="500" }
 
@@ -268,7 +268,7 @@ Se deberia ver como la [](#fig-connection_automation_microblaze), note que el MI
 
 ![Diagrama de bloques post Automatización](img/Post_connection_automation_microblaze_V.png){ #fig-connection_automation_microblaze width="1000" }
 
-Debido a la naturaleza del MIG, no funciona de manera correcta al compartir una interfaz AXI con los otros perifericos del Microblaze V. Debido a esto se le generara una interfaz AXI dedicada. Importe la IP "AXI Interconnect" vista en la [](#fig-axi-interconnect). 
+Debido a la naturaleza del MIG, no funcióna de manera correcta al compartir una interfaz AXI con los otros perifericos del Microblaze V. Debido a esto se le generara una interfaz AXI dedicada. Importe la IP "AXI Interconnect" vista en la [](#fig-axi-interconnect). 
 
 ![AXI interconnect](img/Axi_interconnect.png){ #fig-axi-interconnect width="250" }
 
@@ -431,15 +431,15 @@ int main()
 
 Se hará un leve analisis del codigo.
 
-Fijandonos en las librerias de interés:
-- iomanip y iostream: Se hace uso de estas librerias para manipular los datos de salida a través de uart para que esten con el formato correcto (teniendo en cuenta la parte fraccional y entera)
-- ap_fixed.h : Se tiene que en esta libreria se encuentran las definiciones de los datos de punto fijo, esta libreria al contener tanto datos de descripcion de hardware como de software es particularmente pesada.
+Fijandonos en las librerías de interés:
+- iomanip y iostream: Se hace uso de estas librerías para manipular los datos de salida a través de uart para que esten con el formato correcto (teniendo en cuenta la parte fraccional y entera)
+- ap_fixed.h : Se tiene que en esta librería se encuentran las definiciónes de los datos de punto fijo, esta librería al contener tanto datos de descripcion de hardware como de software es particularmente pesada.
 - xhls_pp.h: Driver del periferico de HLS.
 
 
-En cuanto al funcionamiento del codigo, se tiene que este recibe 10 datos de 16 bits a través de UART, tras lo cual realiza una manipulacion sobre estos debido a que la interfaz de AXI maneja datos de 32 bits, tras lo cual realiza el envio a la IP y espera el resultado antes de mandarlo.
+En cuanto al funciónamiento del codigo, se tiene que este recibe 10 datos de 16 bits a través de UART, tras lo cual realiza una manipulacion sobre estos debido a que la interfaz de AXI maneja datos de 32 bits, tras lo cual realiza el envio a la IP y espera el resultado antes de mandarlo.
 
-Ahora nos fijaremos en el archivo ld_script de la carpeta sources, este define donde se guardan todas las secciones de codigo producidas en el compilado de la aplicación, junto al tamaño del heap y el stack. Como se puede apreciar en la [](#fig-ld-script) existe tanto la region de memoria interna de microblaze V  (los 128 kb) como la del MIG (128 MB) la aplicacion de manera predeterminada mapea todo a la sección mas grande para evitar que el tamaño de la aplicación sea un impedimento. Antes de continuar, debido a que estamos haciendo uso de librerias de impresion por consola (bastante costosas en termino de memoria dinamica) se aumentara el tamaño del heap y el stack a los valores vistos en la [](#fig-ld-script). Si estos valores no se cambiaran, la aplicacion lanzaria una excepcion al momento de imprimir el resultado.
+Ahora nos fijaremos en el archivo ld_script de la carpeta sources, este define donde se guardan todas las secciones de codigo producidas en el compilado de la aplicación, junto al tamaño del heap y el stack. Como se puede apreciar en la [](#fig-ld-script) existe tanto la region de memoria interna de microblaze V  (los 128 kb) como la del MIG (128 MB) la aplicacion de manera predeterminada mapea todo a la sección mas grande para evitar que el tamaño de la aplicación sea un impedimento. Antes de continuar, debido a que estamos haciendo uso de librerías de impresion por consola (bastante costosas en termino de memoria dinamica) se aumentara el tamaño del heap y el stack a los valores vistos en la [](#fig-ld-script). Si estos valores no se cambiaran, la aplicacion lanzaria una excepcion al momento de imprimir el resultado.
 
 ![Linker script](img/Linker_script.png){ #fig-ld-script width="1000" }
 
@@ -452,7 +452,7 @@ Luego si vuelve al codigo e intenta compilar la aplicación, se encontrara con u
        |          ^~~~~~~~~~~~
  compilation terminated.
 ```
-Esto es debido a que esta libreria no fue diseñada directamente con el proposito de su uso en software, por lo que hay que añadirla manualmente. Para esto dirijase al panel lateral visto en la
+Esto es debido a que esta librería no fue diseñada directamente con el proposito de su uso en software, por lo que hay que añadirla manualmente. Para esto dirijase al panel lateral visto en la
 [](#fig-cmake) y haga click en UserConfig.cmake.
 
 ![Panel lateral](img/usercmake.png){ #fig-cmake width="500" }
@@ -478,7 +478,7 @@ Table: Tamaño del ELF {#tbl-elf-size}
 
 Para verificar que el sistema se diseño con exito, se hara uso de un script de python que generara datos y la respuesta esperada, enviará los datos a través de UART, recibe el resultado y  compara con el resultado obtenido en el host. 
 
-El script de manera predeterminada realiza 100 pruebas, para hacer mas o menos pruebas basta con cambiar el parametro N dentro del script.
+El script de manera predeterminada realiza 100 pruebas, para hacer mas o menos pruebas basta con cambiar el parámetro N dentro del script.
 
 Para correr el ejemplo tiene que abrir el archivo serial_host.py y renombrar la variable 
 
