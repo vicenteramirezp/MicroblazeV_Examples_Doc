@@ -1,0 +1,1277 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../Ejemplo_2_Depurador/Ejemplo_2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Guía 1 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-1-sistema-base-microblaze-v" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guía 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 3
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_5_HLS/Ejemplo_5/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 5
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 6
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 7
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contexto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-risc-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿ Que es RISC-V?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-es-microblaze-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Que es Microblaze -V ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creación de proyecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-del-sistema-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descripción del Sistema Base
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_5_HLS/Ejemplo_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contexto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-risc-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿ Que es RISC-V?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-es-microblaze-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Que es Microblaze -V ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creación de proyecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-del-sistema-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descripción del Sistema Base
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-1-sistema-base-microblaze-v">Guía 1 : Sistema Base Microblaze V</h1>
+<p>En esta sección se detalla como describir el sistema base de Microblaze-V, como correr aplicaciones sobre este y que funcionalidades posee la herramienta Vitis al momento de trabajar con el flujo embebido.</p>
+<h2 id="contexto">Contexto</h2>
+<h3 id="que-es-risc-v">¿ Que es RISC-V?</h3>
+<p>RISC-V es una arquitectura de conjunto de instrucciones que funciona como el vocabulario básico que permite la comunicación entre el software y el hardware de un procesador. Se basa en la filosofía RISC, que prioriza el uso de un conjunto reducido y simplificado de instrucciones para que el procesador ejecute tareas de forma más rápida y eficiente, a diferencia de otras arquitecturas tradicionales que usan instrucciones más complejas. La letra V indica que es la quinta generación de este diseño, el cual fue creado originalmente en la Universidad de California, Berkeley.</p>
+<p>Lo que realmente hace especial a RISC-V frente a otras opciones del mercado es que es un estándar de código abierto y totalmente libre de regalías. Mientras que para usar arquitecturas dominantes como x86 de Intel o ARM de los teléfonos móviles las empresas deben pagar licencias muy costosas y restrictivas, cualquier persona o compañía puede tomar las especificaciones de RISC-V para diseñar, modificar y fabricar sus propios chips sin pagar derechos de propiedad intelectual. Esto permite una enorme flexibilidad, ya que los desarrolladores pueden adaptar el procesador exactamente a sus necesidades añadiendo funciones específicas, lo que reduce drásticamente los costos de desarrollo y está democratizando la creación de nuevo hardware para todo tipo de tecnologías.</p>
+<p>Para mas información visitar la pagina de <a href="https://riscv.org/">RISC-V international</a>.</p>
+<p><figure id="_figure-1"><img alt="Logo RISC-V" id="fig:flow" src="../img/RISC-V-logo.png#only-light" width="500">
+<img alt="Logo RISC-V" id="fig:flow" src="../img/RISC-V-logo-dark.png#only-dark" width="500"><figcaption>Figura 1: Logo RISC-V</figcaption></figure></p>
+<h3 id="que-es-microblaze-v">¿Que es Microblaze -V ?</h3>
+<p>MicroBlaze V es un procesador soft-core de tipo RISC-V desarrollado por AMD para sus FPGAs y SoCs adaptativos . A diferencia de un procesador hard-core —fijo en el silicio del dispositivo—, un procesador soft-core se distribuye como un bloque IP que se importa al diseño y se implementa sobre la lógica programable del FPGA, lo que lo vuelve agnóstico a la placa: el mismo bloque puede instanciarse en cualquier dispositivo soportado por Vivado, replicarse en varias instancias dentro de un mismo chip y configurarse a la medida de la aplicación, habilitando únicamente las funcionalidades que se necesitan.</p>
+<p>Esta flexibilidad se traduce, en el caso de MicroBlaze V, en una arquitectura modular que admite los conjuntos base RV32I y RV64I junto con extensiones opcionales para multiplicación/división (M), instrucciones atómicas (A), punto flotante (F), compresión de código (C) y manipulación de bits (B), además de configuraciones predefinidas que abarcan desde un microcontrolador simple hasta un procesador de aplicación, y de mecanismos de seguridad funcional como dual-core lockstep y redundancia modular triple (TMR). A esto se suma la compatibilidad de hardware con el MicroBlaze clásico  y el acceso al ecosistema de software RISC-V, todo integrado de forma nativa en el flujo de Vivado y Vitis y sin costo adicional sobre las licencias de la suite de diseño.</p>
+<p>En la <a href="#fig:EstructuraMBV">figura 2</a> se muestra un diagrama simplificado de la 
+implementación de MicroBlaze V. La arquitectura sigue un esquema tipo Harvard,
+en el que la memoria de instrucciones y la de datos se acceden a través de 
+buses independientes, lo que permite solapar la búsqueda de la siguiente 
+instrucción con un acceso a datos en el mismo ciclo de reloj.</p>
+<p><figure id="_figure-2"><img alt="Estructura MicroBlaze V" id="fig:EstructuraMBV" src="../img/Estructura_MBV.png#only-dark" width="500">
+<img alt="Estructura MicroBlaze V" id="fig:EstructuraMBV" src="../img/Estructura_MBV-light.png#only-light" width="500"><figcaption>Figura 2: Estructura MicroBlaze V</figcaption></figure></p>
+<p>Los bloques que componen el sistema son los siguientes:</p>
+<ul>
+<li>
+<p><strong>Procesador RISC-V</strong>: núcleo del sistema, que implementa el conjunto de
+  instrucciones RISC-V. El procesador expone dos puertos de memoria local 
+  que operan en paralelo:</p>
+<ul>
+<li><strong>ILMB (Instruction Local Memory Bus)</strong>: bus por el cual el procesador 
+  obtiene las instrucciones a ejecutar. La región de memoria asociada a 
+  este bus contiene el código ejecutable del programa.</li>
+<li><strong>DLMB (Data Local Memory Bus)</strong>: bus por el cual el procesador lee y 
+  escribe datos. La región asociada aloja las variables, el <em>heap</em> y 
+  el <em>stack</em>. Como se aprecia en la <a href="#fig:EstructuraMBV">figura 2</a>, este bus 
+  dispone además de una salida hacia los módulos de entrada/salida del 
+  sistema, interconectados internamente mediante el bus AXI, lo que 
+  permite acceder a los periféricos del SoC.</li>
+</ul>
+</li>
+<li>
+<p><strong>Bus de Memoria (LMB)</strong>: cada uno de los buses ILMB y DLMB se implementa 
+  como una instancia independiente del IP de bus LMB. El LMB es un bus 
+  sincrónico, de un solo maestro, optimizado para accesos de un único ciclo 
+  a memoria interna de la FPGA, lo que minimiza la latencia entre el 
+  procesador y la BRAM.</p>
+</li>
+<li>
+<p><strong>Control Interfaz BRAM LMB</strong>: bloque que actúa como puente entre el 
+  protocolo LMB y la interfaz nativa de las Block RAM de la FPGA. Su 
+  función es traducir las transacciones LMB en operaciones de lectura y 
+  escritura sobre el puerto correspondiente de la BRAM. Al instanciarse un 
+  controlador independiente para ILMB y otro para DLMB, ambos accesos 
+  pueden coexistir sin contienda.</p>
+</li>
+<li>
+<p><strong>Block RAM (BRAM)</strong>: recursos lógicos dedicados a memoria, integrados en 
+  el silicio de la FPGA. En esta configuración se implementan en modalidad 
+  <em>dual port</em>, es decir, con dos puertos físicos independientes que 
+  comparten el mismo arreglo de almacenamiento. Esta característica permite 
+  que el bus de instrucciones y el bus de datos accedan simultáneamente —en 
+  el mismo ciclo y a direcciones distintas— al mismo banco de memoria, 
+  materializando la separación lógica de la arquitectura Harvard sobre un 
+  único recurso físico.</p>
+</li>
+<li>
+<p><strong>MicroBlaze Debug Module (MDM)</strong>: bloque opcional que provee acceso al 
+  procesador a través de JTAG. Permite cargar el programa en memoria, fijar 
+  <em>breakpoints</em>, ejecutar paso a paso y leer el estado de los registros, 
+  funcionalidades utilizadas por el depurador integrado en Vitis durante el 
+  desarrollo y la verificación del <em>firmware</em>.</p>
+</li>
+</ul>
+<p>Para mas información se adjunta el enlace a <a href="https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/microblaze-v.html">la documentación oficial de MicroBlaze V</a>.</p>
+<h2 id="diseno-de-hardware">Diseño de Hardware</h2>
+<h3 id="creacion-de-proyecto">Creación de proyecto</h3>
+<p>Ejecute Vivado y haga click en <em>Create Project</em> para iniciar la ventana del asistente para crear un proyecto de Vivado.
+En la ventana emergente, indique un nombre para el proyecto y su ubicación, luego de click a <em>Next</em>.
+En la ventana titulada <em>Project Type</em> se detallan las distintas opciones para la generación de un nuevo proyecto:</p>
+<ul>
+<li><strong>RTL Project</strong>: Permite crear un diseño desde cero haciendo uso de lenguajes de descripción de hardware.</li>
+<li><strong>Post-synthesis Project</strong>: Este proyecto se salta la síntesis lógica, asumiendo que fue realizada en un trabajo previo u otra herramienta.</li>
+<li><strong>I/O Planning Project</strong>: Usado para la definición del asignado de los pines.</li>
+<li><strong>Imported Project</strong>: Usado para importar proyectos desde otras herramientas o versiones previas de las herramientas de AMD.</li>
+<li><strong>Example Project</strong>: Permite cargar un proyecto de ejemplo del repositorio de AMD.</li>
+</ul>
+<p>Seleccione <em>RTL Project</em> y marque la casilla <em>Do not specify sources at this time</em>, puesto que en este proyecto no se va a hacer manejo directo de archivos HDL.</p>
+<p>La siguiente ventana es <em>Default Part</em>, en esta ventana se elige la FPGA a usar donde:</p>
+<ul>
+<li><strong>Part</strong>: Le indica a Vivado que chip posee la placa, pero nada mas. Esto implica que se tiene que escribir manualmente el archivo de constraints e indicar configuraciones específicas a bloques IP como frecuencia de reloj y parámetros varios.</li>
+<li><strong>Boards</strong>: Le indica a Vivado que debe cargar un Archivo de Placa (<strong>Board File</strong>) que posee metadata del hardware especifico, agilizando el diseño al permitir el importado directo de periféricos propios de este.</li>
+</ul>
+<p>En este caso se hará uso de la <strong>Board File</strong> de la placa Nexys A7-100T por lo que debe dar click a <em>Boards</em>, sin embargo es probable que no posea la Board File asociada a esta placa, por lo que para descargarla es necesario actualizar el catálogo de Board Files haciendo click en el botón indicado en la <a href="#fig:board1">figura 3</a>. Dependiendo de la calidad de su conexión a internet, este proceso puede demorarse hasta 10 minutos.</p>
+<p><figure id="_figure-3"><img alt="Boton de actualizar catalogo de placas" id="fig:board1" src="../img/Board_1.png" width="1000"><figcaption>Figura 3: Boton de actualizar catalogo de placas</figcaption></figure></p>
+<hr>
+<p>Una vez que ha actualizado el catalogo use el buscador para encontrar la placa escribiendo "Nexys A7-100T", tras lo cual instale haciendo click en el botón indicado en la <a href="#fig:board2">figura 4</a>.</p>
+<p><figure id="_figure-4"><img alt="Descarga de Board File" id="fig:board2" src="../img/Board_2.png" width="1000"><figcaption>Figura 4: Descarga de Board File</figcaption></figure></p>
+<p>Tras la descarga seleccione la placa y prosiga hasta <em>Finish Setup</em>.</p>
+<h3 id="descripcion-del-sistema-base">Descripción del Sistema Base</h3>
+<p>Una vez creado el proyecto, en la ventana <em>Flow Navigator</em>, se hace uso del menú <em>IP Integrator</em> donde se le da click a <em>Create Block Design</em> como se indica en la <a href="#fig:flow">figura 1</a>.</p>
+<p>Tras asignarle un nombre al diagrama se abrirá una ventana vacía, titulada <em>Diagram</em> donde se realiza la descripción del sistema a través de la interconexión de bloques IP. Una ventaja que ofrece hacer uso del diagrama de bloques para diseñar el sistema, es que las interconexiones de protocolos de comunicación del sistema se realizan de manera automatizada.</p>
+<p><figure id="_figure-5"><img alt="Creación del diseño de bloques" id="fig:flow" src="../img/Flow.png" width="250"><figcaption>Figura 5: Creación del diseño de bloques</figcaption></figure></p>
+<hr>
+<p>Explorando la ventana del diagrama de bloques en la <a href="#fig:diagram">figura 6</a>, se tiene que consta de las siguientes funcionalidades:</p>
+<p><figure id="_figure-6"><img alt="Ventana de Diagrama de bloques" id="fig:diagram" src="../img/Diagram.png" width="1000"><figcaption>Figura 6: Ventana de Diagrama de bloques</figcaption></figure></p>
+<ol>
+<li><strong>Zoom Fit</strong>: Ajusta la visualización de manera de que se vean todos los bloques.</li>
+<li><strong>Select Area</strong>: Permite seleccionar múltiples bloques de IP.</li>
+<li><strong>Auto-fit Selection</strong>: Enfoca la visualización en el bloque(s) seleccionado(s).</li>
+<li><strong>Search</strong>: Busca un bloque o una señal.</li>
+<li><strong>Collapse All</strong>: Minimiza todos los bloques que estén compuestos por múltiples bloques.</li>
+<li><strong>Expand All</strong>: Expande todos los bloques compuestos por múltiples bloques.</li>
+<li><strong>Add IP</strong>: Expande un catalogo de bloques, tras seleccionar uno, este es añadido al diagrama de bloques, también puede ser invocado usando <strong>Ctrl+i</strong>.</li>
+<li><strong>Make External</strong>: Permite seleccionar una señal y mapearla a un pin de la placa.</li>
+<li><strong>Customize block</strong>: Permite configurar un bloque del diseño.</li>
+<li><strong>Validate Design</strong>: Revisa que el diseño cumpla con los requisitos de los bloques importados.</li>
+<li><strong>Pin block and ports to location</strong>: Mapea pines a espacios fisicos.</li>
+<li><strong>Regenerate layout</strong>: Reordena los bloques para mejorar visualización sin realizar cambios en las conexiones.</li>
+</ol>
+<p>Note que el boton <strong>Validate Design</strong> solo  valida que se cumplan los checks de reglas de diseño (DRC) de cada bloque. Es decir que pines que esperen una conexión a un reloj la posean, que este reloj posea una frecuencia en el rango esperado y que no se realicen conexiones incompletas en las interfaces de los bloques. La validación del diagrama de bloques no es un asegurado de que el sistema funcione. Para más información visitar <a href="https://docs.amd.com/r/en-US/ug994-vivado-ip-subsystems/Running-Design-Rule-Checks">la guia de usuario</a>.</p>
+<p>Otra nota adicional, es que si en un punto sus diagramas no coinciden con alguna figura mostrada en estas guias, se recomienda hacer click en <strong>Regenerate Layout</strong>.</p>
+<p>Haga click en <strong>Add IP</strong> y escriba en el buscador "MicroBlaze V", aparecerán 3 opciones como indica la <a href="#fig:microblazevmodules">figura 7</a>.</p>
+<p><figure id="_figure-7"><img alt="MicroBlaze V en el buscador de IP de Vivado" id="fig:microblazevmodules" src="../img/Microblaze_V_modules.png" width="250"><figcaption>Figura 7: MicroBlaze V en el buscador de IP de Vivado</figcaption></figure></p>
+<hr>
+<p>Estas opciones corresponden a:</p>
+<ol>
+<li><strong>MicroBlaze V</strong>: Implementación base del procesador.</li>
+<li><strong>MicroBlaze Debug Module (MDM) V</strong>: Modulo que permite el depurado de aplicaciónes en vitis a través de JTAG. Al momento de completar la implementación base del MicroBlazeV se da la opción de integrarlo automaticamente.</li>
+<li><strong>MicroBlaze MCS V</strong>: Una implementación de MicroBlaze V orientada a microcontroladores, importa periféricos fijos junto al procesador de manera compacta. Posee la limitación de que las aplicaciones no pueden correr desde la memoria externa y posee un numero fijo de periféricos disponibles. </li>
+</ol>
+<p>En este caso se hará uso de la opción <em>MicroBlazeV</em>.</p>
+<p>Una vez que se haya importado el modulo, este aparecerá en el diagrama de bloques como se puede apreciar en la [](#fig:microblazevonbd}, en esta ventana haga click <em>Run Block Automation</em>, este botón automatiza la generación de los bloques mínimos necesarios para el funcionamiento del procesador.</p>
+<p><figure id="_figure-8"><img alt="MicroBlaze V en el diagrama de bloques" id="fig:microblazevonbd" src="../img/Microblaze_V_on_bd.png" width="1000"><figcaption>Figura 8: MicroBlaze V en el diagrama de bloques</figcaption></figure></p>
+<p>En la ventana emergente <strong>Run Block Automation</strong> vista en la <a href="#fig:microblazevautomation">figura 9</a> se pueden apreciar una variedad de configuraciones.</p>
+<p><figure id="_figure-9"><img alt="Configuración Run Block Automation" id="fig:microblazevautomation" src="../img/MicroblazeV_automation.png" width="1000"><figcaption>Figura 9: Configuración Run Block Automation</figcaption></figure></p>
+<hr>
+<ol>
+<li><strong>Preset</strong>: Implementaciones especificas de MicroBlaze, se puede elegir entre la predeterminada, la implementación orientada a microcontrolador previamente mencionada, un procesador orientado a operaciones en tiempo real y un procesador dedicado a una aplicación única.</li>
+<li><strong>Local Memory</strong>: Define cuanta memoria es dedicada al procesador, es en esta memoria donde se corren aplicaciones y se guardan librerías de código varias.</li>
+<li><strong>Local Memory Error Corrective Code</strong>: Código que detecta y arregla corrupción de datos dentro de la memoria local del procesador.</li>
+<li><strong>Cache configuration</strong>: Define establecer la cantidad de recursos asignados a la memoria cache, la cual es una memoria de alta velocidad que actúa como intermediaria entre el procesador MicroBlaze y la memoria externa. Su implementación no es estrictamente necesaria si el sistema no utiliza memoria DDR, ya que la memoria local se ejecuta directamente sobre bloques de RAM internos (BRAM), que ya ofrecen un rendimiento elevado.</li>
+<li><strong>Peripheral AXI Port</strong>: Habilita la conexión de periféricos al procesador a través del protocolo AXI.</li>
+<li><strong>Interrupt Controller</strong>: Habilita el uso de interrupciones externas generadas por el usuario o a través del uso de periféricos.</li>
+<li><strong>Clock conection</strong>: Define si el procesador hará uso de un reloj generado a través de un clocking Wizard o si hará uso del reloj del sistema.</li>
+</ol>
+<p>En <em>Local Memory</em> aumente su valor al máximo posible (128KB), se elige este valor para evitar que el tamaño de la aplicación generada sea una limitante para esta guía. Al momento de compilar la aplicación Vitis muestra su tamaño total y lanza un mensaje de error si la memoria interna no es suficiente para almacenar el binario. Mantenga el resto de los parámetros en sus valores predeterminados.</p>
+<p>Tras presionar <em>OK</em> actualizara el diagrama de bloques al importar varios bloques y sus respectivas interconexiones, debería quedar de la forma vista en la <a href="#fig:microblazevbdpostautomation">figura 10</a>. </p>
+<p><figure id="_figure-10"><img alt="Diagrama de bloques post-automatización" id="fig:microblazevbdpostautomation" src="../img/MicroblazeV_bd_post_automation.png" width="1000"><figcaption>Figura 10: Diagrama de bloques post-automatización</figcaption></figure></p>
+<p>Los modulos importados son:</p>
+<ul>
+<li><strong>MicroBlaze Debug module (MDM) V</strong>: Modulo de depurado, se integro debido a la opción <em>Debug Enabled</em>.</li>
+<li><strong>Local memory</strong>: 128Kb de memoria implementada a través de BRAM.</li>
+<li><strong>Clock Wizard</strong>: Generado debido a la opción <em>New Clocking Wizard</em> en <strong>Clock Connection</strong>, genera el reloj que alimenta al sistema.</li>
+<li><strong>Processor System Reset</strong>: Genera un reset sincrónico que tiene en cuenta sensibilidades del sistema computacional.</li>
+</ul>
+<hr>
+<p>Luego, prosiga haciendo doble click sobre el bloque Clocking Wizard, el cual lanzara su ventana de configuraciones, sobre esta dejar la opción <em>CLK_IN1</em> en sys_Clock, de manera de que sea alimentado por el reloj de la placa, realice el mismo proceso con <strong>EXT_RESET_IN</strong>, fijandolo en reset.</p>
+<p><figure id="_figure-11"><img alt="Configuración de bloque Clocking Wizard" id="fig:clockwizzard" src="../img/Clock_wizzard.png" width="1000"><figcaption>Figura 11: Configuración de bloque Clocking Wizard</figcaption></figure></p>
+<p>Tras apretar <em>OK</em> se vuelve al diagrama de bloques, en esta instancia hay que hacer click sobre el botón <em>Run conection automation</em> el cual realizara las conexiones mínimas entre el sistema en el diagrama de bloque y los correspondientes pines en la tarjeta.</p>
+<p>Este lanzara una ventana emergente donde preguntara que conexiones realizar, marque <em>All Automation</em> de manera que se automatice la conexión de los puertos externos de reloj y reset al sistema.</p>
+<p><figure id="_figure-12"><img alt="Automatización de conexiones del bloque Clock Wizard" id="fig:allautomation" src="../img/All_automation.png" width="1000"><figcaption>Figura 12: Automatización de conexiones del bloque Clock Wizard</figcaption></figure></p>
+<p><figure id="_figure-13"><img alt="Diagrama de bloques con conexiones a pines Clk y Reset" id="fig:microblazevbdpostautomation2" src="../img/MicroblazeV_bd_post_automation_2.png" width="1000"><figcaption>Figura 13: Diagrama de bloques con conexiones a pines Clk y Reset</figcaption></figure></p>
+<hr>
+<p>Teniendo ya las conexiones armadas, diríjase al panel lateral en la sección <em>Boards</em>. Debido a que se realizó la selección de <em>Boards</em> en el inicio, Vivado facilita la integración de los periféricos y puertos al diagrama de bloques. En este caso para el envió de datos se hará uso de UART, por lo que arrastre <em>USB UART</em> al diagrama de bloques como indica la <a href="#fig:boardcomponents">figura 14</a>.</p>
+<p><figure id="_figure-14"><img alt="Componentes de la placa" id="fig:boardcomponents" src="../img/board_components.png" width="250"><figcaption>Figura 14: Componentes de la placa</figcaption></figure></p>
+<hr>
+<p>Tras agregar el periférico al diagrama de bloques haga doble click sobre este y presione <strong>IP Configuration</strong> para configurar las caracteristicas de esta IP. Note que las caracteristicas del bloque Uart se configuran en esta etapa y no pueden ser cambiadas desde software. En este caso se mantendran con los valores predeterminados vistos en la <a href="#fig:UART_Config">figura 15</a>.</p>
+<p><figure id="_figure-15"><img alt="Configuración de IP AXI Uart lite" id="fig:UART_Config" src="../img/Uart_config.png" width="500"><figcaption>Figura 15: Configuración de IP AXI Uart lite</figcaption></figure></p>
+<p>Luego nuevamente haga click en <em>Run Connection automation</em>, nuevamente saltara una ventana emergente como se ve en la <a href="#fig:uartconnection">figura 16</a>, marque <em>All Connection Automation</em>, en caso de IPs que se conectan por AXI se puede elegir con que reloj se alimenta tanto la IP como el esquema de comunicación AXI (no se recomienda usar un reloj distinto del esquema AXI para evitar inestabilidades con el timing).</p>
+<p><figure id="_figure-16"><img alt="Conexiones de UART" id="fig:uartconnection" src="../img/uart_connection.png" width="1000"><figcaption>Figura 16: Conexiones de UART</figcaption></figure></p>
+<p>Tras aceptar, se importara el modulo <strong>AXI SmartConnect</strong> y se conectará el periférico al esquema AXI del sistema, conectara sus salidas y entradas a los puertos fisicos de la FPGA, como se ve en la <a href="#fig:microblazevbdpostuart">figura 17</a>. En sistemas con un solo AXI SmartConnect, todos los periféricos se conectaran de forma predeterminada a este.</p>
+<p><figure id="_figure-17"><img alt="Diagrama de bloques con UART integrada" id="fig:microblazevbdpostuart" src="../img/MicroblazeV_bd_post_uart.png" width="1000"><figcaption>Figura 17: Diagrama de bloques con UART integrada</figcaption></figure></p>
+<hr>
+<p>Ya esta listo el sistema que formara la base donde se ejecutara la aplicación, ahora se recomienda visitar el editor de direcciones de memoria al hacer click en <em>Address Editor</em>. 
+En esta sección se puede visualizar el mapa de memoria, el cual define cómo el procesador accede a instrucciones, datos y periféricos dentro de un sistema embebido implementado en FPGA, cabe destacar que el procesador no ve a los periféricos directamente, sino que los ve como espacios de memoria donde puede realizar escrituras y lecturas para obtener datos. Como lo es el caso del periferico de uart, donde su espacio de lectura va desde 0x4000_0000 hasta 0x4060_0000. En caso de escribir o leer fuera del rango definido entre periféricos y el procesador, solo se apreciaran datos basura, para mas detalle referirse a la sección <a href="#s:memory"></a>. Estos conceptos se verán en mas detalle en la <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/">Guía 3</a>.</p>
+<p><figure id="_figure-18"><img alt="Address Editor" id="fig:addresseditor1" src="../img/Address_editor.png" width="1000"><figcaption>Figura 18: Address Editor</figcaption></figure></p>
+<hr>
+<p>Ahora valide el diseño usando el botón respectivo en el diagrama. Luego diríjase a <em>Sources</em> en el panel lateral, haga click derecho en el diagrama de bloques y elija <em>Generate Output products</em> como se ilustra en la <a href="#fig:generateoutputproducts">figura 19</a>.</p>
+<p><figure id="_figure-19"><img alt="Generar productos de salida" id="fig:generateoutputproducts" src="../img/Generate_output_products.png" width="500"><figcaption>Figura 19: Generar productos de salida</figcaption></figure></p>
+<p>Esto generara los archivos RTL descritos en el diagrama de bloques tras lanzar la ventana emergente vista en la <a href="#fig:outputproducts">figura 20</a>, en cual donde se define si se decide realizar la síntesis del sistema diagrama de bloques como un sistema completo, realizar síntesis individual por IP o en caso de tener multiples diagramas de bloques, hacer síntesis individual para cada uno. </p>
+<p>Cabe destacar que este proceso se demora un par de minutos, en este caso elija <em>Global</em> de manera que se le notifique una vez que se haya realizado la síntesis completa. En el caso de haber seleccionado <em>Out of context per IP</em> se le lanzaran notificaciones esporádicas a medida que termine la síntesis de cada IP y no podrá continuar hasta que cada una de estas haya concluido.</p>
+<p><figure id="_figure-20"><img alt="Configuración de generación de productos" id="fig:outputproducts" src="../img/output_products.png" width="500"><figcaption>Figura 20: Configuración de generación de productos</figcaption></figure></p>
+<p>Una vez que se hayan generado los archivos RTL, haga click derecho sobre el archivo del diagrama de bloques y haga click en <em>Create HDL Wrapper...</em> como se indica en la <a href="#fig:wrapper">figura 21</a>, para generar un archivo RTL que importa el diseño generado previamente, actuando como el modulo top que la herramienta verá. En la ventana emergente mantenga los valores predeterminados, de manera que Vivado se encargue del mapeo de módulos internamente.</p>
+<p><figure id="_figure-21"><img alt="Crear envoltura HDL" id="fig:wrapper" src="../img/Wrapper.png" width="500"><figcaption>Figura 21: Crear envoltura HDL</figcaption></figure></p>
+<p>Esto lanzara la ventana emergente  vista en la <a href="#fig:vivado-manage">figura 22</a>, donde se pregunta si desea que esta envoltura sea generada automaticamente por Vivado o si desea realizar una copia editable de manera que uno tenga que encargarse de las conexiones a nivel de HDL. En esta guia se dejará con los valores predeterminados, puesto que el análisis del HDL se escapa del objetivo de esta Guía.</p>
+<p><figure id="_figure-22"><img alt="Permitir que vivado se encargue de las conexiones a nivel de HDL" id="fig:vivado-manage" src="../img/Vivado_manage_Connections.png" width="500"><figcaption>Figura 22: Permitir que vivado se encargue de las conexiones a nivel de HDL</figcaption></figure></p>
+<p>Tras crear la envoltura, la jerarquia de archivos se debería ver como en la <a href="#fig:wrapper-file">figura 23</a>.</p>
+<p><figure id="_figure-23"><img alt="Jerarquia de archivos tras crear envoltura HDL" id="fig:wrapper-file" src="../img/File_hierarchy.png" width="1000"><figcaption>Figura 23: Jerarquia de archivos tras crear envoltura HDL</figcaption></figure></p>
+<hr>
+<p>Luego proceda a lanzar <strong>Run Synthesis</strong> desde el menu lateral, este proceso toma el RTL y genera una traducción a las componentes lógicas disponibles en el dispositivo a programar, en este caso siendo compuertas logicas, FF y bloques mas complejos como lo son las BRAM y DSP.</p>
+<p>Luego realice lo mismo con <em>Run Implementation</em>, proceso que se encarga del mapeo físico, donde se disponen los componentes y como se realizan las conexiones fisicas teniendo en cuenta las restricciones temporales del sistema. Este proceso es iterativo y complejo computacionalmente asi que también puede tomar un par de minutos.</p>
+<p><strong>Note que ambos procesos se pueden demorar entre 3 y 6 minutos dependiendo del poder de procesamiento de su maquina.</strong></p>
+<p>Finalmente corra <em>Generate Bitstream</em> el cual genera el archivo binario que programa la FPGA.</p>
+<p>Cabe destacar que en cada paso puede ver tanto el consumo de recursos como si se llego a las restricciones de tiempo haciendo click en <em>Design Runs</em> como se aprecia en la <a href="#fig:designruns">figura 24</a>.</p>
+<p><figure id="_figure-24"><img alt="Ventana Design Runs" id="fig:designruns" src="../img/Designruns.png" width="1000"><figcaption>Figura 24: Ventana Design Runs</figcaption></figure></p>
+<p>Note que dependiendo de si eligió <strong>Global</strong> o <strong>Out of context per IP</strong> en la ventana emergente de la <a href="#fig:outputproducts">figura 20</a> obtendrá resultados distintos como se ve en la  <a href="#tbl-resources-global">tabla 1</a> y la <a href="#tbl-resources-context">tabla 2</a>. Esta diferencia se debe a que en <strong>Global</strong> las IP's se sintetizan junto con el diseño top-level, lo que permite que la herramienta de síntesis de Vivado vea dentro de la IP y optimice a través de ella, mientras que en <strong>Out of context per IP</strong> sintetiza cada IP por separado y al momento de realizar el diseño top-level, las integra como cajas negras. Por este motivo la síntesis de <strong>Out of context per IP</strong> se ve un uso de recursos mucho menor, no es sino hasta la implementación donde debe realizar un mapeo físico de cada IP donde se aprecia la utilización de recursos real.</p>
+<div style="text-align: center;">
+<table id="tbl-resources-global">
+<caption style="caption-side:bottom">Tabla 1: Utilización de recursos con opción <strong>Global</strong> </caption><thead>
+<tr>
+<th>Proceso</th>
+<th>LUT</th>
+<th>FF</th>
+<th>BRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sintesis</code></td>
+<td>2201</td>
+<td>1805</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>Implementacion</code></td>
+<td>1988</td>
+<td>1782</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="text-align: center;">
+<table id="tbl-resources-context">
+<caption style="caption-side:bottom">Tabla 2: Utilización de recursos con opción <strong>Out of context per IP</strong> </caption><thead>
+<tr>
+<th>Proceso</th>
+<th>LUT</th>
+<th>FF</th>
+<th>BRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sintesis</code></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>Implementacion</code></td>
+<td>1988</td>
+<td>1781</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En caso de haber errores que impidan la finalizacion del proceso (Como no haber generado el wrapper o haber dejado alguna conexion no deseada), el proceso finalizara con un error o de plano no empezara, en cuyo caso se recomendia leer la salida de la consola Tcl o directamente indagar en la ventana <em>Messages</em> por Warnings o Critical Warnings.</p>
+<p>Ya teniendo el hardware es momento de exportar el hardware para poder correr la aplicación. Para esto seleccione <em>File &gt; Export &gt; Export Hardware</em> como se ilustra en la <a href="#fig:exporthw">figura 25</a>.</p>
+<p><figure id="_figure-25"><img alt="Exportar Hardware" id="fig:exporthw" src="../img/Export_hw.png" width="1000"><figcaption>Figura 25: Exportar Hardware</figcaption></figure></p>
+<p>Esto lanzara la configuración de archivos de salida, incluya el bitstream de manera que se pueda programar la aplicación apenas sea diseñada.</p>
+<p><figure id="_figure-26"><img alt="Configuración de archivos de salida" id="fig:exporthwoutput" src="../img/Export_hw_output.png" width="1000"><figcaption>Figura 26: Configuración de archivos de salida</figcaption></figure></p>
+<hr>
+<p>Luego se configura el nombre del archivo de salida <strong>Xillinx support Archive</strong> <em>xsa</em>, el cual es un archivo comprimido que contiene toda la especificación del hardware que has diseñado en Vivado. Su propósito es informarle al entorno de desarrollo de software (Vitis) qué componentes existen en el chip, cómo están conectados y cuáles son sus direcciones de memoria. Note que como se aprecia en la <a href="#fig:exporthwxsa">figura 27</a> se usa por defecto el nombre de la envoltura HDL generada pero este puede ser cambiado por el usuario. Recuerde el nombre del xsa generado puesto que será usado en los pasos siguientes.</p>
+<p><figure id="_figure-27"><img alt="Asignar nombre a archivo XSA" id="fig:exporthwxsa" src="../img/Export_hw_xsa.png" width="1000"><figcaption>Figura 27: Asignar nombre a archivo XSA</figcaption></figure></p>
+<p>Continúe hasta exportar el el archivo xsa, con esto finaliza la etapa de trabajo en Vivado.</p>
+<h2 id="firmware">Firmware</h2>
+<p><img alt="" id="fig" src="img/.png" width="1000"></p>
+<p>Abra Vitis, elija un espacio de trabajo haciendo click en <em>Set Workspace</em>, en esta carpeta se realizará el trabajo de esta seccion. Puede hacer uso de la misma carpeta donde desarolló su diseño en Vivado, note que si lo hace ahí Vitis reconocerá la carpeta como un espacio de trabajo de AMD por lo que le pedira actualizar la metadata del espacio de trabajo como se ve en <a href="#fig:updateworkspace">figura 28</a>. Esto no afectará su trabajo ya realizado en Vivado.</p>
+<p><figure id="_figure-28"><img alt="Actualizar Workspace" id="fig:updateworkspace" src="../img/Update_workspace.png" width="1000"><figcaption>Figura 28: Actualizar Workspace</figcaption></figure></p>
+<hr>
+<p>En la ventana inicial mostrada en la <a href="#fig:vitisinit">figura 29</a> seleccione <em>New Platform component</em> de la sección <em>Embedded Development</em> para crear un componente de <strong>plataforma</strong>.
+Un componente de plataforma (<em>Platform Component</em>) es el entorno de software fundamental que actúa como la base sobre la cual se construirán las aplicaciones finales. Su función principal es abstraer los detalles del hardware definidos previamente en el archivo <em>.xsa</em> para proporcionar una interfaz de programación coherente. </p>
+<p><figure id="_figure-29"><img alt="Menu inicial de Vitis" id="fig:vitisinit" src="../img/Vitis_init.png" width="1000"><figcaption>Figura 29: Menu inicial de Vitis</figcaption></figure></p>
+<p>Este componente contiene los siguientes datos necesarios para la construcción de una aplicación:</p>
+<ul>
+<li><strong>Gestión del Board Support Package (BSP):</strong> El componente de plataforma genera automáticamente el BSP, que es una colección de controladores y bibliotecas específicas para los periféricos presentes en el diseño de hardware.</li>
+<li><strong>Definición de Dominios:</strong> Permite configurar distintos "dominios" de ejecución. Un dominio define el procesador de destino (por ejemplo, un Cortex-A53 o un MicroBlaze) y el sistema operativo que se utilizará (como <em>standalone/baremetal</em>, FreeRTOS o Linux).</li>
+<li><strong>Enlace con el Hardware:</strong> Al importar el archivo <em>.xsa</em>, la plataforma identifica los mapas de memoria, las interrupciones y las frecuencias de reloj, asegurando que el compilador de software esté perfectamente sincronizado con la configuración de la FPGA.</li>
+</ul>
+<p>Agregue el nombre de la plataforma como se ve en la <a href="#fig:createplatform">figura 30</a>.</p>
+<p><figure id="_figure-30"><img alt="Crear plataforma" id="fig:createplatform" src="../img/create_platform.png" width="1000"><figcaption>Figura 30: Crear plataforma</figcaption></figure></p>
+<p>En la siguiente ventana mostrada en la <a href="#fig:choosexsa">figura 31</a> se le pide el archivo de hardware (xsa). Se puede elegir entre diseños de hardware realizados por el usuario o con plataformas prediseñadas para ciertas placas. En este caso se hara uso del xsa previamente extraido del diagrama de bloques en la sección de <a href="#dise%C3%B1o-de-hardware">Diseño de Hardware</a> por lo que marque <em>Hardware Design</em> y en <em>Browse</em> busque el archivo.</p>
+<p><figure id="_figure-31"><img alt="Elegir archivo XSA" id="fig:choosexsa" src="../img/choose_xsa.png" width="1000"><figcaption>Figura 31: Elegir archivo XSA</figcaption></figure></p>
+<p>Tras dar click a <em>Next</em> vera la ventana donde se indica que sistema operativo y procesador se hara uso durante el diseño. Estas decisiones de diseño se toman al momento de generar el diagrama de bloques, debido a que se realizó sin intención de que corra un sistema operativo, la unica opción disponible es "standalone", una aplicación baremetal.</p>
+<p>Tras esto se le mostrara un resumen del de la plataforma a crear como se aprecia en la <a href="#fig:resumen">figura 32</a>, note que la advertencia "A domain with selected operating system and processor will be added to the platform. The platform can be modified later to add new domains or change settings." no corresponde un error sino que hace referencia al posible <strong>dominio</strong> en el procesador.</p>
+<p>Un dominio en el flujo de AMD representa el contexto de ejecucion sobre la plataforma de hardware generada. Un dominio especifica :</p>
+<ul>
+<li>Sobre qué procesador corre el software.</li>
+<li>Que sistema operativo se ejecuta.</li>
+<li>Que BSP y que librerías estan disponibles para esta plataforma.</li>
+</ul>
+<p>En este caso estamos usando un procesador MicroVlaze V, con un OS standalone (es decir que correremos una aplicación directamente sobre el procesador) y un BSP que soporte el manejo de UART.</p>
+<p><figure id="_figure-32"><img alt="Resumen de componente de plataforma" id="fig:resumen" src="../img/Resumen.png" width="1000"><figcaption>Figura 32: Resumen de componente de plataforma</figcaption></figure></p>
+<hr>
+<p>En la pestaña <em>vitis-comp.json</em> mostrada en la <a href="#fig:bsp">figura 33</a> aparece la configuración de la plataforma, donde se destacan dos pestañas:</p>
+<ul>
+<li><strong>Board Support Package</strong>: En esta pestaña se puede ver un resumen de la plataforma generada, junto con las librerías disponibles para su inclusión en la aplicación, se sugiere al generar la plataforma por primera vez o al hacer cualquier cambio en la inclusión de librerías, dar click al botón <em>Regenerate BSP</em>.
+También se tiene que en esta sección se pueden dar flags al compilador al hacer click en el procesador ( en este caso llamado <strong>microblaze_riscv_0</strong>).</li>
+<li><strong>standalone</strong>: En esta pestaña se pueden asignar configuraciones y valores arbitrarios a las distintas IPs y al sistema generado, la cantidad de configuracion depende directamente del driver asociado a la IP.</li>
+</ul>
+<p><figure id="_figure-33"><img alt="Configuracion de la plataforma" id="fig:bsp" src="../img/bsp.png" width="1000"><figcaption>Figura 33: Configuracion de la plataforma</figcaption></figure></p>
+<p>Luego haga click en <em>Build</em> en el panel lateral de la izquierda para compilar el componente de plataforma como se ve en la <a href="#fig:build-button">figura 34</a>. Si todo salió bien, saldra un visto verde al lado del botón de <em>Build</em>, en caso contrario la consola mostrará un error y tendrá que volver a la etapa de Diseño de Hardware en Vivado.</p>
+<p><figure id="_figure-34"><img alt="Boton de Build en el Panel lateral" id="fig:build-button" src="../img/Build.png" width="250"><figcaption>Figura 34: Boton de Build en el Panel lateral</figcaption></figure></p>
+<p>Ya teniendo la plataforma, se va a diseñar la aplicación, haga click en <em>File &gt; New Component &gt; Application</em>, en la Ventana emergente se le pedirá darle un nombre a la plataforma como se ve en la <a href="#fig:nombreaplication">figura 35</a>, el Componente de aplicación contiene el codigo ejecutable que se correrá.</p>
+<p><figure id="_figure-35"><img alt="Nombre de aplicación" id="fig:nombreaplication" src="../img/Nombre_aplication.png" width="1000"><figcaption>Figura 35: Nombre de aplicación</figcaption></figure></p>
+<p>En la siguiente pestaña siguiente se le pedirá elegir la plataforma donde se ejecutará la aplicación como se ve en la <a href="#fig:chooseplatform">figura 36</a> . Seleccione la plataforma que diseñó.</p>
+<p><figure id="_figure-36"><img alt="Elegir plataforma" id="fig:chooseplatform" src="../img/Choose_platform.png" width="1000"><figcaption>Figura 36: Elegir plataforma</figcaption></figure></p>
+<hr>
+<p>Continuando se le pedirá la elección de un dominio, debido a que se hará uso de un solo dominio (el MicroblazeV) continué con <em>Next</em>, tras lo cual se le pedirá el agregado de archivos. Continué pues se verán en mas detalle mas adelante. Tras ver el resumen y terminar el Wizard se le llevará a la ventana de configuración de la aplicación.</p>
+<p>Como se aprecia en la <a href="#fig:aplicationstructure">figura 37</a> la aplicación posee los siguientes archivos y carpetas:</p>
+<p><figure id="_figure-37"><img alt="Jerarquía de archivos de aplicación" id="fig:aplicationstructure" src="../img/Aplication_structure.png" width="1000"><figcaption>Figura 37: Jerarquía de archivos de aplicación</figcaption></figure></p>
+<ul>
+<li><strong>vitis-comp.json</strong>: Archivo de configuración general.</li>
+<li><strong>CMakeLists.txt</strong>: Es el archivo de entrada para el sistema de construcción CMake. Define cómo se deben compilar los archivos de origen, qué bibliotecas se deben enlazar y las reglas generales para generar el ejecutable final.</li>
+<li><strong>UserConfig.cmake</strong>: Script de configuración destinado a la intervención del usuario. Permite extender o modificar el proceso de compilación mediante la adición de banderas de optimización, macros de preprocesador o rutas de búsqueda personalizadas sin modificar el archivo raíz CMakeLists.txt.</li>
+<li><strong>Includes</strong>: Directorio que incluye tanto los directorios de encabezado del sistema y controladores de los periféricos.</li>
+<li><strong>src</strong>: Directorio de código fuente.</li>
+<li><strong>lscrpt.ld</strong>: <strong>Linker Script</strong>. Define la distribución de las secciones de código y datos en las regiones de memoria física (DDR, BRAM, etc.) especificadas en el hardware. Controla la ubicación del stack, el heap y los puntos de entrada del programa, su manejo es relevante cuando se manejan aplicaciones mas complejas.</li>
+<li><strong>Output</strong>: Directorio de artefactos de salida. Contiene los resultados del proceso de construcción, incluyendo archivos objeto, archivos de dependencias y el binario ejecutable final en formato ELF (Executable and Linkable Format).</li>
+</ul>
+<p>Ya habiendo explorado la jerarquía de la aplicación, se va a agregar una, para esto haga click derecho en <em>src</em> y vaya a <em>Import &gt; Files</em>. Seleccione <strong>app.c</strong> de la carpeta <strong>Ejemplo_1</strong> del repositorio, la cual contiene el siguiente codigo:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s">"Hello World</span><span class="se">\n\r</span><span class="s">"</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s">"Me encanta ELO212!</span><span class="se">\n\r</span><span class="s">"</span><span class="p">);</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Las dos librerı́as que contiene son ”stdio.h” (standart input output) una librerı́a general para el manejo de entradas y
+salidas y ”xil printf.h” una librerı́a propietaria de AMD que permite usar una versión reducida de la función printf(),
+de manera que se puedan enviar datos a través de UART haciendo menor uso de la memoria interna.</p>
+<p>Ya teniendo la aplicación en el sistema, abra su programa de comunicación serial de preferencia (en esta guía se hará uso de Hterm) y configure de acuerdo a los parametros mostrados en la <a href="#fig:UART_Config">figura 15</a>:</p>
+<ul>
+<li>BaudRate: 9600</li>
+<li>Paridad: No</li>
+<li>Ancho de dato: 8 Bits</li>
+</ul>
+<p>la aplicación (automáticamente se compilará la plataforma si no esta compilada ya).</p>
+<p><figure id="_figure-38"><img alt="Build y Run en el panel lateral de la aplicación" id="fig:aplicationstructure" src="../img/run.png" width="500"><figcaption>Figura 38: Build y Run en el panel lateral de la aplicación</figcaption></figure></p>
+<p>Esto generará el archivo Executable and Linkable Format (ELF), similar al bitstream, este es un archivo que sirve para programar, pero en vez de programar directamente la tarjeta, programa el procesador que se definió previamente dentro de esta. Esta estructurado en distintas secciones de manera que el linker de AMD lo entienda.</p>
+<p>Al momento de compilar la aplicación, en la terminal se mostrara cuanto pesan las secciones mas pesadas del ELF como se puede apreciar en la <a href="#fig:Elf-size">figura 39</a>, en caso de que el tamaño de la aplicación supere al tamaño de la memoria disponible para el sistema, lanzara un error señalando la sección de mayor tamaño y cancelara el compilado de la aplicación.</p>
+<p><figure id="_figure-39"><img alt="ELF" id="fig:Elf-size" src="../img/Elf.png" width="1000"><figcaption>Figura 39: ELF</figcaption></figure></p>
+<p>Si compilo sin problemas haga click en Run para cargar la aplicación a la placa, si se corrió apropiadamente se verá en su programa serial el texto de la <a href="#fig:hterm">figura 40</a>.</p>
+<p><figure id="_figure-40"><img alt="Visualización en Hterm" id="fig:hterm" src="../img/hterm.png" width="500"><figcaption>Figura 40: Visualización en Hterm</figcaption></figure></p>
+<p>Con esto ya ha construido su primer sistema embebido basado en MicroBlaze V, recorriendo el flujo completo desde la descripción del hardware en Vivado hasta la ejecución de una aplicación sobre el procesador. Aunque el ejemplo desarrollado es sencillo, la infraestructura creada constituye la base sobre la que se construyen sistemas mucho más complejos. Dominar este flujo es uno de los pasos más importantes para el desarrollo sobre FPGA, ya que permite combinar la flexibilidad del software con el paralelismo y rendimiento del hardware reconfigurable. En las próximas guías se profundizará en estos conceptos, incorporando nuevos periféricos y mecanismos de interacción que permitirán explotar progresivamente todo el potencial de la plataforma.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

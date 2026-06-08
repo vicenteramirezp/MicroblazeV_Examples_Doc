@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../Ejemplo_2_Depurador/Ejemplo_2/">
+        <link rel="prev" href="../../Ejemplo_1_Sistema_base/Ejemplo_1/">
       
       
-        <link rel="next" href="../../Ejemplo_4_Verilog/Ejemplo_4/">
+        <link rel="next" href="../../Ejemplo_3_Interrupts/Ejemplo_3/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Guía 3 - My Docs</title>
+        <title>Guía 2 - My Docs</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Guía 3
+              Guía 2
             
           </span>
         </div>
@@ -247,9 +247,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -266,11 +268,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-tabs__link">
         
   
   
@@ -450,33 +450,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Guía 2
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -496,7 +469,7 @@
   <span class="md-ellipsis">
     
   
-    Guía 3
+    Guía 2
   
 
     
@@ -514,7 +487,7 @@
   <span class="md-ellipsis">
     
   
-    Guía 3
+    Guía 2
   
 
     
@@ -643,6 +616,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -916,7 +916,7 @@
 registro. Desde código C, el acceso se realiza mediante punteros: el desarrollador declara un puntero  a la dirección base del periférico y manipula sus campos como si fueran variables comunes en memoria.</p>
 <h3 id="que-es-una-interrupcion">¿Que es una interrupción?</h3>
 <p>Una interrupción es un evento asincrónico que temporalmente desvía al CPU de su flujo de ejecución normal para manejar una condición desencadenada por por un dispositivo externo, un temporizador o software como se ilustra en la <a href="#fig-diagrama-interrupt">figura 1</a>.</p>
-<p><figure id="_figure-1"><img alt="Diagrama de interrupcion" id="fig-diagrama-interrupt" src="../img/interrupt_diagram.png" width="1000"><figcaption>Figura 1: Diagrama de interrupcion</figcaption></figure></p>
+<p><figure id="_figure-1"><img alt="Diagrama de interrupcion" id="fig-diagrama-interrupt" src="img/interrupt_diagram.png" width="1000"><figcaption>Figura 1: Diagrama de interrupcion</figcaption></figure></p>
 <p>Un sistema puede tener varias fuentes de interrupción, el controlador de interrupciones sigue la secuencia:</p>
 <ul>
 <li><strong>Interrupción</strong>: Se produce una interrupción, la cual puede ser originada por una fuente interna al sistema (como un temporizador o una excepción de software) o por un periférico externo.</li>
@@ -929,13 +929,13 @@ registro. Desde código C, el acceso se realiza mediante punteros: el desarrolla
 <p>En esta actividad se integraran los perifericos de GPIO, especificamente los conectados a los botones y los LED. Se mantendra el periferico de UART.</p>
 <h2 id="diseno-de-hardware">Diseño de Hardware</h2>
 <p>En esta sección se realizara un proyecto desde cero. Abra Vivado y cree un nuevo diagrama de bloques. Importe la IP <strong>Microblaze V</strong> al diagrama de bloques y al momento de apretar <strong>Run Block Automation</strong> marque la casilla <strong>Enable interupt controller</strong> como se ve en la figura <a href="#fig-enable-interrupt">figura 2</a>.</p>
-<p><figure id="_figure-2"><img alt="Habilitar controlador de interrupciones" id="fig-enable-interrupt" src="../img/Enable_interrupt.png" width="500"><figcaption>Figura 2: Habilitar controlador de interrupciones</figcaption></figure></p>
+<p><figure id="_figure-2"><img alt="Habilitar controlador de interrupciones" id="fig-enable-interrupt" src="img/Enable_interrupt.png" width="500"><figcaption>Figura 2: Habilitar controlador de interrupciones</figcaption></figure></p>
 <p>Esto hara que al momento de que se generen los bloques que componen el sistema base del procesador, se importen los bloques responsable del manejo de interrupciones como se ve en <a href="#fig-interrupt-on-bd">figura 3</a> :</p>
 <ul>
 <li>"AXI Interrupt Controller": Bloque que colecciona multiples señales de interrupt de varios perifericos y las consolida en una sola señal que entrega al procesador, se encarga del arbitraje e identificacion de las señales.</li>
 <li>"Inline Concat": Concatena todas las señales de interrupcion para que el bloque AXI las reciba.</li>
 </ul>
-<p><figure id="_figure-3"><img alt="Bloques de interrupcion en el diagrama" id="fig-interrupt-on-bd" src="../img/bloques_interrupt.png" width="1000"><figcaption>Figura 3: Bloques de interrupcion en el diagrama</figcaption></figure></p>
+<p><figure id="_figure-3"><img alt="Bloques de interrupcion en el diagrama" id="fig-interrupt-on-bd" src="img/bloques_interrupt.png" width="1000"><figcaption>Figura 3: Bloques de interrupcion en el diagrama</figcaption></figure></p>
 <p>Luego continue con el armado del sistema de acuerdo a lo visto en la Guía 1 ( Aqui pondre un hyperlink cuando suba la guía 1). La secuencia es:</p>
 <ul>
 <li>Configure la IP Clocking Wizard de manera que el clock y reset esten conectados a los pines de la placa.</li>
@@ -944,11 +944,11 @@ registro. Desde código C, el acceso se realiza mediante punteros: el desarrolla
 <li>Corra <strong>Run Connection Automation</strong> seleccionando todas las conexiones.</li>
 </ul>
 <p>Una vez este el diagrama de bloques igual al de la Guía 1, importe "5 Push Buttons" y "16 Leds" desde el panel lateral Board visto en la <a href="#fig-led-buttons">figura 4</a>.</p>
-<p><figure id="_figure-4"><img alt="GPIO en el panel lateral Board" id="fig-led-buttons" src="../img/Leds_buttons.png" width="250"><figcaption>Figura 4: GPIO en el panel lateral Board</figcaption></figure></p>
+<p><figure id="_figure-4"><img alt="GPIO en el panel lateral Board" id="fig-led-buttons" src="img/Leds_buttons.png" width="250"><figcaption>Figura 4: GPIO en el panel lateral Board</figcaption></figure></p>
 <p>Tras regenerar el layout se debería ver como en la <a href="#fig-bd-botones-led">figura 5</a>.</p>
-<p><figure id="_figure-5"><img alt="Bloque GPIO en el Diagrama" id="fig-bd-botones-led" src="../img/bd_botones_leds.png" width="1000"><figcaption>Figura 5: Bloque GPIO en el Diagrama</figcaption></figure></p>
+<p><figure id="_figure-5"><img alt="Bloque GPIO en el Diagrama" id="fig-bd-botones-led" src="img/bd_botones_leds.png" width="1000"><figcaption>Figura 5: Bloque GPIO en el Diagrama</figcaption></figure></p>
 <p>Tras hacer click en  <strong>Run Connection Automation</strong> y conectar el periférico GPIO al sistema AXI, haga doble click sobre el periférico, en la ventana emergente seleccione <strong>Enable Interrupt</strong> como se ve en la <a href="#fig-gpio-config">figura 6</a> para habilitar las interrupciones de GPIO . Note que los botones estan en GPIO y los leds en GPIO 2. Esto sera relevante más adelante.</p>
-<p><figure id="_figure-6"><img alt="Configuracion de bloque GPIO" id="fig-gpio-config" src="../img/Enable_gpio_interrupt.png" width="500"><figcaption>Figura 6: Configuracion de bloque GPIO</figcaption></figure></p>
+<p><figure id="_figure-6"><img alt="Configuracion de bloque GPIO" id="fig-gpio-config" src="img/Enable_gpio_interrupt.png" width="500"><figcaption>Figura 6: Configuracion de bloque GPIO</figcaption></figure></p>
 <p>Ya teniendo salidas de interrupción, se realizaran las conexiones de estas al procesador. </p>
 <p>Conecte:</p>
 <ul>
@@ -956,11 +956,11 @@ registro. Desde código C, el acceso se realiza mediante punteros: el desarrolla
 <li><strong>interrupt</strong> de AXI Uartlite al pin <strong>In1</strong> de Inline Concat.</li>
 </ul>
 <p>Tras regenerar el Layout se debería ver como en la <a href="#fig-bd3-final">figura 7</a>.</p>
-<p><figure id="_figure-7"><img alt="Diagrama de bloques con interrupciones conectadas" id="fig-bd3-final" src="../img/bd_final.png" width="1000"><figcaption>Figura 7: Diagrama de bloques con interrupciones conectadas</figcaption></figure></p>
+<p><figure id="_figure-7"><img alt="Diagrama de bloques con interrupciones conectadas" id="fig-bd3-final" src="img/bd_final.png" width="1000"><figcaption>Figura 7: Diagrama de bloques con interrupciones conectadas</figcaption></figure></p>
 <p>Antes de continuar con el exportado de hardware se sugiere revisar la pestaña <strong>Address editor</strong>. Como se puede apreciar en la <a href="#fig-Adress-map">figura 8</a>, están los dos periféricos importados: Uart y GPIO junto con sus direcciones base y direcciones altas. Se tiene que al momento de hacer uso de estos perifericos en software, estas direcciones serán la clave para la comunicación entre los perifericos y el procesador de acuedo a lo comentado en la <a href="#memory-mapped-io">sección previa</a>. Note que ambos periféricos poseen un rango de memoria de 64KB, este es el estandár para IP's de AMD que no hacen un uso de memoria superior a 64 KB, aún si no necesariamente haran uso de este espacio.</p>
-<p><figure id="_figure-8"><img alt="Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo" id="fig-Adress-map" src="../img/adress_map.png" width="1000"><figcaption>Figura 8: Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo</figcaption></figure></p>
+<p><figure id="_figure-8"><img alt="Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo" id="fig-Adress-map" src="img/adress_map.png" width="1000"><figcaption>Figura 8: Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo</figcaption></figure></p>
 <p>Si se desea realizar una visualizacion gráfica del mapa de memoria, abra la pestaña Address Map y presione <strong>Generate</strong> de acuerdo a lo visto en la <a href="#fig-generate">figura 9</a>.</p>
-<p><figure id="_figure-9"><img alt="Generar Mapa de memoria" id="fig-generate" src="../img/Generate.png" width="1000"><figcaption>Figura 9: Generar Mapa de memoria</figcaption></figure></p>
+<p><figure id="_figure-9"><img alt="Generar Mapa de memoria" id="fig-generate" src="img/Generate.png" width="1000"><figcaption>Figura 9: Generar Mapa de memoria</figcaption></figure></p>
 <p>Esto generara el mapa de memoría para cada interfaz del procesador, debido a que la interfaz ILMB solo posee los datos de instrucciones, nos enfocaremos en la interfaz-0 (DMLB) la cual tiene una conexión AXI para el envio de datos entre periféricos.
 En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
 <ul>
@@ -969,7 +969,7 @@ En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
 <li>AXI_Uart_lite (0x4060_0000):  Periferico Uart.</li>
 <li>microblaze_axi_intc (0x4120_FFFF): Controlador de interrupciones.</li>
 </ul>
-<p><figure id="_figure-10"><img alt="Mapa de Memoria Interfaz DLMB" id="fig-Network-0" src="../img/Network_0.png" width="1000"><figcaption>Figura 10: Mapa de Memoria Interfaz DLMB</figcaption></figure></p>
+<p><figure id="_figure-10"><img alt="Mapa de Memoria Interfaz DLMB" id="fig-Network-0" src="img/Network_0.png" width="1000"><figcaption>Figura 10: Mapa de Memoria Interfaz DLMB</figcaption></figure></p>
 <p>Valide nuevamente su diseño y ejecute el proceso de generacion y extracción de hardware, el autor obtuvo la utilizacion de recursos vista en la <a href="#tbl-resources">tabla 1</a></p>
 <div style="text-align: center;">
 <table id="tbl-resources">
@@ -1170,9 +1170,9 @@ En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
 </div>
 <h3 id="verificacion">Verificación</h3>
 <p>Conecte la placa, enciendala y programela haciendo click en <strong>Run</strong> desde el panel lateral. Luego pruebe mandando caracteres a través de su consola serial de preferencia o presionando los botones, debería comportarse como se ve en <a href="#fig-hterm-test">figura 11</a>.</p>
-<p><figure id="_figure-11"><img alt="Pruebas en Hterm" id="fig-hterm-test" src="../img/Verificaci%C3%B3n_1.png" width="1000"><figcaption>Figura 11: Pruebas en Hterm</figcaption></figure></p>
+<p><figure id="_figure-11"><img alt="Pruebas en Hterm" id="fig-hterm-test" src="img/Verificaci%C3%B3n_1.png" width="1000"><figcaption>Figura 11: Pruebas en Hterm</figcaption></figure></p>
 <p>Luego, otra manera de visualizar el comportamiento de las funciones handler es haciendo uso del depurador. Posicione breakpoints al inicio de cada funcion Handler como se ve en la <a href="#fig-breakpoints">figura 12</a> e inicie la sesion de depurado haciendo click en <strong>Debug</strong>.</p>
-<p><figure id="_figure-12"><img alt="Breakpoints en funciones Handler" id="fig-breakpoints" src="../img/break_points.png" width="1000"><figcaption>Figura 12: Breakpoints en funciones Handler</figcaption></figure></p>
+<p><figure id="_figure-12"><img alt="Breakpoints en funciones Handler" id="fig-breakpoints" src="img/break_points.png" width="1000"><figcaption>Figura 12: Breakpoints en funciones Handler</figcaption></figure></p>
 <p>Note que la Uart se gatilla tanto cuando termina una transmisión como cuando detecta la recepcion de datos de acuerdo a la <a href="https://docs.amd.com/v/u/en-US/pg142-axi-uartlite">documentacion de AXU UART Lite</a>. Esto implica que esta funcion se gatillará cuando:</p>
 <ul>
 <li>El programa envia el string "Presione un boton o mande un mensaje por la terminal.\r\n" antes de entrar al loop.</li>
