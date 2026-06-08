@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#guia-3-uso-de-perifericos-e-interrupciones" class="md-skip">
+        <a href="#guia-2-uso-de-depurador-y-perspectiva-de-disassembly" class="md-skip">
           Skip to content
         </a>
       
@@ -532,45 +532,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Contexto">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#que-es-un-periferico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Que es un Periférico?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memory-mapped-io" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Memory Mapped I/O
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-es-una-interrupcion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Que es una interrupción?
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -597,10 +558,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#verificacion" class="md-nav__link">
+  <a href="#primera-prueba-de-depuracion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verificación
+        Primera prueba de depuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perspectiva-a-nivel-de-instrucciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perspectiva a nivel de instrucciones
       
     </span>
   </a>
@@ -801,45 +773,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Contexto">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#que-es-un-periferico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Que es un Periférico?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memory-mapped-io" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Memory Mapped I/O
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#que-es-una-interrupcion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ¿Que es una interrupción?
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -866,10 +799,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#verificacion" class="md-nav__link">
+  <a href="#primera-prueba-de-depuracion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verificación
+        Primera prueba de depuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perspectiva-a-nivel-de-instrucciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perspectiva a nivel de instrucciones
       
     </span>
   </a>
@@ -898,290 +842,91 @@
 
 
 
-<h1 id="guia-3-uso-de-perifericos-e-interrupciones">Guía 3 : Uso de Perifericos e Interrupciones</h1>
+<h1 id="guia-2-uso-de-depurador-y-perspectiva-de-disassembly">Guía 2 : Uso de Depurador y perspectiva de Disassembly</h1>
 <h2 id="objetivo">Objetivo</h2>
-<p>Esta guía ilustra dos mecanismos fundamentales mediante los cuales un procesador interactúa con los periféricos integrados al sistema: el esquema de memory-mapped I/O y el sistema de interrupciones. A través de ejercicios prácticos, se espera que aprenda a configurar periféricos mediante registros mapeados en memoria e implementar rutinas de servicio de interrupción (ISR) para atender eventos externos de manera eficiente.</p>
+<p>En esta guía se espera que el lector logre aprender a hacer uso de la herramienta de depurado que ofrece Vitis para analizar el funcionamiento de su aplicación.</p>
 <h2 id="contexto">Contexto</h2>
-<h3 id="que-es-un-periferico">¿Que es un Periférico?</h3>
-<p>En el contexto de sistemas digitales/embebidos, un periférico es cualquier módulo de hardware externo al procesador que le permite interactuar con el mundo exterior o realizar funciones especializadas que el procesador no ejecuta directamente.</p>
-<p>Ejemplos:</p>
-<ul>
-<li>El periferico Uart que se uso en la sección previa para la comunicacion desde la placa al PC.</li>
-<li>Salida/Entrada de proposito general (GPIO): A través de entradas discretas como botones o salidas como leds se puede compartir información con el mundo real.</li>
-</ul>
-<h3 id="memory-mapped-io">Memory Mapped I/O</h3>
-<p>Desde el punto de vista del procesador, los periféricos del sistema conviven dentro de un
-único espacio de direcciones plano. Este espacio —denominado mapa de memoria— asigna a cada recurso un rango de direcciones único, de modo que el procesador accede a todos ellos mediante las mismas instrucciones de carga y almacenamiento que utiliza para leer y escribir variables ordinarias. </p>
-<p>La técnica que permite incorporar este último tipo de región recibe el nombre de mapeo de periféricos en memoria <code>memory-mapped I/O</code>. En lugar de definir instrucciones dedicadas para el acceso a periféricos, los registros de control y de estado de cada bloque IP se exponen como direcciones del espacio de memoria del procesador. Una escritura sobre la dirección de un registro de control produce, internamente, una transacción sobre el bus AXI hacia el periférico, que altera su estado; análogamente, una lectura sobre un registro de estado retorna el valor actual de dicho
-registro. Desde código C, el acceso se realiza mediante punteros: el desarrollador declara un puntero  a la dirección base del periférico y manipula sus campos como si fueran variables comunes en memoria.</p>
-<h3 id="que-es-una-interrupcion">¿Que es una interrupción?</h3>
-<p>Una interrupción es un evento asincrónico que temporalmente desvía al CPU de su flujo de ejecución normal para manejar una condición desencadenada por por un dispositivo externo, un temporizador o software como se ilustra en la <a href="#fig-diagrama-interrupt">figura 1</a>.</p>
-<p><figure id="_figure-1"><img alt="Diagrama de interrupcion" id="fig-diagrama-interrupt" src="img/interrupt_diagram.png" width="1000"><figcaption>Figura 1: Diagrama de interrupcion</figcaption></figure></p>
-<p>Un sistema puede tener varias fuentes de interrupción, el controlador de interrupciones sigue la secuencia:</p>
-<ul>
-<li><strong>Interrupción</strong>: Se produce una interrupción, la cual puede ser originada por una fuente interna al sistema (como un temporizador o una excepción de software) o por un periférico externo.</li>
-<li><strong>Detección</strong>: El controlador de interrupciones detecta la señal, identifica su fuente y determina su nivel de prioridad.</li>
-<li><strong>Priorización</strong>: Si existen múltiples interrupciones pendientes, el controlador las gestiona siguiendo la jerarquía de importancia configurada en el hardware.</li>
-<li><strong>Despacho</strong>: El controlador envía la interrupción con la prioridad más alta a la CPU para su procesamiento.</li>
-<li><strong>Manejo</strong>: La dirección del <em>Program Counter</em> (PC) interrumpido se respalda en el registro <code>mepc</code>. La CPU actualiza los registros de estado (CSR), almacena la causa en el registro <code>mcause</code> y salta a la dirección indicada en el registro <code>mtvec</code> para ejecutar la rutina de servicio de interrupción (ISR).</li>
-<li><strong>Retorno</strong>: Una vez finalizada la rutina, la CPU restaura el estado de ejecución previo, recupera el valor de <code>mepc</code> y continúa con la operación normal del programa.</li>
-</ul>
-<p>En esta actividad se integraran los perifericos de GPIO, especificamente los conectados a los botones y los LED. Se mantendra el periferico de UART.</p>
+<p>En el contexto de <strong>firmware</strong>, el término "depurado" se refiere a que el código ha pasado por un proceso de depuración, es decir la identificación, análisis y corrección de errores o comportamientos incorrectos.</p>
+<p>Se tiene que para realizar el depurado sobre el procesador MicroBlaze V existe el modulo MicroBlaze V Debug Module (MDM) el cual actua como una interfaz entre la herramienta de depurado de software de Vitis. Esta interfaz se conecta al puerto JTAG de las placas de AMD o con una interfaz AXI4-Lite mapeada en memoria. Para más información revisar <a href="https://docs.amd.com/r/en-US/ug1629-microblaze-v-user-guide/Debug">la documentación oficial</a>.</p>
+<p>Esta funcionalidad de depurado se implementa de acuerdo a la definición oficial de <a href="https://riscv.org/wp-content/uploads/2024/12/riscv-debug-release.pdf">soporte de depurado externo RISC-V</a>.</p>
 <h2 id="diseno-de-hardware">Diseño de Hardware</h2>
-<p>En esta sección se realizara un proyecto desde cero. Abra Vivado y cree un nuevo diagrama de bloques. Importe la IP <strong>Microblaze V</strong> al diagrama de bloques y al momento de apretar <strong>Run Block Automation</strong> marque la casilla <strong>Enable interupt controller</strong> como se ve en la figura <a href="#fig-enable-interrupt">figura 2</a>.</p>
-<p><figure id="_figure-2"><img alt="Habilitar controlador de interrupciones" id="fig-enable-interrupt" src="img/Enable_interrupt.png" width="500"><figcaption>Figura 2: Habilitar controlador de interrupciones</figcaption></figure></p>
-<p>Esto hara que al momento de que se generen los bloques que componen el sistema base del procesador, se importen los bloques responsable del manejo de interrupciones como se ve en <a href="#fig-interrupt-on-bd">figura 3</a> :</p>
-<ul>
-<li>"AXI Interrupt Controller": Bloque que colecciona multiples señales de interrupt de varios perifericos y las consolida en una sola señal que entrega al procesador, se encarga del arbitraje e identificacion de las señales.</li>
-<li>"Inline Concat": Concatena todas las señales de interrupcion para que el bloque AXI las reciba.</li>
-</ul>
-<p><figure id="_figure-3"><img alt="Bloques de interrupcion en el diagrama" id="fig-interrupt-on-bd" src="img/bloques_interrupt.png" width="1000"><figcaption>Figura 3: Bloques de interrupcion en el diagrama</figcaption></figure></p>
-<p>Luego continue con el armado del sistema de acuerdo a lo visto en la Guía 1 ( Aqui pondre un hyperlink cuando suba la guía 1). La secuencia es:</p>
-<ul>
-<li>Configure la IP Clocking Wizard de manera que el clock y reset esten conectados a los pines de la placa.</li>
-<li>Corra <strong>Run Connection Automation</strong> seleccionando todas las conexiones.</li>
-<li>Importe <strong>USB UART</strong> desde el panel lateral.</li>
-<li>Corra <strong>Run Connection Automation</strong> seleccionando todas las conexiones.</li>
-</ul>
-<p>Una vez este el diagrama de bloques igual al de la Guía 1, importe "5 Push Buttons" y "16 Leds" desde el panel lateral Board visto en la <a href="#fig-led-buttons">figura 4</a>.</p>
-<p><figure id="_figure-4"><img alt="GPIO en el panel lateral Board" id="fig-led-buttons" src="img/Leds_buttons.png" width="250"><figcaption>Figura 4: GPIO en el panel lateral Board</figcaption></figure></p>
-<p>Tras regenerar el layout se debería ver como en la <a href="#fig-bd-botones-led">figura 5</a>.</p>
-<p><figure id="_figure-5"><img alt="Bloque GPIO en el Diagrama" id="fig-bd-botones-led" src="img/bd_botones_leds.png" width="1000"><figcaption>Figura 5: Bloque GPIO en el Diagrama</figcaption></figure></p>
-<p>Tras hacer click en  <strong>Run Connection Automation</strong> y conectar el periférico GPIO al sistema AXI, haga doble click sobre el periférico, en la ventana emergente seleccione <strong>Enable Interrupt</strong> como se ve en la <a href="#fig-gpio-config">figura 6</a> para habilitar las interrupciones de GPIO . Note que los botones estan en GPIO y los leds en GPIO 2. Esto sera relevante más adelante.</p>
-<p><figure id="_figure-6"><img alt="Configuracion de bloque GPIO" id="fig-gpio-config" src="img/Enable_gpio_interrupt.png" width="500"><figcaption>Figura 6: Configuracion de bloque GPIO</figcaption></figure></p>
-<p>Ya teniendo salidas de interrupción, se realizaran las conexiones de estas al procesador. </p>
-<p>Conecte:</p>
-<ul>
-<li><strong>ip2intc_irpt</strong> del bloque AXI GPIO al pin <strong>In0</strong> de Inline Concat.</li>
-<li><strong>interrupt</strong> de AXI Uartlite al pin <strong>In1</strong> de Inline Concat.</li>
-</ul>
-<p>Tras regenerar el Layout se debería ver como en la <a href="#fig-bd3-final">figura 7</a>.</p>
-<p><figure id="_figure-7"><img alt="Diagrama de bloques con interrupciones conectadas" id="fig-bd3-final" src="img/bd_final.png" width="1000"><figcaption>Figura 7: Diagrama de bloques con interrupciones conectadas</figcaption></figure></p>
-<p>Antes de continuar con el exportado de hardware se sugiere revisar la pestaña <strong>Address editor</strong>. Como se puede apreciar en la <a href="#fig-Adress-map">figura 8</a>, están los dos periféricos importados: Uart y GPIO junto con sus direcciones base y direcciones altas. Se tiene que al momento de hacer uso de estos perifericos en software, estas direcciones serán la clave para la comunicación entre los perifericos y el procesador de acuedo a lo comentado en la <a href="#memory-mapped-io">sección previa</a>. Note que ambos periféricos poseen un rango de memoria de 64KB, este es el estandár para IP's de AMD que no hacen un uso de memoria superior a 64 KB, aún si no necesariamente haran uso de este espacio.</p>
-<p><figure id="_figure-8"><img alt="Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo" id="fig-Adress-map" src="img/adress_map.png" width="1000"><figcaption>Figura 8: Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo</figcaption></figure></p>
-<p>Si se desea realizar una visualizacion gráfica del mapa de memoria, abra la pestaña Address Map y presione <strong>Generate</strong> de acuerdo a lo visto en la <a href="#fig-generate">figura 9</a>.</p>
-<p><figure id="_figure-9"><img alt="Generar Mapa de memoria" id="fig-generate" src="img/Generate.png" width="1000"><figcaption>Figura 9: Generar Mapa de memoria</figcaption></figure></p>
-<p>Esto generara el mapa de memoría para cada interfaz del procesador, debido a que la interfaz ILMB solo posee los datos de instrucciones, nos enfocaremos en la interfaz-0 (DMLB) la cual tiene una conexión AXI para el envio de datos entre periféricos.
-En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
-<ul>
-<li>SLMB (0x0): Memoria interna del Microblaze V (fijada en 128 KB al momento de correr <strong>Run block Automation</strong>).</li>
-<li>AXI_gpio (0x4000_0000): Periferico GPIO.</li>
-<li>AXI_Uart_lite (0x4060_0000):  Periferico Uart.</li>
-<li>microblaze_axi_intc (0x4120_FFFF): Controlador de interrupciones.</li>
-</ul>
-<p><figure id="_figure-10"><img alt="Mapa de Memoria Interfaz DLMB" id="fig-Network-0" src="img/Network_0.png" width="1000"><figcaption>Figura 10: Mapa de Memoria Interfaz DLMB</figcaption></figure></p>
-<p>Valide nuevamente su diseño y ejecute el proceso de generacion y extracción de hardware, el autor obtuvo la utilizacion de recursos vista en la <a href="#tbl-resources">tabla 1</a></p>
-<div style="text-align: center;">
-<table id="tbl-resources">
-<caption style="caption-side:bottom">Tabla 1: Utilización de recursos </caption><thead>
-<tr>
-<th>Proceso</th>
-<th>LUT</th>
-<th>FF</th>
-<th>BRAM</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Sintesis</code></td>
-<td>2911</td>
-<td>2714</td>
-<td>16</td>
-</tr>
-<tr>
-<td><code>Implementacion</code></td>
-<td>2603</td>
-<td>2647</td>
-<td>16</td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>Debido a que el foco esta guía se encuentra en la herramienta de Depurado de Vitis,  se hará uso del mismo hardware diseñado en la <a href="../../Ejemplo_1_Sistema_base/Ejemplo_1/#diseno-de-hardware">guía anterior</a>.</p>
 <h2 id="firmware">Firmware</h2>
-<p>Abra Vitis, genere un componente de plataforma usando el hardware diseñado y un componente de aplicación. Importe Ejemplo_3.c de la carpeta Ejemplo_3 del repositorio.</p>
-<p>Viendo el codigo:</p>
+<p>Abra Vitis, puede elegir un nuevo espacio de trabajo o hacer uso del de la guía previa. En este cree el componente de plataforma, luego cree un componente de aplicación.</p>
+<p>En el componente de aplicación importe el archivo Ejemplo_2.c de la carpeta Ejemplo_2.</p>
+<p>Analizando el código del archivo:</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xgpio.h&gt;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xparameters.h"</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xuartlite.h"</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xintc.h"</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_exception.h"</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">for_loop</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">valor_ptr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">increment</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iterations</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="o">*</span><span class="n">valor_ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">valor_ptr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">increment</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">XIntc</span><span class="w">     </span><span class="n">IntcInstance</span><span class="p">;</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">XUartLite</span><span class="w"> </span><span class="n">UartInstance</span><span class="p">;</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">XGpio</span><span class="w">     </span><span class="n">GpioInstance</span><span class="p">;</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="cp">#define BUTTON_CHANNEL  1</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="cp">#define LED_CHANNEL     2</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="cp">#define BUTTON_IR_MASK  XGPIO_IR_CH1_MASK</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="kt">void</span><span class="w"> </span><span class="nf">UartHandler</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">CallbackRef</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">XUartLite</span><span class="w"> </span><span class="o">*</span><span class="n">UartPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XUartLite</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">CallbackRef</span><span class="p">;</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">u8</span><span class="w"> </span><span class="n">ReadBuffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w">  </span><span class="c1">// 1 char + null terminator</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ReceivedCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XUartLite_Recv</span><span class="p">(</span><span class="n">UartPtr</span><span class="p">,</span><span class="w"> </span><span class="n">ReadBuffer</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ReceivedCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Interrupcion de UART! Recibio: %s</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ReadBuffer</span><span class="p">);</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">XIntc_Acknowledge</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_UARTLITE_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p">}</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="kt">void</span><span class="w"> </span><span class="nf">GpioHandler</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">CallbackRef</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">XGpio</span><span class="w"> </span><span class="o">*</span><span class="n">GpioPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XGpio</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">CallbackRef</span><span class="p">;</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="n">XGpio_InterruptDisable</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">buttonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XGpio_DiscreteRead</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_CHANNEL</span><span class="p">);</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="n">XGpio_DiscreteWrite</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="n">buttonState</span><span class="p">);</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">buttonState</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Boton presionado! Valor: 0x%X</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">buttonState</span><span class="p">);</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="n">XGpio_InterruptClear</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="n">XIntc_Acknowledge</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_GPIO_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="n">XGpio_InterruptEnable</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p">}</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Status</span><span class="p">;</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="c1">// Inicializacion de los perifericos</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XUartLite_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UartInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_XUARTLITE_0_BASEADDR</span><span class="p">);</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XGpio_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_AXI_GPIO_0_BASEADDR</span><span class="p">);</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="c1">// Channel 1 = botones (entradas), Channel 2 = LEDs (salidas)</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w">    </span><span class="mh">0x00000000</span><span class="p">);</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="n">XGpio_InterruptClear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XGPIO_IR_CH1_MASK</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">XGPIO_IR_CH2_MASK</span><span class="p">);</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">    </span><span class="c1">//Inicializacion del controlador de interrupciones</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_XINTC_0_BASEADDR</span><span class="p">);</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">    </span><span class="c1">// Conexiones de interrupción al controlador</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_UARTLITE_0_INTR</span><span class="p">,</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">                           </span><span class="p">(</span><span class="n">XInterruptHandler</span><span class="p">)</span><span class="n">UartHandler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UartInstance</span><span class="p">);</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_GPIO_0_INTR</span><span class="p">,</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">                           </span><span class="p">(</span><span class="n">XInterruptHandler</span><span class="p">)</span><span class="n">GpioHandler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">);</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="c1">// Habilita el controlador</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XIN_REAL_MODE</span><span class="p">);</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">    </span><span class="c1">//Habilita las interrupciones de los dos perifericos dentro del controlador</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">    </span><span class="n">XIntc_Enable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_UARTLITE_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">    </span><span class="n">XIntc_Enable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_GPIO_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">    </span><span class="c1">// Habilitacion  de excepciones (necesario para el uso de interrupciones en Risc-v)</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">    </span><span class="n">Xil_ExceptionInit</span><span class="p">();</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="w">    </span><span class="n">Xil_ExceptionRegisterHandler</span><span class="p">(</span><span class="n">XIL_EXCEPTION_ID_INT</span><span class="p">,</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">                                 </span><span class="p">(</span><span class="n">Xil_ExceptionHandler</span><span class="p">)</span><span class="n">XIntc_InterruptHandler</span><span class="p">,</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">                                 </span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">);</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">    </span><span class="n">Xil_ExceptionEnable</span><span class="p">();</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="w">    </span><span class="c1">// Habilita las interrupciones desde los perifericos de ambos perifericos</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="w">    </span><span class="n">XUartLite_EnableInterrupt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UartInstance</span><span class="p">);</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">    </span><span class="n">XGpio_InterruptEnable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="w">    </span><span class="n">XGpio_InterruptGlobalEnable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">);</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Presione un boton o mande un mensaje por la terminal.</span><span class="se">\r\n</span><span class="s">"</span><span class="p">);</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">valor</span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">for_loop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">valor</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>Primero nos fijaremos en las librerías de interes:</p>
+<p>Para familiarizarse con el uso del depurador y analizar la correspondencia entre código de alto nivel y código máquina, se desarrolló un programa simple en C que implementa un ciclo for dentro de una función independiente. Mediante la ejecución paso a paso en el depurador, es posible observar cómo el compilador traduce las instrucciones del lenguaje C a instrucciones ensamblador, así como analizar aspectos como el paso de parámetros por referencia, el acceso a memoria a través de punteros y la implementación de estructuras iterativas a nivel de procesador.</p>
+<p>Para entrar al depurado, primero compile la aplicación haciendo click en <strong>Build</strong> en el panel lateral, luego presione <strong>Debug</strong> como se puede apreciar en la <a href="#fig:debug-side-menu">figura 1</a>.</p>
+<p><figure id="_figure-1"><img alt='Botón "Debug" en el panel lateral' id="fig:debug-side-menu" src="../img/debug_sidemenu.png" width="500"><figcaption>Figura 1: Botón "Debug" en el panel lateral</figcaption></figure></p>
+<p>Esto abrirá la perspectiva de Depurado vista en la <a href="#fig:debug-view">figura 2</a>.</p>
+<p><figure id="_figure-2"><img alt="Perspectiva de Depurado" id="fig:debug-view" src="../img/debug_view.png" width="1000"><figcaption>Figura 2: Perspectiva de Depurado</figcaption></figure></p>
+<p>La perspectiva de depurado tiene una gran cantidad de funcionalidades, para poder analizarlas de manera mas eficiente, se separan en 3 categorías: </p>
 <ul>
-<li><strong>xgpio.h</strong>:Librería que contiene funciones y definiciones asociadas a GPIO.</li>
-<li><strong>xuartlite.h</strong>: Librería que contiene funciones y definiciones asociadas al periférico UART.</li>
-<li><strong>xintc.h</strong> Librería que contiene funciones y definiciones asociadas al controlador de interrupciones.</li>
-<li><strong>xparameters.h</strong> : Librería que contiene las definiciones asociadas al hardware descrito en Vivado, es en este archivo donde se encuentran las macros asociadas a direcciones base de los periféricos <strong>XPAR_XUARTLITE_0_BASEADDR</strong> en caso de UART y  <strong>XPAR_AXI_GPIO_0_BASEADDR</strong> en caso de GPIO.</li>
+<li>
+<p>Funcionalidad de depurado: Estos son los botones con los que se ejecutan los pasos del depurado, los cuales de izquierda a derecha son:</p>
+<ul>
+<li><strong>Continue:</strong> Corre el programa hasta el siguiente Breakpoint o hasta su termino.</li>
+<li><strong>Pause:</strong> Pausa la ejecución del programa.</li>
+<li><strong>Step Over:</strong> Corre la siguiente linea de código, saltándose funciones internas.</li>
+<li><strong>Step Into:</strong> Corre la siguiente linea, si el código tiene una llamada a una función, el depurador saltará al interior de esta.</li>
+<li><strong>Step Out of:</strong> Si se encuentra en una función, el depurador saldrá de esta e ira a la linea posterior a su llamado.</li>
+<li><strong>Restart:</strong> Reinicia el procesador y la sesión de depurado.</li>
+<li><strong>Stop:</strong> Detiene la sesión de depurado actual.</li>
+<li><strong>Stepping Granularity</strong>: Permite decidir que tan grandes son los pasos del depurador, permite alternar entre: linea de código, declaración o instrucción.</li>
 </ul>
-<p>A manera de ilustrar, haga click+ctrl sobre <strong>xparameter.h</strong> en el codigo, esto lo llevará al archivo. Nota: En linux el servidor slang tiende a fallar, en ese caso para visualizar el archivo vaya al panel lateral y dirijase la segunda carpeta de Includes del componente de aplicación.</p>
-<p>Dirijase a la linea 34 donde verá las definiciones del periferico AXI GPIO.</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cm">/* Definitions for peripheral AXI_GPIO_0 */</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#define XPAR_AXI_GPIO_0_COMPATIBLE "xlnx,axi-gpio-2.0"</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">#define XPAR_AXI_GPIO_0_BASEADDR 0x40000000 </span><span class="c1">// Direccion Base</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">#define XPAR_AXI_GPIO_0_HIGHADDR 0x4000ffff </span><span class="c1">// Direccion Alta</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="cp">#define XPAR_AXI_GPIO_0_INTERRUPT_PRESENT 0x1</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="cp">#define XPAR_AXI_GPIO_0_IS_DUAL 0x1</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="cp">#define XPAR_AXI_GPIO_0_INTERRUPTS 0x2000</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="cp">#define XPAR_FABRIC_AXI_GPIO_0_INTR 0</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="cp">#define XPAR_AXI_GPIO_0_INTERRUPT_PARENT 0x41200001</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="cp">#define XPAR_AXI_GPIO_0_GPIO_WIDTH 0x5</span>
+</li>
+<li>
+<p>Configuración de análisis.</p>
+<ul>
+<li><strong>Debug</strong>: Permite seleccionar que dispositivo se esta depurando, útil para cuando se tiene mas de un núcleo.</li>
+<li><strong>Call Stack</strong>: Registra en que función esta actualmente el depurador y a donde debe regresar el programa cuando termine la función actual, útil para encontrar secuencias donde el programa se puede quedar colgado.</li>
+<li><strong>Variables</strong>:Tiene el valor actual de variables locales.</li>
+<li><strong>Watch</strong>: Permite añadir expresiones que se evalúan en base a los valores actuales de las variables</li>
+<li><strong>Breakpoints</strong>: Enumera los distintos Breakpoints en el código (para añadir un breakpoint hay que hacer click a la izquierda de una dada linea de código).</li>
+</ul>
+</li>
+<li>Herramientas de análisis.<ul>
+<li><strong>Outline</strong>: Enumera las distintas funciones del código y su jerarquı́a.</li>
+<li><strong>Memory inspector</strong>: Permite leer valores de memoria, ya sea de la memoria interna del procesador o de memoria externa como Bram o DDR3.</li>
+<li><strong>HLS Directives</strong>: Enumera las distintas directivas de High level Synthesis, no posee funcionalidad en el flujo embebido.</li>
+<li><strong>Register Inspector</strong>: Permite ver los valores actuales de los registros internos del procesador, especialmente útil cuando se depuran instrucciones a nivel de código Assembly.</li>
+<li><strong>TCF Profiler</strong> (Target Communication Framework): Herramienta de análisis de rendimiento integrada en Vitis que permite medir cuánto tiempo pasa el procesador en cada función o instrucción.</li>
+</ul>
+</li>
+</ul>
+<h3 id="primera-prueba-de-depuracion">Primera prueba de depuración</h3>
+<p>Una vez analizada la herramienta, se realizará una primera prueba. Para iniciar la sesión de depurado presione el botón <strong>Continue</strong>,luego haga uso de Step Over sobre la primera línea y observe cómo cambia la pestaña Variables.</p>
+<p>Luego, en la línea donde se realiza la llamada a la función for_loop, haga clic en Step Into, lo que llevará al depurador al interior de la función como se aprecia en la <a href="#fig:for-loop">figura 3</a>.</p>
+<p><figure id="_figure-3"><img alt="Debugger en el bucle For" id="fig:for-loop" src="../img/For_loop.png" width="1000"><figcaption>Figura 3: Debugger en el bucle For</figcaption></figure></p>
+<p>A medida que continúe utilizando Step Over, podrá observar cómo el valor va iterando en la pestaña Variables.</p>
+<h3 id="perspectiva-a-nivel-de-instrucciones">Perspectiva a nivel de  instrucciones</h3>
+<p>Para realizar un análisis de bajo nivel, Vitis permite depurar el código directamente en lenguaje Assembly. Para lograr una observación detallada del flujo de ejecución, es necesario cambiar la granularidad del depurador.</p>
+<p>En la barra de herramientas, haga clic en el botón Stepping Granularity y seleccione la opción Step by instruction como se ve en <a href="#fig:instruction">figura 4</a>.</p>
+<p><figure id="_figure-4"><img alt="Granularidad a nivel de Instrucción" id="fig:instruction" src="../img/instruction.png" width="500"><figcaption>Figura 4: Granularidad a nivel de Instrucción</figcaption></figure></p>
+<p>Al activar este modo, se desplegará automáticamente la vista de Disassembly en el panel lateral derecho, como se observa en la <a href="#fig:disassembly">figura 5</a>, donde se pueden identificar las etiquetas de cada función y sus respectivas instrucciones.</p>
+<p><figure id="_figure-5"><img alt="Perspectiva de disassembly" id="fig:disassembly" src="../img/dissasembly.png" width="1000"><figcaption>Figura 5: Perspectiva de disassembly</figcaption></figure></p>
+<p>Con esta configuración, al utilizar el comando Step Over, el puntero de ejecución avanzará instrucción por instrucción en lugar de hacerlo entre líneas de código fuente C/C++.</p>
+<p>Como ejemplo práctico, se sugiere avanzar hasta la instrucción:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>li a5, 8
 </span></code></pre></div>
-<p>Note que tanto la direccion base  (0x_4000_000) como la dirección alta  (0x4000_ffff) corresponden con las mostradas en la <a href="#fig-Adress-map">figura 8</a>.</p>
-<p>Lo mismo es cierto para el periferico Uart visto en la linea 90.</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cm">/* Definitions for peripheral AXI_UARTLITE_0 */</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_COMPATIBLE "xlnx,axi-uartlite-2.0"</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_BASEADDR 0x40600000 </span><span class="c1">// Direccion Base</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_HIGHADDR 0x4060ffff </span><span class="c1">// Direccion Alta</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_BAUDRATE 0x2580</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_USE_PARITY 0x0</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_ODD_PARITY 0x0</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_DATA_BITS 0x8</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_INTERRUPTS 0x1</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="cp">#define XPAR_FABRIC_AXI_UARTLITE_0_INTR 1</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_INTERRUPT_PARENT 0x41200001</span>
-</span></code></pre></div>
-<p>Luego volviendo al archivo Ejemplo_3.c se tienen las siguientes funciones handler segun lo comentado en  <a href="#que-es-una-interrupcion">la sección de contexto</a>.</p>
-<ul>
-<li>UartHandler: Función Handler de uart, se activa cuando la placa recibe un caracter a través de uart. Esta funcion reenvia el caracter recibido.</li>
-<li>GpioHandler: Funcion Handler de GPIO, se activa cuando se presiona uno de los botones de la placa. Al apretar un boton la funcion envia un aviso de botón presionado a través de Uart con el valor correspondiente a su pin GPIO y prende un led asociado a ese valor.</li>
-</ul>
-<p>Analizando el codigo del main se tiene que se sigue la siguiente secuencia:</p>
-<ul>
-<li>Se inicializan perifericos de Uart y GPIO.</li>
-<li>Se fijan las direcciones de los GPIO, de manera que detecte los botones como entradas y los leds como salidas (1= Entrada 0 = Salida). Note que los canales vistos en la <a href="#fig-gpio-config">figura 6</a> son usados para definir que canal corresponde a que periférico (BUTTON_CHANNEL=1 LED_CHANNEL=2).</li>
-<li>Se inicializa el controlador de interrupciones.</li>
-<li>Se entrega la informacion al controlador de interrupciones acerca de que función Handler corresponde a que periférico.</li>
-<li>Se habilita el controlador de interrupciones.</li>
-<li>Habilita la recepcion de interrupciones de los dos periféricos al controlador.</li>
-<li>Habilita excepciones (necesario para el uso de interrupciones en Risc-V).</li>
-<li>Habilita la salida de interrupciones desde los periféricos.</li>
-<li>Deja un bucle indefinido para que el programa se mantenga corriendo.</li>
-</ul>
-<p>Haga click en <strong>Build</strong> para compilar la aplicación, debería dar la utilizacion de recursos vista en la <a href="#tbl-elf-size">tabla 2</a> dando un total aproximado de 18.6 KB. Note que esto es superior al minimo de memoria entregado por el Wizard de <strong>Run Block Automation</strong> (16 KB). </p>
-<div style="text-align: center;">
-<table id="tbl-elf-size">
-<caption style="caption-side:bottom">Tabla 2: Tamaño del ELF </caption><thead>
-<tr>
-<th>text</th>
-<th>data</th>
-<th>bss</th>
-<th>dec</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>14376</td>
-<td>480</td>
-<td>3792</td>
-<td>18648</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="verificacion">Verificación</h3>
-<p>Conecte la placa, enciendala y programela haciendo click en <strong>Run</strong> desde el panel lateral. Luego pruebe mandando caracteres a través de su consola serial de preferencia o presionando los botones, debería comportarse como se ve en <a href="#fig-hterm-test">figura 11</a>.</p>
-<p><figure id="_figure-11"><img alt="Pruebas en Hterm" id="fig-hterm-test" src="img/Verificaci%C3%B3n_1.png" width="1000"><figcaption>Figura 11: Pruebas en Hterm</figcaption></figure></p>
-<p>Luego, otra manera de visualizar el comportamiento de las funciones handler es haciendo uso del depurador. Posicione breakpoints al inicio de cada funcion Handler como se ve en la <a href="#fig-breakpoints">figura 12</a> e inicie la sesion de depurado haciendo click en <strong>Debug</strong>.</p>
-<p><figure id="_figure-12"><img alt="Breakpoints en funciones Handler" id="fig-breakpoints" src="img/break_points.png" width="1000"><figcaption>Figura 12: Breakpoints en funciones Handler</figcaption></figure></p>
-<p>Note que la Uart se gatilla tanto cuando termina una transmisión como cuando detecta la recepcion de datos de acuerdo a la <a href="https://docs.amd.com/v/u/en-US/pg142-axi-uartlite">documentacion de AXU UART Lite</a>. Esto implica que esta funcion se gatillará cuando:</p>
-<ul>
-<li>El programa envia el string "Presione un boton o mande un mensaje por la terminal.\r\n" antes de entrar al loop.</li>
-<li>Cuando se presiona un boton y se envia el mensaje correspondiente.</li>
-<li>Cuando detecta recepcion de datos.</li>
-</ul>
-<p>Como la funcion handler chequea que los registros internos de la IP hayan recibido datos antes de enviar, esta no enviara datos fuera de cuando los recibe desde el PC.</p>
-<p>Con esto han dado un paso fundamental: pasar de un procesador que solo ejecuta código en aislamiento a un sistema que percibe e interactúa con el mundo real. Lograron integrar periféricos heterogéneos —GPIO para entrada física desde botones y salida hacia LEDs, UART para comunicación serial— y orquestar todo a través de un controlador de interrupciones que permite al MicroBlaze responder de forma eficiente a eventos asíncronos sin desperdiciar ciclos en polling. Este patrón —periféricos sobre AXI, manejadores de interrupción y un procesador soft personalizado sobre FPGA— es la base sobre la que se construyen sistemas embebidos reales: desde controladores industriales hasta instrumentación científica. A partir de aquí, agregar nuevos periféricos (timers, ADCs, sensores I²C/SPI, aceleradores propios en hardware) es solo cuestión de aplicar la misma metodología que acaban de dominar. El hardware ya no es una caja negra: es una plataforma maleable que ustedes pueden moldear a la medida del problema que quieran resolver.</p>
-<p><img alt="" id="fig" src="img/.png" width="1000"></p>
+<p>Esta instrucción carga el valor inmediato 8 en el registro a5. Una vez ejecutada dicha línea, puede verificar el cambio abriendo el Register Inspector en el panel lateral. Como se observa en la <a href="#fig:register-inspector">figura 6</a>, el valor se ha asignado correctamente al registro correspondiente, confirmando la ejecución exitosa de la operación a nivel de hardware.</p>
+<p><figure id="_figure-6"><img alt="Inspector de Registros" id="fig:register-inspector" src="../img/Register_inspector.png" width="350"><figcaption>Figura 6: Inspector de Registros</figcaption></figure></p>
+<p>Con esto concluye la introducción al uso de las herramientas de depuración de Vitis. A partir de este punto, el lector ya cuenta con los conocimientos necesarios para ejecutar aplicaciones paso a paso, inspeccionar variables, analizar el flujo de llamadas entre funciones y observar la ejecución del procesador tanto a nivel de código fuente como de instrucciones ensamblador. Estas capacidades serán fundamentales en desarrollos de mayor complejidad, donde la depuración sistemática permite identificar errores, validar el funcionamiento del software y comprender en profundidad la interacción entre el firmware y la arquitectura del procesador. Se recomienda experimentar con programas propios, explorar las distintas vistas del depurador y utilizar estas herramientas de forma habitual durante el desarrollo, ya que constituyen una parte esencial del flujo de diseño de sistemas embebidos profesionales.</p>
 
 
 

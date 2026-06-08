@@ -12,6 +12,9 @@ VGA (Video Graphics Array) es un estándar de video analógico introducido por I
 
 El problema es alimentar ese FIFO al ritmo exigido. Un framebuffer de 800×600 con color de 24 bits ocupa 2 MB, demasiado para almacenarlo en BRAM, por lo que se coloca en memoria externa. Si el MicroBlaze V tuviera que leer cada píxel desde DDR y escribirlo en el controlador VGA mediante instrucciones de lectura y escritura sobre el bus AXI memory-mapped, consumiría prácticamente el 100 % de su tiempo de CPU y, debido a la latencia variable del controlador DDR, los arbitrajes del interconnect AXI y las interrupciones, no podría sostener el ancho de banda constante de ~37 MB/s que la señal requiere. Por esto se implementa un AXI DMA (Direct Memory Access) que transfiere bloques de memoria de forma autónoma usando el rol de master sobre el bus AXI. Específicamente se emplea la variante MM2S (Memory-Mapped to Stream): el DMA lee el framebuffer desde DDR mediante transacciones burst AXI4 memory-mapped y entrega los datos por su puerto de salida como un flujo AXI4-Stream, un protocolo unidireccional punto a punto optimizado para transporte continuo de datos sin sobrecarga de direccionamiento. Este stream se conecta directamente al FIFO del controlador VGA, descargando al MicroBlaze V de toda la tarea de transferencia; el procesador solo configura los registros del DMA al inicio —dirección base, longitud y modo— y queda libre para ejecutar la lógica de aplicación, actualizando el contenido del framebuffer únicamente cuando es necesario.
 
+
+
+
 ## Diseño del hardware
 
 Debido a que VGA es una interfaz grafica relativamente desactualizada, no admite una implementación directa equivalente a la de protocolos digitales modernos como UART o líneas GPIO discretas abordadas en secciones anteriores. Para subsanar esta limitación, se recurre a dos núcleos de propiedad intelectual (IP cores) desarrollados por Digilent, los cuales permiten adaptar el subsistema HDMI —interfaz digital basada en señalización diferencial TMDS— hacia la salida VGA física integrada en la placa Nexys A7. Los IP cores empleados son los siguientes:
@@ -175,39 +178,32 @@ Especificamente conecte PXL_CLK_O de Dynamic Clock Generator a:
 
 Luego conecte la interfaz vtiming_out de Video Timing Controller a vtiming_in de AXI4-Stream to Video Out como se ve en la [](#fig-conexion-6). Es a través de esta interfaz que el bloque VTC le indica que tan rapido o lento lanzar las tramas de video al bloque AXI4-Stream to Video Out.
 
-![Conexion interfaz de temporalización de Video](img/Conexion_6.png){ #fig-conexion-6 width="600"}
+![Conexion interfaz de temporalización de Video](img/Conexion_6.png){ #fig-conexion-6 width="1000"}
 
 
 Conecte la interfaz vid_io_out de AXI4-Stream to Video Out a vid_in de RGA to VGA output como se ve en [](#fig-conexion-7).
 
 
-![Conexion interfaz de video](img/Conexion_7.png){#fig-conexion-7 width="600"}
+![Conexion interfaz de video](img/Conexion_7.png){#fig-conexion-7 width="1000"}
 
 Conecte el puerto m_axis_mm2s_tdata de AXI CDMA a Din de Slice (para truncar la informacion) como se ve en [](#fig-conexion-8).
 
-![Truncado del bus de Video](img/Conexion_8.png){#fig-conexion-8 width="600"}
-
-Conecte la salida de Slice al puerto  x_axi_video_tdata del bloque AXI4-Stream to Video Out como se ve en la [](#fig-conexion-9), si no aparece se sugiere expandir la interfaz video_in.
-
-![Conexion de VDMA a AXI4-Stream to Video Out](img/Conexion_9.png){#fig-conexion-9 width="600"}
+![Truncado del bus de Video](img/Conexion_8.png){#fig-conexion-8 width="1000"}
 
 
-Continue conectando el puerto m_axis_mm2s_tlast de AXI VDMA al puerto s_axis_video_tlast de AXI4-Stream to Video Out como se ve en [](#fig-conexion-10).
+Haga click en la interfaz **video_in** de *AXI4-Stream to Video out* para expandirla en puertos individuales y realice las siguientes conexiones para establecer el enlace entre la interfaz AXI-Stream de *AXI VDMA* a la de *AXI4-Stream to Video out*:
 
-![Conexion interfaz de video](img/Conexion_10.png){#fig-conexion-10 width="600"}
+- Conecte la salida de Slice al puerto  x_axi_video_tdata del bloque AXI4-Stream to Video Out.
+- Conecte el puerto m_axis_mm2s_tlast de AXI VDMA al puerto s_axis_video_tlast de AXI4-Stream to Video Out.
+- Conecte el puerto m_axis_mm2s_tready de AXI VDMA al puerto s_axis_video_tready de AXI4-Stream to Video Out.
+- Conecte el puerto m_axis_mm2s_tuser de AXI VDMA al puerto s_axis_video_tuser de AXI4-Stream to Video Out.
+- Conecte el puerto m_axis_mm2s_tvalid de AXI VDMA al puerto s_axis_video_tvalid de AXI4-Stream to Video Out. 
 
 
-Conecte el puerto m_axis_mm2s_tready de AXI VDMA al puerto s_axis_video_tready de AXI4-Stream to Video Out como se ve en [](#fig-conexion-11).
 
-![Conexion interfaz de video](img/Conexion_11.png){#fig-conexion-11 width="600"}
+Tras realizar todas las conexiones su diagrama debería quedar  como se ve en la [](#fig-conexion-13).
 
-Conecte el puerto m_axis_mm2s_tuser de AXI VDMA al puerto s_axis_video_tuser de AXI4-Stream to Video Out como se ve en [](#fig-conexion-12).
-
-![Conexion interfaz de video](img/Conexion_12.png){#fig-conexion-12 width="600"}
-
-Conecte el puerto m_axis_mm2s_tvalid de AXI VDMA al puerto s_axis_video_tvalid de AXI4-Stream to Video Out como se ve en [](#fig-conexion-13).
-
-![Conexion interfaz de video](img/Conexion_13.png){#fig-conexion-13 width="600"}
+![Conexion interfaz de video](img/Conexion_13.png){#fig-conexion-13 width="1000"}
 
 
 ### Crear puertos externos
@@ -221,11 +217,31 @@ Debido a que VGA no se encuentra entre las interfaces disponibles en la board fi
 Con esto los puertos existen pero no han sido mapeados a los pines fisicos en la tarjeta, para esto se hace uso de un archivo de constraints, especificamente un Xilinx Design File (XDC). Este archivo cumple con varias funciones asociadas a llevar el diseño de logica configurable del software a la implementacion fisica:
 Definiciones de relojes, restricciones de timing y mapeo de pines fisicos a los puertos del diseño.
 
+
 Para agregar archivos de constraints basta con hacer el mismo procedimiento que se uso en secciones anteriores para añadir archivos verilog, pero cuando se abra la ventana emergente seleccione "Add or create constraints" como se ve en la [](#fig-constraints).
 
 Agregue el archivo Ejemplo_7/constraints.xdc, note que dentro de este solo se han habilitado los pines asociados a VGA y se les ha asignado los nombres de los puertos recien creados.
 
 ![Añadir archivo de Constraints](img/add_constraints.png){#fig-constraints width="500"}
+
+
+
+Antes de incorporar el sistema al procesador, se vera brevemente la secuencia desde la perspectiva de hardware. Refierase a la [](#fig-diagrama-simple).
+
+
+
+![Diagrama Simplificado](img/Diagrama_simplificado_light.png#only-light){#fig-diagrama-simple width="700"}
+![Diagrama Simplificado](img/Diagrama_simplificado_dark.png#only-dark){#fig-diagrama-simple width="700"}
+
+
+Se sigue la siguiente secuencia:
+
+- Desde el modulo AXI VDMA se extrae el cuadro a desplegar.
+- AXI VDMA se encarga de entregar el cuadro al bloque *AXI4-Stream to Video Out* a través de AXI4-Stream, se usa esta implementacion de AXI debido a que se realiza un paso constante de informacion sin direccionamiento de memoria.
+- El bloque *Video Timing controller* se encarga de controlar el ritmo al que salen datos desde el bloque *AXI4-Stream to Video Out*.
+- El cuadro pasa por el bloque *RGB2VGA* el cual se encarga de truncar los valores de los datos asociados al pixel a los permitidos por la interfaz VGA de la placa.
+
+
 
 
 ### Incorporación al Sistema
@@ -391,9 +407,9 @@ Se tiene que el la función  DisplayInitialize() configura e inicializa tres IP'
 - Video Timing Controller: genera las señales HSYNC/VSYNC/DE según la resolución elegida.
 - Dynamic Clock Generator: ajusta el reloj de píxeles (para 1280x1024@60Hz son 108 MHz, no es un valor cualquiera).
 
-Se tiene que la logica del display se basa en tener 2 cuadros en memoria externa (Dos cuadros de 1280×1024×4 bytes son 10 MB), mientras que el modulo VDMA esta leyendo 1 de los cuadros en el buffer para mandarlo en el monitor, el programa se encuentra dibujando el otro. Es por esto que esta la funcion DisplayWaitForSync(), la cual espera a que el siguiente cuadro este listo antes de realizar el cambio.
+Se tiene que la logica del display se basa en tener 2 cuadros en memoria externa (Dos cuadros de 1280×1024×4 bytes son 10 MB), mientras que el modulo VDMA esta leyendo 1 de los cuadros en el buffer para mandarlo en el monitor, el programa se encuentra dibujando el otro como se aprecia en la [](#fig-frames). Es por esto que esta la funcion DisplayWaitForSync(), la cual espera a que el siguiente cuadro este listo antes de realizar el cambio.
 
-AQUI PONDRE UNA FIGURA
+![Secuencia de desplegado y escritura de los 2 cuadros](img/Diagrama_frames.png){#fig-frames width="800"}
 
 Se tiene que una vez que se ha realizado el dibujo, este dato se pasa de la cache de Microblaze-V a la Memoria externa con la función Xil_DCacheFlush(), puesto que el modulo VDMA solo posee acceso a la memoria externa y no al cache del procesador.
 
