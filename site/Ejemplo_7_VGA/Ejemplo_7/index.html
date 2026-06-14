@@ -1064,38 +1064,48 @@
 <li>clk de Video Timing Controller.</li>
 </ul>
 <p>Luego conecte la interfaz vtiming_out de Video Timing Controller a vtiming_in de AXI4-Stream to Video Out como se ve en la <a href="#fig-conexion-6">figura 21</a>. Es a través de esta interfaz que el bloque VTC le indica que tan rapido o lento lanzar las tramas de video al bloque AXI4-Stream to Video Out.</p>
-<p><figure id="_figure-21"><img alt="Conexion interfaz de temporalización de Video" id="fig-conexion-6" src="../img/Conexion_6.png" width="600"><figcaption>Figura 21: Conexion interfaz de temporalización de Video</figcaption></figure></p>
+<p><figure id="_figure-21"><img alt="Conexion interfaz de temporalización de Video" id="fig-conexion-6" src="../img/Conexion_6.png" width="1000"><figcaption>Figura 21: Conexion interfaz de temporalización de Video</figcaption></figure></p>
 <p>Conecte la interfaz vid_io_out de AXI4-Stream to Video Out a vid_in de RGA to VGA output como se ve en <a href="#fig-conexion-7">figura 22</a>.</p>
-<p><figure id="_figure-22"><img alt="Conexion interfaz de video" id="fig-conexion-7" src="../img/Conexion_7.png" width="600"><figcaption>Figura 22: Conexion interfaz de video</figcaption></figure></p>
+<p><figure id="_figure-22"><img alt="Conexion interfaz de video" id="fig-conexion-7" src="../img/Conexion_7.png" width="1000"><figcaption>Figura 22: Conexion interfaz de video</figcaption></figure></p>
 <p>Conecte el puerto m_axis_mm2s_tdata de AXI CDMA a Din de Slice (para truncar la informacion) como se ve en <a href="#fig-conexion-8">figura 23</a>.</p>
-<p><figure id="_figure-23"><img alt="Truncado del bus de Video" id="fig-conexion-8" src="../img/Conexion_8.png" width="600"><figcaption>Figura 23: Truncado del bus de Video</figcaption></figure></p>
-<p>Conecte la salida de Slice al puerto  x_axi_video_tdata del bloque AXI4-Stream to Video Out como se ve en la <a href="#fig-conexion-9">figura 24</a>, si no aparece se sugiere expandir la interfaz video_in.</p>
-<p><figure id="_figure-24"><img alt="Conexion de VDMA a AXI4-Stream to Video Out" id="fig-conexion-9" src="../img/Conexion_9.png" width="600"><figcaption>Figura 24: Conexion de VDMA a AXI4-Stream to Video Out</figcaption></figure></p>
-<p>Continue conectando el puerto m_axis_mm2s_tlast de AXI VDMA al puerto s_axis_video_tlast de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-10">figura 25</a>.</p>
-<p><figure id="_figure-25"><img alt="Conexion interfaz de video" id="fig-conexion-10" src="../img/Conexion_10.png" width="600"><figcaption>Figura 25: Conexion interfaz de video</figcaption></figure></p>
-<p>Conecte el puerto m_axis_mm2s_tready de AXI VDMA al puerto s_axis_video_tready de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-11">figura 26</a>.</p>
-<p><figure id="_figure-26"><img alt="Conexion interfaz de video" id="fig-conexion-11" src="../img/Conexion_11.png" width="600"><figcaption>Figura 26: Conexion interfaz de video</figcaption></figure></p>
-<p>Conecte el puerto m_axis_mm2s_tuser de AXI VDMA al puerto s_axis_video_tuser de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-12">figura 27</a>.</p>
-<p><figure id="_figure-27"><img alt="Conexion interfaz de video" id="fig-conexion-12" src="../img/Conexion_12.png" width="600"><figcaption>Figura 27: Conexion interfaz de video</figcaption></figure></p>
-<p>Conecte el puerto m_axis_mm2s_tvalid de AXI VDMA al puerto s_axis_video_tvalid de AXI4-Stream to Video Out como se ve en <a href="#fig-conexion-13">figura 28</a>.</p>
-<p><figure id="_figure-28"><img alt="Conexion interfaz de video" id="fig-conexion-13" src="../img/Conexion_13.png" width="600"><figcaption>Figura 28: Conexion interfaz de video</figcaption></figure></p>
+<p><figure id="_figure-23"><img alt="Truncado del bus de Video" id="fig-conexion-8" src="../img/Conexion_8.png" width="1000"><figcaption>Figura 23: Truncado del bus de Video</figcaption></figure></p>
+<p>Haga click en la interfaz <strong>video_in</strong> de <em>AXI4-Stream to Video out</em> para expandirla en puertos individuales y realice las siguientes conexiones para establecer el enlace entre la interfaz AXI-Stream de <em>AXI VDMA</em> a la de <em>AXI4-Stream to Video out</em>:</p>
+<ul>
+<li>Conecte la salida de Slice al puerto  x_axi_video_tdata del bloque AXI4-Stream to Video Out.</li>
+<li>Conecte el puerto m_axis_mm2s_tlast de AXI VDMA al puerto s_axis_video_tlast de AXI4-Stream to Video Out.</li>
+<li>Conecte el puerto m_axis_mm2s_tready de AXI VDMA al puerto s_axis_video_tready de AXI4-Stream to Video Out.</li>
+<li>Conecte el puerto m_axis_mm2s_tuser de AXI VDMA al puerto s_axis_video_tuser de AXI4-Stream to Video Out.</li>
+<li>Conecte el puerto m_axis_mm2s_tvalid de AXI VDMA al puerto s_axis_video_tvalid de AXI4-Stream to Video Out. </li>
+</ul>
+<p>Tras realizar todas las conexiones su diagrama debería quedar  como se ve en la <a href="#fig-conexion-13">figura 24</a>.</p>
+<p><figure id="_figure-24"><img alt="Conexion interfaz de video" id="fig-conexion-13" src="../img/Conexion_13.png" width="1000"><figcaption>Figura 24: Conexion interfaz de video</figcaption></figure></p>
 <h3 id="crear-puertos-externos">Crear puertos externos</h3>
-<p>Debido a que VGA no se encuentra entre las interfaces disponibles en la board file, se tienen que declarar como puertos genericos. Para esto seleccione los puertos de salida del bloque RGB to VGA output (Puede configurarlos individualmente o seleccionar varios manteniendo apretada la tecla control), haga click derecho y seleccione "Make External" como se aprecia en la <a href="#fig-external-ports">figura 29</a>.</p>
-<p><figure id="_figure-29"><img alt="Creación de Puertos externos" id="fig-external-ports" src="../img/External_ports.png" width="400"><figcaption>Figura 29: Creación de Puertos externos</figcaption></figure></p>
+<p>Debido a que VGA no se encuentra entre las interfaces disponibles en la board file, se tienen que declarar como puertos genericos. Para esto seleccione los puertos de salida del bloque RGB to VGA output (Puede configurarlos individualmente o seleccionar varios manteniendo apretada la tecla control), haga click derecho y seleccione "Make External" como se aprecia en la <a href="#fig-external-ports">figura 25</a>.</p>
+<p><figure id="_figure-25"><img alt="Creación de Puertos externos" id="fig-external-ports" src="../img/External_ports.png" width="400"><figcaption>Figura 25: Creación de Puertos externos</figcaption></figure></p>
 <p>Con esto los puertos existen pero no han sido mapeados a los pines fisicos en la tarjeta, para esto se hace uso de un archivo de constraints, especificamente un Xilinx Design File (XDC). Este archivo cumple con varias funciones asociadas a llevar el diseño de logica configurable del software a la implementacion fisica:
 Definiciones de relojes, restricciones de timing y mapeo de pines fisicos a los puertos del diseño.</p>
-<p>Para agregar archivos de constraints basta con hacer el mismo procedimiento que se uso en secciones anteriores para añadir archivos verilog, pero cuando se abra la ventana emergente seleccione "Add or create constraints" como se ve en la <a href="#fig-constraints">figura 30</a>.</p>
+<p>Para agregar archivos de constraints basta con hacer el mismo procedimiento que se uso en secciones anteriores para añadir archivos verilog, pero cuando se abra la ventana emergente seleccione "Add or create constraints" como se ve en la <a href="#fig-constraints">figura 26</a>.</p>
 <p>Agregue el archivo Ejemplo_7/constraints.xdc, note que dentro de este solo se han habilitado los pines asociados a VGA y se les ha asignado los nombres de los puertos recien creados.</p>
-<p><figure id="_figure-30"><img alt="Añadir archivo de Constraints" id="fig-constraints" src="../img/add_constraints.png" width="500"><figcaption>Figura 30: Añadir archivo de Constraints</figcaption></figure></p>
+<p><figure id="_figure-26"><img alt="Añadir archivo de Constraints" id="fig-constraints" src="../img/add_constraints.png" width="500"><figcaption>Figura 26: Añadir archivo de Constraints</figcaption></figure></p>
+<p>Antes de incorporar el sistema al procesador, se vera brevemente la secuencia desde la perspectiva de hardware. Refierase a la <a href="#fig-diagrama-simple">figura 27</a>.</p>
+<p><figure id="_figure-27"><img alt="Diagrama Simplificado" id="fig-diagrama-simple" src="../img/Diagrama_simplificado_light.png#only-light" width="700">
+<img alt="Diagrama Simplificado" id="fig-diagrama-simple" src="../img/Diagrama_simplificado_dark.png#only-dark" width="700"><figcaption>Figura 27: Diagrama Simplificado</figcaption></figure></p>
+<p>Se sigue la siguiente secuencia:</p>
+<ul>
+<li>Desde el modulo AXI VDMA se extrae el cuadro a desplegar.</li>
+<li>AXI VDMA se encarga de entregar el cuadro al bloque <em>AXI4-Stream to Video Out</em> a través de AXI4-Stream, se usa esta implementacion de AXI debido a que se realiza un paso constante de informacion sin direccionamiento de memoria.</li>
+<li>El bloque <em>Video Timing controller</em> se encarga de controlar el ritmo al que salen datos desde el bloque <em>AXI4-Stream to Video Out</em>.</li>
+<li>El cuadro pasa por el bloque <em>RGB2VGA</em> el cual se encarga de truncar los valores de los datos asociados al pixel a los permitidos por la interfaz VGA de la placa.</li>
+</ul>
 <h3 id="incorporacion-al-sistema">Incorporación al Sistema</h3>
 <p>En esta seccion integraremos el sub sistema recien diseñado al procesador.</p>
 <p>Haga click en la pestaña Diagram para salir del sub sistema y volver al nivel mas alto de jerarquia del diagrama de bloques.</p>
-<p>Luego importe las IP's Memory Interface Generator y Clocking Wizard, configure como se vio en la sección anterior, debería quedar como la <a href="#fig-Mig">figura 31</a>.</p>
-<p><figure id="_figure-31"><img alt="Memory Interface Generator" id="fig-Mig" src="../img/Mig.png" width="600"><figcaption>Figura 31: Memory Interface Generator</figcaption></figure></p>
-<p>Luego importe Microblaze-V y siga los pasos vistos en la sección anterior (aquí pondre un enlace a la sección), al momento de correr conexión automatica excluya vga de manera que la conexion automatica no mapee el subsistema al axi interconnect de la ram. Debería quedar como la <a href="#fig-preconnect">figura 32</a>.</p>
-<p><figure id="_figure-32"><img alt="Sistema antes de conectar el Sub Sistema de Video" id="fig-preconnect" src="../img/pre_connect_vga.png" width="800"><figcaption>Figura 32: Sistema antes de conectar el Sub Sistema de Video</figcaption></figure></p>
-<p>Finalmente corra nuevamente Connection automation, fijese que al correrlo el subsistema quede mapeado a AXI SmartConnect como en la <a href="#fig-vga-system">figura 33</a> (Debería tener 5 puertos Master).</p>
-<p><figure id="_figure-33"><img alt="Sistema despues de conectar el Sub Sistema de Video" id="fig-vga-system" src="../img/vga_post_connect.png" width="800"><figcaption>Figura 33: Sistema despues de conectar el Sub Sistema de Video</figcaption></figure></p>
+<p>Luego importe las IP's Memory Interface Generator y Clocking Wizard, configure como se vio en la sección anterior, debería quedar como la <a href="#fig-Mig">figura 28</a>.</p>
+<p><figure id="_figure-28"><img alt="Memory Interface Generator" id="fig-Mig" src="../img/Mig.png" width="600"><figcaption>Figura 28: Memory Interface Generator</figcaption></figure></p>
+<p>Luego importe Microblaze-V y siga los pasos vistos en la sección anterior (aquí pondre un enlace a la sección), al momento de correr conexión automatica excluya vga de manera que la conexion automatica no mapee el subsistema al axi interconnect de la ram. Debería quedar como la <a href="#fig-preconnect">figura 29</a>.</p>
+<p><figure id="_figure-29"><img alt="Sistema antes de conectar el Sub Sistema de Video" id="fig-preconnect" src="../img/pre_connect_vga.png" width="800"><figcaption>Figura 29: Sistema antes de conectar el Sub Sistema de Video</figcaption></figure></p>
+<p>Finalmente corra nuevamente Connection automation, fijese que al correrlo el subsistema quede mapeado a AXI SmartConnect como en la <a href="#fig-vga-system">figura 30</a> (Debería tener 5 puertos Master).</p>
+<p><figure id="_figure-30"><img alt="Sistema despues de conectar el Sub Sistema de Video" id="fig-vga-system" src="../img/vga_post_connect.png" width="800"><figcaption>Figura 30: Sistema despues de conectar el Sub Sistema de Video</figcaption></figure></p>
 <p>Finalmente siga los pasos asociados a extracción de hardware vistos en secciones previas. </p>
 <p>En la maquina del autor con estrategias de implementacion predeterminadas se obtuvo la utilizacion de recursos vista en la <a href="#tbl-resources">tabla 1</a>.</p>
 <div style="text-align: center;">
@@ -1240,10 +1250,10 @@ Definiciones de relojes, restricciones de timing y mapeo de pines fisicos a los 
 <li>Video Timing Controller: genera las señales HSYNC/VSYNC/DE según la resolución elegida.</li>
 <li>Dynamic Clock Generator: ajusta el reloj de píxeles (para 1280x1024@60Hz son 108 MHz, no es un valor cualquiera).</li>
 </ul>
-<p>Se tiene que la logica del display se basa en tener 2 cuadros en memoria externa (Dos cuadros de 1280×1024×4 bytes son 10 MB), mientras que el modulo VDMA esta leyendo 1 de los cuadros en el buffer para mandarlo en el monitor, el programa se encuentra dibujando el otro. Es por esto que esta la funcion DisplayWaitForSync(), la cual espera a que el siguiente cuadro este listo antes de realizar el cambio.</p>
-<p>AQUI PONDRE UNA FIGURA</p>
+<p>Se tiene que la logica del display se basa en tener 2 cuadros en memoria externa (Dos cuadros de 1280×1024×4 bytes son 10 MB), mientras que el modulo VDMA esta leyendo 1 de los cuadros en el buffer para mandarlo en el monitor, el programa se encuentra dibujando el otro como se aprecia en la <a href="#fig-frames">figura 31</a>. Es por esto que esta la funcion DisplayWaitForSync(), la cual espera a que el siguiente cuadro este listo antes de realizar el cambio.</p>
+<p><figure id="_figure-31"><img alt="Secuencia de desplegado y escritura de los 2 cuadros" id="fig-frames" src="../img/Diagrama_frames.png" width="800"><figcaption>Figura 31: Secuencia de desplegado y escritura de los 2 cuadros</figcaption></figure></p>
 <p>Se tiene que una vez que se ha realizado el dibujo, este dato se pasa de la cache de Microblaze-V a la Memoria externa con la función Xil_DCacheFlush(), puesto que el modulo VDMA solo posee acceso a la memoria externa y no al cache del procesador.</p>
-<p><figure id="_figure-34"><img alt="Programa en ejecución sobre un monitor 1280x1024" id="fig-gif" src="../img/app.gif" width="600"><figcaption>Figura 34: Programa en ejecución sobre un monitor 1280x1024</figcaption></figure></p>
+<p><figure id="_figure-32"><img alt="Programa en ejecución sobre un monitor 1280x1024" id="fig-gif" src="../img/app.gif" width="600"><figcaption>Figura 32: Programa en ejecución sobre un monitor 1280x1024</figcaption></figure></p>
 
 
 

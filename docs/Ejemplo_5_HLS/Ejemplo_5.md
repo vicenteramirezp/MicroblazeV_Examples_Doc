@@ -1,307 +1,461 @@
-# Guía 3 : Uso de Perifericos e Interrupciones
-
-## Objetivo
-
-Esta guía ilustra dos mecanismos fundamentales mediante los cuales un procesador interactúa con los periféricos integrados al sistema: el esquema de memory-mapped I/O y el sistema de interrupciones. A través de ejercicios prácticos, se espera que aprenda a configurar periféricos mediante registros mapeados en memoria e implementar rutinas de servicio de interrupción (ISR) para atender eventos externos de manera eficiente.
+# Guía 5: Diseño de Periféricos con High Level Synthesis
 
 ## Contexto
 
+### ¿Que es High Level Synthesis?
 
-### ¿Que es un Periférico?
+High-Level Synthesis (HLS) es el proceso de transformar la descripción de un diseño desde un nivel de abstracción alto hacia una descripción a nivel de transferencia de registros (RTL). AMD Vitis™ HLS implementa este proceso a partir de funciones escritas en C/C++, generando la descripción RTL que posteriormente se integra en Vivado™ para su implementación en FPGA como se aprecia en el diagrama de la [](#fig-vitis-HL).
 
-En el contexto de sistemas digitales/embebidos, un periférico es cualquier módulo de hardware externo al procesador que le permite interactuar con el mundo exterior o realizar funciones especializadas que el procesador no ejecuta directamente.
+![Diagrama  Vitis HLS](img/Vitis_HLS.png){ #fig-vitis-HLS width="500" }
 
-Ejemplos:
+### Flujo de Vitis HLS
 
-- El periferico Uart que se uso en la sección previa para la comunicacion desde la placa al PC.
-- Salida/Entrada de proposito general (GPIO): A través de entradas discretas como botones o salidas como leds se puede compartir información con el mundo real.
+Note que para generar un módulo a nivel de RTL sintetizable  a partir de archivos C/C++, Vitis identifica ciertos aspectos claves en el código, entre los cuales destacan
 
-### Memory Mapped I/O
+- **Función Top**: Esta es la función que envolverá a otras funciones, manteniendo la misma jerarquía a la del un modulo de alto nivel que instancia a otros, esto se puede apreciar mas claramente cuando se exportan los archivos RTL, donde Vitis da la opción de que se genere un módulo sintetizable por cada función.
+- **Bucles**: Vitis HLS sintetiza los bucles de forma secuencial de manera predeterminada. Es decir, genera un espacio de memoria en hardware donde realiza las iteraciones del bucle una instancia a la vez y en cada iteracion guarda el resultado.
+- **Arreglos**: Vitis los implementa dependiendo de como son accedidos, si son grandes y no se acceden varios datos al mismo tiempo, son implementados con Block RAM, en caso de que se accedan varios datos al mismo tiempo, o sean de menor tamaño, se implementan a través de registros.
 
+Una vez la herramienta identifica estos aspectos, estos sirven como insumos directos para la síntesis como se puede apreciar en la [](#fig-vitis-flujo).
 
-Desde el punto de vista del procesador, los periféricos del sistema conviven dentro de un
-único espacio de direcciones plano. Este espacio —denominado mapa de memoria— asigna a cada recurso un rango de direcciones único, de modo que el procesador accede a todos ellos mediante las mismas instrucciones de carga y almacenamiento que utiliza para leer y escribir variables ordinarias. 
+![Diagrama Síntesis HLS de Vitis](img/HLS_c_to_rtl_diagram.png){ #fig-vitis-flujo width="500" }
 
+Por ultimo se tiene que mediante el uso de directivas en Vitis HLS, es posible optimizar y ajustar los resultados de la sı́ntesis de hardware para una misma descripción en C, permitiendo explorar diferentes implementaciones de un mismo código fuente.
 
-La técnica que permite incorporar este último tipo de región recibe el nombre de mapeo de periféricos en memoria `memory-mapped I/O`. En lugar de definir instrucciones dedicadas para el acceso a periféricos, los registros de control y de estado de cada bloque IP se exponen como direcciones del espacio de memoria del procesador. Una escritura sobre la dirección de un registro de control produce, internamente, una transacción sobre el bus AXI hacia el periférico, que altera su estado; análogamente, una lectura sobre un registro de estado retorna el valor actual de dicho
-registro. Desde código C, el acceso se realiza mediante punteros: el desarrollador declara un puntero  a la dirección base del periférico y manipula sus campos como si fueran variables comunes en memoria.
+### Pragmas en Vitis HLS
 
+Los pragmas son directivas que guían al compilador HLS en la transformación del código C/C++ a RTL. No alteran el resultado funcional del algoritmo, pero sí controlan cómo este se implementa en hardware: la organización de los recursos, la forma de los bucles, las interfaces hacia el exterior y el grado de paralelismo. Su importancia es central porque la misma descripción en C puede sintetizarse en arquitecturas radicalmente distintas según los pragmas aplicados.
 
-### ¿Que es una interrupción?
+### Loop unrolling
 
-
-Una interrupción es un evento asincrónico que temporalmente desvía al CPU de su flujo de ejecución normal para manejar una condición desencadenada por por un dispositivo externo, un temporizador o software como se ilustra en la [](#fig-diagrama-interrupt).
-
-
-![Diagrama de interrupcion](img/interrupt_diagram.png){ #fig-diagrama-interrupt width="1000" }
-
-Un sistema puede tener varias fuentes de interrupción, el controlador de interrupciones sigue la secuencia:
-
--  **Interrupción**: Se produce una interrupción, la cual puede ser originada por una fuente interna al sistema (como un temporizador o una excepción de software) o por un periférico externo.
-- **Detección**: El controlador de interrupciones detecta la señal, identifica su fuente y determina su nivel de prioridad.
-- **Priorización**: Si existen múltiples interrupciones pendientes, el controlador las gestiona siguiendo la jerarquía de importancia configurada en el hardware.
-- **Despacho**: El controlador envía la interrupción con la prioridad más alta a la CPU para su procesamiento.
-- **Manejo**: La dirección del *Program Counter* (PC) interrumpido se respalda en el registro `mepc`. La CPU actualiza los registros de estado (CSR), almacena la causa en el registro `mcause` y salta a la dirección indicada en el registro `mtvec` para ejecutar la rutina de servicio de interrupción (ISR).
-- **Retorno**: Una vez finalizada la rutina, la CPU restaura el estado de ejecución previo, recupera el valor de `mepc` y continúa con la operación normal del programa.
-
-
-En esta actividad se integraran los perifericos de GPIO, especificamente los conectados a los botones y los LED. Se mantendra el periferico de UART.
-
+El loop unrolling es una transformación que replica el cuerpo del bucle en hardware tantas veces como iteraciones tenga su rango. En lugar de ejecutar las iteraciones secuencialmente sobre una única instancia de la lógica aritmética, todas las iteraciones se materializan como hardware separado y se ejecutan en paralelo dentro del mismo ciclo de reloj. 
 
 ## Diseño de Hardware
 
+### Creación del Proyecto HLS
 
-En esta sección se realizara un proyecto desde cero. Abra Vivado y cree un nuevo diagrama de bloques. Importe la IP **Microblaze V** al diagrama de bloques y al momento de apretar **Run Block Automation** marque la casilla **Enable interupt controller** como se ve en la figura [](#fig-enable-interrupt).
+Abra Vitis y elija un espacio de trabajo, en el menu de inicio presione **New HLS Component**  como se ve en la [](#fig-new-HLS) para crear un nuevo componente de HLS.
 
-![Habilitar controlador de interrupciones](img/Enable_interrupt.png){ #fig-enable-interrupt width="500" }
+![Nuevo componente de HLS](img/New_hls_component.png){ #fig-new-HLS width="1000" }
 
-Esto hara que al momento de que se generen los bloques que componen el sistema base del procesador, se importen los bloques responsable del manejo de interrupciones como se ve en [](#fig-interrupt-on-bd) :
+Esto abrirá una ventana emergente donde podrá crear el componente HLS, empezando por asignarle un nombre. En el caso de esta guía se usa el nombre **Adder_tree_HLS** como se ve en la [](#fig-nombre-proyecto).
 
-- "AXI Interrupt Controller": Bloque que colecciona multiples señales de interrupt de varios perifericos y las consolida en una sola señal que entrega al procesador, se encarga del arbitraje e identificacion de las señales.
-- "Inline Concat": Concatena todas las señales de interrupcion para que el bloque AXI las reciba.
+![Nombre del Componente HLS](img/creación_proyecto_hls.png){ #fig-nombre-proyecto width="1000" }
 
-![Bloques de interrupcion en el diagrama](img/bloques_interrupt.png){ #fig-interrupt-on-bd width="1000" }
+Tras hacer click en *Next*, se elije el archivo de configuración HLS, este contiene todos los datos de la configuración del proyecto. Su funcion es automatizar la creacion de proyectos HLS, debido a que en esta guía se realizaran las configuraciones de forma manual, seleccione *Empty File* como se ve en la [](#fig-config-hls).
 
-Luego continue con el armado del sistema de acuerdo a lo visto en la Guía 1 ( Aqui pondre un hyperlink cuando suba la guía 1). La secuencia es:
+![Archivo de Configuración HLS](img/Configuration_file.png){ #fig-config-hls width="1000" }
 
-- Configure la IP Clocking Wizard de manera que el clock y reset esten conectados a los pines de la placa.
-- Corra **Run Connection Automation** seleccionando todas las conexiones.
-- Importe **USB UART** desde el panel lateral.
-- Corra **Run Connection Automation** seleccionando todas las conexiones.
+En la siguiente ventana se definen los archivos fuente del componente, también en este paso se definen las configuraciones del compilador para cada archivo fuente como se ve en la [](#fig-sources-vitis). En esta guía los archivos fuente se añadirán en un paso posterior para mostrar ambas maneras de añadir archivos.
 
+![Archivos Fuentes de Vitis](img/Sources_Vitis.png){ #fig-sources-vitis width="1000" }
 
-Una vez este el diagrama de bloques igual al de la Guía 1, importe "5 Push Buttons" y "16 Leds" desde el panel lateral Board visto en la [](#fig-led-buttons).
+Luego en el siguiente paso se define el chip FPGA a usar en la síntesis de C a RTL. Esta información le sirve a Vitis para poder realizar estimaciones del uso de recursos y la latencia del modulo generado. En esta ventana escriba el nombre del chip de la placa a usar, en el caso de esta guía es "xc7a100tcsg324-1" como se ve en la [](#fig-Vitis-hardware).
 
-
-![GPIO en el panel lateral Board](img/Leds_buttons.png){ #fig-led-buttons width="250" }
-
-Tras regenerar el layout se debería ver como en la [](#fig-bd-botones-led).
-
-![Bloque GPIO en el Diagrama](img/bd_botones_leds.png){ #fig-bd-botones-led width="1000" }
-
-Tras hacer click en  **Run Connection Automation** y conectar el periférico GPIO al sistema AXI, haga doble click sobre el periférico, en la ventana emergente seleccione **Enable Interrupt** como se ve en la [](#fig-gpio-config) para habilitar las interrupciones de GPIO . Note que los botones estan en GPIO y los leds en GPIO 2. Esto sera relevante más adelante.
-
-![Configuracion de bloque GPIO](img/Enable_gpio_interrupt.png){ #fig-gpio-config width="500" }
-
-Ya teniendo salidas de interrupción, se realizaran las conexiones de estas al procesador. 
-
-Conecte:
-
-- **ip2intc_irpt** del bloque AXI GPIO al pin **In0** de Inline Concat.
-- **interrupt** de AXI Uartlite al pin **In1** de Inline Concat.
-
-Tras regenerar el Layout se debería ver como en la [](#fig-bd3-final).
-
-![Diagrama de bloques con interrupciones conectadas](img/bd_final.png){ #fig-bd3-final width="1000" }
-
-Antes de continuar con el exportado de hardware se sugiere revisar la pestaña **Address editor**. Como se puede apreciar en la [](#fig-Adress-map), están los dos periféricos importados: Uart y GPIO junto con sus direcciones base y direcciones altas. Se tiene que al momento de hacer uso de estos perifericos en software, estas direcciones serán la clave para la comunicación entre los perifericos y el procesador de acuedo a lo comentado en la [sección previa](#memory-mapped-io). Note que ambos periféricos poseen un rango de memoria de 64KB, este es el estandár para IP's de AMD que no hacen un uso de memoria superior a 64 KB, aún si no necesariamente haran uso de este espacio.
-
-![Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo](img/adress_map.png){ #fig-Adress-map width="1000" }
+![Selección de Hardware](img/Vitis_hardware.png){ #fig-Vitis-hardware width="1000" }
 
 
-Si se desea realizar una visualizacion gráfica del mapa de memoria, abra la pestaña Address Map y presione **Generate** de acuerdo a lo visto en la [](#fig-generate).
+Continuando con la ultima pestaña de configuración, esta define:
+
+- **Frecuencia de reloj objetivo**: Frecuencia objetivo para el modulo diseñado, por defecto es 100 MHZ.
+- **Margen de Frecuencia de reloj**: Maxima variacion permitida en la frecuencia de reloj.
+- **Flujo objetivo**: Define para que flujo se diseña la herramienta.
+    - **Vivado**: Produce una IP empaquetada para su uso dentro del diagrama de bloques de Vivado con otras IP's.
+    - **Vitis**: Produce un archivo *Xilins Object* (.xo). Un kernel que se conecta al flujo de aceleración de Vitis y es llamado directamente desde el PC a través de Vitis sin necesidad de incluir un procesador en el sistema.
+- **Formato de exportado**: Especifica el formato de exportado del componente, puede ser en RTL, un archivo xo o el ip_catalog que agiliza la inclusión al diagrama de bloques de Vivado.
+
+En este caso se mantendrán las configuraciones predeterminadas vistas en la [](#fig-settings).
 
 
-![Generar Mapa de memoria](img/Generate.png){ #fig-generate width="1000" }
+![Configuraciones de Vitis](img/Vitis_Settings.png){ #fig-settings width="1000" }
+
+Finalmente se expone un resumen de las configuraciones elegidas como se ve en la [](#fig-resumen).
+
+![Resumen de creacion de componente HLS](img/Resumen_Hls.png){ #fig-resumen width="1000" }
+
+Ya habiendo creado el componente de HLS, agregue los archivos fuente haciendo click derecho en la carpeta Sources y seleccione *Add Source File* como se ve en [](). Agregue el archivo **hls_main.cpp** y el encabezado **hls_config.h** de la carpeta Ejemplo_5 .
 
 
-Esto generara el mapa de memoría para cada interfaz del procesador, debido a que la interfaz ILMB solo posee los datos de instrucciones, nos enfocaremos en la interfaz-0 (DMLB) la cual tiene una conexión AXI para el envio de datos entre periféricos.
-En la [](#fig-Network-0) se aprecian:
+![Añadir archivos fuente](img/Add_sources.png){ #fig-add-sources width="500" }
 
-- SLMB (0x0): Memoria interna del Microblaze V (fijada en 128 KB al momento de correr **Run block Automation**).
-- AXI_gpio (0x4000_0000): Periferico GPIO.
-- AXI_Uart_lite (0x4060_0000):  Periferico Uart.
-- microblaze_axi_intc (0x4120_FFFF): Controlador de interrupciones.
+Este archivo tiene el siguiente código:
+
+```c
+#include "hls_config.h"
+
+template <int S, int P>
+void adder_tree_logic(int *o_data, int i_data[N]) {
+
+    int data[P][S + 1];
+    for (int stage = 0; stage <= S; stage++) {
+        //#pragma HLS UNROLL 
+        int ST_OUT_NUM = P >> stage;
+        for (int adder = 0; adder < ST_OUT_NUM; adder++) {
+          //  #pragma HLS UNROLL
+            if (stage == 0) {
+                data[adder][stage] = (adder < N) ? i_data[adder] : 0;
+            } else {
+                data[adder][stage] = data[adder * 2][stage - 1] + data[adder * 2 + 1][stage - 1];
+            }
+        }
+    }
+    *o_data = data[0][S];
+}
+
+// Top-level function for Synthesis
+void adder_tree(int *o_data, int i_data[N]) {
+    #pragma HLS INTERFACE mode=s_axilite port=i_data
+    #pragma HLS INTERFACE mode=s_axilite port=o_data
+    #pragma HLS INTERFACE mode=s_axilite port=return
+
+    adder_tree_logic<STAGES, POW2_N>(o_data, i_data);
+}
+```
+
+El código define dos funciones. La primera, *adder_tree_logic*, implementa el módulo adder tree como una plantilla parametrizada. Su lógica se construye mediante dos bucles for anidados: el bucle externo recorre las etapas del árbol, mientras que el bucle interno realiza las sumas correspondientes a cada etapa. La segunda función, adder_tree, instancia la plantilla anterior y fija la estructura concreta del módulo y la cantidad de entradas. Las constantes N, STAGES y POW2_N están definidas en el archivo de encabezado * hls_config.h*.
+
+```c
+#ifndef HLS_CONFIG
+#define HLS_CONFIG
+
+#define N 8
+#define POW2_N 8 // Next power of 2
+#define STAGES 3 // log2(8)
+
+// Prototype must match the synthesized instance
+void adder_tree(int *o_data, int i_data[N]);
+
+#endif
+```
+
+
+En el código del adder tree se emplean dos familias de pragmas:
+
+- ***HLS INTERFACE*** — Define el protocolo de comunicación de cada puerto del módulo. En este caso, se utiliza el modo s_axilite para los argumentos i_data, o_data y el retorno, lo que expone el acelerador como un periférico AXI-Lite controlable desde un procesador.
+- ***HLS UNROLL*** — Aplica loop unrolling a los dos bucles for anidados de adder_tree_logic.
+
+Note que los pragma ***HLS UNROLL*** están comentados por defecto.
+
+### Simulación en C
+
+Previo a enfocarse en la síntesis, primero hay que verificar que el algoritmo obtiene el resultado esperado. Para esto primero se realizan pruebas a nivel de software, para esto se hace uso de un vector de pruebas, un vector de resultados esperados y un archivo de prueba que instancia la función a probar. Haga click derecho en la carpeta *Test Bench* y presione en *Add Test Bench File* para añadir archivos de prueba como se ve en la [](#fig-testbench-file). Agruegue los archivos *golden_Inputs.dat*, *golden_Reference.dat* y *testbench.cpp* de la carpeta Ejemplo_5.
+
+![Añadir archivos testbench](img/Vitis_testbench.png){ #fig-testbench-file width="1000" }
+
+Los archivos .dat tienen los vectores de referencia, mientras que el archivo testbench contiene el codigo para correr la prueba:
 
 
 
-![Mapa de Memoria Interfaz DLMB](img/Network_0.png){ #fig-Network-0 width="1000" }
+```c
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <string>
+#include "hls_config.h"
+
+constexpr float REL_TOL = 2.0f;
+constexpr int TRIALS = 10;
+
+
+int main() {
+    std::cout << "Running C++ simulation!" << std::endl;
+
+    int testResult = 0;
+    std::ifstream idata("golden_Inputs.dat");
+	std::ifstream rdata("golden_Reference.dat");
+
+    if (!rdata.is_open()) {
+        std::cerr << "Error reading golden_Reference file!" << std::endl;
+        return 1;
+    }
+
+	if (!idata.is_open()) {
+        std::cerr << "Error reading golden_Inputs file!" << std::endl;
+        return 1;
+    }
+
+    int output;
+    int input[N];
+
+    float buffer;
+    float adder_tree_rel_err = 0.0f;
+
+    for (int i = 0; i < TRIALS; ++i) {
+        float temp = 0.0f;
+
+        // Read vector input
+        for (int j = 0; j < N; ++j) {
+            idata >> temp;
+            input[j] = static_cast<uint32_t>(temp);
+        }
+
+        // Read reference output
+        rdata >> temp;
+        buffer = temp;
+
+        // Call HLS function
+       
+        adder_tree(&output, input);
+
+        adder_tree_rel_err = 100.0f * std::fabs((output - buffer) / buffer);
+
+        std::cout << "TRIAL: " << i
+                  << ",\t Expected: " << buffer
+                  << "\tGot: " << output
+                  << " Err: " << adder_tree_rel_err << "%\n";
+
+        if (adder_tree_rel_err > REL_TOL) {
+            std::cout << "Adder Tree error exceeds tolerance!" << std::endl;
+            ++testResult;
+        }
+    }
+
+    rdata.close();
+	idata.close();
+
+    std::cout << "*******************************************\n";
+    if (testResult) {
+        std::cout << "*\t \t  FAIL \n";
+    } else {
+        std::cout << "*\t \t  PASS \n";
+    }
+    std::cout << "*******************************************\n";
+
+    return testResult;
+}
+```
+
+
+El comportamiento del testbench se controla mediante dos constantes:
+
+- **TRIALS **(10): Número de vectores de prueba a evaluar. En cada iteración, se leen N valores enteros desde golden_Inputs.dat hacia el arreglo input[] y un valor de referencia desde golden_Reference.dat hacia buffer.
+- **REL_TOL** (2.0) : Tolerancia máxima admisible para el error relativo porcentual entre la salida del módulo y el valor de referencia.
+
+En cada iteración, el *testbench* invoca `adder_tree(&output, input)` y calcula el error relativo respecto al valor de salida esperado.
+
+Si *adder_tree_rel_err*​ supera `REL_TOL` en alguna iteración, se incrementa el contador `testResult`. Al finalizar las `TRIALS` iteraciones, el *testbench* imprime `PASS` por consola si `testResult == 0`, o `FAIL` en caso contrario; este mismo valor se retorna desde `main` para que el entorno de simulación pueda detectar la falla automáticamente.
+
+Para correr la simulación, haga click en **Run** en el panel lateral *C Simulation* como se ve en la [](#fig-run-c-sim).
+
+![Correr Simulación en C](img/Vitis_run_sim.png){ #fig-run-c-sim width="250" }
+
+Esto lanzara la ventana emergente vista en la []( #fig-sim-op) donde se pueden definir varios parametros para el compilador de codigo C al momento de simular. Mantenga las opciones predeterminadas.
+
+![Opciones simulacion en C](img/Vitis_sim_options.png){ #fig-sim-op width="1000" }
+
+
+Si salio de manera adecuada se debería ver a traves de la consola el resultado de la prueba [](#fig-pass).
+
+![Pass C Simulation](img/Pass_c_sim.png){ #fig-pass width="500" }
+
+En este punto se tiene el algoritmo en software funcionando de manera esperada.
+
+### Síntesis de C a RTL
+
+Para generar un modulo RTL, primero hay que elegir que función del codigo fuente sera sintetizada, para esto vaya al panel lateral, en *Settings* expanda el menu y presione *hls_config.cfg* como se ve en la [](#fig-config-hls).
+
+![Abrir configuración HLS](img/Abrir_config.png){ #fig-config-hls width="500" }
+
+Esto abrirá el menú de configuraciones HLS, dirijase a la sección *C Synthesis Sources* y haga click en *Browse* de la subsección *hls.syn.top* como se ve en la [](#fig-synth-config).
+
+![Elegir función top en C Synthesis](img/C_synth_config.png){ #fig-synth-config width="1000" }
+
+En la ventana emergente apareceran todas las funciones existentes en los archivos fuente (*adder_tree_logic* aparece dos veces debido a la definicion y su instanciación en la funcion *adder_tree*) como se ve en la [](#fig-top-function). Seleccione *adder_tree*.
+
+
+![Funciones disponibles en los archivos fuente](img/top_function.png){ #fig-top-function width="1000" }
+
+Una vez definida la funcion a sintetizar, se puede correr la síntesis haciendo click en el botón *Run* del menu lateral *C Synthesis* como se ve en la [](#fig-Vitis_synth_run).
+
+![Boton de Correr Síntesis](img/Vitis_synth_run.png){ #fig-Vitis_synth_run width="500" }
 
 
 
-Valide nuevamente su diseño y ejecute el proceso de generacion y extracción de hardware, el autor obtuvo la utilizacion de recursos vista en la [](#tbl-resources)
+Una vez ejecutada la síntesis, Vitis HLS reporta el estado en la consola; si ocurre algún error, este se indica explícitamente con su naturaleza y ubicación. Para acceder al reporte de resultados, presionar el botón  *Synthesis* del panel lateral, como se muestra en la [](#fig-Ver_reporte). 
+
+![Ver reporte de síntesis](img/Ver_reporte.png){ #fig-Ver_reporte width="500" }
+
+
+Al sintetizar el módulo con los pragmas HLS UNROLL comentados, Vitis HLS produce el reporte de la [](#fig-Reporte_no_pragma). El compilador conserva los bucles for como construcciones secuenciales y los reporta bajo el identificador VITIS_LOOP_8_1. Este bucle ejecuta cada suma de forma serializada: en cada ciclo se calcula un único dato, se escribe en su registro intermedio, y solo entonces se procede a la siguiente iteración. Esta serialización se traduce en una latencia total de 500 ns. El consumo de recursos es  374 FFs y 488 LUTs, sin uso de BRAM ni DSP.
+
+![Reporte de recursos de Adder tree sin Loop unrolling](img/Reporte_no_pragma.png){ #fig-Reporte_no_pragma width="1000" }
+
+
+Para realizar una comparación con el uso de los pragmas, vuelva al archivo fuente y descomente ambos pragmas como se ve en la [](#fig-Pragmas-uncomment). Luego corra de nuevo la sintesis.
+
+![Pragmas HLS UNROLL descomentados](img/Vitis_pragmas.png){ #fig-Pragmas-uncomment width="1000" }
+
+
+Al habilitar los pragmas HLS UNROLL y resintetizar, se obtiene el reporte de la [](#fig-Reporte_post_pragma). La diferencia más visible es que el bucle VITIS_LOOP_8_1 ya no aparece en la jerarquía: Vitis HLS replicó la lógica de suma de cada iteración y la integró dentro del cuerpo de la función adder_tree. La latencia total cae de 500 ns a 90 ns.
+Este desempeño se obtiene a costa de un aumento  de recursos lógicos: 420 FFs  y 505 LUTs.
+
+![Reporte de recursos de Adder tree con Loop unrolling](img/Reporte_post_pragma.png){ #fig-Reporte_post_pragma width="1000" }
+
+
+### Cosimulación 
+
+Finalmente queda verificar que el modulo sintetizado tiene un comportamiento homologo al algoritmo diseñado en C.Para esto se hace uso de la herramienta de cosimulacion de vitis, esta corre la simulacion en C, guarda los resultados y despues abre una instancia de vivado para simular el rtl generado con los mismos vectores de referencia.
+
+Para iniciar la cosimulación vaya al menu lateral y presione el boton *Run* de la sección C/RTL COSIMULATION vista en la [](#fig-cosim-button).
+
+![Menú de Cosimulación](img/co_sim_menu.png){ #fig-cosim-button width="500" }
+
+Esto nuevamente lanzara una ventana emergente con opciones avanzadas para la cosimulación como se ve en [](#fig-cosim-options). Mantenga las opciones predeterminadas y presione *Run*.
+
+![Opciones de Cosimulación](img/co-sim-options.png){ #fig-cosim-options width="500" }
+
+
+Finalmente aparecera en la consola el resultado del testbench, mostrando primero el resultado en software y despues en RTL.
+
+
+### Exportado de la IP
+
+Una vez validado el modulo generado a nivel de RTL, solo falta empaquetar el modulo en un bloque IP para que pueda ser usado en Vivado.
+
+En el menú lateral *IP Package* visto en la [](#fig-Vitis_package_menu) presione *Run*.
+
+![Menú de empaquetado](img/Vitis_package_menu.png){ #fig-Vitis_package_menu width="500" }
+
+
+Esto lanzara una ventana emergente con opciones para la configuracion del empaquetado como se ve en la [](#fig-Vitis_package_cfg).Se sugiere asignar el nombre **Adder_tree_hls_ip** en el campo *hls.package.output.file* que define el nombre del archivo (no necesariamente de la IP).
+
+
+![Opciones de configuación del IP](img/Vitis_package_cfg.png){ #fig-Vitis_package_cfg width="500" }
+
+Al exportar la IP se generan:
+
+- Generación de Archivos RTL: Se consolidan los archivos Verilog o VHDL finales.
+- Scripts de Control: Se incluyen los archivos de restricciones (.xdc) y scripts Tcl necesarios para la integración.
+- Documentación: Se genera automáticamente un reporte de recursos y latencia que acompañará al bloque.
+
+Al finalizar el proceso, el IP aparecerá en la carpeta del componente HLS bajo el nombre *Adder_tree_hls_ip.zip*.Descomprima esta arthivo con su programa de preferencia.Al descomprimirlo podra observar que posee varias capetas, con toda la información necesaria para que sea reconocida como una IP en el catalogo de Vivado, cabe destacar que el empaquetado incluye drivers de software sin necesidad de intervención del usuario.
+
+
+
+### Integración de Periférico HLS
+
+Abra Vivado y cree un nuevo proyecto eligiendo la placa "Nexys A7 100T" en la sección Boards, como se ha hecho en secciones previas.
+
+Antes de poder integrar la IP generada a un sistema, hay que añadir la carpeta donde esta se encuentra a los repositorios de bloques IP's a Vivado. Para esto dirijase a Tools>Settings como se ve en la [](#fig-Tool_settings).
+
+![Configuracion de Vivado](img/Tool_settings.png){ #fig-Tool_settings width="1000" }
+
+En el panel emergente mostrado en la [](#fig-IP_REP) dirijase al botón IP>Repository, seguido de esto haga click en el signo + para añadir la carpeta donde guardó el bloque IP.
+
+![Repositorios de IP](img/IP_REP.png){ #fig-IP_REP width="1000" }
+
+Si no han ocurrido inconvenientes la IP debería aparecer la IP dentro de la carpeta como se ve en la [](#fig-Ip_folder). Note que el nombre de la IP corresponde al nombre de la función en software y no al nombre de la carpeta exportada.
+
+![Carpeta de la IP](img/Ip_folder.png){ #fig-Ip_folder width="1000" }
+
+Cierre la ventana emergente y cree un nuevo diagrama de bloques. En este genere el sistema base de MicroBlaze V con periférico de Uart diseñado en la [seccion 1](../../Ejemplo_1_Sistema_base/Ejemplo_1/#diseno-de-hardware) como se ve en la [](#figbd_no_adder_tree).
+
+
+![Diagrama de bloques sin Adder_tree](img/bd_no_adder_tree.png){ #figbd_no_adder_tree width="1000" }
+
+Luego al buscar una IP para agregar al bloque, debería aparecer la IP diseñada en el listado como se ve en la [](#fig-Ip_on_list).
+
+![IP en la lista de Ip's disponibles](img/Ip_on_list.png){ #fig-Ip_on_list width="400" }
+
+Esto agregará la IP al diagrama, como se puede apreciar en la [](#fig-IP_Adder_tree_on_bd). Note que esta IP posee una interfaz AXI debido a que Vitis realiza el encapsulado automaticamente (A diferencia del modulo diseñado en RTL de la [sección 4](../../Ejemplo_4_Verilog/Ejemplo_4/)). Tambien se tiene que posee un pin de interrupcion, sin embargo este no es funcional debido a que no se le asigno una funcionalidad al momento de hacer la síntesis de C a RTL.
+
+![IP diseñada en el diagrama de bloques ](img/IP_Adder_tree_on_bd.png){ #fig-IP_Adder_tree_on_bd width="1000" }
+
+
+Luego presione el botón *Run Connection Automation* para integrar la IP al diagrama de bloques, debería quedar como en la [](#fig-bd_with_adder_Tree).
+
+![Diagrama de bloques con IP Adder_tree](img/bd_with_adder_Tree.png){ #fig-bd_with_adder_Tree width="1000" }
+
+Tras validar el diagrama de bloques, genere los productos de salida y genere la envoltura en hdl.
+
+Despues de correr la síntesis y la implementación, el autor obtuvo la utilizacion de recursos vista en la [](#tbl-resources-global).
 
 <div markdown="1" style="text-align: center;">
 
-Table: Utilización de recursos {#tbl-resources}
+Table: Utilización de recursos {#tbl-resources-global}
 
 | Proceso  | LUT | FF | BRAM      | 
 | ------- | ----- | --------- | ---------------- |
-| `Sintesis`   | 2911     | 2714        | 16     | 
-| `Implementacion`  | 2603    | 2647    | 16         |
+| `Sintesis`   | 2772     | 2483        | 32     | 
+| `Implementacion`  | 2486    | 2415    | 32         |
 
 </div>
 
-## Firmware
 
-Abra Vitis, genere un componente de plataforma usando el hardware diseñado y un componente de aplicación. Importe Ejemplo_3.c de la carpeta Ejemplo_3 del repositorio.
 
-Viendo el codigo:
+## Diseño de Firmware
+
+Vuelva a Vitis. Puede generar un nuevo workspace o mantener el que uso previamente, los componentes de plataforma, aplicacion y HLS se encuentran separados por carpetas dentro del workspace.
+
+Genere un componente de plataforma usando el archivo xsa diseñado en la sección anterior, acto seguido genere un componente de aplicación.
+
+Note que en el panel lateral, en la carpeta *Includes* del componente de aplicación, se encuentra la subcarpeta ".../standalone_microblaze_riscv_0/include" donde están los encabezados de los drivers de cada uno de los periféricos del sistema. En esta carpeta se encuentra el driver de la IP diseñada con el nombre "xadder_tree.h" como se ve en la [](#fig-includes-adder-tree). La x antes del nombre del encabezado viene de Xillinx. 
+
+
+![Includes de aplicación](img/adder_tree_includes.png){ #fig-includes-adder-tree width="1000" }
+
+
+
+
+
+
+
+
+
+
+En el componente de aplicacion importe el archivo fuente "Ejemplo_5.c" de la carpeta "Ejemplo_5" el cual contiene el codigo:
 
 ```c
+#include "xadder_tree.h"
 #include <stdio.h>
-#include <xgpio.h>
-#include "xparameters.h"
-#include "xuartlite.h"
-#include "xintc.h"
-#include "xil_exception.h"
 #include "xil_printf.h"
+#include "xparameters.h"
 
-XIntc     IntcInstance;
-XUartLite UartInstance;
-XGpio     GpioInstance;
-
-#define BUTTON_CHANNEL  1
-#define LED_CHANNEL     2
-#define BUTTON_IR_MASK  XGPIO_IR_CH1_MASK
-
-void UartHandler(void *CallbackRef) {
-    XUartLite *UartPtr = (XUartLite *)CallbackRef;
-    u8 ReadBuffer[2] = {0};  // 1 char + null terminator
-
-    unsigned int ReceivedCount = XUartLite_Recv(UartPtr, ReadBuffer, 1);
-    if (ReceivedCount > 0) {
-        xil_printf("Interrupcion de UART! Recibio: %s\r\n", ReadBuffer);
-    }
-    XIntc_Acknowledge(&IntcInstance, XPAR_FABRIC_AXI_UARTLITE_0_INTR);
-}
-
-void GpioHandler(void *CallbackRef) {
-    XGpio *GpioPtr = (XGpio *)CallbackRef;
-
-    XGpio_InterruptDisable(GpioPtr, BUTTON_IR_MASK);
-
-    u32 buttonState = XGpio_DiscreteRead(GpioPtr, BUTTON_CHANNEL);
-    XGpio_DiscreteWrite(GpioPtr, LED_CHANNEL, buttonState);
-
-    if (buttonState != 0) {
-        xil_printf("Boton presionado! Valor: 0x%X\r\n", buttonState);
-    }
-
-    XGpio_InterruptClear(GpioPtr, BUTTON_IR_MASK);
-    XIntc_Acknowledge(&IntcInstance, XPAR_FABRIC_AXI_GPIO_0_INTR);
-    XGpio_InterruptEnable(GpioPtr, BUTTON_IR_MASK);
-}
 
 int main() {
-    int Status;
-    // Inicializacion de los perifericos
-    Status = XUartLite_Initialize(&UartInstance, XPAR_XUARTLITE_0_BASEADDR);
-    if (Status != XST_SUCCESS) return XST_FAILURE;
+    int status;
+    xil_printf("--- HLS Adder tree Test ---\r\n");
 
-    Status = XGpio_Initialize(&GpioInstance, XPAR_AXI_GPIO_0_BASEADDR);
-    if (Status != XST_SUCCESS) return XST_FAILURE;
+    // Inicializa IP
+    XAdder_tree hls_inst;
+    XAdder_tree_Config *tree_config = XAdder_tree_LookupConfig(XPAR_XADDER_TREE_0_BASEADDR);
+    status = XAdder_tree_CfgInitialize(&hls_inst, tree_config);
+    if (status != XST_SUCCESS) {
+        xil_printf("ERROR: Inicializacion fallada\r\n");
+        return XST_FAILURE;
+    }
 
-    // Channel 1 = botones (entradas), Channel 2 = LEDs (salidas)
-    XGpio_SetDataDirection(&GpioInstance, BUTTON_CHANNEL, 0xFFFFFFFF);
-    XGpio_SetDataDirection(&GpioInstance, LED_CHANNEL,    0x00000000);
-    XGpio_InterruptClear(&GpioInstance, XGPIO_IR_CH1_MASK | XGPIO_IR_CH2_MASK);
+    // Datos de entrada
+    int input[8] ={10,20,30,40,50,60,70,80};
+    // Escribir datos
+    XAdder_tree_Write_i_data_Words(&hls_inst, 0, (word_type*)input, 8);
 
-    //Inicializacion del controlador de interrupciones
-    Status = XIntc_Initialize(&IntcInstance, XPAR_XINTC_0_BASEADDR);
-    if (Status != XST_SUCCESS) return XST_FAILURE;
+    
+    // Manda señal de inicio al periferico
+    XAdder_tree_Start(&hls_inst);
+    //Esperar a recibir resultado
+    while (!XAdder_tree_IsDone(&hls_inst));
 
-    // Conexiones de interrupción al controlador
-    Status = XIntc_Connect(&IntcInstance, XPAR_FABRIC_AXI_UARTLITE_0_INTR,
-                           (XInterruptHandler)UartHandler, &UartInstance);
-    if (Status != XST_SUCCESS) return XST_FAILURE;
-
-    Status = XIntc_Connect(&IntcInstance, XPAR_FABRIC_AXI_GPIO_0_INTR,
-                           (XInterruptHandler)GpioHandler, &GpioInstance);
-    if (Status != XST_SUCCESS) return XST_FAILURE;
-
-    // Habilita el controlador
-    Status = XIntc_Start(&IntcInstance, XIN_REAL_MODE);
-    if (Status != XST_SUCCESS) return XST_FAILURE;
-    //Habilita las interrupciones de los dos perifericos dentro del controlador
-    XIntc_Enable(&IntcInstance, XPAR_FABRIC_AXI_UARTLITE_0_INTR);
-    XIntc_Enable(&IntcInstance, XPAR_FABRIC_AXI_GPIO_0_INTR);
-
-    // Habilitacion  de excepciones (necesario para el uso de interrupciones en Risc-v)
-    Xil_ExceptionInit();
-    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
-                                 (Xil_ExceptionHandler)XIntc_InterruptHandler,
-                                 &IntcInstance);
-    Xil_ExceptionEnable();
-
-    // Habilita las interrupciones desde los perifericos de ambos perifericos
-    XUartLite_EnableInterrupt(&UartInstance);
-    XGpio_InterruptEnable(&GpioInstance, BUTTON_IR_MASK);
-    XGpio_InterruptGlobalEnable(&GpioInstance);
-
-    xil_printf("Presione un boton o mande un mensaje por la terminal.\r\n");
-
-    while (1);
+    // Leer resultado
+    int result = XAdder_tree_Get_o_data(&hls_inst);
+    xil_printf("Resultado obtenido de la IP: %d\r\n", result);
     return 0;
 }
 ```
 
-
-Primero nos fijaremos en las librerías de interes:
-
-- **xgpio.h**:Librería que contiene funciones y definiciones asociadas a GPIO.
-- **xuartlite.h**: Librería que contiene funciones y definiciones asociadas al periférico UART.
-- **xintc.h** Librería que contiene funciones y definiciones asociadas al controlador de interrupciones.
-- **xparameters.h** : Librería que contiene las definiciones asociadas al hardware descrito en Vivado, es en este archivo donde se encuentran las macros asociadas a direcciones base de los periféricos **XPAR_XUARTLITE_0_BASEADDR** en caso de UART y  **XPAR_AXI_GPIO_0_BASEADDR** en caso de GPIO.
+Note que el programa incluye el encabezado del driver del adder tree.
 
 
-A manera de ilustrar, haga click+ctrl sobre **xparameter.h** en el codigo, esto lo llevará al archivo. Nota: En linux el servidor slang tiende a fallar, en ese caso para visualizar el archivo vaya al panel lateral y dirijase la segunda carpeta de Includes del componente de aplicación.
+Este programa sigue la siguiente secuencia:
+
+- Se inicializa el periferico.
+- Se escriben los datos de entrada en la IP.
+- Se gatilla la IP para obtener el resultado.
+- Se imprime el resultado a través de Uart.
 
 
-Dirijase a la linea 34 donde verá las definiciones del periferico AXI GPIO.
+Compile la aplicación haciendo click en  **Build**. En el caso del autor, se obtuvo un ELF con un tamaño de 12.8 KB como se ve en la [](#tbl-elf-size).
 
-```c
-/* Definitions for peripheral AXI_GPIO_0 */
-#define XPAR_AXI_GPIO_0_COMPATIBLE "xlnx,axi-gpio-2.0"
-#define XPAR_AXI_GPIO_0_BASEADDR 0x40000000 // Direccion Base
-#define XPAR_AXI_GPIO_0_HIGHADDR 0x4000ffff // Direccion Alta
-#define XPAR_AXI_GPIO_0_INTERRUPT_PRESENT 0x1
-#define XPAR_AXI_GPIO_0_IS_DUAL 0x1
-#define XPAR_AXI_GPIO_0_INTERRUPTS 0x2000
-#define XPAR_FABRIC_AXI_GPIO_0_INTR 0
-#define XPAR_AXI_GPIO_0_INTERRUPT_PARENT 0x41200001
-#define XPAR_AXI_GPIO_0_GPIO_WIDTH 0x5
-```
-
-Note que tanto la direccion base  (0x_4000_000) como la dirección alta  (0x4000_ffff) corresponden con las mostradas en la [](#fig-Adress-map).
-
-Lo mismo es cierto para el periferico Uart visto en la linea 90.
-
-```c
-/* Definitions for peripheral AXI_UARTLITE_0 */
-#define XPAR_AXI_UARTLITE_0_COMPATIBLE "xlnx,axi-uartlite-2.0"
-#define XPAR_AXI_UARTLITE_0_BASEADDR 0x40600000 // Direccion Base
-#define XPAR_AXI_UARTLITE_0_HIGHADDR 0x4060ffff // Direccion Alta
-#define XPAR_AXI_UARTLITE_0_BAUDRATE 0x2580
-#define XPAR_AXI_UARTLITE_0_USE_PARITY 0x0
-#define XPAR_AXI_UARTLITE_0_ODD_PARITY 0x0
-#define XPAR_AXI_UARTLITE_0_DATA_BITS 0x8
-#define XPAR_AXI_UARTLITE_0_INTERRUPTS 0x1
-#define XPAR_FABRIC_AXI_UARTLITE_0_INTR 1
-#define XPAR_AXI_UARTLITE_0_INTERRUPT_PARENT 0x41200001
-
-```
-
-Luego volviendo al archivo Ejemplo_3.c se tienen las siguientes funciones handler segun lo comentado en  [la sección de contexto](#que-es-una-interrupcion).
-
-- UartHandler: Función Handler de uart, se activa cuando la placa recibe un caracter a través de uart. Esta funcion reenvia el caracter recibido.
-- GpioHandler: Funcion Handler de GPIO, se activa cuando se presiona uno de los botones de la placa. Al apretar un boton la funcion envia un aviso de botón presionado a través de Uart con el valor correspondiente a su pin GPIO y prende un led asociado a ese valor.
-
-
-Analizando el codigo del main se tiene que se sigue la siguiente secuencia:
-
-- Se inicializan perifericos de Uart y GPIO.
-- Se fijan las direcciones de los GPIO, de manera que detecte los botones como entradas y los leds como salidas (1= Entrada 0 = Salida). Note que los canales vistos en la [](#fig-gpio-config) son usados para definir que canal corresponde a que periférico (BUTTON_CHANNEL=1 LED_CHANNEL=2).
-- Se inicializa el controlador de interrupciones.
-- Se entrega la informacion al controlador de interrupciones acerca de que función Handler corresponde a que periférico.
-- Se habilita el controlador de interrupciones.
-- Habilita la recepcion de interrupciones de los dos periféricos al controlador.
-- Habilita excepciones (necesario para el uso de interrupciones en Risc-V).
-- Habilita la salida de interrupciones desde los periféricos.
-- Deja un bucle indefinido para que el programa se mantenga corriendo.
-
-
-Haga click en **Build** para compilar la aplicación, debería dar la utilizacion de recursos vista en la [](#tbl-elf-size) dando un total aproximado de 18.6 KB. Note que esto es superior al minimo de memoria entregado por el Wizard de **Run Block Automation** (16 KB). 
 
 <div markdown="1" style="text-align: center;">
 
@@ -309,36 +463,31 @@ Table: Tamaño del ELF {#tbl-elf-size}
 
 | text  | data | bss | dec      |
 | ------- | ----- | --------- | ---------------- |
-|  14376  | 480     | 3792        | 18648     |
+|  9040  | 276     | 3552        | 12868     |
 
 </div>
 
-### Verificación
-
-Conecte la placa, enciendala y programela haciendo click en **Run** desde el panel lateral. Luego pruebe mandando caracteres a través de su consola serial de preferencia o presionando los botones, debería comportarse como se ve en [](#fig-hterm-test).
+## Verificación
 
 
-![Pruebas en Hterm](img/Verificación_1.png){ #fig-hterm-test width="1000" }
+Ya teniendo el archivo ELF abra su programa de comunicación serial de preferencia (en esta guía se hará uso de Hterm) y configure de acuerdo a los parametros:
 
-Luego, otra manera de visualizar el comportamiento de las funciones handler es haciendo uso del depurador. Posicione breakpoints al inicio de cada funcion Handler como se ve en la [](#fig-breakpoints) e inicie la sesion de depurado haciendo click en **Debug**.
-
-
-
-![Breakpoints en funciones Handler](img/break_points.png){ #fig-breakpoints width="1000" }
+- BaudRate: 9600
+- Paridad: No
+- Ancho de dato: 8 Bits
 
 
+Luego conecte la placa a su computador, enciendala y conecte su programa  de comunicacion serial al canal apropiado (Generalmente /dev/ttyUSB0 en Linux y COM4 en Windows).
 
-Note que la Uart se gatilla tanto cuando termina una transmisión como cuando detecta la recepcion de datos de acuerdo a la [documentacion de AXU UART Lite](https://docs.amd.com/v/u/en-US/pg142-axi-uartlite). Esto implica que esta funcion se gatillará cuando:
 
-- El programa envia el string "Presione un boton o mande un mensaje por la terminal.\r\n" antes de entrar al loop.
-- Cuando se presiona un boton y se envia el mensaje correspondiente.
-- Cuando detecta recepcion de datos.
-
-Como la funcion handler chequea que los registros internos de la IP hayan recibido datos antes de enviar, esta no enviara datos fuera de cuando los recibe desde el PC.
+Finalmente corra la aplicacion haciendo click en *Run* en el panel lateral del componente de aplicación. En su terminal serial debería ver el resultado de la suma de los 8 datos de entrada como se ve en la [](#fig-hterm-results )
 
 
 
-Con esto han dado un paso fundamental: pasar de un procesador que solo ejecuta código en aislamiento a un sistema que percibe e interactúa con el mundo real. Lograron integrar periféricos heterogéneos —GPIO para entrada física desde botones y salida hacia LEDs, UART para comunicación serial— y orquestar todo a través de un controlador de interrupciones que permite al MicroBlaze responder de forma eficiente a eventos asíncronos sin desperdiciar ciclos en polling. Este patrón —periféricos sobre AXI, manejadores de interrupción y un procesador soft personalizado sobre FPGA— es la base sobre la que se construyen sistemas embebidos reales: desde controladores industriales hasta instrumentación científica. A partir de aquí, agregar nuevos periféricos (timers, ADCs, sensores I²C/SPI, aceleradores propios en hardware) es solo cuestión de aplicar la misma metodología que acaban de dominar. El hardware ya no es una caja negra: es una plataforma maleable que ustedes pueden moldear a la medida del problema que quieran resolver.
+
+![Resultados visualizados en Hterm](img/hterm_results.png){ #fig-hterm-results width="1000" }
 
 
-![](img/.png){ #fig width="1000" }
+
+
+Con esta sección se completa el flujo de diseño desde una descripción algorítmica en C/C++ hasta su ejecución como periférico controlado por software embebido sobre el procesador MicroBlaze V. Más allá del ejemplo particular del adder tree, lo relevante es haber recorrido el camino que conecta dos niveles de abstracción que tradicionalmente se mantienen separados: el del programador y el del diseñador de hardware. La capacidad de modificar una única directiva como HLS UNROLL y observar cómo se transforman la latencia y el uso de recursos del módulo abre un espacio de exploración de arquitecturas que resultaría impracticable mediante la escritura manual de RTL. A partir de este punto, cualquier algoritmo expresable en C deja de ser una pieza exclusivamente de software para convertirse en una candidata legítima a acelerador en hardware, y la decisión entre ejecutarlo sobre el procesador o materializarlo como periférico dedicado pasa a depender de los compromisos de desempeño, área y consumo que el diseñador esté dispuesto a asumir. Con las herramientas vistas en esta guía, esa decisión deja de ser una limitación técnica y se convierte en una elección de diseño.
