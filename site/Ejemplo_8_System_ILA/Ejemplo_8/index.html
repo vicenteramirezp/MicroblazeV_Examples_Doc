@@ -1,0 +1,1271 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Ejemplo_7_VGA/Ejemplo_7/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Guía 8 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-8-uso-de-system-ila" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guía 8
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_1_Sistema_base/Ejemplo_1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 3
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_5_HLS/Ejemplo_5/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 5
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 6
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 7
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 8
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_1_Sistema_base/Ejemplo_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_5_HLS/Ejemplo_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 8
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-8-uso-de-system-ila">Guía 8 : Uso de System ILA</h1>
+<h2 id="contexto">Contexto</h2>
+<p>Aqui pondre una explicacion en mayor detalle de AXI4-Lite, que es el foco de esta guía.</p>
+<p>Incluirá:</p>
+<ul>
+<li>Descripcion mas detallada de cada uno de los 5 canales</li>
+<li>Descripcion de las señales.</li>
+<li>Formas de onda de ejemplo para cada transaccion.</li>
+<li>Explicar que las direcciones siempre son (direccion en canal de AXI + Direccion base del periférico mapeado en memoria)</li>
+</ul>
+<h2 id="diseno-de-hardware">Diseño de Hardware</h2>
+<p>Abra Vivado y genere un nuevo proyecto. </p>
+<p>En este genere un diagrama de bloques. En el diagrama de bloques haga un sistema con MicroBlaze V con interrupciones habilitadas y con un periférico Uart como se ve en la<a href="#fig-bd_no_adder_tree">figura 1</a>. Si no recuerda como realizarlo puede revisar la <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/#diseno-de-hardware">sección de diseño de Hardware de la guía 3</a>.</p>
+<p><figure id="_figure-1"><img alt="Diagrama de bloques de MicroBlaze V con periférico Uart" id="fig-bd_no_adder_tree" src="../img/bd_no_adder_tree.png" width="1000"><figcaption>Figura 1: Diagrama de bloques de MicroBlaze V con periférico Uart</figcaption></figure></p>
+<p>Desde el panel lateral <em>Boards</em> agregue <strong>16 LEDs</strong> y <strong>16 Switches</strong> al diagrama de bloques como se ve en la <a href="#fig_LEDS_Switches">figura 2</a>.</p>
+<p><figure id="_figure-2"><img alt="Interruptores y Leds en el panel lateral *Boards" id="fig_LEDS_Switches" src="../img/LEDS_Switches.png" width="500"><figcaption>Figura 2: Interruptores y Leds en el panel lateral *Boards</figcaption></figure></p>
+<p>Luego presione <em>Run Connection Automation</em> y mantenga las conexiones predeterminadas. Su diagrama de bloques debería verse como en la <a href="bd_Leds_switches"></a>. Note que los leds estan en GPI0 y los interruptores están en GPIO2.</p>
+<p><figure id="_figure-3"><img alt="Diagrama de Bloques con AXI GPIO integrado" id="fig-bd_Leds_switches" src="../img/bd_Leds_switches.png" width="1000"><figcaption>Figura 3: Diagrama de Bloques con AXI GPIO integrado</figcaption></figure></p>
+<p>Luego agregue al diagrama de bloques la IP <em>Axi timer</em>, la cual es usada para medir tiempo o generar eventos periodicos. Tras agregar la IP corra <em>Run Connection Automation</em> para integrar esta IP a la interconexion AXI del sistema. Debería verse como en la <a href="#fig-bd_timer">figura 4</a>.</p>
+<p><figure id="_figure-4"><img alt="Diagrama de Bloques con AXI Timer integrado" id="fig-bd_timer" src="../img/bd_timer.png" width="1000"><figcaption>Figura 4: Diagrama de Bloques con AXI Timer integrado</figcaption></figure></p>
+<p>Ahora integre la IP "System_ILA" como se ve en la <a href="#fig-System_ILA">figura 5</a>. Esta es una IP de depurado de Xillinx pata el monitoreo de señales a nivel de interfaz dentro de un sistema, particularmente AXI, AXI-Stream y AXI4-Lite. Al tener conocimiento de la naturaleza de la conexión, agrupa todas las señales correspondientes a una misma interfaz en el visor de ondas.</p>
+<p><figure id="_figure-5"><img alt="IP System ILA en el diagrama de bloques" id="fig-System_ILA" src="../img/System_ILA.png" width="250"><figcaption>Figura 5: IP System ILA en el diagrama de bloques</figcaption></figure></p>
+<p>Haga doble click en la IP para abrir la ventana de configuración, en opciones generales están las siguientes opciones:</p>
+<ul>
+<li><strong>Monitor Type</strong>: elige que observa la ip.<ul>
+<li><strong>Native</strong>: Monitorea señales particulares.</li>
+<li><strong>Interface</strong>: Monitorea interfaces compuestas por varias señales como los canales de AXI.</li>
+<li><strong>Mix</strong>: Puede monitorear ambos.</li>
+</ul>
+</li>
+<li><strong>Number of Interface Slots</strong> : cuantas conecciones va a monitorear esta IP.</li>
+<li><strong>Sample Data Depth</strong> : Profundidad del buffer de captura, es decir cuantas muestras son guardadas por evento gatillante.</li>
+<li><strong>Number of Comparators</strong>: Numero de comparadores independientes por señal a usar como gatillante de captura. A cada señal gatillante se le puede asignar una condicion por comparador.</li>
+<li><strong>Trigger Out Port</strong>: Señal de salida opcional que se pone en alto cuando este bloque es gatillado.</li>
+<li><strong>Trigger In Port</strong>: Señal de entrada opcional que gatilla la captura de señales de manera independiente a las señales elegidas como gatillantes de forma interna en el bloque.</li>
+<li><strong>Capture Control</strong>: Habilita calificacion de almacenado. Cuando esta apagado, el ILA almacena cada ciclo de reloj dentro del bufffer interno cuando es gatillado. Cuando esta activado se puede señalar una condicion de captura de manera que  solo los ciclos donde la condicion es verdadera se consume espacio del bugger inteno</li>
+<li><strong>Advanced Trigger</strong>: Permite generar  condiciones de captura mas avanzadas basadas en maquinas de estado.</li>
+</ul>
+<p>Tambien se tiene que este bloque automaticamente realiza una estimacion acerca de los recursos que va a utilizar y la muestra en un porcentaje de uso de las BRAMS disponibles en la placa. El consumo de recursos es directamente proporcional a la cantidad de interfaces medidas y tamaño de muestras por capturas.</p>
+<p>En esta guía se van a medir dos interfaces por lo que fije <strong>Number of Interface Slots</strong> y para que el tamaño de la transacción no sea un impedimento para la visualizacion de la forma de onda, fije <strong>Sample Data Depth</strong> en 4096 como se ve en la <a href="#fig_System_ILA_Config">figura 6</a>.</p>
+<p><figure id="_figure-6"><img alt="Configuración System ILA" id="fig_System_ILA_Config" src="../img/System_ILA_Config.png" width="1000"><figcaption>Figura 6: Configuración System ILA</figcaption></figure></p>
+<p>Note que no esta presente el botón <em>Run connection Automation</em>, esto es debido a que el System ILA se puede conectar a distintas interfaces AXI dentro de un mismo sistema.</p>
+<p>Realice las siguientes conexiones para integrar el bloque al esquema axi y medir las dos interfaces de interés:</p>
+<ul>
+<li><em>clk_out1</em> de <strong>Clocking Wizard</strong> a <em>clk</em> de <strong>System ILA</strong>.</li>
+<li><em>peripheral_aresetn</em> de <strong>Processor System Reset</strong> a <em>reset</em> de <strong>System ILA</strong>.</li>
+<li><em>SLOT_0_AXI</em> de <strong>System ILA</strong> a <em>S_AXI</em> de <strong>AXI Timer</strong></li>
+<li><em>SLOT_1_AXI</em> de <strong>System ILA</strong> a <em>S_AXI</em> de <strong>AXI GPIO</strong></li>
+</ul>
+<p>Debería verse como la <a href="#fig-conexion-ILA-SLAVE">figura 7</a>.</p>
+<p><figure id="_figure-7"><img alt="System ILA en el diagrama de bloques" id="fig-conexion-ILA-SLAVE" src="../img/BD_System_ILA.png" width="1000"><figcaption>Figura 7: System ILA en el diagrama de bloques</figcaption></figure></p>
+<p>Finalmente conecte <em>interrupt</em> de <strong>AXI Timer</strong> a <em>In0</em> de <strong>Inline Concat</strong> para habilitar las interrupciones del temporizador como se ve en <a href="#fig_bd_interrupt">figura 8</a>.</p>
+<p><figure id="_figure-8"><img alt="Conexión Interrupt de Timer" id="fig_bd_interrupt" src="../img/bd_interrupt.png" width="1000"><figcaption>Figura 8: Conexión Interrupt de Timer</figcaption></figure></p>
+<p>Valide su diagrama de bloques, genere los productos de salida y la envoltura HDL.</p>
+<p>Después de correr la síntesis y la implementación, el autor obtuvo la utilización de recursos vista en la <a href="#tbl-resources-global">tabla 1</a>.</p>
+<div style="text-align: center;">
+<table id="tbl-resources-global">
+<caption style="caption-side:bottom">Tabla 1: Utilización de recursos </caption><thead>
+<tr>
+<th>Proceso</th>
+<th>LUT</th>
+<th>FF</th>
+<th>BRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sintesis</code></td>
+<td>5718</td>
+<td>6644</td>
+<td>57</td>
+</tr>
+<tr>
+<td><code>Implementacion</code></td>
+<td>5686</td>
+<td>7197</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Tras exportar el archivo xsa <strong>no cierre Vivado</strong> debido a que el depurado a través de System ILA se realiza en esta plataforma.</p>
+<h2 id="diseno-de-firmware">Diseño de Firmware</h2>
+<p>Abra Vitis, fije un workspace, cree un nuevo componente de plataforma y uno de aplicación.</p>
+<p>En el componente de aplicación importe el archivo Ejemplo_8.c de la carpeta Ejemplo_8, la que tiene el siguiente código:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xgpio.h&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xparameters.h"</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xtmrctr.h"</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_types.h"</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">XTmrCtr</span><span class="w">   </span><span class="n">TimerInstance</span><span class="p">;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">XGpio</span><span class="w">     </span><span class="n">GpioInstance</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="cp">#define TIMER_COUNTER_0  0</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="cp">#define SWITCH_CHANNEL  2</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="cp">#define LED_CHANNEL     1</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Status</span><span class="p">;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">valor_switches</span><span class="p">;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">TimerValue1</span><span class="p">,</span><span class="w"> </span><span class="n">TimerValue2</span><span class="p">;</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="c1">//Inicializacion de perifércos</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XGpio_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_AXI_GPIO_0_BASEADDR</span><span class="p">);</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="n">XPAR_AXI_TIMER_0_BASEADDR</span><span class="p">);</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="c1">// Fija que canal de GPIO es entrada y cual es salida</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">SWITCH_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w">    </span><span class="mh">0x00000000</span><span class="p">);</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="c1">// Escritura  (Canales AW W B)</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="n">XGpio_DiscreteWrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00005555</span><span class="p">);</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="c1">// Lectura (AR R)</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="n">valor_switches</span><span class="o">=</span><span class="n">XGpio_DiscreteRead</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">SWITCH_CHANNEL</span><span class="p">);</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="c1">// Cambio dinamico de estado de registro</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="n">TimerValue1</span><span class="o">=</span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span><span class="w">    </span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="n">TimerValue2</span><span class="o">=</span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>En este archivo se añade la librería "xtmrctr.h" que define el manejo del periférico AXI Timer.
+Este programa sigue la siguiente secuencia:</p>
+<ul>
+<li>Se inicializan los periféricos.</li>
+<li>Define las direcciones de los GPIO (Switches como entradas y LEDs como salidas).</li>
+<li>Se realiza una escritura en los 16 LEDs con un patrón 0x0101010101.</li>
+<li>Se realiza una lectura del valor actual de los 16 switches.</li>
+<li>Se inicia el timer.</li>
+<li>Se mide el valor actual del timer dos veces.</li>
+</ul>
+<p>Compile la aplicación haciendo click en <em>Build</em> del panel lateral. El autor obtuvo un ELF con un tamaño de 11.6 KB como se ve en la <a href="#tbl-elf-size">tabla 2</a>.</p>
+<div style="text-align: center;">
+<table id="tbl-elf-size">
+<caption style="caption-side:bottom">Tabla 2: Tamaño del ELF </caption><thead>
+<tr>
+<th>text</th>
+<th>data</th>
+<th>bss</th>
+<th>dec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7664</td>
+<td>342</td>
+<td>3616</td>
+<td>11621</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="verificacion">Verificación</h2>
+<p>Para poder hacer uso del System ILA hay que programar la placa a través de Vivado, para esto hay que hacer que Vitis no programe la placa a nivel de hardware y se ocupe solamente de cargar la aplicación.</p>
+<p>Para esto vaya al menu lateral y presione el botón de configuración,tiene que posicionar el mouse en <em>Run</em> o <em>Debug</em> para que aparezca como se ve en la <a href="#fig_Config_vitis_run">figura 9</a>.</p>
+<p><figure id="_figure-9"><img alt="Configuración ejecución aplicación" id="fig_Config_vitis_run" src="../img/Config_vitis_run.png" width="500"><figcaption>Figura 9: Configuración ejecución aplicación</figcaption></figure></p>
+<p>En la ventana de configuración desmarque la casilla <em>Program Device</em> como se ve en la <a href="#fig_Disable_programing">figura 10</a>.</p>
+<p><figure id="_figure-10"><img alt="Deshabilitar programado de la placa desde Vitis" id="fig_Disable_programing" src="../img/Disable_programing.png" width="1000"><figcaption>Figura 10: Deshabilitar programado de la placa desde Vitis</figcaption></figure></p>
+<p>Conecte la FPGA a su ordenador.</p>
+<p>Luego vuelva a Vivado y programe la placa, para esto vaya al menu lateral de la izquierda y presione <em>Open Target</em> como se ve en <a href=""></a>.Esto lanzara un botón que dice "Auto_connect" , presionelo para que detecte automáticamente la placa.</p>
+<p><figure id="_figure-11"><img alt="Open_hardware_manager" id="fig" src="../img/Open_hardware_manager.png" width="250"><figcaption>Figura 11: Open_hardware_manager</figcaption></figure></p>
+<p>Esto lo llevará a la perspectiva de depurado de Vivado, como se ve en la <a href="#fig_Interfaz_Debugging_Vivado">figura 12</a>, están las dos interfaces definidas en la <a href="#fig-conexion-ILA-SLAVE">figura 7</a> con  <em>slot_0</em> correspondiendo al timer y <em>slot_1</em> correspondiendo al modulo GPIO.</p>
+<p><figure id="_figure-12"><img alt="Interfaz de depurado de Vivado" id="fig_Interfaz_Debugging_Vivado" src="../img/Interfaz_Debugging_Vivado.png" width="1000"><figcaption>Figura 12: Interfaz de depurado de Vivado</figcaption></figure></p>
+<p>Al hacer click en cualquiera de las dos interfaces AXI se expande en los 5 canales de AXI4-Lite definidos en <a href="#contexto">la sección de contexto</a> como se ve en la <a href="#fig-5-channels">figura 13</a>.</p>
+<p><figure id="_figure-13"><img alt="5 Canales AXI4-Lite vistos en la perspectiva de depuracion de Vivado" id="fig-5-channels" src="../img/5_Canales.png" width="1000"><figcaption>Figura 13: 5 Canales AXI4-Lite vistos en la perspectiva de depuracion de Vivado</figcaption></figure></p>
+<p>Para señalarle al bloque <em>System ILA</em> como realizar la captura de los datos hay que agregar señales particulares que actuaran como los gatillos que le diran cuando terminar y empezar una captura. Para esto haga click en el botón "+" de la pestaña Trigger Setup como se ve en <a href="#fig-Add_trigger">figura 14</a>.</p>
+<p><figure id="_figure-14"><img alt="Añadir señal gatillante" id="fig-Add_trigger" src="../img/Add_trigger.png" width="1000"><figcaption>Figura 14: Añadir señal gatillante</figcaption></figure></p>
+<p>Las señales que mas nos sirven por canal son:</p>
+<ul>
+<li>WVALID: Señal que se pone en alto cuando el procesador realiza una escritura correctamente en el periférico.</li>
+<li>RREADY: Señal que se pone en alto cuando el procesador realiza una transacción de lectura correctamente.</li>
+</ul>
+<p>Añada estas señales para <em>slot_0</em> y <em>slot_1</em> de manera que se puedan analizar todas las transacciones de ambas interfaces como se ve en la <a href="#fig_Se%C3%B1ales_gatillantes"></a>.</p>
+<p><figure id="_figure-15"><img alt="Señales Gatillantes" id="fig_Señales_gatillantes" src="../img/Se%C3%B1ales_gatillantes.png" width="1000"><figcaption>Figura 15: Señales Gatillantes</figcaption></figure></p>
+<p>Ya estando añadidas las señales, hay que añadirles una condición, en este caso en cada una de las señales haga click en la seccion <em>Value</em> y fijela en R (0-to-1-transition) de manera que cuando estas señales se pongan en alto se realice la captura. Debería quedar como en la <a href="#fig_Se%C3%B1ales_gatillantes_rise"></a>.</p>
+<p><figure id="_figure-16"><img alt="Señales gatillantes en canto de subida" id="fig_Señales_gatillantes_rise" src="../img/Se%C3%B1ales_gatillantes_rise.png" width="1000"><figcaption>Figura 16: Señales gatillantes en canto de subida</figcaption></figure></p>
+<p>Ya que se tienen varias condiciones gatillantes, hay que asignarles una logica al conjunto para definir el comportamiento de la captura.  Haga click el boton de <em>Set Trigger Condition</em> visto en la <a href="#fig-Trigger_condition">figura 17</a> y fijelo en "Set Trigger Condition to Global OR" de manera que todas las transiciones gatillen de forma individual la captura.</p>
+<p><figure id="_figure-17"><img alt="Condición de gatillado para el conjunto de señales" id="fig-Trigger_condition" src="../img/Trigger_condition.png" width="1000"><figcaption>Figura 17: Condición de gatillado para el conjunto de señales</figcaption></figure></p>
+<p>Luego haga click en <em>Program Device</em> en el panel lateral visto en la <a href="#fig_Program_device">figura 18</a> para programar la tarjeta, luego haga click en el pop-up "xc7a100t_0" que hace referencia al chip de la placa.</p>
+<p><figure id="_figure-18"><img alt="Programado de la placa" id="fig_Program_device" src="../img/Program_device.png" width="500"><figcaption>Figura 18: Programado de la placa</figcaption></figure></p>
+<p>Esto lanzará otra ventana emergente, donde se mostrará el archivo Bitstream (que posee la definicion de hardware de la placa) y el archivo <em>ltx</em> que contiene la definición del System ILA como se ve en la<a href="#fig_Bitstream_ltx">figura 19</a>.</p>
+<p><figure id="_figure-19"><img alt="Archivos Bitstream y ltx" id="fig_Bitstream_ltx" src="../img/Bitstream_ltx.png" width="1000"><figcaption>Figura 19: Archivos Bitstream y ltx</figcaption></figure></p>
+<p>Tras programar el hardware de la placa, hay que lanzar la aplicacion desde Vitis.</p>
+<p>En vitis empiece una sesion de depurado, de manera que se puedan apreciar las transacciones linea a linea, debería verse como en la <a href="#fig_Sesion_depurado_Vitis">figura 20</a>.</p>
+<p><figure id="_figure-20"><img alt="Sesion de depurado en Vitis" id="fig_Sesion_depurado_Vitis" src="../img/Sesion_depurado_Vitis.png" width="1000"><figcaption>Figura 20: Sesion de depurado en Vitis</figcaption></figure></p>
+<p>Una vez este en la sesión de depurado de Vitis, vuelva a Vivado para armar el ILA. </p>
+<p>En Vivado presione el botón <em>auto-retrigger</em> de ILA de manera que cada vez que termine una captura, el ILA se prepare automaticamente para recibir otra. Luego prepare el Bloque para capturas haciendo click en el boton de  <em>Run Trigger</em> como se ve en la <a href="#fig_Auto_trigger">figura 21</a>.</p>
+<p><figure id="_figure-21"><img alt="Auto_trigger" id="fig_Auto_trigger" src="../img/Auto_trigger.png" width="1000"><figcaption>Figura 21: Auto_trigger</figcaption></figure></p>
+<p>Luego vuelva a Vitis y presione <em>Step Over(F10)</em> hasta pasar la linea:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="n">XPAR_AXI_TIMER_0_BASEADDR</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Donde se realiza la inicializacion del periférico AXI Timer. Note que el periférico AXI GPIO no realiza ninguna escritura ni lectura de registros al momento de inicializarse.</p>
+<p>Una vez que paso esa linea, vuelva a Vivado. Notará que ahora hay datos en el visor de ondas, esto es debido a que se realizaron escrituras en el modulo para inicializarlo.</p>
+<p>Expanda los canales de escritura de <em>slot_0</em>: <strong>AW Channel</strong> y <strong>W Channel</strong> como se ve en la <a href="#fig_inicializacion_timer_prezoom">figura 22</a>.</p>
+<p><figure id="_figure-22"><img alt="Forma de onda de inicialización de AXI Timer" id="fig_inicializacion_timer_prezoom" src="../img/inicializacion_timer_prezoom.png" width="1000"><figcaption>Figura 22: Forma de onda de inicialización de AXI Timer</figcaption></figure></p>
+<p>Para verlo en mas detalle haga click en Zoom in como se ve en la <a href="#fig_inicializacion_timer_zoom">figura 23</a>. Note que el zoom se realizará enfocando el marcador amarillo el cual puede arrastrar con el mouse.</p>
+<p><figure id="_figure-23"><img alt="Zoom en forma de onda de inicialización de AXI Timer" id="fig_inicializacion_timer_zoom" src="../img/inicializacion_timer_zoom.png" width="1000"><figcaption>Figura 23: Zoom en forma de onda de inicialización de AXI Timer</figcaption></figure></p>
+<p>Para entender la secuencia hay que revisar el mapa de registros de AXI timer visto en la <a href="#Register_map">tabla 3</a> basado en la <a href="https://docs.amd.com/v/u/en-US/axi_timer_ds764">documentacion oficial</a> el cual indica cual es la función de cada registro interno de la IP. Note que por defecto la IP internamente maneja dos temporizadores.</p>
+<div style="text-align: center;">
+<table id="Register_map">
+<caption style="caption-side:bottom">Tabla 3: Tamaño del ELF </caption><thead>
+<tr>
+<th>Nombre Registro</th>
+<th>Direccion</th>
+<th>Descripcion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCSR0</td>
+<td>0x00</td>
+<td>Registro de control de timer 0</td>
+</tr>
+<tr>
+<td>TLR0</td>
+<td>0x04</td>
+<td>Registro de carga de timer 0</td>
+</tr>
+<tr>
+<td>TCR0</td>
+<td>0x08</td>
+<td>Registro que guarda el valor actual del timer 0</td>
+</tr>
+<tr>
+<td>TCSR1</td>
+<td>0x10</td>
+<td>Registro de control de timer 1</td>
+</tr>
+<tr>
+<td>TLR1</td>
+<td>0x14</td>
+<td>Registro de carga de timer 1</td>
+</tr>
+<tr>
+<td>TCR1</td>
+<td>0x18</td>
+<td>Registro que guarda el valor actual del timer 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Enfocandonos en la forma de onda vista en la <a href="#fig-Waveform_Inicializar_timer">figura 24</a>.</p>
+<p><figure id="_figure-24"><img alt="Forma de onda de la inicializacion de AXI Timer" id="fig-Waveform_Inicializar_timer" src="../img/Waveform_Inicializar_timer.png" width="1000"><figcaption>Figura 24: Forma de onda de la inicializacion de AXI Timer</figcaption></figure></p>
+<p>En la forma de onda se realizan 6 operaciónes de escritura mostradas en la <a href="#tbl-init-timer">tabla 4</a>. Note que varios bits dentro de un mismo registro pueden cumplir distintas funciones, para mas información de que representa cada bit en cada registro de la IP, referirse a <a href="https://docs.amd.com/v/u/en-US/axi_timer_ds764">la documentación oficial</a>.</p>
+<div style="text-align: center;">
+<table id="tbl-init-timer">
+<caption style="caption-side:bottom">Tabla 4: Tamaño del ELF </caption><thead>
+<tr>
+<th>AWADDR</th>
+<th>WDATA</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x04</td>
+<td>0x00000000</td>
+<td>Se carga el valor 0 registro de carga al timer 0</td>
+</tr>
+<tr>
+<td>0x00</td>
+<td>0x00000120</td>
+<td>Se fija el timer 0 al estado reset y se fija el valor actual del timer al valor del registro de carga del timer 0</td>
+</tr>
+<tr>
+<td>0x00</td>
+<td>0x00000000</td>
+<td>Se sale del estado de reset e inhabilita el timer 0</td>
+</tr>
+<tr>
+<td>0x14</td>
+<td>0x00000000</td>
+<td>Se carga el valor 0 registro de carga al timer 1</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>0x00000140</td>
+<td>Se fija el timer 1 al estado reset y se fija el valor actual del timer al valor del registro de carga del timer 1</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>0x00000000</td>
+<td>Se sale del estado de reset e inhabilita el timer 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esta secuencia esta descrita en la implementación de la función que inicializa el periférico :XTmrCtr_Initialize(), la cual hace un llamado a la funcion XTmrCtr_InitHw() donde esta la siguiente secuencia:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cm">/* Set the compare register to 0. */</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">XTmrCtr_WriteReg</span><span class="p">(</span><span class="n">InstancePtr</span><span class="o">-&gt;</span><span class="n">BaseAddress</span><span class="p">,</span><span class="w"> </span><span class="n">TmrIndex</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">            </span><span class="n">XTC_TLR_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cm">/* Reset the timer and the interrupt. */</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">XTmrCtr_WriteReg</span><span class="p">(</span><span class="n">InstancePtr</span><span class="o">-&gt;</span><span class="n">BaseAddress</span><span class="p">,</span><span class="w"> </span><span class="n">TmrIndex</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">            </span><span class="n">XTC_TCSR_OFFSET</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">            </span><span class="n">XTC_CSR_INT_OCCURED_MASK</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">XTC_CSR_LOAD_MASK</span><span class="p">);</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="cm">/* Release the reset. */</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">XTmrCtr_WriteReg</span><span class="p">(</span><span class="n">InstancePtr</span><span class="o">-&gt;</span><span class="n">BaseAddress</span><span class="p">,</span><span class="w"> </span><span class="n">TmrIndex</span><span class="p">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">            </span><span class="n">XTC_TCSR_OFFSET</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Note que son 3 escrituras en registros y al ser 2 temporizadores se realiza un total de 6 escrituras.</p>
+<p>Debido a que se activó el auto-gatillado del ILA,este ya se encuentra listo para una nueva captura. Avance hasta pasar la linea donde se define si el canal de interruptores corresponde a una salida o a una entrada:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">SWITCH_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Para entender la secuencia hay que revisar el mapa de registros de AXI GPIO visto en la <a href="#Register_map_GPIO">tabla 5</a> basado en la <a href="https://docs.amd.com/v/u/1.01b-English/ds744_axi_gpio">documentacion oficial</a>. </p>
+<div style="text-align: center;">
+<table id="Register_map_GPIO">
+<caption style="caption-side:bottom">Tabla 5: Tamaño del ELF </caption><thead>
+<tr>
+<th>Nombre Registro</th>
+<th>Direccion</th>
+<th>Descripcion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPIO_DATA</td>
+<td>0x00</td>
+<td>Registro de datos de canal GPIO 1</td>
+</tr>
+<tr>
+<td>GPIO_TRI</td>
+<td>0x04</td>
+<td>Registro de estado de canal GPIO 1</td>
+</tr>
+<tr>
+<td>GPIO2_DATA</td>
+<td>0x08</td>
+<td>Registro de datos de canal GPIO 2</td>
+</tr>
+<tr>
+<td>GPIO2_TRI</td>
+<td>0x0C</td>
+<td>Registro de estado de canal GPIO 2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>En este caso se busca definir el canal 2 (los interuptores) como entrada, para esto hay que poner en alto cada bit que se desee usar como entrada de el registro de estado. Por lo que se realiza una escritura de 0xFFFFFFFF sobre el registro en la dirección 0x0C. Vuelva a Vivado y expanda los canales AW y W de <em>slot_1</em>. Se debería ver como en la <a href="#fig_WV_direccion_sw">figura 25</a>.</p>
+<p><figure id="_figure-25"><img alt="Escritura de valor 0xFFFFFFFF en el registro de estado de canal GPIO 2 (direccion 0x0C)" id="fig_WV_direccion_sw" src="../img/WV_direccion_sw.png" width="1000"><figcaption>Figura 25: Escritura de valor 0xFFFFFFFF en el registro de estado de canal GPIO 2 (direccion 0x0C)</figcaption></figure></p>
+<p>Avanze hasta pasar la linea donde se indica que el canal de leds corresponde a una salida:
+</p><div class="language-c highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w">    </span><span class="mh">0x00000000</span><span class="p">);</span>
+</span></code></pre></div>
+<p>En este caso se busca definir el canal 1 como salida, para esto hay que poner en bajo cada bit que se desee usar como salida en el registro de estado correspondiente a este canal.Por lo que se realiza una escritura de 0x00000000 sobre el registro en la dirección 0x04. Vuelva a Vivado y debería ver en la forma de onda lo que se ve en la <a href="#fig_WV_direccion_LED">figura 26</a>.</p>
+<p><figure id="_figure-26"><img alt="Escritura de valor 0x00000000 en el registro de estado de canal GPIO 1 (direccion 0x04)" id="fig_WV_direccion_LED" src="../img/WV_direccion_LED.png" width="1000"><figcaption>Figura 26: Escritura de valor 0x00000000 en el registro de estado de canal GPIO 1 (direccion 0x04)</figcaption></figure></p>
+<p>Avanze hasta pasar la linea conde se realiza  una escritura de las sobre el canal GPIO de las LEDs:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="n">XGpio_DiscreteWrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00005555</span><span class="p">);</span>
+</span></code></pre></div>
+<p>En este caso se va a realizar una escritura sobre el registro de datos del canal GPIO 1. Se escribirá el valor 0x00005555 en el registro de datos del canal 1 (con direccion 0x00) como se ve en la <a href="#fig_wv_escritura_LEDS">figura 27</a>. Si se fija en su tarjeta, deberia ver un patron de leds intercalado.</p>
+<p><figure id="_figure-27"><img alt="Escritura de valor 0x00005555 en el registro de datos de canal GPIO 1 (direccion 0x04)" id="fig_wv_escritura_LEDS" src="../img/wv_escritura_LEDS.png" width="1000"><figcaption>Figura 27: Escritura de valor 0x00005555 en el registro de datos de canal GPIO 1 (direccion 0x04)</figcaption></figure></p>
+<p>Antes de pasar a la siguiente linea, fije los interruptores físicos de su tarjeta Nexys A7 en un valor de su preferencia.En el caso de esta guia se mantendran en alto (en dirección a las LEDS) solo los 4 interruptores menos significativos, formando asi el valor 0x0000000F.</p>
+<p>Avanze hasta pasar la linea donde se lee el estado actual de los interuptores:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="n">valor_switches</span><span class="o">=</span><span class="n">XGpio_DiscreteRead</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">SWITCH_CHANNEL</span><span class="p">);</span>
+</span></code></pre></div>
+<p>En este caso se va a realizar una lectura sobre el registro de datos del canal GPIO 2 (direccion 0x08).Debido a que en este caso se desea observar una lectura lo que dirijase a los canales R y AR de <em>slot_0</em> como se ve en la  <a href="#fig_wv_Lectura_SW">figura 28</a>.</p>
+<p><figure id="_figure-28"><img alt="Lectura de valor 0x0000000F en el registro de datos de canal GPIO 2 (direccion 0x08)" id="fig_wv_Lectura_SW" src="../img/wv_Lectura_SW.png" width="1000"><figcaption>Figura 28: Lectura de valor 0x0000000F en el registro de datos de canal GPIO 2 (direccion 0x08)</figcaption></figure></p>
+<p>Luego pase a la linea donde se inicializa el timer.</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Esta funcion va a realizar dos escrituras, u</p>
+<p><a href="#fig_wv_escritura_LEDS">figura 27</a></p>
+<p><figure id="_figure-29"><img alt="1" id="fig_wv_escritura_LEDS" src="../img/wv_Timer_start.png" width="1000"><figcaption>Figura 29: 1</figcaption></figure></p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="n">TimerValue1</span><span class="o">=</span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span></code></pre></div>
+<p><a href="#fig_wv_escritura_LEDS">figura 27</a></p>
+<p><figure id="_figure-30"><img alt="2" id="fig_wv_escritura_LEDS" src="../img/wv_Timer_start1.png" width="1000"><figcaption>Figura 30: 2</figcaption></figure></p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">    </span><span class="n">TimerValue2</span><span class="o">=</span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span></code></pre></div>
+<p><a href="#fig_wv_escritura_LEDS">figura 27</a></p>
+<p><figure id="_figure-31"><img alt="3" id="fig_wv_escritura_LEDS" src="../img/wv_Timer_start2.png" width="1000"><figcaption>Figura 31: 3</figcaption></figure></p>
+<p><img alt="" id="fig" src="img/.png" width="1000"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

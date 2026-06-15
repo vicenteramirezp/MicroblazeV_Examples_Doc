@@ -359,6 +359,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_8_System_ILA/Ejemplo_8/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 8
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -809,6 +828,33 @@
     
   
     Guía 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_8_System_ILA/Ejemplo_8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 8
   
 
     
@@ -1384,7 +1430,7 @@ Este desempeño se obtiene a costa de un aumento  de recursos lógicos: 420 FFs 
 <li>Ancho de dato: 8 Bits</li>
 </ul>
 <p>Luego conecte la placa a su computador, enciendala y conecte su programa  de comunicacion serial al canal apropiado (Generalmente /dev/ttyUSB0 en Linux y COM4 en Windows).</p>
-<p>Finalmente corra la aplicacion haciendo click en <em>Run</em> en el panel lateral del componente de aplicación. En su terminal serial debería ver el resultado de la suma de los 8 datos de entrada como se ve en la <a href="#fig-hterm-results">figura 35</a></p>
+<p>Finalmente corra la aplicacion haciendo click en <em>Run</em> en el panel lateral del componente de aplicación. En su terminal serial debería ver el resultado de la suma de los 8 datos de entrada como se ve en la <a href="#fig-hterm-results">figura 35</a>.</p>
 <p><figure id="_figure-35"><img alt="Resultados visualizados en Hterm" id="fig-hterm-results" src="../img/hterm_results.png" width="1000"><figcaption>Figura 35: Resultados visualizados en Hterm</figcaption></figure></p>
 <p>Con esta sección se completa el flujo de diseño desde una descripción algorítmica en C/C++ hasta su ejecución como periférico controlado por software embebido sobre el procesador MicroBlaze V. Más allá del ejemplo particular del adder tree, lo relevante es haber recorrido el camino que conecta dos niveles de abstracción que tradicionalmente se mantienen separados: el del programador y el del diseñador de hardware. La capacidad de modificar una única directiva como HLS UNROLL y observar cómo se transforman la latencia y el uso de recursos del módulo abre un espacio de exploración de arquitecturas que resultaría impracticable mediante la escritura manual de RTL. A partir de este punto, cualquier algoritmo expresable en C deja de ser una pieza exclusivamente de software para convertirse en una candidata legítima a acelerador en hardware, y la decisión entre ejecutarlo sobre el procesador o materializarlo como periférico dedicado pasa a depender de los compromisos de desempeño, área y consumo que el diseñador esté dispuesto a asumir. Con las herramientas vistas en esta guía, esa decisión deja de ser una limitación técnica y se convierte en una elección de diseño.</p>
 

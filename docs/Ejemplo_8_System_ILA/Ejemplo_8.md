@@ -391,27 +391,27 @@ Luego pase a la linea donde se inicializa el timer.
     XTmrCtr_Start(&TimerInstance, TIMER_COUNTER_0);
 ```
 
-Esta funcion va a realizar dos escrituras, u
+Esta funcion va a realizar dos escrituras, ambas sobre el registo de control del temporizador 1 (dirección 0x00). Primero se escribe 0x20 para pasar el valor del registro de carga al registro de valor actual. Luego se escribe 0x80 para habilitar el contador de manera que empiece a contar como se ve en la [](#wv_Timer_start) donde se leen las interfaces AW y W de *slot_0*.
 
-[](#fig_wv_escritura_LEDS)
+![Secuencia de inicio de timer](img/wv_Timer_start.png){ #wv_Timer_start width="1000" }
 
-![1](img/wv_Timer_start.png){ #fig_wv_escritura_LEDS width="1000" }
+Luego pase a la linea donde se lee el valor del timer. 
 
 ```c
     TimerValue1=XTmrCtr_GetValue(&TimerInstance, TIMER_COUNTER_0);
 ```
 
-[](#fig_wv_escritura_LEDS)
+En este caso se va a realizar una lectura sobre el registro de valor actual del contador 1 el cual posee la dirección 0x04. Note que el valor de actual de este registro depende de cuantos ciclos de reloj han pasado desde la habilitación del contador. Para ver esta transacción vaya a los canales R y AR de la *slot_0*  como se ve en la [](#wv_Timer_start1).
 
-![2](img/wv_Timer_start1.png){ #fig_wv_escritura_LEDS width="1000" }
+![Lectura de registro de valor actual de Timer 1](img/wv_Timer_start1.png){ #wv_Timer_start1 width="1000" }
+
+Luego pase a la linea donde se lee el valor del timer de nuevo.
 
 ```c
     TimerValue2=XTmrCtr_GetValue(&TimerInstance, TIMER_COUNTER_0);
 ```
 
-[](#fig_wv_escritura_LEDS)
-
-![3](img/wv_Timer_start2.png){ #fig_wv_escritura_LEDS width="1000" }
+Nuevamente se va a realizar una lectura sobre el registro de valor actual del contador 1 el cual posee la dirección 0x04. Note que el valor de actual de este registro depende de cuantos ciclos de reloj han pasado desde la ultima lectura. Para ver esta transacción vaya a los canales R y AR de la *slot_0*  como se ve en la [](#wv_Timer_start2).
 
 
-![](img/.png){ #fig width="1000" }
+![Segunda lectura de registro de valor actual de Timer 1](img/wv_Timer_start2.png){ #wv_Timer_start2 width="1000" }
