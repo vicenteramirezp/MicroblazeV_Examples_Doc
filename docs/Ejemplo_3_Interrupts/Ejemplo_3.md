@@ -132,7 +132,7 @@ Table: Utilización de recursos {#tbl-resources}
 
 </div>
 
-## Firmware
+## Diseño de Firmware
 
 Abra Vitis, genere un componente de plataforma usando el hardware diseñado y un componente de aplicación. Importe Ejemplo_3.c de la carpeta Ejemplo_3 del repositorio.
 
@@ -313,7 +313,7 @@ Table: Tamaño del ELF {#tbl-elf-size}
 
 </div>
 
-### Verificación
+## Verificación
 
 Conecte la placa, enciendala y programela haciendo click en **Run** desde el panel lateral. Luego pruebe mandando caracteres a través de su consola serial de preferencia o presionando los botones, debería comportarse como se ve en [](#fig-hterm-test).
 

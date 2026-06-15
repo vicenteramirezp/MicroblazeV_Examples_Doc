@@ -480,7 +480,7 @@ Ya teniendo el archivo ELF abra su programa de comunicación serial de preferenc
 Luego conecte la placa a su computador, enciendala y conecte su programa  de comunicacion serial al canal apropiado (Generalmente /dev/ttyUSB0 en Linux y COM4 en Windows).
 
 
-Finalmente corra la aplicacion haciendo click en *Run* en el panel lateral del componente de aplicación. En su terminal serial debería ver el resultado de la suma de los 8 datos de entrada como se ve en la [](#fig-hterm-results )
+Finalmente corra la aplicacion haciendo click en *Run* en el panel lateral del componente de aplicación. En su terminal serial debería ver el resultado de la suma de los 8 datos de entrada como se ve en la [](#fig-hterm-results).
 
 
 

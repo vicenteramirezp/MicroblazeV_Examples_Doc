@@ -48,6 +48,7 @@ nav:
   - Guía 5: Ejemplo_5_HLS/Ejemplo_5.md
   - Guía 6 : Ejemplo_6_DDR/Ejemplo_6.md
   - Guía 7 : Ejemplo_7_VGA/Ejemplo_7.md
+  - Guía 8 : Ejemplo_8_System_ILA/Ejemplo_8.md
 plugins:
   - search
   - caption:

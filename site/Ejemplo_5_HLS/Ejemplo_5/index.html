@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#guia-3-uso-de-perifericos-e-interrupciones" class="md-skip">
+        <a href="#guia-5-diseno-de-perifericos-con-high-level-synthesis" class="md-skip">
           Skip to content
         </a>
       
@@ -594,17 +594,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objetivo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -617,10 +606,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-es-un-periferico" class="md-nav__link">
+  <a href="#que-es-high-level-synthesis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Que es un Periférico?
+        ¿Que es High Level Synthesis?
       
     </span>
   </a>
@@ -628,10 +617,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#memory-mapped-io" class="md-nav__link">
+  <a href="#flujo-de-vitis-hls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Memory Mapped I/O
+        Flujo de Vitis HLS
       
     </span>
   </a>
@@ -639,10 +628,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#que-es-una-interrupcion" class="md-nav__link">
+  <a href="#pragmas-en-vitis-hls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Que es una interrupción?
+        Pragmas en Vitis HLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-unrolling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop unrolling
       
     </span>
   </a>
@@ -663,25 +663,69 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-del-proyecto-hls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Creación del Proyecto HLS
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Firmware">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#verificacion" class="md-nav__link">
+  <a href="#simulacion-en-c" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verificación
+        Simulación en C
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintesis-de-c-a-rtl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Síntesis de C a RTL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosimulacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cosimulación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportado-de-la-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exportado de la IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracion-de-periferico-hls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración de Periférico HLS
       
     </span>
   </a>
@@ -690,6 +734,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación
+      
+    </span>
+  </a>
   
 </li>
       
@@ -782,17 +848,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objetivo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -805,10 +860,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-es-un-periferico" class="md-nav__link">
+  <a href="#que-es-high-level-synthesis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Que es un Periférico?
+        ¿Que es High Level Synthesis?
       
     </span>
   </a>
@@ -816,10 +871,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#memory-mapped-io" class="md-nav__link">
+  <a href="#flujo-de-vitis-hls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Memory Mapped I/O
+        Flujo de Vitis HLS
       
     </span>
   </a>
@@ -827,10 +882,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#que-es-una-interrupcion" class="md-nav__link">
+  <a href="#pragmas-en-vitis-hls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ¿Que es una interrupción?
+        Pragmas en Vitis HLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-unrolling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop unrolling
       
     </span>
   </a>
@@ -851,25 +917,69 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-del-proyecto-hls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Creación del Proyecto HLS
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Firmware">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#verificacion" class="md-nav__link">
+  <a href="#simulacion-en-c" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verificación
+        Simulación en C
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintesis-de-c-a-rtl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Síntesis de C a RTL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosimulacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cosimulación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportado-de-la-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exportado de la IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracion-de-periferico-hls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración de Periférico HLS
       
     </span>
   </a>
@@ -878,6 +988,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Firmware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación
+      
+    </span>
+  </a>
   
 </li>
       
@@ -898,81 +1030,257 @@
 
 
 
-<h1 id="guia-3-uso-de-perifericos-e-interrupciones">Guía 3 : Uso de Perifericos e Interrupciones</h1>
-<h2 id="objetivo">Objetivo</h2>
-<p>Esta guía ilustra dos mecanismos fundamentales mediante los cuales un procesador interactúa con los periféricos integrados al sistema: el esquema de memory-mapped I/O y el sistema de interrupciones. A través de ejercicios prácticos, se espera que aprenda a configurar periféricos mediante registros mapeados en memoria e implementar rutinas de servicio de interrupción (ISR) para atender eventos externos de manera eficiente.</p>
+<h1 id="guia-5-diseno-de-perifericos-con-high-level-synthesis">Guía 5: Diseño de Periféricos con High Level Synthesis</h1>
 <h2 id="contexto">Contexto</h2>
-<h3 id="que-es-un-periferico">¿Que es un Periférico?</h3>
-<p>En el contexto de sistemas digitales/embebidos, un periférico es cualquier módulo de hardware externo al procesador que le permite interactuar con el mundo exterior o realizar funciones especializadas que el procesador no ejecuta directamente.</p>
-<p>Ejemplos:</p>
+<h3 id="que-es-high-level-synthesis">¿Que es High Level Synthesis?</h3>
+<p>High-Level Synthesis (HLS) es el proceso de transformar la descripción de un diseño desde un nivel de abstracción alto hacia una descripción a nivel de transferencia de registros (RTL). AMD Vitis™ HLS implementa este proceso a partir de funciones escritas en C/C++, generando la descripción RTL que posteriormente se integra en Vivado™ para su implementación en FPGA como se aprecia en el diagrama de la <a href="#fig-vitis-HL"></a>.</p>
+<p><figure id="_figure-1"><img alt="Diagrama  Vitis HLS" id="fig-vitis-HLS" src="../img/Vitis_HLS.png" width="500"><figcaption>Figura 1: Diagrama  Vitis HLS</figcaption></figure></p>
+<h3 id="flujo-de-vitis-hls">Flujo de Vitis HLS</h3>
+<p>Note que para generar un módulo a nivel de RTL sintetizable  a partir de archivos C/C++, Vitis identifica ciertos aspectos claves en el código, entre los cuales destacan</p>
 <ul>
-<li>El periferico Uart que se uso en la sección previa para la comunicacion desde la placa al PC.</li>
-<li>Salida/Entrada de proposito general (GPIO): A través de entradas discretas como botones o salidas como leds se puede compartir información con el mundo real.</li>
+<li><strong>Función Top</strong>: Esta es la función que envolverá a otras funciones, manteniendo la misma jerarquía a la del un modulo de alto nivel que instancia a otros, esto se puede apreciar mas claramente cuando se exportan los archivos RTL, donde Vitis da la opción de que se genere un módulo sintetizable por cada función.</li>
+<li><strong>Bucles</strong>: Vitis HLS sintetiza los bucles de forma secuencial de manera predeterminada. Es decir, genera un espacio de memoria en hardware donde realiza las iteraciones del bucle una instancia a la vez y en cada iteracion guarda el resultado.</li>
+<li><strong>Arreglos</strong>: Vitis los implementa dependiendo de como son accedidos, si son grandes y no se acceden varios datos al mismo tiempo, son implementados con Block RAM, en caso de que se accedan varios datos al mismo tiempo, o sean de menor tamaño, se implementan a través de registros.</li>
 </ul>
-<h3 id="memory-mapped-io">Memory Mapped I/O</h3>
-<p>Desde el punto de vista del procesador, los periféricos del sistema conviven dentro de un
-único espacio de direcciones plano. Este espacio —denominado mapa de memoria— asigna a cada recurso un rango de direcciones único, de modo que el procesador accede a todos ellos mediante las mismas instrucciones de carga y almacenamiento que utiliza para leer y escribir variables ordinarias. </p>
-<p>La técnica que permite incorporar este último tipo de región recibe el nombre de mapeo de periféricos en memoria <code>memory-mapped I/O</code>. En lugar de definir instrucciones dedicadas para el acceso a periféricos, los registros de control y de estado de cada bloque IP se exponen como direcciones del espacio de memoria del procesador. Una escritura sobre la dirección de un registro de control produce, internamente, una transacción sobre el bus AXI hacia el periférico, que altera su estado; análogamente, una lectura sobre un registro de estado retorna el valor actual de dicho
-registro. Desde código C, el acceso se realiza mediante punteros: el desarrollador declara un puntero  a la dirección base del periférico y manipula sus campos como si fueran variables comunes en memoria.</p>
-<h3 id="que-es-una-interrupcion">¿Que es una interrupción?</h3>
-<p>Una interrupción es un evento asincrónico que temporalmente desvía al CPU de su flujo de ejecución normal para manejar una condición desencadenada por por un dispositivo externo, un temporizador o software como se ilustra en la <a href="#fig-diagrama-interrupt">figura 1</a>.</p>
-<p><figure id="_figure-1"><img alt="Diagrama de interrupcion" id="fig-diagrama-interrupt" src="img/interrupt_diagram.png" width="1000"><figcaption>Figura 1: Diagrama de interrupcion</figcaption></figure></p>
-<p>Un sistema puede tener varias fuentes de interrupción, el controlador de interrupciones sigue la secuencia:</p>
-<ul>
-<li><strong>Interrupción</strong>: Se produce una interrupción, la cual puede ser originada por una fuente interna al sistema (como un temporizador o una excepción de software) o por un periférico externo.</li>
-<li><strong>Detección</strong>: El controlador de interrupciones detecta la señal, identifica su fuente y determina su nivel de prioridad.</li>
-<li><strong>Priorización</strong>: Si existen múltiples interrupciones pendientes, el controlador las gestiona siguiendo la jerarquía de importancia configurada en el hardware.</li>
-<li><strong>Despacho</strong>: El controlador envía la interrupción con la prioridad más alta a la CPU para su procesamiento.</li>
-<li><strong>Manejo</strong>: La dirección del <em>Program Counter</em> (PC) interrumpido se respalda en el registro <code>mepc</code>. La CPU actualiza los registros de estado (CSR), almacena la causa en el registro <code>mcause</code> y salta a la dirección indicada en el registro <code>mtvec</code> para ejecutar la rutina de servicio de interrupción (ISR).</li>
-<li><strong>Retorno</strong>: Una vez finalizada la rutina, la CPU restaura el estado de ejecución previo, recupera el valor de <code>mepc</code> y continúa con la operación normal del programa.</li>
-</ul>
-<p>En esta actividad se integraran los perifericos de GPIO, especificamente los conectados a los botones y los LED. Se mantendra el periferico de UART.</p>
+<p>Una vez la herramienta identifica estos aspectos, estos sirven como insumos directos para la síntesis como se puede apreciar en la <a href="#fig-vitis-flujo">figura 2</a>.</p>
+<p><figure id="_figure-2"><img alt="Diagrama Síntesis HLS de Vitis" id="fig-vitis-flujo" src="../img/HLS_c_to_rtl_diagram.png" width="500"><figcaption>Figura 2: Diagrama Síntesis HLS de Vitis</figcaption></figure></p>
+<p>Por ultimo se tiene que mediante el uso de directivas en Vitis HLS, es posible optimizar y ajustar los resultados de la sı́ntesis de hardware para una misma descripción en C, permitiendo explorar diferentes implementaciones de un mismo código fuente.</p>
+<h3 id="pragmas-en-vitis-hls">Pragmas en Vitis HLS</h3>
+<p>Los pragmas son directivas que guían al compilador HLS en la transformación del código C/C++ a RTL. No alteran el resultado funcional del algoritmo, pero sí controlan cómo este se implementa en hardware: la organización de los recursos, la forma de los bucles, las interfaces hacia el exterior y el grado de paralelismo. Su importancia es central porque la misma descripción en C puede sintetizarse en arquitecturas radicalmente distintas según los pragmas aplicados.</p>
+<h3 id="loop-unrolling">Loop unrolling</h3>
+<p>El loop unrolling es una transformación que replica el cuerpo del bucle en hardware tantas veces como iteraciones tenga su rango. En lugar de ejecutar las iteraciones secuencialmente sobre una única instancia de la lógica aritmética, todas las iteraciones se materializan como hardware separado y se ejecutan en paralelo dentro del mismo ciclo de reloj. </p>
 <h2 id="diseno-de-hardware">Diseño de Hardware</h2>
-<p>En esta sección se realizara un proyecto desde cero. Abra Vivado y cree un nuevo diagrama de bloques. Importe la IP <strong>Microblaze V</strong> al diagrama de bloques y al momento de apretar <strong>Run Block Automation</strong> marque la casilla <strong>Enable interupt controller</strong> como se ve en la figura <a href="#fig-enable-interrupt">figura 2</a>.</p>
-<p><figure id="_figure-2"><img alt="Habilitar controlador de interrupciones" id="fig-enable-interrupt" src="img/Enable_interrupt.png" width="500"><figcaption>Figura 2: Habilitar controlador de interrupciones</figcaption></figure></p>
-<p>Esto hara que al momento de que se generen los bloques que componen el sistema base del procesador, se importen los bloques responsable del manejo de interrupciones como se ve en <a href="#fig-interrupt-on-bd">figura 3</a> :</p>
+<h3 id="creacion-del-proyecto-hls">Creación del Proyecto HLS</h3>
+<p>Abra Vitis y elija un espacio de trabajo, en el menu de inicio presione <strong>New HLS Component</strong>  como se ve en la <a href="#fig-new-HLS">figura 3</a> para crear un nuevo componente de HLS.</p>
+<p><figure id="_figure-3"><img alt="Nuevo componente de HLS" id="fig-new-HLS" src="../img/New_hls_component.png" width="1000"><figcaption>Figura 3: Nuevo componente de HLS</figcaption></figure></p>
+<p>Esto abrirá una ventana emergente donde podrá crear el componente HLS, empezando por asignarle un nombre. En el caso de esta guía se usa el nombre <strong>Adder_tree_HLS</strong> como se ve en la <a href="#fig-nombre-proyecto">figura 4</a>.</p>
+<p><figure id="_figure-4"><img alt="Nombre del Componente HLS" id="fig-nombre-proyecto" src="../img/creaci%C3%B3n_proyecto_hls.png" width="1000"><figcaption>Figura 4: Nombre del Componente HLS</figcaption></figure></p>
+<p>Tras hacer click en <em>Next</em>, se elije el archivo de configuración HLS, este contiene todos los datos de la configuración del proyecto. Su funcion es automatizar la creacion de proyectos HLS, debido a que en esta guía se realizaran las configuraciones de forma manual, seleccione <em>Empty File</em> como se ve en la <a href="#fig-config-hls">figura 5</a>.</p>
+<p><figure id="_figure-5"><img alt="Archivo de Configuración HLS" id="fig-config-hls" src="../img/Configuration_file.png" width="1000"><figcaption>Figura 5: Archivo de Configuración HLS</figcaption></figure></p>
+<p>En la siguiente ventana se definen los archivos fuente del componente, también en este paso se definen las configuraciones del compilador para cada archivo fuente como se ve en la <a href="#fig-sources-vitis">figura 6</a>. En esta guía los archivos fuente se añadirán en un paso posterior para mostrar ambas maneras de añadir archivos.</p>
+<p><figure id="_figure-6"><img alt="Archivos Fuentes de Vitis" id="fig-sources-vitis" src="../img/Sources_Vitis.png" width="1000"><figcaption>Figura 6: Archivos Fuentes de Vitis</figcaption></figure></p>
+<p>Luego en el siguiente paso se define el chip FPGA a usar en la síntesis de C a RTL. Esta información le sirve a Vitis para poder realizar estimaciones del uso de recursos y la latencia del modulo generado. En esta ventana escriba el nombre del chip de la placa a usar, en el caso de esta guía es "xc7a100tcsg324-1" como se ve en la <a href="#fig-Vitis-hardware">figura 7</a>.</p>
+<p><figure id="_figure-7"><img alt="Selección de Hardware" id="fig-Vitis-hardware" src="../img/Vitis_hardware.png" width="1000"><figcaption>Figura 7: Selección de Hardware</figcaption></figure></p>
+<p>Continuando con la ultima pestaña de configuración, esta define:</p>
 <ul>
-<li>"AXI Interrupt Controller": Bloque que colecciona multiples señales de interrupt de varios perifericos y las consolida en una sola señal que entrega al procesador, se encarga del arbitraje e identificacion de las señales.</li>
-<li>"Inline Concat": Concatena todas las señales de interrupcion para que el bloque AXI las reciba.</li>
+<li><strong>Frecuencia de reloj objetivo</strong>: Frecuencia objetivo para el modulo diseñado, por defecto es 100 MHZ.</li>
+<li><strong>Margen de Frecuencia de reloj</strong>: Maxima variacion permitida en la frecuencia de reloj.</li>
+<li><strong>Flujo objetivo</strong>: Define para que flujo se diseña la herramienta.<ul>
+<li><strong>Vivado</strong>: Produce una IP empaquetada para su uso dentro del diagrama de bloques de Vivado con otras IP's.</li>
+<li><strong>Vitis</strong>: Produce un archivo <em>Xilins Object</em> (.xo). Un kernel que se conecta al flujo de aceleración de Vitis y es llamado directamente desde el PC a través de Vitis sin necesidad de incluir un procesador en el sistema.</li>
 </ul>
-<p><figure id="_figure-3"><img alt="Bloques de interrupcion en el diagrama" id="fig-interrupt-on-bd" src="img/bloques_interrupt.png" width="1000"><figcaption>Figura 3: Bloques de interrupcion en el diagrama</figcaption></figure></p>
-<p>Luego continue con el armado del sistema de acuerdo a lo visto en la Guía 1 ( Aqui pondre un hyperlink cuando suba la guía 1). La secuencia es:</p>
+</li>
+<li><strong>Formato de exportado</strong>: Especifica el formato de exportado del componente, puede ser en RTL, un archivo xo o el ip_catalog que agiliza la inclusión al diagrama de bloques de Vivado.</li>
+</ul>
+<p>En este caso se mantendrán las configuraciones predeterminadas vistas en la <a href="#fig-settings">figura 8</a>.</p>
+<p><figure id="_figure-8"><img alt="Configuraciones de Vitis" id="fig-settings" src="../img/Vitis_Settings.png" width="1000"><figcaption>Figura 8: Configuraciones de Vitis</figcaption></figure></p>
+<p>Finalmente se expone un resumen de las configuraciones elegidas como se ve en la <a href="#fig-resumen">figura 9</a>.</p>
+<p><figure id="_figure-9"><img alt="Resumen de creacion de componente HLS" id="fig-resumen" src="../img/Resumen_Hls.png" width="1000"><figcaption>Figura 9: Resumen de creacion de componente HLS</figcaption></figure></p>
+<p>Ya habiendo creado el componente de HLS, agregue los archivos fuente haciendo click derecho en la carpeta Sources y seleccione <em>Add Source File</em> como se ve en <a href=""></a>. Agregue el archivo <strong>hls_main.cpp</strong> y el encabezado <strong>hls_config.h</strong> de la carpeta Ejemplo_5 .</p>
+<p><figure id="_figure-10"><img alt="Añadir archivos fuente" id="fig-add-sources" src="../img/Add_sources.png" width="500"><figcaption>Figura 10: Añadir archivos fuente</figcaption></figure></p>
+<p>Este archivo tiene el siguiente código:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"hls_config.h"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">P</span><span class="o">&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kt">void</span><span class="w"> </span><span class="n">adder_tree_logic</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">o_data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i_data</span><span class="p">[</span><span class="n">N</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">P</span><span class="p">][</span><span class="n">S</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">S</span><span class="p">;</span><span class="w"> </span><span class="n">stage</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="c1">//#pragma HLS UNROLL </span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">ST_OUT_NUM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">stage</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">adder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">adder</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ST_OUT_NUM</span><span class="p">;</span><span class="w"> </span><span class="n">adder</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="c1">//  #pragma HLS UNROLL</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stage</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">                </span><span class="n">data</span><span class="p">[</span><span class="n">adder</span><span class="p">][</span><span class="n">stage</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">adder</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">i_data</span><span class="p">[</span><span class="n">adder</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                </span><span class="n">data</span><span class="p">[</span><span class="n">adder</span><span class="p">][</span><span class="n">stage</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">adder</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">][</span><span class="n">stage</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">adder</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">stage</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="o">*</span><span class="n">o_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">S</span><span class="p">];</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">}</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1">// Top-level function for Synthesis</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="kt">void</span><span class="w"> </span><span class="n">adder_tree</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">o_data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i_data</span><span class="p">[</span><span class="n">N</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=i_data</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=o_data</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=return</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">adder_tree_logic</span><span class="o">&lt;</span><span class="n">STAGES</span><span class="p">,</span><span class="w"> </span><span class="n">POW2_N</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o_data</span><span class="p">,</span><span class="w"> </span><span class="n">i_data</span><span class="p">);</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>El código define dos funciones. La primera, <em>adder_tree_logic</em>, implementa el módulo adder tree como una plantilla parametrizada. Su lógica se construye mediante dos bucles for anidados: el bucle externo recorre las etapas del árbol, mientras que el bucle interno realiza las sumas correspondientes a cada etapa. La segunda función, adder_tree, instancia la plantilla anterior y fija la estructura concreta del módulo y la cantidad de entradas. Las constantes N, STAGES y POW2_N están definidas en el archivo de encabezado * hls_config.h*.</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#ifndef HLS_CONFIG</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#define HLS_CONFIG</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">#define N 8</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="cp">#define POW2_N 8 </span><span class="c1">// Next power of 2</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="cp">#define STAGES 3 </span><span class="c1">// log2(8)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">// Prototype must match the synthesized instance</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kt">void</span><span class="w"> </span><span class="nf">adder_tree</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">o_data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i_data</span><span class="p">[</span><span class="n">N</span><span class="p">]);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="cp">#endif</span>
+</span></code></pre></div>
+<p>En el código del adder tree se emplean dos familias de pragmas:</p>
 <ul>
-<li>Configure la IP Clocking Wizard de manera que el clock y reset esten conectados a los pines de la placa.</li>
-<li>Corra <strong>Run Connection Automation</strong> seleccionando todas las conexiones.</li>
-<li>Importe <strong>USB UART</strong> desde el panel lateral.</li>
-<li>Corra <strong>Run Connection Automation</strong> seleccionando todas las conexiones.</li>
+<li><strong><em>HLS INTERFACE</em></strong> — Define el protocolo de comunicación de cada puerto del módulo. En este caso, se utiliza el modo s_axilite para los argumentos i_data, o_data y el retorno, lo que expone el acelerador como un periférico AXI-Lite controlable desde un procesador.</li>
+<li><strong><em>HLS UNROLL</em></strong> — Aplica loop unrolling a los dos bucles for anidados de adder_tree_logic.</li>
 </ul>
-<p>Una vez este el diagrama de bloques igual al de la Guía 1, importe "5 Push Buttons" y "16 Leds" desde el panel lateral Board visto en la <a href="#fig-led-buttons">figura 4</a>.</p>
-<p><figure id="_figure-4"><img alt="GPIO en el panel lateral Board" id="fig-led-buttons" src="img/Leds_buttons.png" width="250"><figcaption>Figura 4: GPIO en el panel lateral Board</figcaption></figure></p>
-<p>Tras regenerar el layout se debería ver como en la <a href="#fig-bd-botones-led">figura 5</a>.</p>
-<p><figure id="_figure-5"><img alt="Bloque GPIO en el Diagrama" id="fig-bd-botones-led" src="img/bd_botones_leds.png" width="1000"><figcaption>Figura 5: Bloque GPIO en el Diagrama</figcaption></figure></p>
-<p>Tras hacer click en  <strong>Run Connection Automation</strong> y conectar el periférico GPIO al sistema AXI, haga doble click sobre el periférico, en la ventana emergente seleccione <strong>Enable Interrupt</strong> como se ve en la <a href="#fig-gpio-config">figura 6</a> para habilitar las interrupciones de GPIO . Note que los botones estan en GPIO y los leds en GPIO 2. Esto sera relevante más adelante.</p>
-<p><figure id="_figure-6"><img alt="Configuracion de bloque GPIO" id="fig-gpio-config" src="img/Enable_gpio_interrupt.png" width="500"><figcaption>Figura 6: Configuracion de bloque GPIO</figcaption></figure></p>
-<p>Ya teniendo salidas de interrupción, se realizaran las conexiones de estas al procesador. </p>
-<p>Conecte:</p>
+<p>Note que los pragma <strong><em>HLS UNROLL</em></strong> están comentados por defecto.</p>
+<h3 id="simulacion-en-c">Simulación en C</h3>
+<p>Previo a enfocarse en la síntesis, primero hay que verificar que el algoritmo obtiene el resultado esperado. Para esto primero se realizan pruebas a nivel de software, para esto se hace uso de un vector de pruebas, un vector de resultados esperados y un archivo de prueba que instancia la función a probar. Haga click derecho en la carpeta <em>Test Bench</em> y presione en <em>Add Test Bench File</em> para añadir archivos de prueba como se ve en la <a href="#fig-testbench-file">figura 11</a>. Agruegue los archivos <em>golden_Inputs.dat</em>, <em>golden_Reference.dat</em> y <em>testbench.cpp</em> de la carpeta Ejemplo_5.</p>
+<p><figure id="_figure-11"><img alt="Añadir archivos testbench" id="fig-testbench-file" src="../img/Vitis_testbench.png" width="1000"><figcaption>Figura 11: Añadir archivos testbench</figcaption></figure></p>
+<p>Los archivos .dat tienen los vectores de referencia, mientras que el archivo testbench contiene el codigo para correr la prueba:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"hls_config.h"</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">REL_TOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">TRIALS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Running C++ simulation!"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">testResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="n">idata</span><span class="p">(</span><span class="s">"golden_Inputs.dat"</span><span class="p">);</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="n">rdata</span><span class="p">(</span><span class="s">"golden_Reference.dat"</span><span class="p">);</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">rdata</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Error reading golden_Reference file!"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">idata</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Error reading golden_Inputs file!"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">adder_tree_rel_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">TRIALS</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">        </span><span class="c1">// Read vector input</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">            </span><span class="n">idata</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">            </span><span class="n">input</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">static_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">        </span><span class="c1">// Read reference output</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">        </span><span class="n">rdata</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">        </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">        </span><span class="c1">// Call HLS function</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">        </span><span class="n">adder_tree</span><span class="p">(</span><span class="o">&amp;</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">        </span><span class="n">adder_tree_rel_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fabs</span><span class="p">((</span><span class="n">output</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"TRIAL: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">",</span><span class="se">\t</span><span class="s"> Expected: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">buffer</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\t</span><span class="s">Got: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">output</span>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" Err: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">adder_tree_rel_err</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"%</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">adder_tree_rel_err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">REL_TOL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Adder Tree error exceeds tolerance!"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="w">            </span><span class="o">++</span><span class="n">testResult</span><span class="p">;</span>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="w">    </span><span class="n">rdata</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="w">    </span><span class="n">idata</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"*******************************************</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">testResult</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"*</span><span class="se">\t</span><span class="s"> </span><span class="se">\t</span><span class="s">  FAIL </span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"*</span><span class="se">\t</span><span class="s"> </span><span class="se">\t</span><span class="s">  PASS </span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"*******************************************</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">testResult</span><span class="p">;</span>
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>El comportamiento del testbench se controla mediante dos constantes:</p>
 <ul>
-<li><strong>ip2intc_irpt</strong> del bloque AXI GPIO al pin <strong>In0</strong> de Inline Concat.</li>
-<li><strong>interrupt</strong> de AXI Uartlite al pin <strong>In1</strong> de Inline Concat.</li>
+<li><strong>TRIALS </strong>(10): Número de vectores de prueba a evaluar. En cada iteración, se leen N valores enteros desde golden_Inputs.dat hacia el arreglo input[] y un valor de referencia desde golden_Reference.dat hacia buffer.</li>
+<li><strong>REL_TOL</strong> (2.0) : Tolerancia máxima admisible para el error relativo porcentual entre la salida del módulo y el valor de referencia.</li>
 </ul>
-<p>Tras regenerar el Layout se debería ver como en la <a href="#fig-bd3-final">figura 7</a>.</p>
-<p><figure id="_figure-7"><img alt="Diagrama de bloques con interrupciones conectadas" id="fig-bd3-final" src="img/bd_final.png" width="1000"><figcaption>Figura 7: Diagrama de bloques con interrupciones conectadas</figcaption></figure></p>
-<p>Antes de continuar con el exportado de hardware se sugiere revisar la pestaña <strong>Address editor</strong>. Como se puede apreciar en la <a href="#fig-Adress-map">figura 8</a>, están los dos periféricos importados: Uart y GPIO junto con sus direcciones base y direcciones altas. Se tiene que al momento de hacer uso de estos perifericos en software, estas direcciones serán la clave para la comunicación entre los perifericos y el procesador de acuedo a lo comentado en la <a href="#memory-mapped-io">sección previa</a>. Note que ambos periféricos poseen un rango de memoria de 64KB, este es el estandár para IP's de AMD que no hacen un uso de memoria superior a 64 KB, aún si no necesariamente haran uso de este espacio.</p>
-<p><figure id="_figure-8"><img alt="Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo" id="fig-Adress-map" src="img/adress_map.png" width="1000"><figcaption>Figura 8: Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo</figcaption></figure></p>
-<p>Si se desea realizar una visualizacion gráfica del mapa de memoria, abra la pestaña Address Map y presione <strong>Generate</strong> de acuerdo a lo visto en la <a href="#fig-generate">figura 9</a>.</p>
-<p><figure id="_figure-9"><img alt="Generar Mapa de memoria" id="fig-generate" src="img/Generate.png" width="1000"><figcaption>Figura 9: Generar Mapa de memoria</figcaption></figure></p>
-<p>Esto generara el mapa de memoría para cada interfaz del procesador, debido a que la interfaz ILMB solo posee los datos de instrucciones, nos enfocaremos en la interfaz-0 (DMLB) la cual tiene una conexión AXI para el envio de datos entre periféricos.
-En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
+<p>En cada iteración, el <em>testbench</em> invoca <code>adder_tree(&amp;output, input)</code> y calcula el error relativo respecto al valor de salida esperado.</p>
+<p>Si <em>adder_tree_rel_err</em>​ supera <code>REL_TOL</code> en alguna iteración, se incrementa el contador <code>testResult</code>. Al finalizar las <code>TRIALS</code> iteraciones, el <em>testbench</em> imprime <code>PASS</code> por consola si <code>testResult == 0</code>, o <code>FAIL</code> en caso contrario; este mismo valor se retorna desde <code>main</code> para que el entorno de simulación pueda detectar la falla automáticamente.</p>
+<p>Para correr la simulación, haga click en <strong>Run</strong> en el panel lateral <em>C Simulation</em> como se ve en la <a href="#fig-run-c-sim">figura 12</a>.</p>
+<p><figure id="_figure-12"><img alt="Correr Simulación en C" id="fig-run-c-sim" src="../img/Vitis_run_sim.png" width="250"><figcaption>Figura 12: Correr Simulación en C</figcaption></figure></p>
+<p>Esto lanzara la ventana emergente vista en la <a href="#fig-sim-op">figura 13</a> donde se pueden definir varios parametros para el compilador de codigo C al momento de simular. Mantenga las opciones predeterminadas.</p>
+<p><figure id="_figure-13"><img alt="Opciones simulacion en C" id="fig-sim-op" src="../img/Vitis_sim_options.png" width="1000"><figcaption>Figura 13: Opciones simulacion en C</figcaption></figure></p>
+<p>Si salio de manera adecuada se debería ver a traves de la consola el resultado de la prueba <a href="#fig-pass">figura 14</a>.</p>
+<p><figure id="_figure-14"><img alt="Pass C Simulation" id="fig-pass" src="../img/Pass_c_sim.png" width="500"><figcaption>Figura 14: Pass C Simulation</figcaption></figure></p>
+<p>En este punto se tiene el algoritmo en software funcionando de manera esperada.</p>
+<h3 id="sintesis-de-c-a-rtl">Síntesis de C a RTL</h3>
+<p>Para generar un modulo RTL, primero hay que elegir que función del codigo fuente sera sintetizada, para esto vaya al panel lateral, en <em>Settings</em> expanda el menu y presione <em>hls_config.cfg</em> como se ve en la <a href="#fig-config-hls">figura 5</a>.</p>
+<p><figure id="_figure-15"><img alt="Abrir configuración HLS" id="fig-config-hls" src="../img/Abrir_config.png" width="500"><figcaption>Figura 15: Abrir configuración HLS</figcaption></figure></p>
+<p>Esto abrirá el menú de configuraciones HLS, dirijase a la sección <em>C Synthesis Sources</em> y haga click en <em>Browse</em> de la subsección <em>hls.syn.top</em> como se ve en la <a href="#fig-synth-config">figura 16</a>.</p>
+<p><figure id="_figure-16"><img alt="Elegir función top en C Synthesis" id="fig-synth-config" src="../img/C_synth_config.png" width="1000"><figcaption>Figura 16: Elegir función top en C Synthesis</figcaption></figure></p>
+<p>En la ventana emergente apareceran todas las funciones existentes en los archivos fuente (<em>adder_tree_logic</em> aparece dos veces debido a la definicion y su instanciación en la funcion <em>adder_tree</em>) como se ve en la <a href="#fig-top-function">figura 17</a>. Seleccione <em>adder_tree</em>.</p>
+<p><figure id="_figure-17"><img alt="Funciones disponibles en los archivos fuente" id="fig-top-function" src="../img/top_function.png" width="1000"><figcaption>Figura 17: Funciones disponibles en los archivos fuente</figcaption></figure></p>
+<p>Una vez definida la funcion a sintetizar, se puede correr la síntesis haciendo click en el botón <em>Run</em> del menu lateral <em>C Synthesis</em> como se ve en la <a href="#fig-Vitis_synth_run">figura 18</a>.</p>
+<p><figure id="_figure-18"><img alt="Boton de Correr Síntesis" id="fig-Vitis_synth_run" src="../img/Vitis_synth_run.png" width="500"><figcaption>Figura 18: Boton de Correr Síntesis</figcaption></figure></p>
+<p>Una vez ejecutada la síntesis, Vitis HLS reporta el estado en la consola; si ocurre algún error, este se indica explícitamente con su naturaleza y ubicación. Para acceder al reporte de resultados, presionar el botón  <em>Synthesis</em> del panel lateral, como se muestra en la <a href="#fig-Ver_reporte">figura 19</a>. </p>
+<p><figure id="_figure-19"><img alt="Ver reporte de síntesis" id="fig-Ver_reporte" src="../img/Ver_reporte.png" width="500"><figcaption>Figura 19: Ver reporte de síntesis</figcaption></figure></p>
+<p>Al sintetizar el módulo con los pragmas HLS UNROLL comentados, Vitis HLS produce el reporte de la <a href="#fig-Reporte_no_pragma">figura 20</a>. El compilador conserva los bucles for como construcciones secuenciales y los reporta bajo el identificador VITIS_LOOP_8_1. Este bucle ejecuta cada suma de forma serializada: en cada ciclo se calcula un único dato, se escribe en su registro intermedio, y solo entonces se procede a la siguiente iteración. Esta serialización se traduce en una latencia total de 500 ns. El consumo de recursos es  374 FFs y 488 LUTs, sin uso de BRAM ni DSP.</p>
+<p><figure id="_figure-20"><img alt="Reporte de recursos de Adder tree sin Loop unrolling" id="fig-Reporte_no_pragma" src="../img/Reporte_no_pragma.png" width="1000"><figcaption>Figura 20: Reporte de recursos de Adder tree sin Loop unrolling</figcaption></figure></p>
+<p>Para realizar una comparación con el uso de los pragmas, vuelva al archivo fuente y descomente ambos pragmas como se ve en la <a href="#fig-Pragmas-uncomment">figura 21</a>. Luego corra de nuevo la sintesis.</p>
+<p><figure id="_figure-21"><img alt="Pragmas HLS UNROLL descomentados" id="fig-Pragmas-uncomment" src="../img/Vitis_pragmas.png" width="1000"><figcaption>Figura 21: Pragmas HLS UNROLL descomentados</figcaption></figure></p>
+<p>Al habilitar los pragmas HLS UNROLL y resintetizar, se obtiene el reporte de la <a href="#fig-Reporte_post_pragma">figura 22</a>. La diferencia más visible es que el bucle VITIS_LOOP_8_1 ya no aparece en la jerarquía: Vitis HLS replicó la lógica de suma de cada iteración y la integró dentro del cuerpo de la función adder_tree. La latencia total cae de 500 ns a 90 ns.
+Este desempeño se obtiene a costa de un aumento  de recursos lógicos: 420 FFs  y 505 LUTs.</p>
+<p><figure id="_figure-22"><img alt="Reporte de recursos de Adder tree con Loop unrolling" id="fig-Reporte_post_pragma" src="../img/Reporte_post_pragma.png" width="1000"><figcaption>Figura 22: Reporte de recursos de Adder tree con Loop unrolling</figcaption></figure></p>
+<h3 id="cosimulacion">Cosimulación</h3>
+<p>Finalmente queda verificar que el modulo sintetizado tiene un comportamiento homologo al algoritmo diseñado en C.Para esto se hace uso de la herramienta de cosimulacion de vitis, esta corre la simulacion en C, guarda los resultados y despues abre una instancia de vivado para simular el rtl generado con los mismos vectores de referencia.</p>
+<p>Para iniciar la cosimulación vaya al menu lateral y presione el boton <em>Run</em> de la sección C/RTL COSIMULATION vista en la <a href="#fig-cosim-button">figura 23</a>.</p>
+<p><figure id="_figure-23"><img alt="Menú de Cosimulación" id="fig-cosim-button" src="../img/co_sim_menu.png" width="500"><figcaption>Figura 23: Menú de Cosimulación</figcaption></figure></p>
+<p>Esto nuevamente lanzara una ventana emergente con opciones avanzadas para la cosimulación como se ve en <a href="#fig-cosim-options">figura 24</a>. Mantenga las opciones predeterminadas y presione <em>Run</em>.</p>
+<p><figure id="_figure-24"><img alt="Opciones de Cosimulación" id="fig-cosim-options" src="../img/co-sim-options.png" width="500"><figcaption>Figura 24: Opciones de Cosimulación</figcaption></figure></p>
+<p>Finalmente aparecera en la consola el resultado del testbench, mostrando primero el resultado en software y despues en RTL.</p>
+<h3 id="exportado-de-la-ip">Exportado de la IP</h3>
+<p>Una vez validado el modulo generado a nivel de RTL, solo falta empaquetar el modulo en un bloque IP para que pueda ser usado en Vivado.</p>
+<p>En el menú lateral <em>IP Package</em> visto en la <a href="#fig-Vitis_package_menu">figura 25</a> presione <em>Run</em>.</p>
+<p><figure id="_figure-25"><img alt="Menú de empaquetado" id="fig-Vitis_package_menu" src="../img/Vitis_package_menu.png" width="500"><figcaption>Figura 25: Menú de empaquetado</figcaption></figure></p>
+<p>Esto lanzara una ventana emergente con opciones para la configuracion del empaquetado como se ve en la <a href="#fig-Vitis_package_cfg">figura 26</a>.Se sugiere asignar el nombre <strong>Adder_tree_hls_ip</strong> en el campo <em>hls.package.output.file</em> que define el nombre del archivo (no necesariamente de la IP).</p>
+<p><figure id="_figure-26"><img alt="Opciones de configuación del IP" id="fig-Vitis_package_cfg" src="../img/Vitis_package_cfg.png" width="500"><figcaption>Figura 26: Opciones de configuación del IP</figcaption></figure></p>
+<p>Al exportar la IP se generan:</p>
 <ul>
-<li>SLMB (0x0): Memoria interna del Microblaze V (fijada en 128 KB al momento de correr <strong>Run block Automation</strong>).</li>
-<li>AXI_gpio (0x4000_0000): Periferico GPIO.</li>
-<li>AXI_Uart_lite (0x4060_0000):  Periferico Uart.</li>
-<li>microblaze_axi_intc (0x4120_FFFF): Controlador de interrupciones.</li>
+<li>Generación de Archivos RTL: Se consolidan los archivos Verilog o VHDL finales.</li>
+<li>Scripts de Control: Se incluyen los archivos de restricciones (.xdc) y scripts Tcl necesarios para la integración.</li>
+<li>Documentación: Se genera automáticamente un reporte de recursos y latencia que acompañará al bloque.</li>
 </ul>
-<p><figure id="_figure-10"><img alt="Mapa de Memoria Interfaz DLMB" id="fig-Network-0" src="img/Network_0.png" width="1000"><figcaption>Figura 10: Mapa de Memoria Interfaz DLMB</figcaption></figure></p>
-<p>Valide nuevamente su diseño y ejecute el proceso de generacion y extracción de hardware, el autor obtuvo la utilizacion de recursos vista en la <a href="#tbl-resources">tabla 1</a></p>
+<p>Al finalizar el proceso, el IP aparecerá en la carpeta del componente HLS bajo el nombre <em>Adder_tree_hls_ip.zip</em>.Descomprima esta arthivo con su programa de preferencia.Al descomprimirlo podra observar que posee varias capetas, con toda la información necesaria para que sea reconocida como una IP en el catalogo de Vivado, cabe destacar que el empaquetado incluye drivers de software sin necesidad de intervención del usuario.</p>
+<h3 id="integracion-de-periferico-hls">Integración de Periférico HLS</h3>
+<p>Abra Vivado y cree un nuevo proyecto eligiendo la placa "Nexys A7 100T" en la sección Boards, como se ha hecho en secciones previas.</p>
+<p>Antes de poder integrar la IP generada a un sistema, hay que añadir la carpeta donde esta se encuentra a los repositorios de bloques IP's a Vivado. Para esto dirijase a Tools&gt;Settings como se ve en la <a href="#fig-Tool_settings">figura 27</a>.</p>
+<p><figure id="_figure-27"><img alt="Configuracion de Vivado" id="fig-Tool_settings" src="img/Tool_settings.png" width="1000"><figcaption>Figura 27: Configuracion de Vivado</figcaption></figure></p>
+<p>En el panel emergente mostrado en la <a href="#fig-IP_REP">figura 28</a> dirijase al botón IP&gt;Repository, seguido de esto haga click en el signo + para añadir la carpeta donde guardó el bloque IP.</p>
+<p><figure id="_figure-28"><img alt="Repositorios de IP" id="fig-IP_REP" src="../img/IP_REP.png" width="1000"><figcaption>Figura 28: Repositorios de IP</figcaption></figure></p>
+<p>Si no han ocurrido inconvenientes la IP debería aparecer la IP dentro de la carpeta como se ve en la <a href="#fig-Ip_folder">figura 29</a>. Note que el nombre de la IP corresponde al nombre de la función en software y no al nombre de la carpeta exportada.</p>
+<p><figure id="_figure-29"><img alt="Carpeta de la IP" id="fig-Ip_folder" src="../img/Ip_folder.png" width="1000"><figcaption>Figura 29: Carpeta de la IP</figcaption></figure></p>
+<p>Cierre la ventana emergente y cree un nuevo diagrama de bloques. En este genere el sistema base de MicroBlaze V con periférico de Uart diseñado en la <a href="../../Ejemplo_1_Sistema_base/Ejemplo_1/#diseno-de-hardware">seccion 1</a> como se ve en la <a href="#figbd_no_adder_tree">figura 30</a>.</p>
+<p><figure id="_figure-30"><img alt="Diagrama de bloques sin Adder_tree" id="figbd_no_adder_tree" src="../img/bd_no_adder_tree.png" width="1000"><figcaption>Figura 30: Diagrama de bloques sin Adder_tree</figcaption></figure></p>
+<p>Luego al buscar una IP para agregar al bloque, debería aparecer la IP diseñada en el listado como se ve en la <a href="#fig-Ip_on_list">figura 31</a>.</p>
+<p><figure id="_figure-31"><img alt="IP en la lista de Ip's disponibles" id="fig-Ip_on_list" src="../img/Ip_on_list.png" width="400"><figcaption>Figura 31: IP en la lista de Ip's disponibles</figcaption></figure></p>
+<p>Esto agregará la IP al diagrama, como se puede apreciar en la <a href="#fig-IP_Adder_tree_on_bd">figura 32</a>. Note que esta IP posee una interfaz AXI debido a que Vitis realiza el encapsulado automaticamente (A diferencia del modulo diseñado en RTL de la <a href="../../Ejemplo_4_Verilog/Ejemplo_4/">sección 4</a>). Tambien se tiene que posee un pin de interrupcion, sin embargo este no es funcional debido a que no se le asigno una funcionalidad al momento de hacer la síntesis de C a RTL.</p>
+<p><figure id="_figure-32"><img alt="IP diseñada en el diagrama de bloques " id="fig-IP_Adder_tree_on_bd" src="../img/IP_Adder_tree_on_bd.png" width="1000"><figcaption>Figura 32: IP diseñada en el diagrama de bloques </figcaption></figure></p>
+<p>Luego presione el botón <em>Run Connection Automation</em> para integrar la IP al diagrama de bloques, debería quedar como en la <a href="#fig-bd_with_adder_Tree">figura 33</a>.</p>
+<p><figure id="_figure-33"><img alt="Diagrama de bloques con IP Adder_tree" id="fig-bd_with_adder_Tree" src="../img/bd_with_adder_Tree.png" width="1000"><figcaption>Figura 33: Diagrama de bloques con IP Adder_tree</figcaption></figure></p>
+<p>Tras validar el diagrama de bloques, genere los productos de salida y genere la envoltura en hdl.</p>
+<p>Despues de correr la síntesis y la implementación, el autor obtuvo la utilizacion de recursos vista en la <a href="#tbl-resources-global">tabla 1</a>.</p>
 <div style="text-align: center;">
-<table id="tbl-resources">
+<table id="tbl-resources-global">
 <caption style="caption-side:bottom">Tabla 1: Utilización de recursos </caption><thead>
 <tr>
 <th>Proceso</th>
@@ -984,170 +1292,70 @@ En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
 <tbody>
 <tr>
 <td><code>Sintesis</code></td>
-<td>2911</td>
-<td>2714</td>
-<td>16</td>
+<td>2772</td>
+<td>2483</td>
+<td>32</td>
 </tr>
 <tr>
 <td><code>Implementacion</code></td>
-<td>2603</td>
-<td>2647</td>
-<td>16</td>
+<td>2486</td>
+<td>2415</td>
+<td>32</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h2 id="firmware">Firmware</h2>
-<p>Abra Vitis, genere un componente de plataforma usando el hardware diseñado y un componente de aplicación. Importe Ejemplo_3.c de la carpeta Ejemplo_3 del repositorio.</p>
-<p>Viendo el codigo:</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xgpio.h&gt;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xparameters.h"</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xuartlite.h"</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xintc.h"</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_exception.h"</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">XIntc</span><span class="w">     </span><span class="n">IntcInstance</span><span class="p">;</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">XUartLite</span><span class="w"> </span><span class="n">UartInstance</span><span class="p">;</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">XGpio</span><span class="w">     </span><span class="n">GpioInstance</span><span class="p">;</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="cp">#define BUTTON_CHANNEL  1</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="cp">#define LED_CHANNEL     2</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="cp">#define BUTTON_IR_MASK  XGPIO_IR_CH1_MASK</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="kt">void</span><span class="w"> </span><span class="nf">UartHandler</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">CallbackRef</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">XUartLite</span><span class="w"> </span><span class="o">*</span><span class="n">UartPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XUartLite</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">CallbackRef</span><span class="p">;</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">u8</span><span class="w"> </span><span class="n">ReadBuffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w">  </span><span class="c1">// 1 char + null terminator</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ReceivedCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XUartLite_Recv</span><span class="p">(</span><span class="n">UartPtr</span><span class="p">,</span><span class="w"> </span><span class="n">ReadBuffer</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ReceivedCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Interrupcion de UART! Recibio: %s</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ReadBuffer</span><span class="p">);</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">XIntc_Acknowledge</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_UARTLITE_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p">}</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="kt">void</span><span class="w"> </span><span class="nf">GpioHandler</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">CallbackRef</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">XGpio</span><span class="w"> </span><span class="o">*</span><span class="n">GpioPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">XGpio</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">CallbackRef</span><span class="p">;</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="n">XGpio_InterruptDisable</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">buttonState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XGpio_DiscreteRead</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_CHANNEL</span><span class="p">);</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="n">XGpio_DiscreteWrite</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="n">buttonState</span><span class="p">);</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">buttonState</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Boton presionado! Valor: 0x%X</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">buttonState</span><span class="p">);</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="n">XGpio_InterruptClear</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="n">XIntc_Acknowledge</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_GPIO_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="n">XGpio_InterruptEnable</span><span class="p">(</span><span class="n">GpioPtr</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p">}</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Status</span><span class="p">;</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="c1">// Inicializacion de los perifericos</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XUartLite_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UartInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_XUARTLITE_0_BASEADDR</span><span class="p">);</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XGpio_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_AXI_GPIO_0_BASEADDR</span><span class="p">);</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="c1">// Channel 1 = botones (entradas), Channel 2 = LEDs (salidas)</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFFFFFFFF</span><span class="p">);</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="n">XGpio_SetDataDirection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">LED_CHANNEL</span><span class="p">,</span><span class="w">    </span><span class="mh">0x00000000</span><span class="p">);</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="n">XGpio_InterruptClear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XGPIO_IR_CH1_MASK</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">XGPIO_IR_CH2_MASK</span><span class="p">);</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">    </span><span class="c1">//Inicializacion del controlador de interrupciones</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_XINTC_0_BASEADDR</span><span class="p">);</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">    </span><span class="c1">// Conexiones de interrupción al controlador</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_UARTLITE_0_INTR</span><span class="p">,</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">                           </span><span class="p">(</span><span class="n">XInterruptHandler</span><span class="p">)</span><span class="n">UartHandler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UartInstance</span><span class="p">);</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_GPIO_0_INTR</span><span class="p">,</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">                           </span><span class="p">(</span><span class="n">XInterruptHandler</span><span class="p">)</span><span class="n">GpioHandler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">);</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="c1">// Habilita el controlador</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XIntc_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XIN_REAL_MODE</span><span class="p">);</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">    </span><span class="c1">//Habilita las interrupciones de los dos perifericos dentro del controlador</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">    </span><span class="n">XIntc_Enable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_UARTLITE_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">    </span><span class="n">XIntc_Enable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_FABRIC_AXI_GPIO_0_INTR</span><span class="p">);</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">    </span><span class="c1">// Habilitacion  de excepciones (necesario para el uso de interrupciones en Risc-v)</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">    </span><span class="n">Xil_ExceptionInit</span><span class="p">();</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="w">    </span><span class="n">Xil_ExceptionRegisterHandler</span><span class="p">(</span><span class="n">XIL_EXCEPTION_ID_INT</span><span class="p">,</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">                                 </span><span class="p">(</span><span class="n">Xil_ExceptionHandler</span><span class="p">)</span><span class="n">XIntc_InterruptHandler</span><span class="p">,</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">                                 </span><span class="o">&amp;</span><span class="n">IntcInstance</span><span class="p">);</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">    </span><span class="n">Xil_ExceptionEnable</span><span class="p">();</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="w">    </span><span class="c1">// Habilita las interrupciones desde los perifericos de ambos perifericos</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="w">    </span><span class="n">XUartLite_EnableInterrupt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">UartInstance</span><span class="p">);</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">    </span><span class="n">XGpio_InterruptEnable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">,</span><span class="w"> </span><span class="n">BUTTON_IR_MASK</span><span class="p">);</span>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="w">    </span><span class="n">XGpio_InterruptGlobalEnable</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GpioInstance</span><span class="p">);</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Presione un boton o mande un mensaje por la terminal.</span><span class="se">\r\n</span><span class="s">"</span><span class="p">);</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="p">}</span>
+<h2 id="diseno-de-firmware">Diseño de Firmware</h2>
+<p>Vuelva a Vitis. Puede generar un nuevo workspace o mantener el que uso previamente, los componentes de plataforma, aplicacion y HLS se encuentran separados por carpetas dentro del workspace.</p>
+<p>Genere un componente de plataforma usando el archivo xsa diseñado en la sección anterior, acto seguido genere un componente de aplicación.</p>
+<p>Note que en el panel lateral, en la carpeta <em>Includes</em> del componente de aplicación, se encuentra la subcarpeta ".../standalone_microblaze_riscv_0/include" donde están los encabezados de los drivers de cada uno de los periféricos del sistema. En esta carpeta se encuentra el driver de la IP diseñada con el nombre "xadder_tree.h" como se ve en la <a href="#fig-includes-adder-tree">figura 34</a>. La x antes del nombre del encabezado viene de Xillinx. </p>
+<p><figure id="_figure-34"><img alt="Includes de aplicación" id="fig-includes-adder-tree" src="../img/adder_tree_includes.png" width="1000"><figcaption>Figura 34: Includes de aplicación</figcaption></figure></p>
+<p>En el componente de aplicacion importe el archivo fuente "Ejemplo_5.c" de la carpeta "Ejemplo_5" el cual contiene el codigo:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xadder_tree.h"</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xparameters.h"</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"--- HLS Adder tree Test ---</span><span class="se">\r\n</span><span class="s">"</span><span class="p">);</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="c1">// Inicializa IP</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="n">XAdder_tree</span><span class="w"> </span><span class="n">hls_inst</span><span class="p">;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="n">XAdder_tree_Config</span><span class="w"> </span><span class="o">*</span><span class="n">tree_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XAdder_tree_LookupConfig</span><span class="p">(</span><span class="n">XPAR_XADDER_TREE_0_BASEADDR</span><span class="p">);</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XAdder_tree_CfgInitialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hls_inst</span><span class="p">,</span><span class="w"> </span><span class="n">tree_config</span><span class="p">);</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"ERROR: Inicializacion fallada</span><span class="se">\r\n</span><span class="s">"</span><span class="p">);</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="c1">// Datos de entrada</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">80</span><span class="p">};</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="c1">// Escribir datos</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="n">XAdder_tree_Write_i_data_Words</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hls_inst</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">word_type</span><span class="o">*</span><span class="p">)</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="c1">// Manda señal de inicio al periferico</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="n">XAdder_tree_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hls_inst</span><span class="p">);</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="c1">//Esperar a recibir resultado</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">XAdder_tree_IsDone</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hls_inst</span><span class="p">));</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="c1">// Leer resultado</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XAdder_tree_Get_o_data</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hls_inst</span><span class="p">);</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Resultado obtenido de la IP: %d</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>Primero nos fijaremos en las librerías de interes:</p>
+<p>Note que el programa incluye el encabezado del driver del adder tree.</p>
+<p>Este programa sigue la siguiente secuencia:</p>
 <ul>
-<li><strong>xgpio.h</strong>:Librería que contiene funciones y definiciones asociadas a GPIO.</li>
-<li><strong>xuartlite.h</strong>: Librería que contiene funciones y definiciones asociadas al periférico UART.</li>
-<li><strong>xintc.h</strong> Librería que contiene funciones y definiciones asociadas al controlador de interrupciones.</li>
-<li><strong>xparameters.h</strong> : Librería que contiene las definiciones asociadas al hardware descrito en Vivado, es en este archivo donde se encuentran las macros asociadas a direcciones base de los periféricos <strong>XPAR_XUARTLITE_0_BASEADDR</strong> en caso de UART y  <strong>XPAR_AXI_GPIO_0_BASEADDR</strong> en caso de GPIO.</li>
+<li>Se inicializa el periferico.</li>
+<li>Se escriben los datos de entrada en la IP.</li>
+<li>Se gatilla la IP para obtener el resultado.</li>
+<li>Se imprime el resultado a través de Uart.</li>
 </ul>
-<p>A manera de ilustrar, haga click+ctrl sobre <strong>xparameter.h</strong> en el codigo, esto lo llevará al archivo. Nota: En linux el servidor slang tiende a fallar, en ese caso para visualizar el archivo vaya al panel lateral y dirijase la segunda carpeta de Includes del componente de aplicación.</p>
-<p>Dirijase a la linea 34 donde verá las definiciones del periferico AXI GPIO.</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cm">/* Definitions for peripheral AXI_GPIO_0 */</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#define XPAR_AXI_GPIO_0_COMPATIBLE "xlnx,axi-gpio-2.0"</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">#define XPAR_AXI_GPIO_0_BASEADDR 0x40000000 </span><span class="c1">// Direccion Base</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">#define XPAR_AXI_GPIO_0_HIGHADDR 0x4000ffff </span><span class="c1">// Direccion Alta</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="cp">#define XPAR_AXI_GPIO_0_INTERRUPT_PRESENT 0x1</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="cp">#define XPAR_AXI_GPIO_0_IS_DUAL 0x1</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="cp">#define XPAR_AXI_GPIO_0_INTERRUPTS 0x2000</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="cp">#define XPAR_FABRIC_AXI_GPIO_0_INTR 0</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="cp">#define XPAR_AXI_GPIO_0_INTERRUPT_PARENT 0x41200001</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="cp">#define XPAR_AXI_GPIO_0_GPIO_WIDTH 0x5</span>
-</span></code></pre></div>
-<p>Note que tanto la direccion base  (0x_4000_000) como la dirección alta  (0x4000_ffff) corresponden con las mostradas en la <a href="#fig-Adress-map">figura 8</a>.</p>
-<p>Lo mismo es cierto para el periferico Uart visto en la linea 90.</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cm">/* Definitions for peripheral AXI_UARTLITE_0 */</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_COMPATIBLE "xlnx,axi-uartlite-2.0"</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_BASEADDR 0x40600000 </span><span class="c1">// Direccion Base</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_HIGHADDR 0x4060ffff </span><span class="c1">// Direccion Alta</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_BAUDRATE 0x2580</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_USE_PARITY 0x0</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_ODD_PARITY 0x0</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_DATA_BITS 0x8</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_INTERRUPTS 0x1</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="cp">#define XPAR_FABRIC_AXI_UARTLITE_0_INTR 1</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="cp">#define XPAR_AXI_UARTLITE_0_INTERRUPT_PARENT 0x41200001</span>
-</span></code></pre></div>
-<p>Luego volviendo al archivo Ejemplo_3.c se tienen las siguientes funciones handler segun lo comentado en  <a href="#que-es-una-interrupcion">la sección de contexto</a>.</p>
-<ul>
-<li>UartHandler: Función Handler de uart, se activa cuando la placa recibe un caracter a través de uart. Esta funcion reenvia el caracter recibido.</li>
-<li>GpioHandler: Funcion Handler de GPIO, se activa cuando se presiona uno de los botones de la placa. Al apretar un boton la funcion envia un aviso de botón presionado a través de Uart con el valor correspondiente a su pin GPIO y prende un led asociado a ese valor.</li>
-</ul>
-<p>Analizando el codigo del main se tiene que se sigue la siguiente secuencia:</p>
-<ul>
-<li>Se inicializan perifericos de Uart y GPIO.</li>
-<li>Se fijan las direcciones de los GPIO, de manera que detecte los botones como entradas y los leds como salidas (1= Entrada 0 = Salida). Note que los canales vistos en la <a href="#fig-gpio-config">figura 6</a> son usados para definir que canal corresponde a que periférico (BUTTON_CHANNEL=1 LED_CHANNEL=2).</li>
-<li>Se inicializa el controlador de interrupciones.</li>
-<li>Se entrega la informacion al controlador de interrupciones acerca de que función Handler corresponde a que periférico.</li>
-<li>Se habilita el controlador de interrupciones.</li>
-<li>Habilita la recepcion de interrupciones de los dos periféricos al controlador.</li>
-<li>Habilita excepciones (necesario para el uso de interrupciones en Risc-V).</li>
-<li>Habilita la salida de interrupciones desde los periféricos.</li>
-<li>Deja un bucle indefinido para que el programa se mantenga corriendo.</li>
-</ul>
-<p>Haga click en <strong>Build</strong> para compilar la aplicación, debería dar la utilizacion de recursos vista en la <a href="#tbl-elf-size">tabla 2</a> dando un total aproximado de 18.6 KB. Note que esto es superior al minimo de memoria entregado por el Wizard de <strong>Run Block Automation</strong> (16 KB). </p>
+<p>Compile la aplicación haciendo click en  <strong>Build</strong>. En el caso del autor, se obtuvo un ELF con un tamaño de 12.8 KB como se ve en la <a href="#tbl-elf-size">tabla 2</a>.</p>
 <div style="text-align: center;">
 <table id="tbl-elf-size">
 <caption style="caption-side:bottom">Tabla 2: Tamaño del ELF </caption><thead>
@@ -1160,28 +1368,25 @@ En la <a href="#fig-Network-0">figura 10</a> se aprecian:</p>
 </thead>
 <tbody>
 <tr>
-<td>14376</td>
-<td>480</td>
-<td>3792</td>
-<td>18648</td>
+<td>9040</td>
+<td>276</td>
+<td>3552</td>
+<td>12868</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3 id="verificacion">Verificación</h3>
-<p>Conecte la placa, enciendala y programela haciendo click en <strong>Run</strong> desde el panel lateral. Luego pruebe mandando caracteres a través de su consola serial de preferencia o presionando los botones, debería comportarse como se ve en <a href="#fig-hterm-test">figura 11</a>.</p>
-<p><figure id="_figure-11"><img alt="Pruebas en Hterm" id="fig-hterm-test" src="img/Verificaci%C3%B3n_1.png" width="1000"><figcaption>Figura 11: Pruebas en Hterm</figcaption></figure></p>
-<p>Luego, otra manera de visualizar el comportamiento de las funciones handler es haciendo uso del depurador. Posicione breakpoints al inicio de cada funcion Handler como se ve en la <a href="#fig-breakpoints">figura 12</a> e inicie la sesion de depurado haciendo click en <strong>Debug</strong>.</p>
-<p><figure id="_figure-12"><img alt="Breakpoints en funciones Handler" id="fig-breakpoints" src="img/break_points.png" width="1000"><figcaption>Figura 12: Breakpoints en funciones Handler</figcaption></figure></p>
-<p>Note que la Uart se gatilla tanto cuando termina una transmisión como cuando detecta la recepcion de datos de acuerdo a la <a href="https://docs.amd.com/v/u/en-US/pg142-axi-uartlite">documentacion de AXU UART Lite</a>. Esto implica que esta funcion se gatillará cuando:</p>
+<h2 id="verificacion">Verificación</h2>
+<p>Ya teniendo el archivo ELF abra su programa de comunicación serial de preferencia (en esta guía se hará uso de Hterm) y configure de acuerdo a los parametros:</p>
 <ul>
-<li>El programa envia el string "Presione un boton o mande un mensaje por la terminal.\r\n" antes de entrar al loop.</li>
-<li>Cuando se presiona un boton y se envia el mensaje correspondiente.</li>
-<li>Cuando detecta recepcion de datos.</li>
+<li>BaudRate: 9600</li>
+<li>Paridad: No</li>
+<li>Ancho de dato: 8 Bits</li>
 </ul>
-<p>Como la funcion handler chequea que los registros internos de la IP hayan recibido datos antes de enviar, esta no enviara datos fuera de cuando los recibe desde el PC.</p>
-<p>Con esto han dado un paso fundamental: pasar de un procesador que solo ejecuta código en aislamiento a un sistema que percibe e interactúa con el mundo real. Lograron integrar periféricos heterogéneos —GPIO para entrada física desde botones y salida hacia LEDs, UART para comunicación serial— y orquestar todo a través de un controlador de interrupciones que permite al MicroBlaze responder de forma eficiente a eventos asíncronos sin desperdiciar ciclos en polling. Este patrón —periféricos sobre AXI, manejadores de interrupción y un procesador soft personalizado sobre FPGA— es la base sobre la que se construyen sistemas embebidos reales: desde controladores industriales hasta instrumentación científica. A partir de aquí, agregar nuevos periféricos (timers, ADCs, sensores I²C/SPI, aceleradores propios en hardware) es solo cuestión de aplicar la misma metodología que acaban de dominar. El hardware ya no es una caja negra: es una plataforma maleable que ustedes pueden moldear a la medida del problema que quieran resolver.</p>
-<p><img alt="" id="fig" src="img/.png" width="1000"></p>
+<p>Luego conecte la placa a su computador, enciendala y conecte su programa  de comunicacion serial al canal apropiado (Generalmente /dev/ttyUSB0 en Linux y COM4 en Windows).</p>
+<p>Finalmente corra la aplicacion haciendo click en <em>Run</em> en el panel lateral del componente de aplicación. En su terminal serial debería ver el resultado de la suma de los 8 datos de entrada como se ve en la <a href="#fig-hterm-results">figura 35</a></p>
+<p><figure id="_figure-35"><img alt="Resultados visualizados en Hterm" id="fig-hterm-results" src="../img/hterm_results.png" width="1000"><figcaption>Figura 35: Resultados visualizados en Hterm</figcaption></figure></p>
+<p>Con esta sección se completa el flujo de diseño desde una descripción algorítmica en C/C++ hasta su ejecución como periférico controlado por software embebido sobre el procesador MicroBlaze V. Más allá del ejemplo particular del adder tree, lo relevante es haber recorrido el camino que conecta dos niveles de abstracción que tradicionalmente se mantienen separados: el del programador y el del diseñador de hardware. La capacidad de modificar una única directiva como HLS UNROLL y observar cómo se transforman la latencia y el uso de recursos del módulo abre un espacio de exploración de arquitecturas que resultaría impracticable mediante la escritura manual de RTL. A partir de este punto, cualquier algoritmo expresable en C deja de ser una pieza exclusivamente de software para convertirse en una candidata legítima a acelerador en hardware, y la decisión entre ejecutarlo sobre el procesador o materializarlo como periférico dedicado pasa a depender de los compromisos de desempeño, área y consumo que el diseñador esté dispuesto a asumir. Con las herramientas vistas en esta guía, esa decisión deja de ser una limitación técnica y se convierte en una elección de diseño.</p>
 
 
 
