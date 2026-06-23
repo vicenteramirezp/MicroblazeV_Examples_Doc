@@ -1,8 +1,13 @@
-# Uso de VGA con DMA
+# Guía 7: Sistema de video con acceso directo a memoria
+
+
+## Objetivo
+
+En esta guía se espera que el lector pueda hacer uso de un periférico de video el cual obtiene su información directamente de memoria.
 
 ## Contexto
 
-VGA (Video Graphics Array) es un estándar de video analógico introducido por IBM en 1987 que transmite la imagen mediante tres señales de color (R, G, B) acompañadas de dos señales digitales de sincronización: HSYNC y VSYNC. A diferencia de interfaces seriales modernas como HDMI o DisplayPort, VGA no encapsula los píxeles en paquetes ni incorpora un reloj embebido: la temporización es responsabilidad íntegra del transmisor. Para una resolución de 800×600 @ 60 Hz, por ejemplo, el estándar VESA define un reloj de píxel de 40 MHz y exige respetar con precisión los intervalos de front porch, pulso de sincronización y back porch tanto horizontales como verticales; cualquier desviación provoca una desincronización en el monitor. Esto implica que, en cada flanco activo del reloj de píxel —aproximadamente cada 25 ns— el controlador debe tener disponible un nuevo valor RGB en sus salidas. En una implementación sobre FPGA, este controlador se construye típicamente como una máquina de estados que genera los contadores horizontal y vertical, deriva HSYNC/VSYNC y consume píxeles desde un FIFO que actúa como interfaz hacia el resto del sistema.
+VGA (Video Graphics Array) es un estándar de video analógico introducido por IBM en 1987 que transmite la imagen mediante tres señales de color (R, G, B) acompañadas de dos señales digitales de sincronización: HSYNC y VSYNC. A diferencia de interfaces seriales modernas como HDMI o DisplayPort, VGA no encapsula los píxeles en paquetes ni incorpora un reloj embebido: la temporización es responsabilidad íntegra del transmisor. Para una resolución de 800×600 @ 60 Hz, por ejemplo, el estándar VESA define un reloj de píxel de 40 MHz y exige respetar con precisión los intervalos de front porch, pulso de sincronización y back porch tanto horizontales como verticales; cualquier desviación provoca una desincronización en el monitor. Esto implica que, en cada flanco activo del reloj de píxel  el controlador debe tener disponible un nuevo valor RGB en sus salidas. En una implementación sobre FPGA, este controlador se construye típicamente como una máquina de estados que genera los contadores horizontal y vertical, deriva HSYNC/VSYNC y consume píxeles desde un FIFO que actúa como interfaz hacia el resto del sistema.
 
 
 <figure markdown="span">
@@ -10,14 +15,14 @@ VGA (Video Graphics Array) es un estándar de video analógico introducido por I
   <figcaption>Interfaz vga en la placa Nexys A7</figcaption>
 </figure>
 
-El problema es alimentar ese FIFO al ritmo exigido. Un framebuffer de 800×600 con color de 24 bits ocupa 2 MB, demasiado para almacenarlo en BRAM, por lo que se coloca en memoria externa. Si el MicroBlaze V tuviera que leer cada píxel desde DDR y escribirlo en el controlador VGA mediante instrucciones de lectura y escritura sobre el bus AXI memory-mapped, consumiría prácticamente el 100 % de su tiempo de CPU y, debido a la latencia variable del controlador DDR, los arbitrajes del interconnect AXI y las interrupciones, no podría sostener el ancho de banda constante de ~37 MB/s que la señal requiere. Por esto se implementa un AXI DMA (Direct Memory Access) que transfiere bloques de memoria de forma autónoma usando el rol de master sobre el bus AXI. Específicamente se emplea la variante MM2S (Memory-Mapped to Stream): el DMA lee el framebuffer desde DDR mediante transacciones burst AXI4 memory-mapped y entrega los datos por su puerto de salida como un flujo AXI4-Stream, un protocolo unidireccional punto a punto optimizado para transporte continuo de datos sin sobrecarga de direccionamiento. Este stream se conecta directamente al FIFO del controlador VGA, descargando al MicroBlaze V de toda la tarea de transferencia; el procesador solo configura los registros del DMA al inicio —dirección base, longitud y modo— y queda libre para ejecutar la lógica de aplicación, actualizando el contenido del framebuffer únicamente cuando es necesario.
+El problema es alimentar ese FIFO al ritmo exigido. Un framebuffer de 800×600 con color de 24 bits ocupa 2 MB, demasiado para almacenarlo en BRAM, por lo que se coloca en memoria externa. Si el MicroBlaze V tuviera que leer cada píxel desde DDR y escribirlo en el controlador VGA mediante instrucciones de lectura y escritura sobre el bus AXI memory-mapped, consumiría prácticamente el 100 % de su tiempo de CPU y, debido a la latencia variable del controlador DDR, los arbitrajes del interconnect AXI y las interrupciones, no podría sostener el ancho de banda constante de ~37 MB/s que la señal requiere. Por esto se implementa un AXI DMA (Direct Memory Access) que transfiere bloques de memoria de forma autónoma usando el rol de master sobre el bus AXI. Específicamente se emplea la variante MM2S (Memory-Mapped to Stream): el DMA lee el framebuffer desde DDR mediante transacciones burst AXI4 memory-mapped y entrega los datos por su puerto de salida como un flujo AXI4-Stream, un protocolo unidireccional punto a punto optimizado para transporte continuo de datos sin sobrecarga de direccionamiento. Este stream se conecta directamente al FIFO del controlador VGA, descargando al MicroBlaze V de toda la tarea de transferencia; el procesador solo configura los registros del DMA al inicio  y queda libre para ejecutar la lógica de aplicación, actualizando el contenido del framebuffer únicamente cuando es necesario.
 
 
 
 
 ## Diseño del hardware
 
-Debido a que VGA es una interfaz grafica relativamente desactualizada, no admite una implementación directa equivalente a la de protocolos digitales modernos como UART o líneas GPIO discretas abordadas en secciones anteriores. Para subsanar esta limitación, se recurre a dos núcleos de propiedad intelectual (IP cores) desarrollados por Digilent, los cuales permiten adaptar el subsistema HDMI —interfaz digital basada en señalización diferencial TMDS— hacia la salida VGA física integrada en la placa Nexys A7. Los IP cores empleados son los siguientes:
+Debido a que VGA es una interfaz grafica relativamente desactualizada, no admite una implementación directa equivalente a la de protocolos digitales modernos como UART o líneas GPIO discretas abordadas en secciones anteriores. Para subsanar esta limitación, se recurre a dos núcleos de propiedad intelectual (IP cores) desarrollados por Digilent, los cuales permiten adaptar el subsistema HDMI hacia la salida VGA física integrada en la placa Nexys A7. Los IP cores empleados son los siguientes:
 
 - Dynamic Clock Generator (dynclk): Accede al bloque MMCM/PLL del FPGA Artix-7 a través del bus AXI4-Lite, habilitando la reconfiguración en tiempo de ejecución del reloj de píxel desde el software embebido. Esta funcionalidad resulta crítica dado que cada resolución estándar exige una frecuencia de pixel clock específica conforme a la especificación VESA DMT. En contraste, el IP Clocking Wizard fija dichas frecuencias al momento de realizar la síntesis, lo que obligaría a re-sintetizar e re-implementar el bitstream ante cada modificación de la resolución objetivo.
 
@@ -282,7 +287,7 @@ Table: Utilización de recursos {#tbl-resources}
 
 </div>
 
-## Firmware
+## Diseño de Firmware
 
 Abra Vitis, cree el archivo de plataforma y aplicación.
 
@@ -411,6 +416,12 @@ Se tiene que la logica del display se basa en tener 2 cuadros en memoria externa
 
 ![Secuencia de desplegado y escritura de los 2 cuadros](img/Diagrama_frames.png){#fig-frames width="800"}
 
-Se tiene que una vez que se ha realizado el dibujo, este dato se pasa de la cache de Microblaze-V a la Memoria externa con la función Xil_DCacheFlush(), puesto que el modulo VDMA solo posee acceso a la memoria externa y no al cache del procesador.
+Se tiene que una vez que se ha realizado el dibujo, este dato se pasa de la cache de MicroBlaze V a la Memoria externa con la función Xil_DCacheFlush(), puesto que el modulo VDMA solo posee acceso a la memoria externa y no al cache del procesador.
+
+## Validación 
+
+Para corrobar el funcionamiento de la aplicación, , cambie el parametro de la funcion 	DisplaySetMode(&dispCtrl, &VMODE_1280x1024) a la resolucion del monitor que posea, en este caso se mantendra la pre existente y se aplicara sobre un monitor 1280x1024.
+
+Una vez elegido el parámetro conecte su placa al computador, conecte el puerto vga a su monitor y programe la placa. Se debería ver como en la [](#fig-gif).
 
 ![Programa en ejecución sobre un monitor 1280x1024](img/app.gif){#fig-gif width="600"}

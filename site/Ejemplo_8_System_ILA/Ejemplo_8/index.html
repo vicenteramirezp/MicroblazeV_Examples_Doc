@@ -1194,18 +1194,18 @@ Este programa sigue la siguiente secuencia:</p>
 <p>Luego pase a la linea donde se inicializa el timer.</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
 </span></code></pre></div>
-<p>Esta funcion va a realizar dos escrituras, u</p>
-<p><a href="#fig_wv_escritura_LEDS">figura 27</a></p>
-<p><figure id="_figure-29"><img alt="1" id="fig_wv_escritura_LEDS" src="../img/wv_Timer_start.png" width="1000"><figcaption>Figura 29: 1</figcaption></figure></p>
+<p>Esta funcion va a realizar dos escrituras, ambas sobre el registo de control del temporizador 1 (dirección 0x00). Primero se escribe 0x20 para pasar el valor del registro de carga al registro de valor actual. Luego se escribe 0x80 para habilitar el contador de manera que empiece a contar como se ve en la <a href="#wv_Timer_start">figura 29</a> donde se leen las interfaces AW y W de <em>slot_0</em>.</p>
+<p><figure id="_figure-29"><img alt="Secuencia de inicio de timer" id="wv_Timer_start" src="../img/wv_Timer_start.png" width="1000"><figcaption>Figura 29: Secuencia de inicio de timer</figcaption></figure></p>
+<p>Luego pase a la linea donde se lee el valor del timer. </p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="n">TimerValue1</span><span class="o">=</span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
 </span></code></pre></div>
-<p><a href="#fig_wv_escritura_LEDS">figura 27</a></p>
-<p><figure id="_figure-30"><img alt="2" id="fig_wv_escritura_LEDS" src="../img/wv_Timer_start1.png" width="1000"><figcaption>Figura 30: 2</figcaption></figure></p>
+<p>En este caso se va a realizar una lectura sobre el registro de valor actual del contador 1 el cual posee la dirección 0x04. Note que el valor de actual de este registro depende de cuantos ciclos de reloj han pasado desde la habilitación del contador. Para ver esta transacción vaya a los canales R y AR de la <em>slot_0</em>  como se ve en la <a href="#wv_Timer_start1">figura 30</a>.</p>
+<p><figure id="_figure-30"><img alt="Lectura de registro de valor actual de Timer 1" id="wv_Timer_start1" src="../img/wv_Timer_start1.png" width="1000"><figcaption>Figura 30: Lectura de registro de valor actual de Timer 1</figcaption></figure></p>
+<p>Luego pase a la linea donde se lee el valor del timer de nuevo.</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">    </span><span class="n">TimerValue2</span><span class="o">=</span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
 </span></code></pre></div>
-<p><a href="#fig_wv_escritura_LEDS">figura 27</a></p>
-<p><figure id="_figure-31"><img alt="3" id="fig_wv_escritura_LEDS" src="../img/wv_Timer_start2.png" width="1000"><figcaption>Figura 31: 3</figcaption></figure></p>
-<p><img alt="" id="fig" src="img/.png" width="1000"></p>
+<p>Nuevamente se va a realizar una lectura sobre el registro de valor actual del contador 1 el cual posee la dirección 0x04. Note que el valor de actual de este registro depende de cuantos ciclos de reloj han pasado desde la ultima lectura. Para ver esta transacción vaya a los canales R y AR de la <em>slot_0</em>  como se ve en la <a href="#wv_Timer_start2">figura 31</a>.</p>
+<p><figure id="_figure-31"><img alt="Segunda lectura de registro de valor actual de Timer 1" id="wv_Timer_start2" src="../img/wv_Timer_start2.png" width="1000"><figcaption>Figura 31: Segunda lectura de registro de valor actual de Timer 1</figcaption></figure></p>
 
 
 

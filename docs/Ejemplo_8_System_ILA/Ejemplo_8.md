@@ -1,17 +1,92 @@
 # Guía 8 : Uso de System ILA
 
 
+## Objetivo
+
+En esta guía se espera que el lector logre un mayor entendimiento de AXI4 y logre visualizar la comunicación entre entre los componentes del sistema que hacen uso de esta interconexión a través de la IP System ILA.
 ## Contexto
 
-Aqui pondre una explicacion en mayor detalle de AXI4-Lite, que es el foco de esta guía.
+La Guía 4 introdujo AXI como un protocolo organizado en cinco canales independientes acoplados por *handshake* VALID/READY. Esta guía profundiza específicamente en **AXI4-Lite**, ya que es la variante utilizada por los periféricos *AXI GPIO* y *AXI Timer* que se monitorearán con el System ILA. A diferencia de AXI4 completo, AXI4-Lite no admite transferencias en ráfaga: cada transacción mueve exactamente una palabra de 32 bits. Esta restricción simplifica las formas de onda y permite asociar cada llamada del software a una transacción atómica observable en el ILA.
 
-Incluirá:
+### Transacciones AXI
 
-- Descripcion mas detallada de cada uno de los 5 canales
-- Descripcion de las señales.
-- Formas de onda de ejemplo para cada transaccion.
-- Explicar que las direcciones siempre son (direccion en canal de AXI + Direccion base del periférico mapeado en memoria)
+Cada canal es un conjunto independiente de señales que comparten un mismo mecanismo de *handshake*: el emisor levanta `VALID` cuando la información sobre el bus es válida y el receptor levanta `READY` cuando puede aceptarla. La transferencia se concreta en el flanco de subida del reloj en que ambas señales coinciden en alto. Este mecanismo se repite idéntico en los cinco canales, lo que permite que cada uno opere a su propio ritmo sin bloquear a los demás.
 
+Los cinco canales y sus señales se describen a continuación. Por convención, los nombres de señal van precedidos por el prefijo del canal al que pertenecen (`AW`, `W`, `B`, `AR`, `R`).
+
+**Canal de Dirección de Escritura (AW).** Lleva la dirección destino de una operación de escritura desde el maestro hacia el cliente. Sus señales son:
+
+- `AWADDR`: dirección de destino, relativa a la base del periférico.
+- `AWPROT`: tres bits con atributos de protección (privilegio, seguridad, instrucción/dato). En sistemas sencillos el maestro lo deja en 0 y el cliente lo ignora.
+- `AWVALID`: el maestro indica que `AWADDR` es válida.
+- `AWREADY`: el cliente indica que puede capturar la dirección.
+
+**Canal de Datos de Escritura (W).** Transporta el dato y la máscara que indica qué bytes son válidos. Sus señales son:
+
+- `WDATA`: dato a escribir, de 32 bits en AXI4-Lite.
+- `WSTRB`: máscara de cuatro bits, uno por cada byte de `WDATA`, que indica qué bytes deben efectivamente escribirse. Permite escrituras parciales sin necesidad de leer–modificar–escribir.
+- `WVALID`: el maestro indica que `WDATA` es válido.
+- `WREADY`: el cliente indica que puede capturar el dato.
+
+**Canal de Respuesta de Escritura (B).** El cliente informa al maestro el resultado de la escritura. Sus señales son:
+
+- `BRESP`: código de respuesta de dos bits. Los valores relevantes en AXI4-Lite son `OKAY` (00), `SLVERR` (10) y `DECERR` (11).
+- `BVALID`: el cliente indica que la respuesta es válida.
+- `BREADY`: el maestro indica que puede aceptarla.
+
+**Canal de Dirección de Lectura (AR).** Lleva la dirección a leer desde el maestro hacia el cliente. Sus señales son:
+
+- `ARADDR`: dirección a leer, relativa a la base del periférico.
+- `ARPROT`: análogo a `AWPROT`.
+- `ARVALID`: el maestro indica que `ARADDR` es válida.
+- `ARREADY`: el cliente indica que puede capturar la dirección.
+
+**Canal de Datos de Lectura (R).** El cliente entrega al maestro el dato leído junto con un código de estado. Sus señales son:
+
+- `RDATA`: dato leído, de 32 bits.
+- `RRESP`: código de respuesta, análogo a `BRESP`.
+- `RVALID`: el cliente indica que `RDATA` es válido.
+- `RREADY`: el maestro indica que puede aceptarlo.
+
+Adicionalmente, los cinco canales comparten dos señales globales: `ACLK`, el reloj común al maestro y al cliente, y `ARESETN`, el reset activo en bajo.
+
+**Direccionamiento.** Las direcciones que viajan por los canales `AW` y `AR` no son direcciones globales del mapa de memoria del procesador, sino *offsets* relativos a la base del periférico. La dirección efectiva con la que trabaja el software se compone como:
+
+
+Dirección efectiva = Dirección base del periférico + Offset en  AWADDR/ARADDR
+
+
+El *AXI Interconnect* decodifica los bits superiores de la dirección del procesador para identificar qué cliente es destino de la transacción y entrega únicamente los bits inferiores —el offset dentro de ese periférico— a las señales `AWADDR` o `ARADDR` del cliente. Por ejemplo, si el *AXI Timer* tiene asignada la dirección base `0x41C00000` y el software escribe sobre `0x41C00004`, el periférico recibirá `AWADDR = 0x04`, que corresponde al registro `TLR0` de su mapa de registros. Por esta razón las direcciones observadas en las formas de onda del System ILA son siempre pequeñas (`0x00`, `0x04`, `0x08`, …): corresponden únicamente al offset dentro del periférico monitoreado.
+
+### Transacción de Lectura
+
+Una transacción de lectura involucra los canales `AR` y `R`. La forma de onda canónica se ilustra en la [](#fig-canonical-axi-read).
+
+La secuencia es la siguiente:
+
+1. El maestro coloca la dirección en `ARADDR` y levanta `ARVALID`.
+2. Cuando el cliente está listo para capturar la dirección, levanta `ARREADY`. La dirección se transfiere en el flanco de subida en que ambas señales están en alto.
+3. El cliente coloca el dato solicitado en `RDATA`, fija `RRESP` y levanta `RVALID`.
+4. Cuando el maestro está listo para recibir, levanta `RREADY`. El dato se transfiere en el flanco de subida en que ambas señales están en alto, cerrando la transacción.
+
+No existe un canal de respuesta dedicado para la lectura: el código de estado se transmite en `RRESP` junto con el dato. Los canales `AR` y `R` operan de forma independiente, por lo que el cliente puede demorarse uno o varios ciclos entre aceptar la dirección y entregar el dato sin bloquear el resto del bus.
+
+![Forma de onda canónica de una transacción de lectura AXI4-Lite](img/Read_AXI.png){ #fig-canonical-axi-read width="800" }
+
+### Transacción de Escritura
+
+Una transacción de escritura involucra los canales `AW`, `W` y `B`. La forma de onda canónica se ilustra en la [](#fig-canonical-axi-write).
+
+La secuencia es la siguiente:
+
+1. El maestro coloca la dirección en `AWADDR` y levanta `AWVALID`, y de forma independiente coloca el dato en `WDATA`, la máscara en `WSTRB` y levanta `WVALID`.
+2. Los *handshakes* `AWVALID`/`AWREADY` en el canal `AW` y `WVALID`/`WREADY` en el canal `W` se completan, no necesariamente en el mismo ciclo de reloj.
+3. Una vez recibidas la dirección y el dato, el cliente fija `BRESP` y levanta `BVALID`.
+4. Cuando el maestro está listo para aceptar la respuesta, levanta `BREADY`, cerrando la transacción.
+
+Que los canales `AW` y `W` sean independientes significa que la dirección y el dato pueden viajar en el mismo ciclo de reloj o en ciclos distintos, en cualquier orden. En las capturas del System ILA esta propiedad se traduce en que `AWVALID` y `WVALID` rara vez suben exactamente alineados, aunque ambos se observen muy próximos. 
+
+![Forma de onda canónica de una transacción de escritura AXI4-Lite](img/WRITE_AXI.png){ #fig-canonical-axi-write width="800" }
 ## Diseño de Hardware
 
 Abra Vivado y genere un nuevo proyecto. 
@@ -171,7 +246,7 @@ Table: Tamaño del ELF {#tbl-elf-size}
 </div>
 
 
-## Verificación
+## Validación
 
 Para poder hacer uso del System ILA hay que programar la placa a través de Vivado, para esto hay que hacer que Vitis no programe la placa a nivel de hardware y se ocupe solamente de cargar la aplicación.
 

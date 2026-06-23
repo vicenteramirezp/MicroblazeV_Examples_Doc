@@ -1,5 +1,8 @@
 # Guía 5: Diseño de Periféricos con High Level Synthesis
 
+## Objetivo
+
+En esta guía se espera que el lector pueda sintetizar algoritmos descritos en C/C++ para su integración en sistemas que incorporen un procesador.
 ## Contexto
 
 ### ¿Que es High Level Synthesis?
@@ -13,14 +16,14 @@ High-Level Synthesis (HLS) es el proceso de transformar la descripción de un di
 Note que para generar un módulo a nivel de RTL sintetizable  a partir de archivos C/C++, Vitis identifica ciertos aspectos claves en el código, entre los cuales destacan
 
 - **Función Top**: Esta es la función que envolverá a otras funciones, manteniendo la misma jerarquía a la del un modulo de alto nivel que instancia a otros, esto se puede apreciar mas claramente cuando se exportan los archivos RTL, donde Vitis da la opción de que se genere un módulo sintetizable por cada función.
-- **Bucles**: Vitis HLS sintetiza los bucles de forma secuencial de manera predeterminada. Es decir, genera un espacio de memoria en hardware donde realiza las iteraciones del bucle una instancia a la vez y en cada iteracion guarda el resultado.
+- **Bucles**: Vitis HLS sintetiza los bucles de forma secuencial de manera predeterminada. Es decir, genera un espacio de memoria en hardware donde realiza las iteraciones del bucle una instancia a la vez y en cada iteración guarda el resultado.
 - **Arreglos**: Vitis los implementa dependiendo de como son accedidos, si son grandes y no se acceden varios datos al mismo tiempo, son implementados con Block RAM, en caso de que se accedan varios datos al mismo tiempo, o sean de menor tamaño, se implementan a través de registros.
 
 Una vez la herramienta identifica estos aspectos, estos sirven como insumos directos para la síntesis como se puede apreciar en la [](#fig-vitis-flujo).
 
 ![Diagrama Síntesis HLS de Vitis](img/HLS_c_to_rtl_diagram.png){ #fig-vitis-flujo width="500" }
 
-Por ultimo se tiene que mediante el uso de directivas en Vitis HLS, es posible optimizar y ajustar los resultados de la sı́ntesis de hardware para una misma descripción en C, permitiendo explorar diferentes implementaciones de un mismo código fuente.
+Por ultimo se tiene que mediante el uso de directivas en Vitis HLS, es posible optimizar y ajustar los resultados de la síntesis de hardware para una misma descripción en C, permitiendo explorar diferentes implementaciones de un mismo código fuente.
 
 ### Pragmas en Vitis HLS
 
@@ -42,7 +45,7 @@ Esto abrirá una ventana emergente donde podrá crear el componente HLS, empezan
 
 ![Nombre del Componente HLS](img/creación_proyecto_hls.png){ #fig-nombre-proyecto width="1000" }
 
-Tras hacer click en *Next*, se elije el archivo de configuración HLS, este contiene todos los datos de la configuración del proyecto. Su funcion es automatizar la creacion de proyectos HLS, debido a que en esta guía se realizaran las configuraciones de forma manual, seleccione *Empty File* como se ve en la [](#fig-config-hls).
+Tras hacer click en *Next*, se elije el archivo de configuración HLS, este contiene todos los datos de la configuración del proyecto. Su función es automatizar la creación de proyectos HLS, debido a que en esta guía se realizaran las configuraciones de forma manual, seleccione *Empty File* como se ve en la [](#fig-config-hls).
 
 ![Archivo de Configuración HLS](img/Configuration_file.png){ #fig-config-hls width="1000" }
 

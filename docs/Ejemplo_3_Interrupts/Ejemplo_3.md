@@ -13,8 +13,8 @@ En el contexto de sistemas digitales/embebidos, un periférico es cualquier mód
 
 Ejemplos:
 
-- El periferico Uart que se uso en la sección previa para la comunicacion desde la placa al PC.
-- Salida/Entrada de proposito general (GPIO): A través de entradas discretas como botones o salidas como leds se puede compartir información con el mundo real.
+- El periférico Uart que se uso en la sección previa para la comunicación desde la placa al PC.
+- Salida/Entrada de propósito general (GPIO): A través de entradas discretas como botones o salidas como leds se puede compartir información con el mundo real.
 
 ### Memory Mapped I/O
 
@@ -45,24 +45,24 @@ Un sistema puede tener varias fuentes de interrupción, el controlador de interr
 - **Retorno**: Una vez finalizada la rutina, la CPU restaura el estado de ejecución previo, recupera el valor de `mepc` y continúa con la operación normal del programa.
 
 
-En esta actividad se integraran los perifericos de GPIO, especificamente los conectados a los botones y los LED. Se mantendra el periferico de UART.
+En esta actividad se integraran los periféricos de GPIO, específicamente los conectados a los botones y los LED. Se mantendrá el periférico de UART.
 
 
 ## Diseño de Hardware
 
 
-En esta sección se realizara un proyecto desde cero. Abra Vivado y cree un nuevo diagrama de bloques. Importe la IP **Microblaze V** al diagrama de bloques y al momento de apretar **Run Block Automation** marque la casilla **Enable interupt controller** como se ve en la figura [](#fig-enable-interrupt).
+En esta sección se realizara un proyecto desde cero. Abra Vivado y cree un nuevo diagrama de bloques. Importe la IP **MicroBlaze V** al diagrama de bloques y al momento de apretar **Run Block Automation** marque la casilla **Enable interupt controller** como se ve en la figura [](#fig-enable-interrupt).
 
 ![Habilitar controlador de interrupciones](img/Enable_interrupt.png){ #fig-enable-interrupt width="500" }
 
-Esto hara que al momento de que se generen los bloques que componen el sistema base del procesador, se importen los bloques responsable del manejo de interrupciones como se ve en [](#fig-interrupt-on-bd) :
+Esto hará que al momento de que se generen los bloques que componen el sistema base del procesador, se importen los bloques responsable del manejo de interrupciones como se ve en [](#fig-interrupt-on-bd) :
 
-- "AXI Interrupt Controller": Bloque que colecciona multiples señales de interrupt de varios perifericos y las consolida en una sola señal que entrega al procesador, se encarga del arbitraje e identificacion de las señales.
-- "Inline Concat": Concatena todas las señales de interrupcion para que el bloque AXI las reciba.
+- "AXI Interrupt Controller": Bloque que colecciona múltiples señales de interrupt de varios periféricos y las consolida en una sola señal que entrega al procesador, se encarga del arbitraje e identificacion de las señales.
+- "Inline Concat": Concatena todas las señales de interrupción para que el bloque AXI las reciba.
 
 ![Bloques de interrupcion en el diagrama](img/bloques_interrupt.png){ #fig-interrupt-on-bd width="1000" }
 
-Luego continue con el armado del sistema de acuerdo a lo visto en la Guía 1 ( Aqui pondre un hyperlink cuando suba la guía 1). La secuencia es:
+Luego continue con el armado del sistema de acuerdo a lo visto en la [Guía 1](../../Ejemplo_1_Sistema_base/Ejemplo_1.md).En caso de no recordar se tiene que la secuencia es:
 
 - Configure la IP Clocking Wizard de manera que el clock y reset esten conectados a los pines de la placa.
 - Corra **Run Connection Automation** seleccionando todas las conexiones.
@@ -79,7 +79,7 @@ Tras regenerar el layout se debería ver como en la [](#fig-bd-botones-led).
 
 ![Bloque GPIO en el Diagrama](img/bd_botones_leds.png){ #fig-bd-botones-led width="1000" }
 
-Tras hacer click en  **Run Connection Automation** y conectar el periférico GPIO al sistema AXI, haga doble click sobre el periférico, en la ventana emergente seleccione **Enable Interrupt** como se ve en la [](#fig-gpio-config) para habilitar las interrupciones de GPIO . Note que los botones estan en GPIO y los leds en GPIO 2. Esto sera relevante más adelante.
+Tras hacer click en  **Run Connection Automation** y conectar el periférico GPIO al sistema AXI, haga doble click sobre el periférico, en la ventana emergente seleccione **Enable Interrupt** como se ve en la [](#fig-gpio-config) para habilitar las interrupciones de GPIO . Note que los botones están en GPIO y los leds en GPIO 2. Esto sera relevante más adelante.
 
 ![Configuracion de bloque GPIO](img/Enable_gpio_interrupt.png){ #fig-gpio-config width="500" }
 
@@ -94,7 +94,7 @@ Tras regenerar el Layout se debería ver como en la [](#fig-bd3-final).
 
 ![Diagrama de bloques con interrupciones conectadas](img/bd_final.png){ #fig-bd3-final width="1000" }
 
-Antes de continuar con el exportado de hardware se sugiere revisar la pestaña **Address editor**. Como se puede apreciar en la [](#fig-Adress-map), están los dos periféricos importados: Uart y GPIO junto con sus direcciones base y direcciones altas. Se tiene que al momento de hacer uso de estos perifericos en software, estas direcciones serán la clave para la comunicación entre los perifericos y el procesador de acuedo a lo comentado en la [sección previa](#memory-mapped-io). Note que ambos periféricos poseen un rango de memoria de 64KB, este es el estandár para IP's de AMD que no hacen un uso de memoria superior a 64 KB, aún si no necesariamente haran uso de este espacio.
+Antes de continuar con el exportado de hardware se sugiere revisar la pestaña **Address editor**. Como se puede apreciar en la [](#fig-Adress-map), están los dos periféricos importados: Uart y GPIO junto con sus direcciones base y direcciones altas. Se tiene que al momento de hacer uso de estos periféricos en software, estas direcciones serán la clave para la comunicación entre los periféricos y el procesador de acuerdo a lo comentado en la [sección previa](#memory-mapped-io). Note que ambos periféricos poseen un rango de memoria de 64KB, este es el estándar para IP's de AMD que no hacen un uso de memoria superior a 64 KB, aún si no necesariamente harán uso de este espacio.
 
 ![Editor de direcciones visto en Vivado con Uart y GPIO resaltados en rojo](img/adress_map.png){ #fig-Adress-map width="1000" }
 
@@ -313,7 +313,7 @@ Table: Tamaño del ELF {#tbl-elf-size}
 
 </div>
 
-## Verificación
+## Validación
 
 Conecte la placa, enciendala y programela haciendo click en **Run** desde el panel lateral. Luego pruebe mandando caracteres a través de su consola serial de preferencia o presionando los botones, debería comportarse como se ve en [](#fig-hterm-test).
 

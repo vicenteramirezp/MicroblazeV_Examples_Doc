@@ -1,6 +1,8 @@
-# Guía 1 : Sistema Base Microblaze V
+# Guía 1 : Sistema Base MicroBlaze V
 
-En esta sección se detalla como describir el sistema base de Microblaze-V, como correr aplicaciones sobre este y que funcionalidades posee la herramienta Vitis al momento de trabajar con el flujo embebido.
+## Objetivo
+
+En esta guía se detalla como describir el sistema base de MicroBlaze V, como correr aplicaciones sobre este y que funcionalidades posee la herramienta Vitis al momento de trabajar con el flujo embebido.
 
 ## Contexto
 
@@ -22,7 +24,7 @@ Para mas información visitar la pagina de [RISC-V international](https://riscv.
 
 ### ¿Que es Microblaze -V ?
 
-MicroBlaze V es un procesador soft-core de tipo RISC-V desarrollado por AMD para sus FPGAs y SoCs adaptativos . A diferencia de un procesador hard-core —fijo en el silicio del dispositivo—, un procesador soft-core se distribuye como un bloque IP que se importa al diseño y se implementa sobre la lógica programable del FPGA, lo que lo vuelve agnóstico a la placa: el mismo bloque puede instanciarse en cualquier dispositivo soportado por Vivado, replicarse en varias instancias dentro de un mismo chip y configurarse a la medida de la aplicación, habilitando únicamente las funcionalidades que se necesitan.
+MicroBlaze V es un procesador soft-core de tipo RISC-V desarrollado por AMD para sus FPGAs y SoCs adaptativos . A diferencia de un procesador hard-core, el cual posee una microarquitectura fija en el silicio del dispositivo, un procesador soft-core se distribuye como un bloque IP que se importa al diseño y se implementa sobre la lógica programable del FPGA, lo que lo vuelve agnóstico a la placa: el mismo bloque puede ser instanciado en cualquier dispositivo soportado por Vivado, replicarse en varias instancias dentro de un mismo chip y configurarse a la medida de la aplicación, habilitando únicamente las funcionalidades que se necesitan.
 
  Esta flexibilidad se traduce, en el caso de MicroBlaze V, en una arquitectura modular que admite los conjuntos base RV32I y RV64I junto con extensiones opcionales para multiplicación/división (M), instrucciones atómicas (A), punto flotante (F), compresión de código (C) y manipulación de bits (B), además de configuraciones predefinidas que abarcan desde un microcontrolador simple hasta un procesador de aplicación, y de mecanismos de seguridad funcional como dual-core lockstep y redundancia modular triple (TMR). A esto se suma la compatibilidad de hardware con el MicroBlaze clásico  y el acceso al ecosistema de software RISC-V, todo integrado de forma nativa en el flujo de Vivado y Vitis y sin costo adicional sobre las licencias de la suite de diseño.
 
@@ -148,7 +150,7 @@ Explorando la ventana del diagrama de bloques en la [](#fig:diagram), se tiene q
 
 Note que el boton **Validate Design** solo  valida que se cumplan los checks de reglas de diseño (DRC) de cada bloque. Es decir que pines que esperen una conexión a un reloj la posean, que este reloj posea una frecuencia en el rango esperado y que no se realicen conexiones incompletas en las interfaces de los bloques. La validación del diagrama de bloques no es un asegurado de que el sistema funcione. Para más información visitar [la guia de usuario](https://docs.amd.com/r/en-US/ug994-vivado-ip-subsystems/Running-Design-Rule-Checks).
 
-Otra nota adicional, es que si en un punto sus diagramas no coinciden con alguna figura mostrada en estas guias, se recomienda hacer click en **Regenerate Layout**.
+Otra nota adicional, es que si en un punto sus diagramas no coinciden con alguna figura mostrada en estas guías, se recomienda hacer click en **Regenerate Layout**.
 
 Haga click en **Add IP** y escriba en el buscador "MicroBlaze V", aparecerán 3 opciones como indica la [](#fig:microblazevmodules).
 
@@ -159,12 +161,12 @@ Haga click en **Add IP** y escriba en el buscador "MicroBlaze V", aparecerán 3 
 Estas opciones corresponden a:
 
 1. **MicroBlaze V**: Implementación base del procesador.
-2. **MicroBlaze Debug Module (MDM) V**: Modulo que permite el depurado de aplicaciónes en vitis a través de JTAG. Al momento de completar la implementación base del MicroBlazeV se da la opción de integrarlo automaticamente.
+2. **MicroBlaze Debug Module (MDM) V**: Modulo que permite el depurado de aplicaciones en Vitis a través de JTAG. Al momento de completar la implementación base del MicroBlaze V se da la opción de integrarlo automáticamente.
 3. **MicroBlaze MCS V**: Una implementación de MicroBlaze V orientada a microcontroladores, importa periféricos fijos junto al procesador de manera compacta. Posee la limitación de que las aplicaciones no pueden correr desde la memoria externa y posee un numero fijo de periféricos disponibles. 
 
 En este caso se hará uso de la opción *MicroBlazeV*.
 
-Una vez que se haya importado el modulo, este aparecerá en el diagrama de bloques como se puede apreciar en la [](#fig:microblazevonbd}, en esta ventana haga click *Run Block Automation*, este botón automatiza la generación de los bloques mínimos necesarios para el funcionamiento del procesador.
+Una vez que se haya importado el modulo, este aparecerá en el diagrama de bloques como se puede apreciar en la [](#fig:microblazevonbd), en esta ventana haga click *Run Block Automation*, este botón automatiza la generación de los bloques mínimos necesarios para el funcionamiento del procesador.
 
 ![MicroBlaze V en el diagrama de bloques](img/Microblaze_V_on_bd.png){ #fig:microblazevonbd width="1000" }
 
@@ -180,7 +182,7 @@ En la ventana emergente **Run Block Automation** vista en la [](#fig:microblazev
 4. **Cache configuration**: Define establecer la cantidad de recursos asignados a la memoria cache, la cual es una memoria de alta velocidad que actúa como intermediaria entre el procesador MicroBlaze y la memoria externa. Su implementación no es estrictamente necesaria si el sistema no utiliza memoria DDR, ya que la memoria local se ejecuta directamente sobre bloques de RAM internos (BRAM), que ya ofrecen un rendimiento elevado.
 5. **Peripheral AXI Port**: Habilita la conexión de periféricos al procesador a través del protocolo AXI.
 6. **Interrupt Controller**: Habilita el uso de interrupciones externas generadas por el usuario o a través del uso de periféricos.
-7. **Clock conection**: Define si el procesador hará uso de un reloj generado a través de un clocking Wizard o si hará uso del reloj del sistema.
+7. **Clock conection**: Define si el procesador hará uso de un reloj generado a través de un Clocking Wizard o si hará uso del reloj del sistema.
 
 En *Local Memory* aumente su valor al máximo posible (128KB), se elige este valor para evitar que el tamaño de la aplicación generada sea una limitante para esta guía. Al momento de compilar la aplicación Vitis muestra su tamaño total y lanza un mensaje de error si la memoria interna no es suficiente para almacenar el binario. Mantenga el resto de los parámetros en sus valores predeterminados.
 
@@ -197,11 +199,11 @@ Los modulos importados son:
 
 ---
 
-Luego, prosiga haciendo doble click sobre el bloque Clocking Wizard, el cual lanzara su ventana de configuraciones, sobre esta dejar la opción *CLK_IN1* en sys_Clock, de manera de que sea alimentado por el reloj de la placa, realice el mismo proceso con **EXT_RESET_IN**, fijandolo en reset.
+Luego, prosiga haciendo doble click sobre el bloque Clocking Wizard, el cual lanzara su ventana de configuraciones, sobre esta dejar la opción *CLK_IN1* en sys_Clock, de manera de que sea alimentado por el reloj de la placa, realice el mismo proceso con **EXT_RESET_IN**, fijándolo en reset.
 
 ![Configuración de bloque Clocking Wizard](img/Clock_wizzard.png){ #fig:clockwizzard width="1000" }
 
-Tras apretar *OK* se vuelve al diagrama de bloques, en esta instancia hay que hacer click sobre el botón *Run conection automation* el cual realizara las conexiones mínimas entre el sistema en el diagrama de bloque y los correspondientes pines en la tarjeta.
+Tras apretar *OK* se vuelve al diagrama de bloques, en esta instancia hay que hacer click sobre el botón *Run connection automation* el cual realizara las conexiones mínimas entre el sistema en el diagrama de bloque y los correspondientes pines en la tarjeta.
 
 Este lanzara una ventana emergente donde preguntara que conexiones realizar, marque *All Automation* de manera que se automatice la conexión de los puertos externos de reloj y reset al sistema.
 
@@ -217,7 +219,7 @@ Teniendo ya las conexiones armadas, diríjase al panel lateral en la sección *B
 
 ---
 
-Tras agregar el periférico al diagrama de bloques haga doble click sobre este y presione **IP Configuration** para configurar las caracteristicas de esta IP. Note que las caracteristicas del bloque Uart se configuran en esta etapa y no pueden ser cambiadas desde software. En este caso se mantendran con los valores predeterminados vistos en la [](#fig:UART_Config).
+Tras agregar el periférico al diagrama de bloques haga doble click sobre este y presione **IP Configuration** para configurar las caracteristicas de esta IP. Note que las características del bloque Uart se configuran en esta etapa y no pueden ser cambiadas desde software. En este caso se mantendrán con los valores predeterminados vistos en la [](#fig:UART_Config).
 
 ![Configuración de IP AXI Uart lite](img/Uart_config.png){ #fig:UART_Config width="500" }
 
@@ -319,7 +321,7 @@ En caso de haber errores que impidan la finalizacion del proceso (Como no haber 
 
 Ya teniendo el hardware es momento de exportar el hardware para poder correr la aplicación. Para esto seleccione *File > Export > Export Hardware* como se ilustra en la [](#fig:exporthw).
 
-![Exportar Hardware](img/Export_hw.png){ #fig:exporthw width="1000" }
+![Exportar Hardware](img/Export_hw.png){ #fig:exporthw width="500" }
 
 Esto lanzara la configuración de archivos de salida, incluya el bitstream de manera que se pueda programar la aplicación apenas sea diseñada.
 
@@ -417,7 +419,7 @@ Como se aprecia en la [](#fig:aplicationstructure) la aplicación posee los sigu
 * **lscrpt.ld**: **Linker Script**. Define la distribución de las secciones de código y datos en las regiones de memoria física (DDR, BRAM, etc.) especificadas en el hardware. Controla la ubicación del stack, el heap y los puntos de entrada del programa, su manejo es relevante cuando se manejan aplicaciones mas complejas.
 * **Output**: Directorio de artefactos de salida. Contiene los resultados del proceso de construcción, incluyendo archivos objeto, archivos de dependencias y el binario ejecutable final en formato ELF (Executable and Linkable Format).
 
-Ya habiendo explorado la jerarquía de la aplicación, se va a agregar una, para esto haga click derecho en *src* y vaya a *Import > Files*. Seleccione **app.c** de la carpeta **Ejemplo_1** del repositorio, la cual contiene el siguiente codigo:
+Ya habiendo explorado la jerarquía de la aplicación, es momento de diseñar una. Pssara esto haga click derecho en *src* y vaya a *Import > Files*. Seleccione **app.c** de la carpeta **Ejemplo_1** del repositorio, la cual contiene el siguiente codigo:
 
 ```c
 #include <stdio.h>
@@ -444,7 +446,7 @@ Ya teniendo la aplicación en el sistema, abra su programa de comunicación seri
 
 
 
-la aplicación (automáticamente se compilará la plataforma si no esta compilada ya).
+Compile la aplicacion presionando el boton *Build* en el panel lateral como se ve en la [](#fig:aplicationstructure).
 
 ![Build y Run en el panel lateral de la aplicación](img/run.png){ #fig:aplicationstructure width="500" }
 
@@ -452,7 +454,7 @@ la aplicación (automáticamente se compilará la plataforma si no esta compilad
 Esto generará el archivo Executable and Linkable Format (ELF), similar al bitstream, este es un archivo que sirve para programar, pero en vez de programar directamente la tarjeta, programa el procesador que se definió previamente dentro de esta. Esta estructurado en distintas secciones de manera que el linker de AMD lo entienda.
 
 
-Al momento de compilar la aplicación, en la terminal se mostrara cuanto pesan las secciones mas pesadas del ELF como se puede apreciar en la [](#fig:Elf-size), en caso de que el tamaño de la aplicación supere al tamaño de la memoria disponible para el sistema, lanzara un error señalando la sección de mayor tamaño y cancelara el compilado de la aplicación.
+Al momento de compilar la aplicación, en la terminal se mostrara cuanto pesan las secciones mas pesadas del ELF como se puede apreciar en la [](#fig:Elf-size), en caso de que el tamaño de la aplicación supere al tamaño de la memoria disponible para el sistema, lanzara un error señalando la sección de mayor tamaño y no permitirá que el ejecutable se cargue a la placa.
 
 
 ![ELF](img/Elf.png){ #fig:Elf-size width="1000" }

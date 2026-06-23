@@ -9,7 +9,7 @@ En esta guía se espera que el lector logre aprender a hacer uso de la herramien
 
 En el contexto de **firmware**, el término "depurado" se refiere a que el código ha pasado por un proceso de depuración, es decir la identificación, análisis y corrección de errores o comportamientos incorrectos.
 
-Se tiene que para realizar el depurado sobre el procesador MicroBlaze V existe el modulo MicroBlaze V Debug Module (MDM) el cual actua como una interfaz entre la herramienta de depurado de software de Vitis. Esta interfaz se conecta al puerto JTAG de las placas de AMD o con una interfaz AXI4-Lite mapeada en memoria. Para más información revisar [la documentación oficial](https://docs.amd.com/r/en-US/ug1629-microblaze-v-user-guide/Debug).
+Se tiene que para realizar el depurado sobre el procesador MicroBlaze V existe el modulo MicroBlaze V Debug Module (MDM) el cual actúa como una interfaz entre la herramienta de depurado de software de Vitis. Esta interfaz se conecta al puerto JTAG de las placas de AMD o con una interfaz AXI4-Lite mapeada en memoria. Para más información revisar [la documentación oficial](https://docs.amd.com/r/en-US/ug1629-microblaze-v-user-guide/Debug).
 
 Esta funcionalidad de depurado se implementa de acuerdo a la definición oficial de [soporte de depurado externo RISC-V](https://riscv.org/wp-content/uploads/2024/12/riscv-debug-release.pdf).
 
@@ -18,7 +18,7 @@ Esta funcionalidad de depurado se implementa de acuerdo a la definición oficial
 
 Debido a que el foco esta guía se encuentra en la herramienta de Depurado de Vitis,  se hará uso del mismo hardware diseñado en la [guía anterior](../../Ejemplo_1_Sistema_base/Ejemplo_1/#diseno-de-hardware).
 
-## Firmware
+## Diseño de Firmware
 
 
 Abra Vitis, puede elegir un nuevo espacio de trabajo o hacer uso del de la guía previa. En este cree el componente de plataforma, luego cree un componente de aplicación.
@@ -76,16 +76,16 @@ La perspectiva de depurado tiene una gran cantidad de funcionalidades, para pode
     - **Call Stack**: Registra en que función esta actualmente el depurador y a donde debe regresar el programa cuando termine la función actual, útil para encontrar secuencias donde el programa se puede quedar colgado.
     - **Variables**:Tiene el valor actual de variables locales.
     - **Watch**: Permite añadir expresiones que se evalúan en base a los valores actuales de las variables
-    - **Breakpoints**: Enumera los distintos Breakpoints en el código (para añadir un breakpoint hay que hacer click a la izquierda de una dada linea de código).
+    - **Breakpoints**: Enumera los distintos Breakpoints en el código (para añadir un Breakpoint hay que hacer click a la izquierda de una dada linea de código).
 - Herramientas de análisis.
-    - **Outline**: Enumera las distintas funciones del código y su jerarquı́a.
-    - **Memory inspector**: Permite leer valores de memoria, ya sea de la memoria interna del procesador o de memoria externa como Bram o DDR3.
+    - **Outline**: Enumera las distintas funciones del código y su jerarquía.
+    - **Memory inspector**: Permite leer valores de memoria, ya sea de la memoria interna del procesador o de memoria externa como BRAM o DDR3.
     - **HLS Directives**: Enumera las distintas directivas de High level Synthesis, no posee funcionalidad en el flujo embebido.
     - **Register Inspector**: Permite ver los valores actuales de los registros internos del procesador, especialmente útil cuando se depuran instrucciones a nivel de código Assembly.
     - **TCF Profiler** (Target Communication Framework): Herramienta de análisis de rendimiento integrada en Vitis que permite medir cuánto tiempo pasa el procesador en cada función o instrucción.
 
 
-
+## Validación
 ### Primera prueba de depuración
 
 Una vez analizada la herramienta, se realizará una primera prueba. Para iniciar la sesión de depurado presione el botón **Continue**,luego haga uso de Step Over sobre la primera línea y observe cómo cambia la pestaña Variables.
