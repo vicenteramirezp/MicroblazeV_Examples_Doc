@@ -23,7 +23,7 @@
     
     
       
-        <title>Guía 1 - My Docs</title>
+        <title>Guía 1 - Guías MicroBlaze V</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-header__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            My Docs
+            Guías MicroBlaze V
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -400,13 +400,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-nav__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    My Docs
+    Guías MicroBlaze V
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -503,6 +503,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
@@ -817,6 +828,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -922,8 +944,9 @@
 
 
 
-<h1 id="guia-1-sistema-base-microblaze-v">Guía 1 : Sistema Base Microblaze V</h1>
-<p>En esta sección se detalla como describir el sistema base de Microblaze-V, como correr aplicaciones sobre este y que funcionalidades posee la herramienta Vitis al momento de trabajar con el flujo embebido.</p>
+<h1 id="guia-1-sistema-base-microblaze-v">Guía 1 : Sistema Base MicroBlaze V</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>En esta guía se detalla como describir el sistema base de MicroBlaze V, como correr aplicaciones sobre este y que funcionalidades posee la herramienta Vitis al momento de trabajar con el flujo embebido.</p>
 <h2 id="contexto">Contexto</h2>
 <h3 id="que-es-risc-v">¿ Que es RISC-V?</h3>
 <p>RISC-V es una arquitectura de conjunto de instrucciones que funciona como el vocabulario básico que permite la comunicación entre el software y el hardware de un procesador. Se basa en la filosofía RISC, que prioriza el uso de un conjunto reducido y simplificado de instrucciones para que el procesador ejecute tareas de forma más rápida y eficiente, a diferencia de otras arquitecturas tradicionales que usan instrucciones más complejas. La letra V indica que es la quinta generación de este diseño, el cual fue creado originalmente en la Universidad de California, Berkeley.</p>
@@ -932,7 +955,7 @@
 <p><figure id="_figure-1"><img alt="Logo RISC-V" id="fig:flow" src="../img/RISC-V-logo.png#only-light" width="500">
 <img alt="Logo RISC-V" id="fig:flow" src="../img/RISC-V-logo-dark.png#only-dark" width="500"><figcaption>Figura 1: Logo RISC-V</figcaption></figure></p>
 <h3 id="que-es-microblaze-v">¿Que es Microblaze -V ?</h3>
-<p>MicroBlaze V es un procesador soft-core de tipo RISC-V desarrollado por AMD para sus FPGAs y SoCs adaptativos . A diferencia de un procesador hard-core —fijo en el silicio del dispositivo—, un procesador soft-core se distribuye como un bloque IP que se importa al diseño y se implementa sobre la lógica programable del FPGA, lo que lo vuelve agnóstico a la placa: el mismo bloque puede instanciarse en cualquier dispositivo soportado por Vivado, replicarse en varias instancias dentro de un mismo chip y configurarse a la medida de la aplicación, habilitando únicamente las funcionalidades que se necesitan.</p>
+<p>MicroBlaze V es un procesador soft-core de tipo RISC-V desarrollado por AMD para sus FPGAs y SoCs adaptativos . A diferencia de un procesador hard-core, el cual posee una microarquitectura fija en el silicio del dispositivo, un procesador soft-core se distribuye como un bloque IP que se importa al diseño y se implementa sobre la lógica programable del FPGA, lo que lo vuelve agnóstico a la placa: el mismo bloque puede ser instanciado en cualquier dispositivo soportado por Vivado, replicarse en varias instancias dentro de un mismo chip y configurarse a la medida de la aplicación, habilitando únicamente las funcionalidades que se necesitan.</p>
 <p>Esta flexibilidad se traduce, en el caso de MicroBlaze V, en una arquitectura modular que admite los conjuntos base RV32I y RV64I junto con extensiones opcionales para multiplicación/división (M), instrucciones atómicas (A), punto flotante (F), compresión de código (C) y manipulación de bits (B), además de configuraciones predefinidas que abarcan desde un microcontrolador simple hasta un procesador de aplicación, y de mecanismos de seguridad funcional como dual-core lockstep y redundancia modular triple (TMR). A esto se suma la compatibilidad de hardware con el MicroBlaze clásico  y el acceso al ecosistema de software RISC-V, todo integrado de forma nativa en el flujo de Vivado y Vitis y sin costo adicional sobre las licencias de la suite de diseño.</p>
 <p>En la <a href="#fig:EstructuraMBV">figura 2</a> se muestra un diagrama simplificado de la 
 implementación de MicroBlaze V. La arquitectura sigue un esquema tipo Harvard,
@@ -1039,18 +1062,18 @@ En la ventana titulada <em>Project Type</em> se detallan las distintas opciones 
 <li><strong>Regenerate layout</strong>: Reordena los bloques para mejorar visualización sin realizar cambios en las conexiones.</li>
 </ol>
 <p>Note que el boton <strong>Validate Design</strong> solo  valida que se cumplan los checks de reglas de diseño (DRC) de cada bloque. Es decir que pines que esperen una conexión a un reloj la posean, que este reloj posea una frecuencia en el rango esperado y que no se realicen conexiones incompletas en las interfaces de los bloques. La validación del diagrama de bloques no es un asegurado de que el sistema funcione. Para más información visitar <a href="https://docs.amd.com/r/en-US/ug994-vivado-ip-subsystems/Running-Design-Rule-Checks">la guia de usuario</a>.</p>
-<p>Otra nota adicional, es que si en un punto sus diagramas no coinciden con alguna figura mostrada en estas guias, se recomienda hacer click en <strong>Regenerate Layout</strong>.</p>
+<p>Otra nota adicional, es que si en un punto sus diagramas no coinciden con alguna figura mostrada en estas guías, se recomienda hacer click en <strong>Regenerate Layout</strong>.</p>
 <p>Haga click en <strong>Add IP</strong> y escriba en el buscador "MicroBlaze V", aparecerán 3 opciones como indica la <a href="#fig:microblazevmodules">figura 7</a>.</p>
 <p><figure id="_figure-7"><img alt="MicroBlaze V en el buscador de IP de Vivado" id="fig:microblazevmodules" src="../img/Microblaze_V_modules.png" width="250"><figcaption>Figura 7: MicroBlaze V en el buscador de IP de Vivado</figcaption></figure></p>
 <hr>
 <p>Estas opciones corresponden a:</p>
 <ol>
 <li><strong>MicroBlaze V</strong>: Implementación base del procesador.</li>
-<li><strong>MicroBlaze Debug Module (MDM) V</strong>: Modulo que permite el depurado de aplicaciónes en vitis a través de JTAG. Al momento de completar la implementación base del MicroBlazeV se da la opción de integrarlo automaticamente.</li>
+<li><strong>MicroBlaze Debug Module (MDM) V</strong>: Modulo que permite el depurado de aplicaciones en Vitis a través de JTAG. Al momento de completar la implementación base del MicroBlaze V se da la opción de integrarlo automáticamente.</li>
 <li><strong>MicroBlaze MCS V</strong>: Una implementación de MicroBlaze V orientada a microcontroladores, importa periféricos fijos junto al procesador de manera compacta. Posee la limitación de que las aplicaciones no pueden correr desde la memoria externa y posee un numero fijo de periféricos disponibles. </li>
 </ol>
 <p>En este caso se hará uso de la opción <em>MicroBlazeV</em>.</p>
-<p>Una vez que se haya importado el modulo, este aparecerá en el diagrama de bloques como se puede apreciar en la [](#fig:microblazevonbd}, en esta ventana haga click <em>Run Block Automation</em>, este botón automatiza la generación de los bloques mínimos necesarios para el funcionamiento del procesador.</p>
+<p>Una vez que se haya importado el modulo, este aparecerá en el diagrama de bloques como se puede apreciar en la <a href="#fig:microblazevonbd">figura 8</a>, en esta ventana haga click <em>Run Block Automation</em>, este botón automatiza la generación de los bloques mínimos necesarios para el funcionamiento del procesador.</p>
 <p><figure id="_figure-8"><img alt="MicroBlaze V en el diagrama de bloques" id="fig:microblazevonbd" src="../img/Microblaze_V_on_bd.png" width="1000"><figcaption>Figura 8: MicroBlaze V en el diagrama de bloques</figcaption></figure></p>
 <p>En la ventana emergente <strong>Run Block Automation</strong> vista en la <a href="#fig:microblazevautomation">figura 9</a> se pueden apreciar una variedad de configuraciones.</p>
 <p><figure id="_figure-9"><img alt="Configuración Run Block Automation" id="fig:microblazevautomation" src="../img/MicroblazeV_automation.png" width="1000"><figcaption>Figura 9: Configuración Run Block Automation</figcaption></figure></p>
@@ -1062,7 +1085,7 @@ En la ventana titulada <em>Project Type</em> se detallan las distintas opciones 
 <li><strong>Cache configuration</strong>: Define establecer la cantidad de recursos asignados a la memoria cache, la cual es una memoria de alta velocidad que actúa como intermediaria entre el procesador MicroBlaze y la memoria externa. Su implementación no es estrictamente necesaria si el sistema no utiliza memoria DDR, ya que la memoria local se ejecuta directamente sobre bloques de RAM internos (BRAM), que ya ofrecen un rendimiento elevado.</li>
 <li><strong>Peripheral AXI Port</strong>: Habilita la conexión de periféricos al procesador a través del protocolo AXI.</li>
 <li><strong>Interrupt Controller</strong>: Habilita el uso de interrupciones externas generadas por el usuario o a través del uso de periféricos.</li>
-<li><strong>Clock conection</strong>: Define si el procesador hará uso de un reloj generado a través de un clocking Wizard o si hará uso del reloj del sistema.</li>
+<li><strong>Clock conection</strong>: Define si el procesador hará uso de un reloj generado a través de un Clocking Wizard o si hará uso del reloj del sistema.</li>
 </ol>
 <p>En <em>Local Memory</em> aumente su valor al máximo posible (128KB), se elige este valor para evitar que el tamaño de la aplicación generada sea una limitante para esta guía. Al momento de compilar la aplicación Vitis muestra su tamaño total y lanza un mensaje de error si la memoria interna no es suficiente para almacenar el binario. Mantenga el resto de los parámetros en sus valores predeterminados.</p>
 <p>Tras presionar <em>OK</em> actualizara el diagrama de bloques al importar varios bloques y sus respectivas interconexiones, debería quedar de la forma vista en la <a href="#fig:microblazevbdpostautomation">figura 10</a>. </p>
@@ -1075,9 +1098,9 @@ En la ventana titulada <em>Project Type</em> se detallan las distintas opciones 
 <li><strong>Processor System Reset</strong>: Genera un reset sincrónico que tiene en cuenta sensibilidades del sistema computacional.</li>
 </ul>
 <hr>
-<p>Luego, prosiga haciendo doble click sobre el bloque Clocking Wizard, el cual lanzara su ventana de configuraciones, sobre esta dejar la opción <em>CLK_IN1</em> en sys_Clock, de manera de que sea alimentado por el reloj de la placa, realice el mismo proceso con <strong>EXT_RESET_IN</strong>, fijandolo en reset.</p>
+<p>Luego, prosiga haciendo doble click sobre el bloque Clocking Wizard, el cual lanzara su ventana de configuraciones, sobre esta dejar la opción <em>CLK_IN1</em> en sys_Clock, de manera de que sea alimentado por el reloj de la placa, realice el mismo proceso con <strong>EXT_RESET_IN</strong>, fijándolo en reset.</p>
 <p><figure id="_figure-11"><img alt="Configuración de bloque Clocking Wizard" id="fig:clockwizzard" src="../img/Clock_wizzard.png" width="1000"><figcaption>Figura 11: Configuración de bloque Clocking Wizard</figcaption></figure></p>
-<p>Tras apretar <em>OK</em> se vuelve al diagrama de bloques, en esta instancia hay que hacer click sobre el botón <em>Run conection automation</em> el cual realizara las conexiones mínimas entre el sistema en el diagrama de bloque y los correspondientes pines en la tarjeta.</p>
+<p>Tras apretar <em>OK</em> se vuelve al diagrama de bloques, en esta instancia hay que hacer click sobre el botón <em>Run connection automation</em> el cual realizara las conexiones mínimas entre el sistema en el diagrama de bloque y los correspondientes pines en la tarjeta.</p>
 <p>Este lanzara una ventana emergente donde preguntara que conexiones realizar, marque <em>All Automation</em> de manera que se automatice la conexión de los puertos externos de reloj y reset al sistema.</p>
 <p><figure id="_figure-12"><img alt="Automatización de conexiones del bloque Clock Wizard" id="fig:allautomation" src="../img/All_automation.png" width="1000"><figcaption>Figura 12: Automatización de conexiones del bloque Clock Wizard</figcaption></figure></p>
 <p><figure id="_figure-13"><img alt="Diagrama de bloques con conexiones a pines Clk y Reset" id="fig:microblazevbdpostautomation2" src="../img/MicroblazeV_bd_post_automation_2.png" width="1000"><figcaption>Figura 13: Diagrama de bloques con conexiones a pines Clk y Reset</figcaption></figure></p>
@@ -1085,7 +1108,7 @@ En la ventana titulada <em>Project Type</em> se detallan las distintas opciones 
 <p>Teniendo ya las conexiones armadas, diríjase al panel lateral en la sección <em>Boards</em>. Debido a que se realizó la selección de <em>Boards</em> en el inicio, Vivado facilita la integración de los periféricos y puertos al diagrama de bloques. En este caso para el envió de datos se hará uso de UART, por lo que arrastre <em>USB UART</em> al diagrama de bloques como indica la <a href="#fig:boardcomponents">figura 14</a>.</p>
 <p><figure id="_figure-14"><img alt="Componentes de la placa" id="fig:boardcomponents" src="../img/board_components.png" width="250"><figcaption>Figura 14: Componentes de la placa</figcaption></figure></p>
 <hr>
-<p>Tras agregar el periférico al diagrama de bloques haga doble click sobre este y presione <strong>IP Configuration</strong> para configurar las caracteristicas de esta IP. Note que las caracteristicas del bloque Uart se configuran en esta etapa y no pueden ser cambiadas desde software. En este caso se mantendran con los valores predeterminados vistos en la <a href="#fig:UART_Config">figura 15</a>.</p>
+<p>Tras agregar el periférico al diagrama de bloques haga doble click sobre este y presione <strong>IP Configuration</strong> para configurar las caracteristicas de esta IP. Note que las características del bloque Uart se configuran en esta etapa y no pueden ser cambiadas desde software. En este caso se mantendrán con los valores predeterminados vistos en la <a href="#fig:UART_Config">figura 15</a>.</p>
 <p><figure id="_figure-15"><img alt="Configuración de IP AXI Uart lite" id="fig:UART_Config" src="../img/Uart_config.png" width="500"><figcaption>Figura 15: Configuración de IP AXI Uart lite</figcaption></figure></p>
 <p>Luego nuevamente haga click en <em>Run Connection automation</em>, nuevamente saltara una ventana emergente como se ve en la <a href="#fig:uartconnection">figura 16</a>, marque <em>All Connection Automation</em>, en caso de IPs que se conectan por AXI se puede elegir con que reloj se alimenta tanto la IP como el esquema de comunicación AXI (no se recomienda usar un reloj distinto del esquema AXI para evitar inestabilidades con el timing).</p>
 <p><figure id="_figure-16"><img alt="Conexiones de UART" id="fig:uartconnection" src="../img/uart_connection.png" width="1000"><figcaption>Figura 16: Conexiones de UART</figcaption></figure></p>
@@ -1169,7 +1192,7 @@ En esta sección se puede visualizar el mapa de memoria, el cual define cómo el
 </div>
 <p>En caso de haber errores que impidan la finalizacion del proceso (Como no haber generado el wrapper o haber dejado alguna conexion no deseada), el proceso finalizara con un error o de plano no empezara, en cuyo caso se recomendia leer la salida de la consola Tcl o directamente indagar en la ventana <em>Messages</em> por Warnings o Critical Warnings.</p>
 <p>Ya teniendo el hardware es momento de exportar el hardware para poder correr la aplicación. Para esto seleccione <em>File &gt; Export &gt; Export Hardware</em> como se ilustra en la <a href="#fig:exporthw">figura 25</a>.</p>
-<p><figure id="_figure-25"><img alt="Exportar Hardware" id="fig:exporthw" src="../img/Export_hw.png" width="1000"><figcaption>Figura 25: Exportar Hardware</figcaption></figure></p>
+<p><figure id="_figure-25"><img alt="Exportar Hardware" id="fig:exporthw" src="../img/Export_hw.png" width="500"><figcaption>Figura 25: Exportar Hardware</figcaption></figure></p>
 <p>Esto lanzara la configuración de archivos de salida, incluya el bitstream de manera que se pueda programar la aplicación apenas sea diseñada.</p>
 <p><figure id="_figure-26"><img alt="Configuración de archivos de salida" id="fig:exporthwoutput" src="../img/Export_hw_output.png" width="1000"><figcaption>Figura 26: Configuración de archivos de salida</figcaption></figure></p>
 <hr>
@@ -1231,7 +1254,7 @@ También se tiene que en esta sección se pueden dar flags al compilador al hace
 <li><strong>lscrpt.ld</strong>: <strong>Linker Script</strong>. Define la distribución de las secciones de código y datos en las regiones de memoria física (DDR, BRAM, etc.) especificadas en el hardware. Controla la ubicación del stack, el heap y los puntos de entrada del programa, su manejo es relevante cuando se manejan aplicaciones mas complejas.</li>
 <li><strong>Output</strong>: Directorio de artefactos de salida. Contiene los resultados del proceso de construcción, incluyendo archivos objeto, archivos de dependencias y el binario ejecutable final en formato ELF (Executable and Linkable Format).</li>
 </ul>
-<p>Ya habiendo explorado la jerarquía de la aplicación, se va a agregar una, para esto haga click derecho en <em>src</em> y vaya a <em>Import &gt; Files</em>. Seleccione <strong>app.c</strong> de la carpeta <strong>Ejemplo_1</strong> del repositorio, la cual contiene el siguiente codigo:</p>
+<p>Ya habiendo explorado la jerarquía de la aplicación, es momento de diseñar una. Pssara esto haga click derecho en <em>src</em> y vaya a <em>Import &gt; Files</em>. Seleccione <strong>app.c</strong> de la carpeta <strong>Ejemplo_1</strong> del repositorio, la cual contiene el siguiente codigo:</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
@@ -1250,10 +1273,10 @@ de manera que se puedan enviar datos a través de UART haciendo menor uso de la 
 <li>Paridad: No</li>
 <li>Ancho de dato: 8 Bits</li>
 </ul>
-<p>la aplicación (automáticamente se compilará la plataforma si no esta compilada ya).</p>
+<p>Compile la aplicacion presionando el boton <em>Build</em> en el panel lateral como se ve en la <a href="#fig:aplicationstructure">figura 37</a>.</p>
 <p><figure id="_figure-38"><img alt="Build y Run en el panel lateral de la aplicación" id="fig:aplicationstructure" src="../img/run.png" width="500"><figcaption>Figura 38: Build y Run en el panel lateral de la aplicación</figcaption></figure></p>
 <p>Esto generará el archivo Executable and Linkable Format (ELF), similar al bitstream, este es un archivo que sirve para programar, pero en vez de programar directamente la tarjeta, programa el procesador que se definió previamente dentro de esta. Esta estructurado en distintas secciones de manera que el linker de AMD lo entienda.</p>
-<p>Al momento de compilar la aplicación, en la terminal se mostrara cuanto pesan las secciones mas pesadas del ELF como se puede apreciar en la <a href="#fig:Elf-size">figura 39</a>, en caso de que el tamaño de la aplicación supere al tamaño de la memoria disponible para el sistema, lanzara un error señalando la sección de mayor tamaño y cancelara el compilado de la aplicación.</p>
+<p>Al momento de compilar la aplicación, en la terminal se mostrara cuanto pesan las secciones mas pesadas del ELF como se puede apreciar en la <a href="#fig:Elf-size">figura 39</a>, en caso de que el tamaño de la aplicación supere al tamaño de la memoria disponible para el sistema, lanzara un error señalando la sección de mayor tamaño y no permitirá que el ejecutable se cargue a la placa.</p>
 <p><figure id="_figure-39"><img alt="ELF" id="fig:Elf-size" src="../img/Elf.png" width="1000"><figcaption>Figura 39: ELF</figcaption></figure></p>
 <p>Si compilo sin problemas haga click en Run para cargar la aplicación a la placa, si se corrió apropiadamente se verá en su programa serial el texto de la <a href="#fig:hterm">figura 40</a>.</p>
 <p><figure id="_figure-40"><img alt="Visualización en Hterm" id="fig:hterm" src="../img/hterm.png" width="500"><figcaption>Figura 40: Visualización en Hterm</figcaption></figure></p>

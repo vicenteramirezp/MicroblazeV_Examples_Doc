@@ -23,7 +23,7 @@
     
     
       
-        <title>Guía 4 - My Docs</title>
+        <title>Guía 4 - Guías MicroBlaze V</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-header__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            My Docs
+            Guías MicroBlaze V
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -400,13 +400,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-nav__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    My Docs
+    Guías MicroBlaze V
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -686,10 +686,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+  <a href="#diseno-de-firmware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Diseño de Firmware
       
     </span>
   </a>
@@ -939,10 +939,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+  <a href="#diseno-de-firmware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Diseño de Firmware
       
     </span>
   </a>
@@ -1260,7 +1260,7 @@ En este caso basta con poner el archivo tcl en la locación señalada y posterio
 - adder_tree_rtl.yaml y CMakeLists.txt : Archivos necesarios para que Vitis Unified reconozca el driver.
 - xadder_tree_rtl_g.c : Archivo que define la tabla de configuración de la IP de manera que sepa en que hardware se encuentra instanciada. Si abre el archivo verá que esta vacio, esto es debido a que este archivo es manejado directamente por el Board Support Package, regenerando sus contenidos con cada instancia de hardware. </p>
 <p>Con esto ya puede cerrar Vivado.</p>
-<h2 id="firmware">Firmware</h2>
+<h2 id="diseno-de-firmware">Diseño de Firmware</h2>
 <p>Abra Vitis y defina el workspace.</p>
 <p>Antes de crear la aplicación, se añadiran los drivers generados a los repositorios de software a los que Vitis puede acceder . Para esto dirijase a <strong>Vitis&gt;Embedded SW Repositories...</strong>.
 En la ventana emergente en la sección <strong>Local Repositories (available to the current workspace)</strong> haga click en "+" para agregar la carpeta XilinxProcessorIPLib como se ve en la <a href="#fig-sw-repo">figura 19</a>.</p>
@@ -1341,6 +1341,7 @@ En la ventana emergente en la sección <strong>Local Repositories (available to 
 </tbody>
 </table>
 </div>
+<h1 id="validacion">Validación</h1>
 <p>Luego para probar la aplicación, conecte la placa y configure su terminal serial de preferencia en 9600 Baud, Stop bit de 1 y sin paridad. Acto seguido corra la aplicación, debería dar un resultado similar al de la <a href="#fig-resultado-hterm">figura 21</a></p>
 <p><figure id="_figure-21"><img alt="Resultado Esperado" id="fig-resultado-hterm" src="../img/Resultado.png" width="500"><figcaption>Figura 21: Resultado Esperado</figcaption></figure></p>
 <p>Con esta guía ha cerrado el ciclo completo de co-diseño hardware–software sobre FPGA: tomó una descripción RTL propia, la encapsuló como periférico AXI4-Lite, la integró en un sistema basado en Microblaze V, generó los drivers compatibles con Vitis Unified IDE y, finalmente, controló el bloque desde un programa en C. Más allá del adder tree usado como ejemplo, lo verdaderamente valioso es la metodología que ahora maneja: cualquier módulo que pueda describir en Verilog o VHDL puede convertirse en un periférico accesible desde el procesador a través de un puñado de registros mapeados en memoria. Desde aquí se abre un abanico amplio de posibilidades, ya sea diseñar aceleradores para algoritmos de procesamiento de señales, etapas aritméticas para inferencia de redes neuronales, controladores para sensores fuera del catálogo de IPs, o cualquier bloque a medida que su aplicación requiera. Esta capacidad de combinar lógica programable con un procesador embebido en una misma plataforma es precisamente lo que distingue a las FPGAs modernas como dispositivos de cómputo heterogéneo, y ahora cuenta con las herramientas para sacarle provecho.</p>

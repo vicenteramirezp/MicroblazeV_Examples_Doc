@@ -23,7 +23,7 @@
     
     
       
-        <title>Guía 6 - My Docs</title>
+        <title>Guía 6 - Guías MicroBlaze V</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-header__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            My Docs
+            Guías MicroBlaze V
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -400,13 +400,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-nav__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    My Docs
+    Guías MicroBlaze V
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -684,12 +684,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#integracion-al-procesador" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -699,12 +694,17 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+  <a href="#diseno-de-firmware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Diseño de Firmware
       
     </span>
   </a>
@@ -712,10 +712,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#verificacion" class="md-nav__link">
+  <a href="#validacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verificación
+        Validación
       
     </span>
   </a>
@@ -855,12 +855,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#integracion-al-procesador" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -870,12 +865,17 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+  <a href="#diseno-de-firmware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Diseño de Firmware
       
     </span>
   </a>
@@ -883,10 +883,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#verificacion" class="md-nav__link">
+  <a href="#validacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verificación
+        Validación
       
     </span>
   </a>
@@ -912,15 +912,15 @@
 
 <h1 id="guia-6-uso-de-memoria-externa">Guía 6 : Uso de memoria Externa</h1>
 <h2 id="contexto">Contexto</h2>
-<p>Si bien el Wizard de creación de Microblaze permite hasta 128 KB de memoria, esto  puede resultar insuficiente para aplicaciones mas complejas o que hagan uso de periféricos que necesiten un uso de memoria mayor. Para remediar esta problematica se hace uso de la <strong>Memoria externa</strong> de la placa, su nombre nace de que se encuentra fuera del circuito integrado de la FPGA, como se puede apreciar en la <a href="#fig-DDR2-on-board">figura 1</a>.</p>
-<p>El cicuito integrado es el Micron MT47H64M16HR-25, este chip corresponde a una memoria DDR2 con una capacidad de 128 MB (3 ordenes de magnitud mas grande que la memoria interna), para mas detalles técnicos revisar la documentación en el siguiente <a href="https://octopart.com/datasheet/micron/MT47H64M16HR-25:H">enlace</a>. </p>
+<p>Si bien el Wizard de creación de MicroBlaze permite hasta 128 KB de memoria, esto  puede resultar insuficiente para aplicaciones mas complejas o que hagan uso de periféricos que necesiten un uso de memoria mayor. Para remediar esta problemática se hace uso de la <strong>Memoria externa</strong> de la placa, su nombre nace de que se encuentra fuera del circuito integrado de la FPGA, como se puede apreciar en la <a href="#fig-DDR2-on-board">figura 1</a>.</p>
+<p>El circuito integrado es el Micron MT47H64M16HR-25, este chip corresponde a una memoria DDR2 con una capacidad de 128 MB (3 ordenes de magnitud mas grande que la memoria interna), para mas detalles técnicos revisar la documentación en el siguiente <a href="https://octopart.com/datasheet/micron/MT47H64M16HR-25:H">enlace</a>. </p>
 <p><figure id="_figure-1"><img alt="Chip DDR2 en la placa Nexys A7 (Amarillo)" id="fig-DDR2-on-board" src="../img/DDR2_on_board.png" width="500"><figcaption>Figura 1: Chip DDR2 en la placa Nexys A7 (Amarillo)</figcaption></figure></p>
 <p>Para representar valores fraccionarios se emplea la notación de punto fijo. En esta representación, la posición del punto determina cuántos bits corresponden a la parte entera (a su izquierda) y cuántos a la parte fraccionaria (a su derecha). Note que la cantidad de bits asociada a cada porción del dato se mantiene constante.</p>
 <h2 id="diseno-de-hardware">Diseño de hardware</h2>
 <h3 id="diseno-de-ip-producto-punto">Diseño de IP Producto Punto</h3>
-<p>En esta seccion se hará uso de High Level Synthesis para generar una IP que calcula el producto punto de dos vectores que almacenan datos con parte fraccional. Esta operación consiste en multiplicar dato a dato y realizar la suma de cada resultado, para esto usaremos nuevamente adder tree en conjunto a una nueva función que realiza la multiplicacion de estos datos teniendo en cuenta los valores fraccionales.</p>
-<p>Para poder uso de los valores fraccionales se hará uso de <strong>Punto fijo</strong> el cual es una forma de representar datos de tal manera que donde se posicione, este tendra a la izquierda la parte entera y a la derecha la parte fraccional.</p>
-<p>Abra Vitis, fije un workspace y genere un componente de HLS con el nombre fixed_point_ip siguiendo el procedimiento visto en la seccion anterior, tras lo cual importe los archivos hls_config.h y hls_main.cpp.</p>
+<p>En esta sección se hará uso de High Level Synthesis para generar una IP que calcula el producto punto de dos vectores que almacenan datos con parte fraccional. Esta operación consiste en multiplicar dato a dato y realizar la suma de cada resultado, para esto usaremos nuevamente adder tree en conjunto a una nueva función que realiza la multiplicación de estos datos teniendo en cuenta los valores fraccionales.</p>
+<p>Para poder uso de los valores fraccionales se hará uso de <strong>Punto fijo</strong> el cual es una forma de representar datos de tal manera que donde se posicione, este tendrá a la izquierda la parte entera y a la derecha la parte fraccional.</p>
+<p>Abra Vitis, fije un workspace y genere un componente de HLS con el nombre fixed_point_ip siguiendo el procedimiento visto en la sección anterior, tras lo cual importe los archivos hls_config.h y hls_main.cpp.</p>
 <p>Fijándonos en  hls_config.h:</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#ifndef HLS_CONFIG</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -943,11 +943,13 @@
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="cp">#endif</span>
 </span></code></pre></div>
 <p>Se tiene que se incluye la librería "ap_fixed.h", esta es la librería responsable del manejo de punto fijo en el hardware, mediante ella se pueden definir nuevos tipos de datos como se aprecia en la definición de los datos "data_t" y "res_data_t".</p>
-<p>En la definición de estos:
-- El primer parámetro indica el ancho total de bits de tipo definido, en este ejemplo son 16 bits.
-- El segundo parámetro indica la cantidad de bits destinados a la parte entera, en este ejemplo son 4 bits (3 bits si se consideran datos con signo).
-- AP_RND_CONV (Redondeo convergente): Cuando el resultado tiene mas bits de los que podrían caber en el dato, redondea al entero par mas cercano.
-- AP_SAT : Si el valor se sale del rango esperado, en vez de dar la vuelta  se fija en el valor mínimo o máximo dependiendo de la operación.</p>
+<p>En la definición de estos:</p>
+<ul>
+<li>El primer parámetro indica el ancho total de bits de tipo definido, en este ejemplo son 16 bits.</li>
+<li>El segundo parámetro indica la cantidad de bits destinados a la parte entera, en este ejemplo son 4 bits (3 bits si se consideran datos con signo).</li>
+<li>AP_RND_CONV (Redondeo convergente): Cuando el resultado tiene mas bits de los que podrían caber en el dato, redondea al entero par mas cercano.</li>
+<li>AP_SAT : Si el valor se sale del rango esperado, en vez de dar la vuelta  se fija en el valor mínimo o máximo dependiendo de la operación.</li>
+</ul>
 <p>Se tiene que se usa el doble de ancho en res_data_t porque al momento de multiplicar dos números de N bits, el producto puede necesitar hasta 2*N bits.</p>
 <p>Se puede apreciar los valores mínimos y máximos de los tipos de dato definido para este ejemplo en la <a href="#tbl-datos">tabla 1</a>.</p>
 <div style="text-align: center;">
@@ -1012,7 +1014,7 @@
 </span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=x</span>
 </span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=y</span>
 </span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=pp</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=return </span><span class="c1">//indica que tenga pines de control, ya que es un void (la función), si fuera de algun tipo distinto de void habria un puerto fisico</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="cp">#pragma HLS INTERFACE mode=s_axilite port=return </span><span class="c1">//indica que tenga pines de control, ya que es un void (la función), si fuera de algún tipo distinto de void habria un puerto fisico</span>
 </span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
 </span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="n">res_data_t</span><span class="w"> </span><span class="n">res</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
 </span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
@@ -1030,20 +1032,20 @@
 </span></code></pre></div>
 <p>Se puede apreciar que se hacen uso de los tipos de dato previamente definidos para definir las entradas, estas son multiplicadas elemento a elemento en el bucle principal "MainLoop" tras lo cual se suman todos los datos.</p>
 <p>Luego para comprobar que el diseño se encuentra funcionando de manera correcta, agregue a la carpeta Testbench los archivos testbench.cpp, golden_inputs.dat y golden_reference.dat para la simulación/cosimulación.</p>
-<p>Continue con el proceso de simulación, síntesis y cosimulacion como se mostró en la sección previa. Al momento de realizar la síntesis de C compruebe que su utilización de recursos coincida con los vistos en la <a href="#fig-hls-resources">figura 2</a>.</p>
+<p>Continue con el proceso de simulación, síntesis y cosimulación como se mostró en la sección previa. Al momento de realizar la síntesis de C compruebe que su utilización de recursos coincida con los vistos en la <a href="#fig-hls-resources">figura 2</a>.</p>
 <p><figure id="_figure-2"><img alt="Recursos usados en IP punto fijo" id="fig-hls-resources" src="../img/hls_resources.png" width="1000"><figcaption>Figura 2: Recursos usados en IP punto fijo</figcaption></figure></p>
 <p>Finalmente realice el encapsulado de la IP y cierre Vitis.</p>
 <h3 id="memoria-externa">Memoria Externa</h3>
 <p>Abra Vivado, cree un nuevo proyecto y genere un nuevo diagrama de bloques.</p>
 <p>Desde el panel lateral <strong>Board</strong> arrastre <strong>DDR2 SDRAM</strong> como se puede apreciar en la <a href="#fig-ddr-side-panel">figura 3</a>.</p>
 <p><figure id="_figure-3"><img alt="DDR en panel lateral" id="fig-ddr-side-panel" src="../img/DDR2_on_side_panel.png" width="300"><figcaption>Figura 3: DDR en panel lateral</figcaption></figure></p>
-<p>Esto importará la IP <strong>Memory Interface Generator (MIG 7 Series)</strong> al diagrama de bloques como se ve en la <a href="#fig-mig-on-bd">figura 4</a>. Esta IP automatiza la generación de interfaces de memoria para FPGA's de la Serie 7 (Kintex-7,Virtex-7 y el caso del chip de esta placa: Artyx-7). El uso de memoria externa de manera manual resulta sumamente complejo debido a que posee complejidades temporales de alta precisión durante las transiciones, haciendo uso de multiples relojes de distintas frecuencias para alcanzar la velocidad  necesaria para leer múltiples direcciones de memoria en un solo ciclo de reloj del sistema. Debido a esto la IP posee acceso directo a los recursos de generación de reloj de la placa (Mixed-Mode Clock Manager y Phase-Locked Loop). (Aqui quiero discutir como decir que la ip puede o no funciónar si se usan estas capacidades y directamente da errores de timing internos)</p>
-<p><figure id="_figure-4"><img alt="Mig en el diagrama de Bloques" id="fig-mig-on-bd" src="../img/Mig_on_bd.png" width="500"><figcaption>Figura 4: Mig en el diagrama de Bloques</figcaption></figure></p>
-<p>Hay una problematica con el MIG creado por la automatizacion de Vivado.</p>
+<p>Esto importará la IP <strong>Memory Interface Generator (MIG 7 Series)</strong> al diagrama de bloques como se ve en la <a href="#fig-mig-on-bd">figura 4</a>. Esta IP automatiza la generación de interfaces de memoria para FPGA's de la Serie 7 (Kintex-7,Virtex-7 y el caso del chip de esta placa: Artyx-7). El uso de memoria externa de manera manual resulta sumamente complejo debido a que posee complejidades temporales de alta precisión durante las transiciones, haciendo uso de múltiples relojes de distintas frecuencias para alcanzar la velocidad  necesaria para leer múltiples direcciones de memoria en un solo ciclo de reloj del sistema. Debido a esto la IP posee acceso directo a los recursos de generación de reloj de la placa (Mixed-Mode Clock Manager y Phase-Locked Loop).
+<figure id="_figure-4"><img alt="Mig en el diagrama de Bloques" id="fig-mig-on-bd" src="../img/Mig_on_bd.png" width="500"><figcaption>Figura 4: Mig en el diagrama de Bloques</figcaption></figure></p>
+<p>Hay una problematica con el MIG creado por la automatización de Vivado.</p>
 <p>MIG requiere un reloj de referencia de 200 MHZ (como se puede apreciar en la <a href="https://docs.amd.com/r/en-US/ug586_7Series_MIS/IDELAY-Reference-Clock?tocId=nJXWeiGvSLT1gJwwSLLFwg">documentación de la IP</a>). Vivado asume que existe un pin que posee un reloj con esta frecuencia, pero este no es el caso por lo que se generará este reloj con la IP Clock Wizard. </p>
 <p>Prosiga borrando los dos pines de reloj que se generaron al momento de importar la IP: "clk_ref_i" y "sys_clk_i" como se aprecia en la <a href="#fig-mig-no-clk">figura 5</a>.</p>
 <p><figure id="_figure-5"><img alt="Mig con pines de reloj desconectados" id="fig-mig-no-clk" src="../img/Mig_no_clk.png" width="500"><figcaption>Figura 5: Mig con pines de reloj desconectados</figcaption></figure></p>
-<p>Luego haga doble click sobre la IP para configurarla, en la ventana emergente mantenga seleccionado "Create Design" (puesto que vamos a eliminar la generación de reloj de la IP) como se aprecia en la <a href="#fig-create-mig">figura 6</a>. Presione <strong>Next</strong>.</p>
+<p>Luego haga doble click sobre la IP para abrir su configuración, en la ventana emergente mantenga seleccionado "Create Design" (puesto que vamos a eliminar la generación de reloj de la IP) como se aprecia en la <a href="#fig-create-mig">figura 6</a>. Presione <strong>Next</strong>.</p>
 <p><figure id="_figure-6"><img alt="Crear diseño MIG" id="fig-create-mig" src="../img/Create_design_MIG.png" width="1000"><figcaption>Figura 6: Crear diseño MIG</figcaption></figure></p>
 <p>Luego se pasa a la pestaña de diseño de pines vista en la figura <a href="#fig-pin-design">figura 7</a>, donde se revisa que el chip de la fpga sea compatible con el pinout deseado para la interfaz del chip de memoria. 
 <figure id="_figure-7"><img alt="Pin design" id="fig-pin-design" src="../img/Pin_design_MIG.png" width="1000"><figcaption>Figura 7: Pin design</figcaption></figure></p>
@@ -1051,19 +1053,19 @@
 <p><figure id="_figure-8"><img alt="Selección de memoria" id="fig-ddr2-or-ddr3" src="../img/DDr2_or_DDR3.png" width="1000"><figcaption>Figura 8: Selección de memoria</figcaption></figure></p>
 <p>Continuando con la siguiente pestaña, estas son las primeras opciones para el controlador, se puede elegir el reloj con el que se hace acceso a la memoria, los anchos de dato y cambiar el chip de memoria i fuera el caso. Mantenga opciones predeterminadas.</p>
 <p><figure id="_figure-9"><img alt="Opciones controlador " id="fig" src="../img/Mig_3.png" width="1000"><figcaption>Figura 9: Opciones controlador </figcaption></figure></p>
-<p>En la siguiente pestaña se aprecian las opciones de AXI, mantenga opciones predeterminadas nuevamente, no hay necesidad de cambiarlas a menos que se realice una aplicacion especifica.</p>
+<p>En la siguiente pestaña se aprecian las opciones de AXI, mantenga opciones predeterminadas nuevamente, no hay necesidad de cambiarlas a menos que se realice una aplicación especifica.</p>
 <p><figure id="_figure-10"><img alt="Opciones de AXI del MIG" id="fig" src="../img/Mig_4.png" width="1000"><figcaption>Figura 10: Opciones de AXI del MIG</figcaption></figure></p>
 <p>En la siguiente pestaña se ven las opciones de memoria, en este caso se va a dejar desmarcado el cuadro <strong>Select Additional Clocks (if required)</strong> puesto que el reloj de referencia de 200 MHZ sera generado en un bloque aparte.
 <figure id="_figure-11"><img alt="Opciones de Memoria" id="fig" src="../img/Mig_5.png" width="1000"><figcaption>Figura 11: Opciones de Memoria</figcaption></figure></p>
-<p>Luego en las opciones de reloj se va seleccionar el cuadro de System clock y se dejara en <strong>No Buffer</strong> esto es debido a que se hara uso de un reloj generado en clock wizard y no el reloj del sistema.</p>
+<p>Luego en las opciones de reloj se va seleccionar el cuadro de System clock y se dejara en <strong>No Buffer</strong> esto es debido a que se hará uso de un reloj generado en Clocking Wizard y no el reloj del sistema.</p>
 <p><figure id="_figure-12"><img alt="System CLK sin buffer" id="fig" src="../img/Mig_6.png" width="1000"><figcaption>Figura 12: System CLK sin buffer</figcaption></figure></p>
-<p>La siguiente configuracion es la impedancia de los bancos de memoria de alto rango, se les da esta denominacion porque poseen un rango de voltaje mayor (1.2V-3.3V). Se le tiene que asignar un valor de impedancia especifico al chip de memoria, puesto que al recibi señales de alta velocidad, una impedancia de entrada erronea puede causar reflexiones en la señal, las cuales pueden dar el paso a datos corruptos.
+<p>La siguiente configuración es la impedancia de los bancos de memoria de alto rango, se les da esta denominación porque poseen un rango de voltaje mayor (1.2V-3.3V). Se le tiene que asignar un valor de impedancia especifico al chip de memoria, puesto que al recibir señales de alta velocidad, una impedancia de entrada errónea puede causar reflexiones en la señal, las cuales pueden dar el paso a datos corruptos.
 <figure id="_figure-13"><img alt="Impedancia entrada MIG" id="fig" src="../img/Mig_7.png" width="1000"><figcaption>Figura 13: Impedancia entrada MIG</figcaption></figure></p>
 <p>En la siguiente pestaña se pregunta si se desea generaran un nuevo pin-out. Mantenga el pinout existente y continue.</p>
 <p><figure id="_figure-14"><img alt="Diseñar nuevo Pinout" id="fig" src="../img/Mig_8.png" width="1000"><figcaption>Figura 14: Diseñar nuevo Pinout</figcaption></figure></p>
 <p>En la siguiente pestaña se ilustra la selección de pines. Para continuar tiene que hacer click en <strong>Validate</strong> para asegurar que este todo mapeado sin errores.
 <figure id="_figure-15"><img alt="Validar pinout" id="fig" src="../img/Mig_9.png" width="1000"><figcaption>Figura 15: Validar pinout</figcaption></figure></p>
-<p>En la siguente pestaña se puede seleccionar puertos para los pines, dejaremos los valores predeterminados puesto que estos se mapearan a través de la herramienta <strong>Run Connnection automation</strong> del diagrama de bloques.</p>
+<p>En la siguiente pestaña se puede seleccionar puertos para los pines, dejaremos los valores predeterminados puesto que estos se mapearan a través de la herramienta <strong>Run Connnection automation</strong> del diagrama de bloques.</p>
 <p><figure id="_figure-16"><img alt="Seleccion de puertos para los pines" id="fig" src="../img/Mig_10.png" width="1000"><figcaption>Figura 16: Seleccion de puertos para los pines</figcaption></figure></p>
 <p>Continuando sale un resumen del diseño de la interfaz diseñada.</p>
 <p><figure id="_figure-17"><img alt="Resumen del diseño" id="fig" src="../img/Mig_11.png" width="1000"><figcaption>Figura 17: Resumen del diseño</figcaption></figure></p>
@@ -1071,19 +1073,19 @@
 <p><figure id="_figure-18"><img alt="Terminos y condiciones del uso de MIG" id="fig" src="../img/Mig_12.png" width="1000"><figcaption>Figura 18: Terminos y condiciones del uso de MIG</figcaption></figure></p>
 <p>En la siguiente Pestaña sale un enlace a la guia de usuario de diseño de PCBs que hacen uso del MIG.
 <figure id="_figure-19"><img alt="Guia de usuario para crear PCB's para diseños MIG" id="fig" src="../img/Mig_13.png" width="1000"><figcaption>Figura 19: Guia de usuario para crear PCB's para diseños MIG</figcaption></figure></p>
-<p>Finalmente salen notas para la finalizacion del diseño e informacion del diseño de la interfaz MIG.</p>
+<p>Finalmente salen notas para la finalización del diseño e información del diseño de la interfaz MIG.</p>
 <p><figure id="_figure-20"><img alt="Notas de diseño para MIG" id="fig" src="../img/Mig_14.png" width="1000"><figcaption>Figura 20: Notas de diseño para MIG</figcaption></figure></p>
 <p>Agregue a su diagrama de bloques la ip "Clocking Wizard" vista en la <a href="#fig-clock-wiz">figura 21</a> donde se generaran los relojes a usar</p>
 <p><figure id="_figure-21"><img alt="IP Clock Wizard" id="fig-clock-wiz" src="../img/clock_wizard.png" width="250"><figcaption>Figura 21: IP Clock Wizard</figcaption></figure></p>
 <p>Haga doble click sobre esta para configurarla, en la pestaña <strong>Board</strong> Cambie CLK_IN1 a "sys clock"  y EXT_RESET_IN a "reset" para mapear estos pines a los puertos físicos de la placa.</p>
 <p><figure id="_figure-22"><img alt="Mapeo de Clock Wizard" id="fig" src="../img/Clk_config_1.png" width="1000"><figcaption>Figura 22: Mapeo de Clock Wizard</figcaption></figure></p>
-<p>Luego en la pestaña <strong>Output Clocks</strong> habilite el segundo reloj "clk_out2" y fije su frecuencia en 200 MHz, este reloj servira como el reloj de referencia para el MIG. Luego presione "OK".</p>
+<p>Luego en la pestaña <strong>Output Clocks</strong> habilite el segundo reloj "clk_out2" y fije su frecuencia en 200 MHz, este reloj servirá como el reloj de referencia para el MIG. Luego presione "OK".</p>
 <p><figure id="_figure-23"><img alt="Creación de segundo reloj" id="fig" src="../img/Clk_config_2.png" width="1000"><figcaption>Figura 23: Creación de segundo reloj</figcaption></figure></p>
 <p>Volviendo al diagrama de bloques presione <strong>Run Connection Automation</strong>, marque todas las opciones. Antes de aplicar las conexiones vaya al puerto clk_ref_in de mig_7_series_0 y fije la fuente de reloj al clk_out2 (el reloj de 200 MHz que se genero en el paso anterior).</p>
 <p><figure id="_figure-24"><img alt="Conexión automatica con clk_out2 conectado a clk_ref_in" id="fig" src="../img/auto_connection_clk200Mhz.png" width="1000"><figcaption>Figura 24: Conexión automatica con clk_out2 conectado a clk_ref_in</figcaption></figure></p>
-<p>Su diagrama de bloques debería verse como el de la figura <a href="#fig-mig-wiz-bd">figura 25</a> tras apretar el boton de <strong>Regenerate Layout</strong>.</p>
+<p>Su diagrama de bloques debería verse como el de la figura <a href="#fig-mig-wiz-bd">figura 25</a> tras apretar el botón de <strong>Regenerate Layout</strong>.</p>
 <p><figure id="_figure-25"><img alt="Diagrama de bloques con Clock Wizard y MIG" id="fig-mig-wiz-bd" src="../img/Mig_wiz_bd.png" width="1000"><figcaption>Figura 25: Diagrama de bloques con Clock Wizard y MIG</figcaption></figure></p>
-<h2 id="integracion-al-procesador">Integración al procesador</h2>
+<h3 id="integracion-al-procesador">Integración al procesador</h3>
 <p>Importe el procesador Microblaze V al diagrama de bloques como se ve en la <a href="#fig-Microblaze_ddr_bd">figura 26</a>.</p>
 <p><figure id="_figure-26"><img alt="Microblaze V en el diagrama de bloques junto a las 2 IPS " id="fig-Microblaze_ddr_bd" src="../img/Microblaze_DDR_bd.png" width="1000"><figcaption>Figura 26: Microblaze V en el diagrama de bloques junto a las 2 IPS </figcaption></figure></p>
 <p>Luego corra <strong>Run block automation</strong> fijandose en que la conexion de reloj sea la proveniente del clock wizard como se ve en la <a href="#fig-microblaze-clk-config">figura 27</a>.</p>
@@ -1148,8 +1150,8 @@
 </tbody>
 </table>
 </div>
-<h2 id="firmware">Firmware</h2>
-<p>Abra Vitis, fije el workspace, cree el componente de plataforma y aplicacion igual que en secciones anteriores.</p>
+<h2 id="diseno-de-firmware">Diseño de Firmware</h2>
+<p>Abra Vitis, fije el workspace, cree el componente de plataforma y aplicación de la misma forma que en secciones anteriores.</p>
 <p>Importe el archivo app.cpp de la carpeta Ejemplo_6:</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xparameters.h"</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_exception.h"</span>
@@ -1232,10 +1234,10 @@
 </span></code></pre></div>
 <p>Se hará un leve analisis del codigo.</p>
 <p>Fijandonos en las librerías de interés:
-- iomanip y iostream: Se hace uso de estas librerías para manipular los datos de salida a través de uart para que esten con el formato correcto (teniendo en cuenta la parte fraccional y entera)
+- iomanip y iostream: Se hace uso de estas librerías para manipular los datos de salida a través de Uart para que esten con el formato correcto (teniendo en cuenta la parte fraccional y entera)
 - ap_fixed.h : Se tiene que en esta librería se encuentran las definiciónes de los datos de punto fijo, esta librería al contener tanto datos de descripcion de hardware como de software es particularmente pesada.
 - xhls_pp.h: Driver del periferico de HLS.</p>
-<p>En cuanto al funciónamiento del codigo, se tiene que este recibe 10 datos de 16 bits a través de UART, tras lo cual realiza una manipulacion sobre estos debido a que la interfaz de AXI maneja datos de 32 bits, tras lo cual realiza el envio a la IP y espera el resultado antes de mandarlo.</p>
+<p>En cuanto al funciónamiento del codigo, se tiene que este recibe 10 datos de 16 bits a través de Uart, tras lo cual realiza una manipulacion sobre estos debido a que la interfaz de AXI maneja datos de 32 bits, tras lo cual realiza el envio a la IP y espera el resultado antes de mandarlo.</p>
 <p>Ahora nos fijaremos en el archivo ld_script de la carpeta sources, este define donde se guardan todas las secciones de codigo producidas en el compilado de la aplicación, junto al tamaño del heap y el stack. Como se puede apreciar en la <a href="#fig-ld-script">figura 40</a> existe tanto la region de memoria interna de microblaze V  (los 128 kb) como la del MIG (128 MB) la aplicacion de manera predeterminada mapea todo a la sección mas grande para evitar que el tamaño de la aplicación sea un impedimento. Antes de continuar, debido a que estamos haciendo uso de librerías de impresion por consola (bastante costosas en termino de memoria dinamica) se aumentara el tamaño del heap y el stack a los valores vistos en la <a href="#fig-ld-script">figura 40</a>. Si estos valores no se cambiaran, la aplicacion lanzaria una excepcion al momento de imprimir el resultado.</p>
 <p><figure id="_figure-40"><img alt="Linker script" id="fig-ld-script" src="../img/Linker_script.png" width="1000"><figcaption>Figura 40: Linker script</figcaption></figure></p>
 <p>Luego si vuelve al codigo e intenta compilar la aplicación, se encontrara con un error de la forma:</p>
@@ -1270,15 +1272,15 @@ Esto es debido a que esta librería no fue diseñada directamente con el proposi
 </tbody>
 </table>
 </div>
-<h2 id="verificacion">Verificación</h2>
-<p>Para verificar que el sistema se diseño con exito, se hara uso de un script de python que generara datos y la respuesta esperada, enviará los datos a través de UART, recibe el resultado y  compara con el resultado obtenido en el host. </p>
+<h2 id="validacion">Validación</h2>
+<p>Para verificar que el sistema se diseño con exito, se hará uso de un script de python que generara datos y la respuesta esperada, enviará los datos a través de UART, recibe el resultado y  compara con el resultado obtenido en el host. </p>
 <p>El script de manera predeterminada realiza 100 pruebas, para hacer mas o menos pruebas basta con cambiar el parámetro N dentro del script.</p>
 <p>Para correr el ejemplo tiene que abrir el archivo serial_host.py y renombrar la variable </p>
 <p></p><div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">PORT</span> <span class="o">=</span> <span class="s2">"/dev/ttyUSB1"</span> 
 </span></code></pre></div>
 Al nombre del puerto USB al que se encuentra conectada la placa.
 <p>Finalmente corra el script con su IDE de preferencia o por consola. Acto seguido programe la placa (Primero corra el script y <strong>Despues</strong> programe la placa). Se hace uso de esta secuencia debido a que el script antes de empezar busca una secuencia de caracteres que le indican que el programa es el correcto y la aplicación lanza estos en las primeras lineas de la aplicación.</p>
-<p>Si todo sale en orden deberia obtener un resultado similar al de <a href="#fig-Verificacion">figura 43</a></p>
+<p>Si todo sale en orden debería obtener un resultado similar al de <a href="#fig-Verificacion">figura 43</a></p>
 <p><figure id="_figure-43"><img alt="Verificación Exitosa" id="fig-Verificacion" src="../img/verification.png" width="1000"><figcaption>Figura 43: Verificación Exitosa</figcaption></figure></p>
 
 
