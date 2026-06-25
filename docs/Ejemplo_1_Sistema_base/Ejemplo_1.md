@@ -2,12 +2,14 @@
 
 ## Objetivo
 
-En esta guía se detalla como describir el sistema base de MicroBlaze V, como correr aplicaciones sobre este y que funcionalidades posee la herramienta Vitis al momento de trabajar con el flujo embebido.
+En esta guía se introduce al lector al flujo de desarrollo de sistemas embebidos basados en MicroBlaze V utilizando las herramientas Vivado y Vitis. A través de un ejemplo práctico, el lector diseñará una plataforma hardware compuesta por un procesador RISC-V, memoria local y periféricos básicos, para posteriormente desarrollar, compilar y ejecutar una aplicación bare-metal sobre dicha plataforma.
+
+Al finalizar la guía, el lector habrá recorrido el flujo completo de diseño, desde la descripción del hardware en FPGA hasta la ejecución de software sobre el procesador, obteniendo una base funcional que servirá como punto de partida para las guías posteriores orientadas al desarrollo de sistemas de cómputo heterogéneo.
 
 ## Contexto
 
 
-### ¿ Que es RISC-V?
+### ¿Que es RISC-V?
 
 RISC-V es una arquitectura de conjunto de instrucciones que funciona como el vocabulario básico que permite la comunicación entre el software y el hardware de un procesador. Se basa en la filosofía RISC, que prioriza el uso de un conjunto reducido y simplificado de instrucciones para que el procesador ejecute tareas de forma más rápida y eficiente, a diferencia de otras arquitecturas tradicionales que usan instrucciones más complejas. La letra V indica que es la quinta generación de este diseño, el cual fue creado originalmente en la Universidad de California, Berkeley.
 
