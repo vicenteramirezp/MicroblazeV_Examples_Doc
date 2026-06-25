@@ -1348,7 +1348,7 @@ Definiciones de relojes, restricciones de timing y mapeo de pines fisicos a los 
 <p><figure id="_figure-31"><img alt="Secuencia de desplegado y escritura de los 2 cuadros" id="fig-frames" src="../img/Diagrama_frames.png" width="800"><figcaption>Figura 31: Secuencia de desplegado y escritura de los 2 cuadros</figcaption></figure></p>
 <p>Se tiene que una vez que se ha realizado el dibujo, este dato se pasa de la cache de MicroBlaze V a la Memoria externa con la función Xil_DCacheFlush(), puesto que el modulo VDMA solo posee acceso a la memoria externa y no al cache del procesador.</p>
 <h2 id="validacion">Validación</h2>
-<p>Para corrobar el funcionamiento de la aplicación, , cambie el parametro de la funcion   DisplaySetMode(&amp;dispCtrl, &amp;VMODE_1280x1024) a la resolucion del monitor que posea, en este caso se mantendra la pre existente y se aplicara sobre un monitor 1280x1024.</p>
+<p>Para corrobar el funcionamiento de la aplicación, cambie el parametro de la funcion DisplaySetMode(&amp;dispCtrl, &amp;VMODE_1280x1024) a la resolución del monitor que posea, en este caso se mantendrá la configuración  preexistente y se desplegarán los graficos sobre un monitor 1280x1024.</p>
 <p>Una vez elegido el parámetro conecte su placa al computador, conecte el puerto vga a su monitor y programe la placa. Se debería ver como en la <a href="#fig-gif">figura 32</a>.</p>
 <p><figure id="_figure-32"><img alt="Programa en ejecución sobre un monitor 1280x1024" id="fig-gif" src="../img/app.gif" width="600"><figcaption>Figura 32: Programa en ejecución sobre un monitor 1280x1024</figcaption></figure></p>
 

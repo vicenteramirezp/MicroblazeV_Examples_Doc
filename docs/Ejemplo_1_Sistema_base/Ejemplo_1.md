@@ -336,8 +336,7 @@ Luego se configura el nombre del archivo de salida **Xillinx support Archive** *
 Continúe hasta exportar el el archivo xsa, con esto finaliza la etapa de trabajo en Vivado.
 
 
-## Firmware
-![](img/.png){ #fig width="1000" }
+## Diseño de Firmware
 
 
 Abra Vitis, elija un espacio de trabajo haciendo click en *Set Workspace*, en esta carpeta se realizará el trabajo de esta seccion. Puede hacer uso de la misma carpeta donde desarolló su diseño en Vivado, note que si lo hace ahí Vitis reconocerá la carpeta como un espacio de trabajo de AMD por lo que le pedira actualizar la metadata del espacio de trabajo como se ve en [](#fig:updateworkspace). Esto no afectará su trabajo ya realizado en Vivado.
