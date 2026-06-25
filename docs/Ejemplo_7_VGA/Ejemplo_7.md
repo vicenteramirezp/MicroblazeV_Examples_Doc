@@ -420,7 +420,7 @@ Se tiene que una vez que se ha realizado el dibujo, este dato se pasa de la cach
 
 ## Validación 
 
-Para corrobar el funcionamiento de la aplicación, , cambie el parametro de la funcion 	DisplaySetMode(&dispCtrl, &VMODE_1280x1024) a la resolucion del monitor que posea, en este caso se mantendra la pre existente y se aplicara sobre un monitor 1280x1024.
+Para corrobar el funcionamiento de la aplicación, cambie el parametro de la funcion DisplaySetMode(&dispCtrl, &VMODE_1280x1024) a la resolución del monitor que posea, en este caso se mantendrá la configuración  preexistente y se desplegarán los graficos sobre un monitor 1280x1024.
 
 Una vez elegido el parámetro conecte su placa al computador, conecte el puerto vga a su monitor y programe la placa. Se debería ver como en la [](#fig-gif).
 

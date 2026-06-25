@@ -23,7 +23,7 @@
     
     
       
-        <title>Guía 5 - My Docs</title>
+        <title>Guía 5 - Guías MicroBlaze V</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-header__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            My Docs
+            Guías MicroBlaze V
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -400,13 +400,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-nav__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    My Docs
+    Guías MicroBlaze V
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -611,6 +611,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
@@ -894,6 +905,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1077,6 +1099,8 @@
 
 
 <h1 id="guia-5-diseno-de-perifericos-con-high-level-synthesis">Guía 5: Diseño de Periféricos con High Level Synthesis</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>En esta guía se espera que el lector pueda sintetizar algoritmos descritos en C/C++ para su integración en sistemas que incorporen un procesador.</p>
 <h2 id="contexto">Contexto</h2>
 <h3 id="que-es-high-level-synthesis">¿Que es High Level Synthesis?</h3>
 <p>High-Level Synthesis (HLS) es el proceso de transformar la descripción de un diseño desde un nivel de abstracción alto hacia una descripción a nivel de transferencia de registros (RTL). AMD Vitis™ HLS implementa este proceso a partir de funciones escritas en C/C++, generando la descripción RTL que posteriormente se integra en Vivado™ para su implementación en FPGA como se aprecia en el diagrama de la <a href="#fig-vitis-HL"></a>.</p>
@@ -1085,12 +1109,12 @@
 <p>Note que para generar un módulo a nivel de RTL sintetizable  a partir de archivos C/C++, Vitis identifica ciertos aspectos claves en el código, entre los cuales destacan</p>
 <ul>
 <li><strong>Función Top</strong>: Esta es la función que envolverá a otras funciones, manteniendo la misma jerarquía a la del un modulo de alto nivel que instancia a otros, esto se puede apreciar mas claramente cuando se exportan los archivos RTL, donde Vitis da la opción de que se genere un módulo sintetizable por cada función.</li>
-<li><strong>Bucles</strong>: Vitis HLS sintetiza los bucles de forma secuencial de manera predeterminada. Es decir, genera un espacio de memoria en hardware donde realiza las iteraciones del bucle una instancia a la vez y en cada iteracion guarda el resultado.</li>
+<li><strong>Bucles</strong>: Vitis HLS sintetiza los bucles de forma secuencial de manera predeterminada. Es decir, genera un espacio de memoria en hardware donde realiza las iteraciones del bucle una instancia a la vez y en cada iteración guarda el resultado.</li>
 <li><strong>Arreglos</strong>: Vitis los implementa dependiendo de como son accedidos, si son grandes y no se acceden varios datos al mismo tiempo, son implementados con Block RAM, en caso de que se accedan varios datos al mismo tiempo, o sean de menor tamaño, se implementan a través de registros.</li>
 </ul>
 <p>Una vez la herramienta identifica estos aspectos, estos sirven como insumos directos para la síntesis como se puede apreciar en la <a href="#fig-vitis-flujo">figura 2</a>.</p>
 <p><figure id="_figure-2"><img alt="Diagrama Síntesis HLS de Vitis" id="fig-vitis-flujo" src="../img/HLS_c_to_rtl_diagram.png" width="500"><figcaption>Figura 2: Diagrama Síntesis HLS de Vitis</figcaption></figure></p>
-<p>Por ultimo se tiene que mediante el uso de directivas en Vitis HLS, es posible optimizar y ajustar los resultados de la sı́ntesis de hardware para una misma descripción en C, permitiendo explorar diferentes implementaciones de un mismo código fuente.</p>
+<p>Por ultimo se tiene que mediante el uso de directivas en Vitis HLS, es posible optimizar y ajustar los resultados de la síntesis de hardware para una misma descripción en C, permitiendo explorar diferentes implementaciones de un mismo código fuente.</p>
 <h3 id="pragmas-en-vitis-hls">Pragmas en Vitis HLS</h3>
 <p>Los pragmas son directivas que guían al compilador HLS en la transformación del código C/C++ a RTL. No alteran el resultado funcional del algoritmo, pero sí controlan cómo este se implementa en hardware: la organización de los recursos, la forma de los bucles, las interfaces hacia el exterior y el grado de paralelismo. Su importancia es central porque la misma descripción en C puede sintetizarse en arquitecturas radicalmente distintas según los pragmas aplicados.</p>
 <h3 id="loop-unrolling">Loop unrolling</h3>
@@ -1101,7 +1125,7 @@
 <p><figure id="_figure-3"><img alt="Nuevo componente de HLS" id="fig-new-HLS" src="../img/New_hls_component.png" width="1000"><figcaption>Figura 3: Nuevo componente de HLS</figcaption></figure></p>
 <p>Esto abrirá una ventana emergente donde podrá crear el componente HLS, empezando por asignarle un nombre. En el caso de esta guía se usa el nombre <strong>Adder_tree_HLS</strong> como se ve en la <a href="#fig-nombre-proyecto">figura 4</a>.</p>
 <p><figure id="_figure-4"><img alt="Nombre del Componente HLS" id="fig-nombre-proyecto" src="../img/creaci%C3%B3n_proyecto_hls.png" width="1000"><figcaption>Figura 4: Nombre del Componente HLS</figcaption></figure></p>
-<p>Tras hacer click en <em>Next</em>, se elije el archivo de configuración HLS, este contiene todos los datos de la configuración del proyecto. Su funcion es automatizar la creacion de proyectos HLS, debido a que en esta guía se realizaran las configuraciones de forma manual, seleccione <em>Empty File</em> como se ve en la <a href="#fig-config-hls">figura 5</a>.</p>
+<p>Tras hacer click en <em>Next</em>, se elije el archivo de configuración HLS, este contiene todos los datos de la configuración del proyecto. Su función es automatizar la creación de proyectos HLS, debido a que en esta guía se realizaran las configuraciones de forma manual, seleccione <em>Empty File</em> como se ve en la <a href="#fig-config-hls">figura 5</a>.</p>
 <p><figure id="_figure-5"><img alt="Archivo de Configuración HLS" id="fig-config-hls" src="../img/Configuration_file.png" width="1000"><figcaption>Figura 5: Archivo de Configuración HLS</figcaption></figure></p>
 <p>En la siguiente ventana se definen los archivos fuente del componente, también en este paso se definen las configuraciones del compilador para cada archivo fuente como se ve en la <a href="#fig-sources-vitis">figura 6</a>. En esta guía los archivos fuente se añadirán en un paso posterior para mostrar ambas maneras de añadir archivos.</p>
 <p><figure id="_figure-6"><img alt="Archivos Fuentes de Vitis" id="fig-sources-vitis" src="../img/Sources_Vitis.png" width="1000"><figcaption>Figura 6: Archivos Fuentes de Vitis</figcaption></figure></p>

@@ -23,7 +23,7 @@
     
     
       
-        <title>Guía 2 - My Docs</title>
+        <title>Guía 2 - Guías MicroBlaze V</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-header__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            My Docs
+            Guías MicroBlaze V
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -400,13 +400,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="../.." title="Guías MicroBlaze V" class="md-nav__button md-logo" aria-label="Guías MicroBlaze V" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    My Docs
+    Guías MicroBlaze V
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -565,15 +565,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+  <a href="#diseno-de-firmware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Diseño de Firmware
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Firmware">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validación">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -833,15 +844,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+  <a href="#diseno-de-firmware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmware
+        Diseño de Firmware
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Firmware">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validación">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -893,11 +915,11 @@
 <p>En esta guía se espera que el lector logre aprender a hacer uso de la herramienta de depurado que ofrece Vitis para analizar el funcionamiento de su aplicación.</p>
 <h2 id="contexto">Contexto</h2>
 <p>En el contexto de <strong>firmware</strong>, el término "depurado" se refiere a que el código ha pasado por un proceso de depuración, es decir la identificación, análisis y corrección de errores o comportamientos incorrectos.</p>
-<p>Se tiene que para realizar el depurado sobre el procesador MicroBlaze V existe el modulo MicroBlaze V Debug Module (MDM) el cual actua como una interfaz entre la herramienta de depurado de software de Vitis. Esta interfaz se conecta al puerto JTAG de las placas de AMD o con una interfaz AXI4-Lite mapeada en memoria. Para más información revisar <a href="https://docs.amd.com/r/en-US/ug1629-microblaze-v-user-guide/Debug">la documentación oficial</a>.</p>
+<p>Se tiene que para realizar el depurado sobre el procesador MicroBlaze V existe el modulo MicroBlaze V Debug Module (MDM) el cual actúa como una interfaz entre la herramienta de depurado de software de Vitis. Esta interfaz se conecta al puerto JTAG de las placas de AMD o con una interfaz AXI4-Lite mapeada en memoria. Para más información revisar <a href="https://docs.amd.com/r/en-US/ug1629-microblaze-v-user-guide/Debug">la documentación oficial</a>.</p>
 <p>Esta funcionalidad de depurado se implementa de acuerdo a la definición oficial de <a href="https://riscv.org/wp-content/uploads/2024/12/riscv-debug-release.pdf">soporte de depurado externo RISC-V</a>.</p>
 <h2 id="diseno-de-hardware">Diseño de Hardware</h2>
 <p>Debido a que el foco esta guía se encuentra en la herramienta de Depurado de Vitis,  se hará uso del mismo hardware diseñado en la <a href="../../Ejemplo_1_Sistema_base/Ejemplo_1/#diseno-de-hardware">guía anterior</a>.</p>
-<h2 id="firmware">Firmware</h2>
+<h2 id="diseno-de-firmware">Diseño de Firmware</h2>
 <p>Abra Vitis, puede elegir un nuevo espacio de trabajo o hacer uso del de la guía previa. En este cree el componente de plataforma, luego cree un componente de aplicación.</p>
 <p>En el componente de aplicación importe el archivo Ejemplo_2.c de la carpeta Ejemplo_2.</p>
 <p>Analizando el código del archivo:</p>
@@ -943,18 +965,19 @@
 <li><strong>Call Stack</strong>: Registra en que función esta actualmente el depurador y a donde debe regresar el programa cuando termine la función actual, útil para encontrar secuencias donde el programa se puede quedar colgado.</li>
 <li><strong>Variables</strong>:Tiene el valor actual de variables locales.</li>
 <li><strong>Watch</strong>: Permite añadir expresiones que se evalúan en base a los valores actuales de las variables</li>
-<li><strong>Breakpoints</strong>: Enumera los distintos Breakpoints en el código (para añadir un breakpoint hay que hacer click a la izquierda de una dada linea de código).</li>
+<li><strong>Breakpoints</strong>: Enumera los distintos Breakpoints en el código (para añadir un Breakpoint hay que hacer click a la izquierda de una dada linea de código).</li>
 </ul>
 </li>
 <li>Herramientas de análisis.<ul>
-<li><strong>Outline</strong>: Enumera las distintas funciones del código y su jerarquı́a.</li>
-<li><strong>Memory inspector</strong>: Permite leer valores de memoria, ya sea de la memoria interna del procesador o de memoria externa como Bram o DDR3.</li>
+<li><strong>Outline</strong>: Enumera las distintas funciones del código y su jerarquía.</li>
+<li><strong>Memory inspector</strong>: Permite leer valores de memoria, ya sea de la memoria interna del procesador o de memoria externa como BRAM o DDR3.</li>
 <li><strong>HLS Directives</strong>: Enumera las distintas directivas de High level Synthesis, no posee funcionalidad en el flujo embebido.</li>
 <li><strong>Register Inspector</strong>: Permite ver los valores actuales de los registros internos del procesador, especialmente útil cuando se depuran instrucciones a nivel de código Assembly.</li>
 <li><strong>TCF Profiler</strong> (Target Communication Framework): Herramienta de análisis de rendimiento integrada en Vitis que permite medir cuánto tiempo pasa el procesador en cada función o instrucción.</li>
 </ul>
 </li>
 </ul>
+<h2 id="validacion">Validación</h2>
 <h3 id="primera-prueba-de-depuracion">Primera prueba de depuración</h3>
 <p>Una vez analizada la herramienta, se realizará una primera prueba. Para iniciar la sesión de depurado presione el botón <strong>Continue</strong>,luego haga uso de Step Over sobre la primera línea y observe cómo cambia la pestaña Variables.</p>
 <p>Luego, en la línea donde se realiza la llamada a la función for_loop, haga clic en Step Into, lo que llevará al depurador al interior de la función como se aprecia en la <a href="#fig:for-loop">figura 3</a>.</p>
