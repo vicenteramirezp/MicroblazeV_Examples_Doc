@@ -9,7 +9,7 @@ En esta primera instancia del repositorio se incluyen 8 guías con un nivel prog
   - [Guía 1](Ejemplo_1_Sistema_base/Ejemplo_1.md): Sistema base MicroBlaze V.
   - [Guía 2](Ejemplo_2_Depurador/Ejemplo_2.md): Uso de Depurador en Vitis.
   - [Guía 3](Ejemplo_3_Interrupts/Ejemplo_3.md): Uso de periféricos e interrupciones.
-  - [Guía 4](Ejemplo_4_Verilog/Ejemplo_4.md) : Integración de periféricos diseñados en HDL.
+  - [Guía 4](Ejemplo_4_Verilog/Ejemplo_4.md): Integración de periféricos diseñados en HDL.
   - [Guía 5](Ejemplo_5_HLS/Ejemplo_5.md): Integración de periféricos diseñados en HLS.
   - [Guía 6](Ejemplo_6_DDR/Ejemplo_6.md): Uso de memoria externa.
   - [Guía 7](Ejemplo_7_VGA/Ejemplo_7.md): Sistema de Video con acceso directo a memoria.

@@ -640,6 +640,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -811,6 +822,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contexto" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -911,6 +933,9 @@
 
 
 <h1 id="guia-6-uso-de-memoria-externa">Guía 6 : Uso de memoria Externa</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>En esta guía se introduce al lector a la integración de memoria externa dentro del sistema embebido.</p>
+<p>Al finalizar la guía, el lector sabrá integrar memoria externa en su sistema, lo que le permitirá programar el procesador con aplicaciones que hagan un uso de memoria superior a la memoria interna del procesador.</p>
 <h2 id="contexto">Contexto</h2>
 <p>Si bien el Wizard de creación de MicroBlaze permite hasta 128 KB de memoria, esto  puede resultar insuficiente para aplicaciones mas complejas o que hagan uso de periféricos que necesiten un uso de memoria mayor. Para remediar esta problemática se hace uso de la <strong>Memoria externa</strong> de la placa, su nombre nace de que se encuentra fuera del circuito integrado de la FPGA, como se puede apreciar en la <a href="#fig-DDR2-on-board">figura 1</a>.</p>
 <p>El circuito integrado es el Micron MT47H64M16HR-25, este chip corresponde a una memoria DDR2 con una capacidad de 128 MB (3 ordenes de magnitud mas grande que la memoria interna), para mas detalles técnicos revisar la documentación en el siguiente <a href="https://octopart.com/datasheet/micron/MT47H64M16HR-25:H">enlace</a>. </p>
