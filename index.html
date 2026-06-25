@@ -425,6 +425,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="." class="md-nav__link md-nav__link--active">
         
   
@@ -441,6 +459,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#plataforma-utilizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plataforma utilizada
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -682,6 +730,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#plataforma-utilizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plataforma utilizada
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -698,7 +765,8 @@
 
 
 <h1 id="guias-microblaze-v">Guías MicroBlaze V</h1>
-<p>Este sitio forma parte del entregable del trabajo de título del estudiante Vicente Ramírez, correspondiente al grado de ingeniería civil electrónica de la Universidad Técnica Federico Santa María.</p>
+<p>Este sitio forma parte del material desarrollado en el trabajo de título "Diseño e implementación de sistemas de cómputo heterogéneo basados en procesador RISC-V y coprocesadores en lógica reconfigurable", realizado por Vicente Ramírez para optar al grado de Ingeniero Civil Electrónico de la Universidad Técnica Federico Santa María.</p>
+<p>El objetivo de este repositorio es proporcionar una ruta de aprendizaje reproducible para el desarrollo de sistemas embebidos y plataformas de cómputo heterogéneo sobre FPGA utilizando MicroBlaze V. Las actividades fueron diseñadas con complejidad incremental, permitiendo al lector avanzar desde la creación de un sistema base hasta la integración y depuración de aceleradores hardware desarrollados mediante HDL y High-Level Synthesis (HLS).</p>
 <p>En esta primera instancia del repositorio se incluyen 8 guías con un nivel progresivo de complejidad.</p>
 <ul>
 <li><a href="Ejemplo_1_Sistema_base/Ejemplo_1/">Guía 1</a>: Sistema base MicroBlaze V.</li>
@@ -712,6 +780,14 @@
 </ul>
 <p>Los insumos para cada una de las guías se encuentran en el siguiente repositorio:</p>
 <p><a href="https://github.com/vicenteramirezp/Tutorial_MicroBlazeV">https://github.com/vicenteramirezp/Tutorial_MicroBlazeV</a></p>
+<h2 id="plataforma-utilizada">Plataforma utilizada</h2>
+<p>Estas guías se desarrollaron para el flujo embebido de AMD. Particularmente se hizo uso de las herramientas:</p>
+<ul>
+<li>Vivado 2025.2</li>
+<li>Vitis 2025.2</li>
+<li>Python 3.10</li>
+</ul>
+<p>Y en todas las guías se hizo uso de la placa  "Nexys A7-100T".</p>
 
 
 
