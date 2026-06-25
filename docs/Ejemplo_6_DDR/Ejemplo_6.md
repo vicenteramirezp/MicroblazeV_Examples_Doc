@@ -1,5 +1,13 @@
 # Guía 6 : Uso de memoria Externa
 
+## Objetivo
+
+En esta guía se introduce al lector a la integración de memoria externa dentro del sistema embebido.
+
+Al finalizar la guía, el lector sabrá integrar memoria externa en su sistema, lo que le permitirá programar el procesador con aplicaciones que hagan un uso de memoria superior a la memoria interna del procesador.
+
+
+
 ## Contexto 
 
 Si bien el Wizard de creación de MicroBlaze permite hasta 128 KB de memoria, esto  puede resultar insuficiente para aplicaciones mas complejas o que hagan uso de periféricos que necesiten un uso de memoria mayor. Para remediar esta problemática se hace uso de la **Memoria externa** de la placa, su nombre nace de que se encuentra fuera del circuito integrado de la FPGA, como se puede apreciar en la [](#fig-DDR2-on-board).
