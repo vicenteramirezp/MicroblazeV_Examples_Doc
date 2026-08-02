@@ -10,16 +10,21 @@ Al finalizar la guía, el lector sabrá integrar memoria externa en su sistema, 
 
 ## Contexto 
 
+### ¿Por qué memoria externa?
+
 Si bien el Wizard de creación de MicroBlaze permite hasta 128 KB de memoria, esto  puede resultar insuficiente para aplicaciones mas complejas o que hagan uso de periféricos que necesiten un uso de memoria mayor. Para remediar esta problemática se hace uso de la **Memoria externa** de la placa, su nombre nace de que se encuentra fuera del circuito integrado de la FPGA, como se puede apreciar en la [](#fig-DDR2-on-board).
 
 El circuito integrado es el Micron MT47H64M16HR-25, este chip corresponde a una memoria DDR2 con una capacidad de 128 MB (3 ordenes de magnitud mas grande que la memoria interna), para mas detalles técnicos revisar la documentación en el siguiente [enlace](https://octopart.com/datasheet/micron/MT47H64M16HR-25:H). 
 
 
-![Chip DDR2 en la placa Nexys A7 (Amarillo)](img/DDR2_on_board.png){ #fig-DDR2-on-board width="500" }
+![Chip DDR2 en la placa Nexys A7 (Amarillo).](img/DDR2_on_board.png){ #fig-DDR2-on-board width="500" }
 
 
+### ¿Qué es la notación punto fijo?
 
 Para representar valores fraccionarios se emplea la notación de punto fijo. En esta representación, la posición del punto determina cuántos bits corresponden a la parte entera (a su izquierda) y cuántos a la parte fraccionaria (a su derecha). Note que la cantidad de bits asociada a cada porción del dato se mantiene constante.
+
+![Dato de 8 bits en punto fijo con: 1 bit para el signo, 3 para la parte entera, 4 para la parte fraccional.](img/Punto_fijo.png){ #fixed-point width="500" }
 
 ## Diseño de hardware
 

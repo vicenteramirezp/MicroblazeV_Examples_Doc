@@ -469,7 +469,7 @@ Table: Tamaño del ELF {#tbl-elf-size}
 
 </div>
 
-# Validación
+## Validación
 
 Luego para probar la aplicación, conecte la placa y configure su terminal serial de preferencia en 9600 Baud, Stop bit de 1 y sin paridad. Acto seguido corra la aplicación, debería dar un resultado similar al de la [](#fig-resultado-hterm)
 

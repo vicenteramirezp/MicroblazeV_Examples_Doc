@@ -24,7 +24,7 @@ Para mas información visitar la pagina de [RISC-V international](https://riscv.
 ![Logo RISC-V](img/RISC-V-logo-dark.png#only-dark){ #fig:flow width="500" }
 
 
-### ¿Que es Microblaze -V ?
+### ¿Que es MicroBlaze-V ?
 
 MicroBlaze V es un procesador soft-core de tipo RISC-V desarrollado por AMD para sus FPGAs y SoCs adaptativos . A diferencia de un procesador hard-core, el cual posee una microarquitectura fija en el silicio del dispositivo, un procesador soft-core se distribuye como un bloque IP que se importa al diseño y se implementa sobre la lógica programable del FPGA, lo que lo vuelve agnóstico a la placa: el mismo bloque puede ser instanciado en cualquier dispositivo soportado por Vivado, replicarse en varias instancias dentro de un mismo chip y configurarse a la medida de la aplicación, habilitando únicamente las funcionalidades que se necesitan.
 
@@ -84,6 +84,18 @@ Los bloques que componen el sistema son los siguientes:
 
  Para mas información se adjunta el enlace a [la documentación oficial de MicroBlaze V](https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/microblaze-v.html).
 
+
+### ¿Que es computación heterogénea?
+
+
+La computación heterogénea es un paradigma de diseño de sistemas en el que se utilizan distintos tipos de unidades de procesamiento, cada una especializada en un tipo de tarea, trabajando de manera coordinada.
+
+En lugar de ejecutar todo en un único procesador de propósito general (CPU), las tareas se distribuyen entre diferentes elementos de cómputo según cuál las puede ejecutar de forma más eficiente.
+
+
+
+
+![Diagrama de un sistema heterogéneo con tres núcleos complementarios.](img/Diagrama_hetero.png){ width="500" }
 
 
 
@@ -460,6 +472,7 @@ Al momento de compilar la aplicación, en la terminal se mostrara cuanto pesan l
 
 ![ELF](img/Elf.png){ #fig:Elf-size width="1000" }
 
+## Validación
 
 Si compilo sin problemas haga click en Run para cargar la aplicación a la placa, si se corrió apropiadamente se verá en su programa serial el texto de la [](#fig:hterm).
 

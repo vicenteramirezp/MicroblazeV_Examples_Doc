@@ -1,4 +1,4 @@
-# Guía 7: Sistema de video con acceso directo a memoria
+# Guía 7: Acceso directo a memoria
 
 
 ## Objetivo
@@ -7,6 +7,14 @@ En esta guía se espera que el lector pueda hacer uso de un periférico de video
 
 ## Contexto
 
+### ¿Qué es acceso directo a memoria?
+
+El acceso directo a memoria (DMA, Direct Memory Access) es un mecanismo que permite que un periférico o un bloque de hardware lea o escriba datos en la memoria principal sin que la CPU tenga que transferir cada dato individualmente.
+
+Esto permite alimentar hardware que necesita un flujo de datos constante sin necesidad de que el procesador interrumpa su operación normal.
+
+
+### ¿Qué es VGA?
 VGA (Video Graphics Array) es un estándar de video analógico introducido por IBM en 1987 que transmite la imagen mediante tres señales de color (R, G, B) acompañadas de dos señales digitales de sincronización: HSYNC y VSYNC. A diferencia de interfaces seriales modernas como HDMI o DisplayPort, VGA no encapsula los píxeles en paquetes ni incorpora un reloj embebido: la temporización es responsabilidad íntegra del transmisor. Para una resolución de 800×600 @ 60 Hz, por ejemplo, el estándar VESA define un reloj de píxel de 40 MHz y exige respetar con precisión los intervalos de front porch, pulso de sincronización y back porch tanto horizontales como verticales; cualquier desviación provoca una desincronización en el monitor. Esto implica que, en cada flanco activo del reloj de píxel  el controlador debe tener disponible un nuevo valor RGB en sus salidas. En una implementación sobre FPGA, este controlador se construye típicamente como una máquina de estados que genera los contadores horizontal y vertical, deriva HSYNC/VSYNC y consume píxeles desde un FIFO que actúa como interfaz hacia el resto del sistema.
 
 

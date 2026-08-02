@@ -1,4 +1,4 @@
-# Guías MicroBlaze V
+# Guías Computación Heterogénea en flujo AMD
 
 Este sitio forma parte del material desarrollado en el trabajo de título "Diseño e implementación de sistemas de cómputo heterogéneo basados en procesador RISC-V y coprocesadores en lógica reconfigurable", realizado por Vicente Ramírez para optar al grado de Ingeniero Civil Electrónico de la Universidad Técnica Federico Santa María.
 

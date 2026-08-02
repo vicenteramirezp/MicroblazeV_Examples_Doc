@@ -1,4 +1,4 @@
-# Guía 8 : Uso de System ILA
+# Guía 8 : Depuración en hardware en System ILA
 
 
 ## Objetivo

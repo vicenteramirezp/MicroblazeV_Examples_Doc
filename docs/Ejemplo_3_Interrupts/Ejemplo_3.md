@@ -26,6 +26,10 @@ Desde el punto de vista del procesador, los periféricos del sistema conviven de
 La técnica que permite incorporar este último tipo de región recibe el nombre de mapeo de periféricos en memoria `memory-mapped I/O`. En lugar de definir instrucciones dedicadas para el acceso a periféricos, los registros de control y de estado de cada bloque IP se exponen como direcciones del espacio de memoria del procesador. Una escritura sobre la dirección de un registro de control produce, internamente, una transacción sobre el bus AXI hacia el periférico, que altera su estado; análogamente, una lectura sobre un registro de estado retorna el valor actual de dicho
 registro. Desde código C, el acceso se realiza mediante punteros: el desarrollador declara un puntero  a la dirección base del periférico y manipula sus campos como si fueran variables comunes en memoria.
 
+![Diagrama donde se puede apreciar GPIO y Uart con sus direcciones base en memoria](img/MMIO.png){  width="1000" }
+
+
+
 
 ### ¿Que es una interrupción?
 
