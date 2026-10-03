@@ -49,6 +49,7 @@ nav:
   - Guía 6 : Ejemplo_6_DDR/Ejemplo_6.md
   - Guía 7 : Ejemplo_7_VGA/Ejemplo_7.md
   - Guía 8 : Ejemplo_8_System_ILA/Ejemplo_8.md
+  - Guía 9 : Ejemplo_9_MedirLatencia/Ejemplo_9.md
 plugins:
   - search
   - caption:
