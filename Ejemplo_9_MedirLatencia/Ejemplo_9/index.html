@@ -1,0 +1,1453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Ejemplo_8_System_ILA/Ejemplo_8/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Guía 9 - Guías Computación Heterogénea en Flujo AMD</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-9-medir-latencia-de-perifericos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guías Computación Heterogénea en Flujo AMD" class="md-header__button md-logo" aria-label="Guías Computación Heterogénea en Flujo AMD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guías Computación Heterogénea en Flujo AMD
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guía 9
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_1_Sistema_base/Ejemplo_1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 3
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_5_HLS/Ejemplo_5/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 5
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 6
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 7
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Ejemplo_8_System_ILA/Ejemplo_8/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 8
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guía 9
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guías Computación Heterogénea en Flujo AMD" class="md-nav__button md-logo" aria-label="Guías Computación Heterogénea en Flujo AMD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guías Computación Heterogénea en Flujo AMD
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_1_Sistema_base/Ejemplo_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_2_Depurador/Ejemplo_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_3_Interrupts/Ejemplo_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_4_Verilog/Ejemplo_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_5_HLS/Ejemplo_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_6_DDR/Ejemplo_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_7_VGA/Ejemplo_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ejemplo_8_System_ILA/Ejemplo_8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 9
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contexto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-interactua-el-procesador-con-las-escrituraslecturas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Como interactúa el procesador con las escrituras/lecturas ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agregar-ips-al-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agregar IPs al repositorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-bloques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de bloques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Firmware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Firmware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-minimo-escritura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo mínimo escritura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-driver-de-periferico-disenado-en-verilog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis de driver de periférico diseñado en Verilog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-driver-de-periferico-disenado-en-hls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis de driver de periférico diseñado en HLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contexto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-interactua-el-procesador-con-las-escrituraslecturas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Como interactúa el procesador con las escrituras/lecturas ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Hardware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agregar-ips-al-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agregar IPs al repositorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-bloques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de bloques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-de-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño de Firmware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diseño de Firmware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-minimo-escritura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo mínimo escritura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-driver-de-periferico-disenado-en-verilog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis de driver de periférico diseñado en Verilog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-driver-de-periferico-disenado-en-hls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis de driver de periférico diseñado en HLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validación
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-9-medir-latencia-de-perifericos">Guía 9 : Medir latencia de periféricos</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>En esta guía se espera que el lector pueda medir la latencia de sus periféricos de forma precisa, diferenciando entre la latencia proporcionada por los drivers que manejan estos periféricos y el de su funcionamiento interno.</p>
+<h2 id="contexto">Contexto</h2>
+<p>Tradicionalmente, un periférico diseñado en un nivel de abstracción bajo, como Verilog (o generado mediante HLS), puede caracterizarse a nivel de ciclo de reloj de manera relativamente sencilla, por ejemplo, mediante un testbench. Sin embargo, al integrarlo en un sistema de mayor nivel de abstracción, como uno basado en un procesador, la comunicación entre ambos módulos introduce un costo temporal adicional. Este costo es aún más notorio en sistemas que incluyen un sistema operativo, caso que no se abordará por el momento.</p>
+<p>Como se vio en guías previas, el System ILA permite observar la comunicación en el bus de interconexión. En este caso, se utilizará para realizar mediciones de forma simultánea con la ejecución de la aplicación.</p>
+<h3 id="como-interactua-el-procesador-con-las-escrituraslecturas">¿Como interactúa el procesador con las escrituras/lecturas ?</h3>
+<p><figure id="_figure-1"><img alt="Interfaz M_AXI_DP" id="fig_M_AXI_DP" src="../img/Interfaz_M_AXI_DP.png" width="1000"><figcaption>Figura 1: Interfaz M_AXI_DP</figcaption></figure></p>
+<p>El procesador se conecta al bus de interconexión a través de la interfaz de datos de periféricos (M_AXI_DP) vista en la <a href="#fig_M_AXI_DP">figura 1</a>, fijándonos en el manual del procesador se tiene que:</p>
+<blockquote>
+<p><strong>Peripheral Interfaces</strong><br>
+The MicroBlaze V AXI4 memory mapped peripheral interfaces are implemented as 32-bit masters. Each of these interfaces only have a single outstanding transaction at any time, and all transactions are completed in order.</p>
+<p>The instruction peripheral interface (<code>M_AXI_IP</code>) only performs single word read accesses, and is always set to use the AXI4-Lite subset.</p>
+<p>The data peripheral interface (<code>M_AXI_DP</code>) performs single word accesses, and is set to use the AXI4-Lite subset as default, but is set to use AXI4 when enabling exclusive access for <code>lr</code> and <code>sc</code> instructions. Halfword and byte writes are performed by setting the appropriate byte strobes. Each write transaction waits for <code>M_AXI_DP_BVALID</code> before the store instruction is completed.</p>
+</blockquote>
+<p>Al momento que el procesador decide realizar una escritura/lectura, espera hasta el momento en el bus de interconexión confirma que esta se realizó con exito.</p>
+<p><figure id="_figure-2"><img alt="Diagrama comunicación procesador perférico" id="fig_M_AXI_DP" src="../img/Diagrama_comunicacionProcesadorPerif%C3%A9rico.png" width="1000"><figcaption>Figura 2: Diagrama comunicación procesador perférico</figcaption></figure></p>
+<h2 id="diseno-de-hardware">Diseño de Hardware</h2>
+<h3 id="agregar-ips-al-repositorio">Agregar IPs al repositorio</h3>
+<p>Para esta guía se disponen de 2 dos módulos,ambos son Adder trees, uno diseñado en verilog como se mostró en la guía X  y uno diseñado con el flujo HLS como en la guía X. Ambos poseen 256 entradas de 8 bits.</p>
+<p>Descarguelos y agregue las IPs a su repositorio, para esto vaya a Tools&gt;Settings y en la ventana emergente como se ve en la <a href="#fig_IP_repo">figura 3</a>.</p>
+<p><figure id="_figure-3"><img alt="Ventana Emergente de repositorios IP" id="fig_IP_repo" src="../img/IP_Repo.png" width="700"><figcaption>Figura 3: Ventana Emergente de repositorios IP</figcaption></figure></p>
+<p>Busque las carpetas, que contienen las IPs, debería verse como en la <a href="#fig_IP_repo_withIP">figura 4</a>.</p>
+<p><figure id="_figure-4"><img alt="Repositorios encontrados" id="fig_IP_repo_withIP" src="../img/IP_Repo_withIP.png" width="700"><figcaption>Figura 4: Repositorios encontrados</figcaption></figure></p>
+<h3 id="diagrama-de-bloques">Diagrama de bloques</h3>
+<p>Importe el MicroBlaze V al diagrama de bloques con 128kb de memoria y el controlador de interrupciones, note que en esta guía <strong>NO</strong> se hará uso de memoria externa, debido a que su úso añade varios ciclos de reloj a cada instrucción.</p>
+<p><figure id="_figure-5"><img alt="Sistema Base" id="fig_SistemaBase" src="../img/SistemaBase.png" width="1500"><figcaption>Figura 5: Sistema Base</figcaption></figure></p>
+<p>Luego agregue los IPs importados y corra <em>Run Connection Automation</em>, debería verse similar a <a href="#fig_IP_enBD">figura 6</a>.</p>
+<p><figure id="_figure-6"><img alt="Ips conectadas en diagrama de bloques" id="fig_IP_enBD" src="../img/IP_enBD.png" width="1500"><figcaption>Figura 6: Ips conectadas en diagrama de bloques</figcaption></figure></p>
+<p>Para poder mesurar el tiempo y reportar resultados obtenidos, agregue las IPs <em>AXI Timer</em> y <em>AXI Uartlite</em>. Luego corra   <em>Run Connection Automation</em> ,debería verse similar a <a href="#fig_timer">figura 7</a>.</p>
+<p><strong>OPCIONAL</strong> : Puede cambiar la configuración de <em>AXI Uartlite</em> en este punto haciendo doble click para cambiar el baudrate entre otras configuraciones (note que el baudrate solo se puede cambiar desde la perspectiva de diseño de hardware).</p>
+<p><figure id="_figure-7"><img alt="Timer y Uart en diagrama de bloques" id="fig_timer" src="../img/Timer_Uart_enBD.png" width="1500"><figcaption>Figura 7: Timer y Uart en diagrama de bloques</figcaption></figure></p>
+<p>Luego realice las siguientes conexiones para habilitar interrupciones en los periféricos relevantes:</p>
+<ul>
+<li>Axi Uartlite &gt; interrupt -&gt; In[0]&gt; In line Concat</li>
+<li>Axi Timer &gt; interrupt -&gt; In[1]&gt; In line Concat</li>
+</ul>
+<p><figure id="_figure-8"><img alt="Conexiones en diagrama de bloques" id="fig_irq" src="../img/Interrupt_enBD.png" width="1500"><figcaption>Figura 8: Conexiones en diagrama de bloques</figcaption></figure></p>
+<p>Finalmente importe la IP que nos ayudara a analizar el comportamiento dinámico; System ILA <a href=""></a></p>
+<p><figure id="_figure-9"><img alt="System ILA" id="fig_irq" src="../img/systemIla.png" width="500"><figcaption>Figura 9: System ILA</figcaption></figure></p>
+<p>Haga doble click sobre la IP para configurarla, en este caso hará uso de 4 canales y 4 comparadores como se ve en la <a href="#fig_ilaConfig">figura 10</a>.</p>
+<p><figure id="_figure-10"><img alt="Configuración del system ILA" id="fig_ilaConfig" src="../img/SystemIlaConfig.png" width="1000"><figcaption>Figura 10: Configuración del system ILA</figcaption></figure></p>
+<p>Debido a que este es un módulo particularmente complejo, no posee la funcionalidad de <em>Run Connection Automation</em> por lo que hay que realizar manualmente las siguientes conexiones.</p>
+<ul>
+<li>System ILA &gt; SLOT_0_AXI -&gt; M_AXI_DP &gt; MicroBlaze V</li>
+<li>System ILA &gt; SLOT_1_AXI -&gt; S_AXI &gt; AXI Timer </li>
+<li>System ILA &gt; SLOT_2_AXI -&gt; S00_AXI &gt; AXI_LITE_ADDER_TREE_256_REGS </li>
+<li>System ILA &gt; SLOT_3_AXI -&gt; s_axi_control &gt; Adder_tree</li>
+<li>System ILA &gt; clk -&gt; clk_out1 &gt; Clocking Wizard </li>
+<li>System ILA &gt; resetn -&gt; peripheral_aresetn &gt;  Processor System Reset</li>
+</ul>
+<p>Una vez realizadas todas las conexiones, se deberia ver como en la <a href="#fig_BD_Final">figura 11</a></p>
+<p><figure id="_figure-11"><img alt="Diagrama de bloques con System ILA integrado" id="fig_BD_Final" src="../img/BD_Final.png" width="1500"><figcaption>Figura 11: Diagrama de bloques con System ILA integrado</figcaption></figure></p>
+<p>Tras verificar que el diseño esta correctamente diseñado a nivel de interconexiones, genere la envoltura de hdl, corra síntesis, implementacion y exporte el hardware.</p>
+<p>Una vez exportado el hardware, <strong>NO CIERRE VIVADO</strong>  y abra Vitis.</p>
+<p>Una vez en vitis, agregue la carpeta donde se guardan los drivers a los repositorios de software como se vio en guias anteriores.</p>
+<p><figure id="_figure-12"><img alt="Carpeta de driver agregada a los repositorios de software" id="fig_Software_repo" src="../img/software_Repo.png" width="1500"><figcaption>Figura 12: Carpeta de driver agregada a los repositorios de software</figcaption></figure></p>
+<p>Genere el componente de plataforma, deberia poder visualizar los periféricos en la perspectiva de BSP.</p>
+<p><figure id="_figure-13"><img alt="Drivers de periféricos vistos desde el BSP" id="fig_Software_repo" src="../img/Drivers.png" width="1500"><figcaption>Figura 13: Drivers de periféricos vistos desde el BSP</figcaption></figure></p>
+<p>Finalmente genere el componente de aplicación.</p>
+<h2 id="diseno-de-firmware">Diseño de Firmware</h2>
+<p>Debido a la complejidad de este ejemplo, se hara uso de 3 componentes de aplicación, con 2 siendo asignados al analisis de los drivers de los perfiericos, mientras que el primer ejemplo esta dedicado a entender como la latencia de la comunicación afecta al uso efectivo del periférico por parte del procesador.</p>
+<h3 id="ejemplo-minimo-escritura">Ejemplo mínimo escritura</h3>
+<p>Importe el ejemplo Test_assembly.c a su proyecto:
+</p><div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xil_printf.h"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"xtmrctr.h"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">XTmrCtr</span><span class="w">     </span><span class="n">TimerInstance</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cp">#define TIMER_COUNTER_0   0</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="cp">#define TIMER_COUNTER_1   1</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">{</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">ticks</span><span class="p">;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Status</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">Status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_Initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">XPAR_AXI_TIMER_0_BASEADDR</span><span class="p">);</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Status</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">XST_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">XST_FAILURE</span><span class="p">;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="cm">/*  Overhead de medición.                                           */</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">XTmrCtr_Reset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">XTmrCtr_Stop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"Overhead ventana vacia: %d</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ticks</span><span class="p">);</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="cm">/*  Medición de escritura en un periferico                          */</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="n">u32</span><span class="w"> </span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">XPAR_AXI_LITE_ADDER_TREE_0_BASEADDR</span><span class="p">;</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="n">XTmrCtr_Reset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="n">__asm__</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">        </span><span class="s">"sw %0, 0(%1)"</span><span class="w">            </span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">        </span><span class="o">:</span><span class="w">                         </span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">value</span><span class="p">),</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="w">   </span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s">"memory"</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="n">XTmrCtr_Stop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="n">ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"ticks = %d</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ticks</span><span class="p">);</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="cm">/*  Medición de escritura en un periferico con 1 NOP                */</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">     </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">     </span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">XPAR_AXI_LITE_ADDER_TREE_0_BASEADDR</span><span class="p">;</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">    </span><span class="n">XTmrCtr_Reset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="n">__asm__</span><span class="w"> </span><span class="k">volatile</span><span class="p">(</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">    </span><span class="s">"nop</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">    </span><span class="s">"sw %0, 0(%1)</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">    </span><span class="o">:</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">value</span><span class="p">),</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s">"memory"</span><span class="p">);</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">    </span><span class="n">XTmrCtr_Stop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="n">ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"ticks 1 nop = %d</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ticks</span><span class="p">);</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="cm">/*  Medición de escritura en un periferico con 2 NOP                */</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">     </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">     </span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">XPAR_AXI_LITE_ADDER_TREE_0_BASEADDR</span><span class="p">;</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">    </span><span class="n">XTmrCtr_Reset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="w">    </span><span class="n">__asm__</span><span class="w"> </span><span class="k">volatile</span><span class="p">(</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">    </span><span class="s">"nop</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">    </span><span class="s">"nop</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">    </span><span class="s">"sw %0, 0(%1)</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">    </span><span class="o">:</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">value</span><span class="p">),</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s">"memory"</span><span class="p">);</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">    </span><span class="n">XTmrCtr_Stop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="w">    </span><span class="n">ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"ticks 2 nop = %d</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ticks</span><span class="p">);</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="w">    </span><span class="cm">/*  Medición de escritura en un periferico con 3 NOP                */</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="w">    </span><span class="cm">/* ================================================================ */</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a><span class="w">     </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a><span class="w">     </span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">XPAR_AXI_LITE_ADDER_TREE_0_BASEADDR</span><span class="p">;</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a><span class="w">    </span><span class="n">XTmrCtr_Reset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a><span class="w">    </span><span class="n">XTmrCtr_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a><span class="w">    </span><span class="n">__asm__</span><span class="w"> </span><span class="k">volatile</span><span class="p">(</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="w">    </span><span class="s">"nop</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a><span class="w">    </span><span class="s">"nop</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a><span class="w">    </span><span class="s">"nop</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a><span class="w">    </span><span class="s">"sw %0, 0(%1)</span><span class="se">\n\t</span><span class="s">"</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a><span class="w">    </span><span class="o">:</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">value</span><span class="p">),</span><span class="w"> </span><span class="s">"r"</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s">"memory"</span><span class="p">);</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a><span class="w">    </span><span class="n">XTmrCtr_Stop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a><span class="w">    </span><span class="n">ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XTmrCtr_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TimerInstance</span><span class="p">,</span><span class="w"> </span><span class="n">TIMER_COUNTER_0</span><span class="p">);</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"ticks 3 nop = %d</span><span class="se">\r\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ticks</span><span class="p">);</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a><span class="w">    </span><span class="n">xil_printf</span><span class="p">(</span><span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">);</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a><span class="p">}</span>
+</span></code></pre></div>
+Este codigo tiene el proposito de contar la cantidad de ciclos que se demora realizar una escritura en un periférico desde el procesador, para esto se inicia con una medicion del overhead que introduce el temporadizador para tenerlo en cuenta al momento de realizar las pruebas, tras lo cual se realizan distintas pruebas de escrituras sobre el periférico.
+<p>Como se puede apreciar en el codigo desplegado, para poder bajar a un nivel de abstraccion mas bajo se hace uso de inline assembly, permitiendonos mayor control al momento de realizar escrituras. En este caso observando la diferencia entre el assembly de la primera medición podemos empezar a notar diferencias:</p>
+<style>
+.asm-compare, .asm-compare tr, .asm-compare th, .asm-compare td {
+  border: none !important;
+  background: transparent !important;
+    margin-left: auto !important;
+  margin-right: auto !important;
+}
+.asm-compare pre, .asm-compare code {
+  font-size: 1em !important;
+}
+</style>
+
+<table class="asm-compare">
+<tr>
+<th>Medición Overhead</th>
+<th>Medición escritura sin NOP</th>
+</tr>
+<tr>
+<td>
+
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">940:</span><span class="w">  </span><span class="nf">li</span><span class="w">    </span><span class="no">a1</span><span class="p">,</span><span class="mi">0</span><span class="w">        </span><span class="c1"># TIMER_COUNTER_0</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="err">944:</span><span class="w">  </span><span class="nf">lui</span><span class="w">   </span><span class="no">a5</span><span class="p">,</span><span class="mi">0x2</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="err">948:</span><span class="w">  </span><span class="nf">addi</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="no">a5</span><span class="p">,</span><span class="mi">1956</span><span class="w">  </span><span class="c1"># &amp;TimerInstance</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="err">94</span><span class="nl">c:</span><span class="w">  </span><span class="nf">auipc</span><span class="w"> </span><span class="no">ra</span><span class="p">,</span><span class="mi">0x1</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="err">950:</span><span class="w">  </span><span class="nf">jalr</span><span class="w">  </span><span class="mi">1744</span><span class="p">(</span><span class="no">ra</span><span class="p">)</span><span class="w">    </span><span class="c1"># llama a XTmrCtr_Stop</span>
+</span></code></pre></div>
+
+</td>
+<td>
+
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="err">9</span><span class="nl">c8:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a5</span><span class="p">,-</span><span class="mi">36</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'value' desde stack  </span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="err">9</span><span class="nl">cc:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a4</span><span class="p">,-</span><span class="mi">40</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'addr' desde stack   </span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="err">9</span><span class="nl">d0:</span><span class="w">  </span><span class="nf">sw</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="mi">0</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span><span class="w">     </span><span class="c1"># escribe a 0x44a00000       </span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="err">9</span><span class="nl">d4:</span><span class="w">  </span><span class="nf">li</span><span class="w">    </span><span class="no">a1</span><span class="p">,</span><span class="mi">0</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="err">9</span><span class="nl">d8:</span><span class="w">  </span><span class="nf">lui</span><span class="w">   </span><span class="no">a5</span><span class="p">,</span><span class="mi">0x2</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="err">9</span><span class="nl">dc:</span><span class="w">  </span><span class="nf">addi</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="no">a5</span><span class="p">,</span><span class="mi">1956</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="err">9</span><span class="nl">e0:</span><span class="w">  </span><span class="nf">auipc</span><span class="w"> </span><span class="no">ra</span><span class="p">,</span><span class="mi">0x1</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="err">9</span><span class="nl">e4:</span><span class="w">  </span><span class="nf">jalr</span><span class="w">  </span><span class="mi">1596</span><span class="p">(</span><span class="no">ra</span><span class="p">)</span><span class="w">     </span><span class="c1"># llama a XTmrCtr_Stop</span>
+</span></code></pre></div>
+
+</td>
+</tr>
+</table>
+
+<p>Las diferencias entre ambos experimentos corresponden a tres instrucciones: dos instrucciones lw, que cargan desde el stack hacia los registros la dirección del periférico y el valor a escribir, y la instrucción <code>sw a5,0(a4)</code>, que realiza la escritura en el periférico. La instrucción sw utiliza como dirección el registro a4, cargado por la instrucción lw inmediatamente anterior, por lo que se produce un stall: el procesador detiene el avance de la instrucción dependiente en el pipeline hasta que el dato cargado esté disponible. En el pipeline de 5 etapas de MicroBlaze V, cuando una instrucción en la etapa de decodificación requiere el resultado de una carga que aún se encuentra en la etapa de ejecución, se produce un stall de 1 a 2 ciclos <a href="https://docs.amd.com/r/en-US/ug1629-microblaze-v-user-guide/5-Stage-Pipeline">como señala el manual</a>. Para poder verificar esto, se incluyen variaciones de la medición con 1,2 y 3 NOP.</p>
+<p>Luego, la escritura solo se considera completada cuando el procesador recibe, a través de la interfaz M_AXI_DP, la respuesta de escritura (canal B) proveniente del periférico a través del interconnect. Para verificar esto se hará uso del System ILA, como se vio en guias anteriores, hay que cambiar la configuración en vitis de tal manera que Vivado realice la programación del dispositivo a nivel de hardware</p>
+<p><figure id="_figure-14"><img alt="Configuración de ejecucion Vitis" id="fig" src="../img/no_program.png" width="1000"><figcaption>Figura 14: Configuración de ejecucion Vitis</figcaption></figure></p>
+<p>Luego configure el gatillo del system ILA de tal manera que AWVALID del slot 2 (asociado al adder tree descrito en verilog) como se ve en la <a href="#fig-ILA-CHANNEL">figura 15</a>.</p>
+<p><figure id="_figure-15"><img alt="Configuración canal ILA" id="fig-ILA-CHANNEL" src="../img/Ila_channel.png" width="1500"><figcaption>Figura 15: Configuración canal ILA</figcaption></figure></p>
+<p>Finalmente programe el hardware y programe el ILA, luego ejecute la aplicacion desde Vitis, deberia visualizar la forma de onda en la <a href="#fig-WV">figura 16</a>. </p>
+<p><figure id="_figure-16"><img alt="Comunicacion visualizada en el System ILA" id="fig-WV" src="../img/ILA_WAVEFORM.png" width="1500"><figcaption>Figura 16: Comunicacion visualizada en el System ILA</figcaption></figure></p>
+<p>Esto nos dice que para esta configuración, la escritura de este dato se demora 9 ciclos de reloj, note que esto puede tener una variabilidad de un ciclo. Luego si tenemos en cuenta las instrucciones asociadas, siendo estas los dos lw y el sw :</p>
+<div class="arithmatex">\[
+N_{cycles}= AXI_{transfer} + N_{instructions}+Stall_{cycles} 
+\]</div>
+<div class="arithmatex">\[
+N_{cycles}= 9\pm1 + 3 +Stall_{cycles} 
+\]</div>
+<p>Luego si nos fijamos en el snippet de assembly nuevamente, podemos identificar la fuente del stall.</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="err">9</span><span class="nl">c8:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a5</span><span class="p">,-</span><span class="mi">36</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'value' desde stack al registro a5 </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="err">9</span><span class="nl">cc:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a4</span><span class="p">,-</span><span class="mi">40</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'addr' desde stack al registro a4 (genera stall para que el valor de a4 este listo en la siguiente instruccion)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="err">9</span><span class="nl">d0:</span><span class="w">  </span><span class="nf">sw</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="mi">0</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span><span class="w">     </span><span class="c1"># escribe a 0x44a00000       </span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="err">9</span><span class="nl">d4:</span><span class="w">  </span><span class="nf">li</span><span class="w">    </span><span class="no">a1</span><span class="p">,</span><span class="mi">0</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="err">9</span><span class="nl">d8:</span><span class="w">  </span><span class="nf">lui</span><span class="w">   </span><span class="no">a5</span><span class="p">,</span><span class="mi">0x2</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="err">9</span><span class="nl">dc:</span><span class="w">  </span><span class="nf">addi</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="no">a5</span><span class="p">,</span><span class="mi">1956</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="err">9</span><span class="nl">e0:</span><span class="w">  </span><span class="nf">auipc</span><span class="w"> </span><span class="no">ra</span><span class="p">,</span><span class="mi">0x1</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="err">9</span><span class="nl">e4:</span><span class="w">  </span><span class="nf">jalr</span><span class="w">  </span><span class="mi">1596</span><span class="p">(</span><span class="no">ra</span><span class="p">)</span><span class="w">     </span><span class="c1"># llama a XTmrCtr_Stop</span>
+</span></code></pre></div>
+<p>Se tienen dos ciclos de stall, por lo que se tiene</p>
+<div class="arithmatex">\[
+N_{cycles}= 9\pm1 + 3 +2 
+\]</div>
+<div class="arithmatex">\[
+N_{cycles}= 14\pm1 
+\]</div>
+<p>Finalmente para comprobar el stack, se mandan versiones con multiples NOP (No operation)</p>
+<style>
+.asm-compare, .asm-compare tr, .asm-compare th, .asm-compare td {
+  border: none !important;
+  background: transparent !important;
+    margin-left: auto !important;
+  margin-right: auto !important;
+}
+.asm-compare pre, .asm-compare code {
+  font-size: 1em !important;
+}
+</style>
+
+<table class="asm-compare">
+<tr>
+<th>Medición escritura sin NOP</th>
+<th>Medición escritura con 2 NOP</th>
+</tr>
+<tr>
+<td>
+
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">9</span><span class="nl">c8:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a5</span><span class="p">,-</span><span class="mi">36</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'value' desde stack  </span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="err">9</span><span class="nl">cc:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a4</span><span class="p">,-</span><span class="mi">40</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'addr' desde stack   </span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="err">9</span><span class="nl">d0:</span><span class="w">  </span><span class="nf">sw</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="mi">0</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span><span class="w">     </span><span class="c1"># escribe a 0x44a00000       </span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="err">9</span><span class="nl">d4:</span><span class="w">  </span><span class="nf">li</span><span class="w">    </span><span class="no">a1</span><span class="p">,</span><span class="mi">0</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="err">9</span><span class="nl">d8:</span><span class="w">  </span><span class="nf">lui</span><span class="w">   </span><span class="no">a5</span><span class="p">,</span><span class="mi">0x2</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="err">9</span><span class="nl">dc:</span><span class="w">  </span><span class="nf">addi</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="no">a5</span><span class="p">,</span><span class="mi">1956</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="err">9</span><span class="nl">e0:</span><span class="w">  </span><span class="nf">auipc</span><span class="w"> </span><span class="no">ra</span><span class="p">,</span><span class="mi">0x1</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="err">9</span><span class="nl">e4:</span><span class="w">  </span><span class="nf">jalr</span><span class="w">  </span><span class="mi">1596</span><span class="p">(</span><span class="no">ra</span><span class="p">)</span><span class="w">     </span><span class="c1"># llama a XTmrCtr_Stop</span>
+</span></code></pre></div>
+
+</td>
+<td>
+
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="err">9</span><span class="nl">c8:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a5</span><span class="p">,-</span><span class="mi">36</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'value' desde stack  </span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="err">9</span><span class="nl">cc:</span><span class="w">  </span><span class="nf">lw</span><span class="w">    </span><span class="no">a4</span><span class="p">,-</span><span class="mi">40</span><span class="p">(</span><span class="no">s0</span><span class="p">)</span><span class="w">   </span><span class="c1"># carga 'addr' desde stack   </span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="err">9</span><span class="nl">d0:</span><span class="w">  </span><span class="nf">nop</span><span class="w">    </span><span class="c1"># No se realiza ninguna operacion</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="err">9</span><span class="nl">d4:</span><span class="w">  </span><span class="nf">nop</span><span class="w">    </span><span class="c1"># No se realiza ninguna operacion  </span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="err">9</span><span class="nl">d8:</span><span class="w">  </span><span class="nf">sw</span><span class="w">    </span><span class="no">a5</span><span class="p">,</span><span class="mi">0</span><span class="p">(</span><span class="no">a4</span><span class="p">)</span><span class="w">     </span><span class="c1"># escribe a 0x44a00000 </span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="err">9</span><span class="nl">dc:</span><span class="w">  </span><span class="nf">li</span><span class="w">    </span><span class="no">a1</span><span class="p">,</span><span class="mi">0</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="err">9</span><span class="nl">e0:</span><span class="w">  </span><span class="nf">lui</span><span class="w">   </span><span class="no">a5</span><span class="p">,</span><span class="mi">0x2</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="err">9</span><span class="nl">e4:</span><span class="w">  </span><span class="nf">addi</span><span class="w">  </span><span class="no">a0</span><span class="p">,</span><span class="no">a5</span><span class="p">,</span><span class="mi">1956</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="err">9</span><span class="nl">e8:</span><span class="w">  </span><span class="nf">auipc</span><span class="w"> </span><span class="no">ra</span><span class="p">,</span><span class="mi">0x1</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="err">9</span><span class="nl">ec:</span><span class="w">  </span><span class="nf">jalr</span><span class="w">  </span><span class="mi">1596</span><span class="p">(</span><span class="no">ra</span><span class="p">)</span><span class="w">     </span><span class="c1"># llama a XTmrCtr_Stop</span>
+</span></code></pre></div>
+
+</td>
+</tr>
+</table>
+
+<p>Se realiza este experimento para comprobar en que punto estos influyen en la latencia del código, se realiza la misma operacion de lectura con 0,1,2 y 3 NOPs.</p>
+<p>En este caso se lanzo multiples veces la aplicación para ver que los resultados fueran consistentes.</p>
+<p><figure id="_figure-17"><img alt="Visualizacion Hterm" id="fig" src="../img/hterm.png" width="300"><figcaption>Figura 17: Visualizacion Hterm</figcaption></figure></p>
+<p>El experimento con instrucciones <strong>nop</strong> confirma un stall de dos ciclos: al insertar una o dos instrucciones <strong>nop</strong> el tiempo total no aumenta, ya que estas ocupan los ciclos que antes correspondían al stall. Cuando se agregan 3 NOPs se puede apreciar como consistentemente es la medición que usa mayor tiempo.</p>
+<p>Tambien al obtener la diferencia entre la medición y el overhead se obtienen consistentemente 14-15 ciclos, validando el análisis.</p>
+<h3 id="analisis-de-driver-de-periferico-disenado-en-verilog">Análisis de driver de periférico diseñado en Verilog</h3>
+<h3 id="analisis-de-driver-de-periferico-disenado-en-hls">Análisis de driver de periférico diseñado en HLS</h3>
+<h2 id="validacion">Validación</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
